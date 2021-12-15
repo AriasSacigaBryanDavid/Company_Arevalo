@@ -15,7 +15,7 @@
     <body class="sb-nav-fixed">
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
             <!-- Navbar Brand-->
-            <a class="navbar-brand ps-3" href="index.html">Tienda GO</a>
+            <a class="navbar-brand ps-3" href="index.html">Company Arevalo</a>
            
             <!-- Sidebar Toggle-->
             <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
@@ -39,7 +39,7 @@
                         <div class="nav">
                             <!-- menu de configuracion-->
                             <div class="form-floating mb-3" align="center">
-                                                <img src="Assets/img/logo.png" width="100" >
+                                                <img src="Assets/img/logo.jpg" width="100" >
                             </div>
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
                                 <div class="sb-nav-link-icon"><i class="fas fa-tools text-success"></i></div>
