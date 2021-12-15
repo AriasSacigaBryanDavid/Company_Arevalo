@@ -74,7 +74,7 @@
                     </div>
                     <div class="sb-sidenav-footer">
                         <div class="small">Conectado como:</div>
-                        Tienda GO
+                        Company Arevalo
                     </div>
                 </nav>
             </div>
