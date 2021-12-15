@@ -10,7 +10,7 @@
         <link href="<?php echo base_url; ?>Assets/css/styles.css" rel="stylesheet" />
         <script src="<?php echo base_url; ?>Assets/js/all.min.js" crossorigin="anonymous"></script>
     </head>
-    <body class="bg-primary">
+    <body class="bg-dark">
         <div id="layoutAuthentication">
             <div id="layoutAuthentication_content">
                 <main>
@@ -24,7 +24,7 @@
                                         <!-- Casilla para ingresar datos-->
                                         <form id="frmLogin">
                                             <div class="form-floating mb-3" align="center">
-                                                <img src="Assets/img/logo.png" width="200" >
+                                                <img src="Assets/img/logo.jpg" width="200" >
                                             </div>
                                         
                                             <div class="form-floating mb-3">
@@ -55,12 +55,12 @@
                 <footer class="py-4 bg-light mt-auto">
                     <div class="container-fluid px-4">
                         <div class="d-flex align-items-center justify-content-between small">
-                            <div class="text-muted">Copyright &copy; Tienda Go</div>
-                            <div>
+                            <div class="text-muted">Copyright &copy; COMPANY AREVALO E.I.R.L</div>
+                            <!--<div>
                                 <a href="#">Privacy Policy</a>
                                 &middot;
                                 <a href="#">Terms &amp; Conditions</a>
-                            </div>
+                            </div>-->
                         </div>
                     </div>
                 </footer>
