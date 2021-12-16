@@ -50,6 +50,7 @@
                                 <nav class="sb-sidenav-menu-nested nav">
                                     <a class="nav-link" href="<?php echo base_url;?>Usuarios"> Usuarios</a>
                                     <a class="nav-link" href="<?php echo base_url;?>Cargos"> Rol</a>
+                                    <a class="nav-link" href="<?php echo base_url;?>Almacenes"> Almacén</a>
                                 </nav>
                             </div>
                             <!-- menu de clientes -->

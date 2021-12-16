@@ -1,5 +1,5 @@
 
-let tblUsuarios , tblCargos;
+let tblUsuarios , tblCargos, tblAlmacenes;
 
 /** Inicio de Usuario */
 document.addEventListener("DOMContentLoaded", function(){
@@ -33,6 +33,21 @@ document.addEventListener("DOMContentLoaded", function(){
         ]
     });
      /** Fin de la tabla cargos*/
+     /** Inicio de almacenes */
+    tblAlmacenes = $('#tblAlmacenes').DataTable( {
+        ajax: {
+            url: base_url + "Almacenes/listar" ,
+            dataSrc: ''
+        },
+        columns: [
+            {'data' : 'id'},
+            {'data' : 'nombre'},
+            {'data' : 'direccion'},
+            {'data' : 'estado'},
+            {'data' : 'acciones'}
+        ]
+    });
+    /** Fin de almacenes */
 })
 /** Inicio de Usuario */
 function frmUsuario(){
@@ -374,4 +389,167 @@ function btnReingresarCaj(id){
       })
 }
 /** Fin de cajas */
+/*******************************/
+/** inicio de almacenes */
+function frmAlmacen(){
+    document.getElementById("title").innerHTML ="Agregar Almacén";
+    document.getElementById("btnAccion").innerHTML ="Agregar";
+    document.getElementById("frmAlmacen").reset();
+    $("#nuevo_almacen").modal("show");
+    document.getElementById("id").value ="";
+}
+function registrarAlm(e){
+    e.preventDefault();
+    const nombre = document.getElementById("nombre");
+    const direccion = document.getElementById("direccion");
+    if( nombre.value=="" || direccion.value==""){
+        Swal.fire({
+            position: 'top-end',
+            icon: 'error',
+            title: 'Porfavor ingrese los datos, es obligatorios',
+            showConfirmButton: false,
+            timer: 3000
+          })
+    }else{
+        const url = base_url +"Almacenes/registrar";
+        const frm = document.getElementById("frmAlmacen");
+        const http = new XMLHttpRequest();
+        http.open("POST",url, true);
+        http.send(new FormData(frm));
+        http.onreadystatechange = function(){
+            if(this.readyState == 4 && this.status == 200){
+                const res= JSON.parse(this.responseText);
+                    if(res == "si"){
+                        Swal.fire({
+                            position: 'top-end',
+                            icon: 'success',
+                            title: 'Almacén registrado con éxito',
+                            showConfirmButton: false,
+                            timer: 3000
+                          })
+                          frm.reset();
+                          tblAlmacenes.ajax.reload();
+                          $("#nuevo_almacen").modal("hide");
+                    }else if (res == "modificado") {
+                        Swal.fire({
+                            position: 'top-end',
+                            icon: 'success',
+                            title: 'Almacén modificado con éxito',
+                            showConfirmButton: false,
+                            timer: 3000
+                          })
+                          $("#nuevo_almacen").modal("hide");
+                          tblAlmacenes.ajax.reload();
+                    }else{
+                        Swal.fire({
+                            position: 'top-end',
+                            icon: 'error',
+                            title: res,
+                            showConfirmButton: false,
+                            timer: 3000
+                          })
+                    }
+                    
+                }
+                
+            }
+
+        }
+}
+
+function btnEditarAlm(id){
+    document.getElementById("title").innerHTML ="Actualizar Almacén";
+    document.getElementById("btnAccion").innerHTML="Actualizar";
+    const url = base_url +"Almacenes/editar/"+id;
+    const http = new XMLHttpRequest();
+    http.open("GET",url, true);
+    http.send();
+    http.onreadystatechange = function(){
+        if(this.readyState == 4 && this.status == 200){
+          const res = JSON.parse(this.responseText); 
+          document.getElementById("id").value =res.id;
+            document.getElementById("nombre").value=res.nombre;
+            document.getElementById("direccion").value=res.direccion;
+            $("#nuevo_almacen").modal("show");  
+        }
+    }   
+}
+
+function btnEliminarAlm(id){
+    Swal.fire({
+        title: '¿Deseas Eliminar Almacén?',
+        text: "¡El almacén no se eliminara de forma permanente!,  solo cambiará el estado a inactivo",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'si',
+        cancelButtonText:'No'
+      }).then((result) => {
+        if (result.isConfirmed) {
+            const url = base_url +"Almacenes/eliminar/"+id;
+            const http = new XMLHttpRequest();
+            http.open("GET",url, true);
+            http.send();
+            http.onreadystatechange = function(){
+                if(this.readyState == 4 && this.status == 200){
+                  const res= JSON.parse(this.responseText);
+                    if(res == "ok"){
+                       Swal.fire(
+                        'Mensaje!',
+                        'Almacén eliminado con éxito.',
+                        'success'
+                        )
+                        tblAlmacenes.ajax.reload();
+                  }else{
+                    Swal.fire(
+                        'Mensaje!',
+                        res,
+                        'error'
+                        )
+                  }
+                }
+            }
+        }
+      })
+}
+
+function btnReingresarAlm(id){
+    Swal.fire({
+        title: '¿Está seguro de reingresar?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'si',
+        cancelButtonText:'No'
+      }).then((result) => {
+        if (result.isConfirmed) {
+            const url = base_url +"Almacenes/reingresar/"+id;
+            const http = new XMLHttpRequest();
+            http.open("GET",url, true);
+            http.send();
+            http.onreadystatechange = function(){
+                if(this.readyState == 4 && this.status == 200){
+                  const res= JSON.parse(this.responseText);
+                    if(res == "ok"){
+                       Swal.fire(
+                        'Mensaje!',
+                        'Almacén reingresado con éxito.',
+                        'success'
+                        )
+                        tblAlmacenes.ajax.reload();
+                  }else{
+                    Swal.fire(
+                        'Mensaje!',
+                        res,
+                        'error'
+                        )
+                  }
+                }
+            }
+        }
+      })
+}
+/** Fin de medidas */
 /*******************************/
