@@ -289,7 +289,7 @@ function registrarCar(e){
 
         }
 }
-function btnEditarCaj(id){
+function btnEditarCar(id){
     document.getElementById("title").innerHTML ="Actualizar Cargo";
     document.getElementById("btnAccion").innerHTML ="Actualizar";
     const url = base_url +"Cargos/editar/"+id;
@@ -306,7 +306,7 @@ function btnEditarCaj(id){
 
     }
 }
-function btnEliminarCaj(id){
+function btnEliminarCar(id){
     Swal.fire({
         title: '¿Deseas Eliminar Cargo?',
         text: "¡El cargo no se eliminara de forma permanente!,  solo cambiará el estado a inactivo",
@@ -351,7 +351,7 @@ function btnEliminarCaj(id){
         
     })
 }
-function btnReingresarCaj(id){
+function btnReingresarCar(id){
     Swal.fire({
         title: '¿Está seguro de reingresar?',
         icon: 'warning',
@@ -388,7 +388,7 @@ function btnReingresarCaj(id){
         }
       })
 }
-/** Fin de cajas */
+/** Fin de cargos */
 /*******************************/
 /** inicio de almacenes */
 function frmAlmacen(){

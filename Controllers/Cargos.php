@@ -19,13 +19,13 @@
                 if($data[$i]['estado'] ==1){
                     $data[$i]['estado'] = '<span class="p-1 mb-2 bg-success text-white rounded">Activo</span>';
                     $data[$i]['acciones']='<div>
-                    <button class="btn btn-primary" type="button" onclick="btnEditarCaj('.$data[$i]['id'].');"><i class="far fa-edit"></i></button>
-                    <button class="btn btn-danger" type="button" onclick="btnEliminarCaj('.$data[$i]['id'].');"><i class="fas fa-trash"></i></button>
+                    <button class="btn btn-primary" type="button" onclick="btnEditarCar('.$data[$i]['id'].');"><i class="far fa-edit"></i></button>
+                    <button class="btn btn-danger" type="button" onclick="btnEliminarCar('.$data[$i]['id'].');"><i class="fas fa-trash"></i></button>
                     </div>';
                 }else {
                     $data[$i]['estado'] ='<span class="p-1 mb-2 bg-danger text-white rounded">Inactivo</span>';
                     $data[$i]['acciones']='<div>
-                    <button class="btn btn-success" type="button" onclick="btnReingresarCaj('.$data[$i]['id'].');"><i class="fas fa-recycle"></i></button>
+                    <button class="btn btn-success" type="button" onclick="btnReingresarCar('.$data[$i]['id'].');"><i class="fas fa-recycle"></i></button>
                     </div>';
                 }
                     
