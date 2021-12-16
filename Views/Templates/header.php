@@ -53,7 +53,7 @@
                                     <a class="nav-link" href="<?php echo base_url;?>Almacenes"> Almacén</a>
                                 </nav>
                             </div>
-                            <!-- menu de clientes -->
+                            <!-- menu de proveedores -->
                             <a class="nav-link" href="<?php echo base_url; ?>Proveedores" >
                                 <div class="sb-nav-link-icon"><i class="fas fa-users text-success"></i></div>
                                 Proveedor
@@ -69,6 +69,16 @@
                                     <a class="nav-link" href="<?php echo base_url;?>Productos">Productos</a>
                                 </nav>
                             </div>
+                            <!-- menu de Entrada -->
+                            <a class="nav-link" href="<?php echo base_url; ?>Entradas" >
+                                <div class="sb-nav-link-icon"><i class="fas fa-boxes"></i></div>
+                                Entrada
+                            </a>
+                            <!-- menu de Salida -->
+                            <a class="nav-link" href="<?php echo base_url; ?>Salidas" >
+                                <div class="sb-nav-link-icon"><i class="fas fa-dolly-flatbed"></i></div>
+                                Salida
+                            </a>
                         </div>
                     </div>
                     <div class="sb-sidenav-footer">

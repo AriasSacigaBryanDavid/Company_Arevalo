@@ -738,4 +738,4 @@ function btnReingresarPro(id){
         }
       })
 }
-/** Fin de cliente */
+/** Fin de proveedores */
