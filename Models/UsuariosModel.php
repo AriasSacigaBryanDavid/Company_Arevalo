@@ -1,8 +1,13 @@
 <?php
     class UsuariosModel extends Query{
-        private $usuario, $contrasena;
+        private $usuario, $nombre, $contrasena, $id_cargo, $id_almacen, $id, $estado;
         public function __construct(){
             parent::__construct();
+        }
+        public function getUsuario(string $usuario, string $contrasena){
+            $sql = "SELECT * FROM usuarios WHERE usuario='$usuario' AND contrasena='$contrasena'";
+            $data = $this->select($sql);
+            return $data;
         }
         public function getCargos(){
             $sql="SELECT * FROM cargos WHERE estado=1";
@@ -14,18 +19,64 @@
             $data =$this->selectAll($sql);
             return $data;
         }
-        public function getUsuario(string $usuario, string $contrasena){
-            $sql = "SELECT * FROM usuarios WHERE usuario='$usuario' AND contrasena='$contrasena'";
-            $data = $this->select($sql);
-            return $data;
-        }
         public function getUsuarios(){
             $sql = "SELECT u.*, c.id AS id_cargo, c.nombre As cargo, a.id AS id_almacen, a.nombre AS almacen FROM usuarios u INNER JOIN cargos c ON u.id_cargo = c.id INNER JOIN almacenes a ON u.id_almacen = a.id";
             $data = $this->selectAll($sql);
             return $data;
         }
-
-
+        public function registrarUsuario(string $usuario, string $nombre, string $contrasena, string $id_cargo, string $id_almacen){
+            $this->usuario = $usuario;
+            $this->nombre = $nombre;
+            $this->contrasena = $contrasena;
+            $this->id_cargo = $id_cargo;
+            $this->id_almacen = $id_almacen;
+            $verificar="SELECT * FROM usuarios WHERE usuario='$this->usuario '";
+            $existe=$this ->select($verificar);
+            if(empty($existe)){
+                $sql ="INSERT INTO usuarios(usuario, nombre, contrasena, id_cargo, id_almacen) VALUES (?,?,?,?,?)";
+                $datos = array($this->usuario, $this->nombre, $this->contrasena, $this->id_cargo,$this->id_almacen);
+                $data =$this->save($sql, $datos);
+                if($data ==1){
+                    $res= "ok";
+                }else{
+                    $res= "Error";
+                }
+            }else {
+                $res="existe";
+            }
+            
+            return $res;
+        }
+        public function modificarUsuario(string $usuario, string $nombre, string $id_cargo, string $id_almacen, int $id){
+            $this->usuario = $usuario;
+            $this->nombre = $nombre;
+            $this->id = $id;
+            $this->id_cargo = $id_cargo;
+            $this->id_almacen=$id_almacen;
+            $sql ="UPDATE usuarios SET usuario =?, nombre = ?, id_cargo=?, id_almacen=? WHERE id=?";
+            $datos = array($this->usuario, $this->nombre, $this->id_cargo, $this->id_almacen, $this->id);
+            $data =$this->save($sql, $datos);
+            if($data ==1){
+                    $res= "modificado";
+            }else{
+                    $res= "Error";
+            }
+            return $res;
+                
+        }
+        public function editarUser(int $id){
+            $sql = "SELECT * FROM usuarios WHERE id =$id";
+            $data = $this->select($sql);
+            return $data;
+        }
+        public function accionUser(int $estado, int $id){
+            $this->id= $id;
+            $this->estado =$estado;
+            $sql = "UPDATE usuarios SET estado=? where id=? ";
+            $datos= array($this->estado, $this->id);
+            $data = $this->save ($sql, $datos);
+            return $data;
+        }
 
     }
 

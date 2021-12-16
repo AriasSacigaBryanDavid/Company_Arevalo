@@ -11,6 +11,7 @@
                 <th>Nombre</th>
                 <th>Cargo</th>
                 <th>Almacén</th>
+                <th>Estado</th>
                 <th></th>
             </tr>
         </thead>
