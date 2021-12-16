@@ -8,7 +8,9 @@
             if (empty($_SESSION['activo'])) {
                 header("location: ".base_url);
             }
-            $this->views->getView($this,"index");
+            $data['cargos']=$this->model->getCargos();
+            $data['almacenes']=$this->model->getAlmacenes();
+            $this->views->getView($this,"index",$data);
         }
         public function validar(){
             if(empty($_POST['usuario']) || empty($_POST['contrasena'])){
@@ -31,6 +33,20 @@
             }
             echo json_encode($msg, JSON_UNESCAPED_UNICODE);
             die();
+        }
+        public function listar(){
+            $data = $this-> model->getUsuarios();
+            for ($i=0; $i < count($data) ; $i++) { 
+                $data[$i]['acciones'] = '<div>
+                    <button class="btn btn-primary" type="button" onclick="btnEditarUser('.$data[$i]['id'].');"><i class="fas fa-user-edit"></i></button>
+                    <button class="btn btn-danger" type="button" onclick="btnEliminarUser('.$data[$i]['id'].');"><i class="fas fa-user-slash"></i></button>
+                    <button class="btn btn-success" type="button" onclick="btnReingresarUser('.$data[$i]['id'].');"><i class="fas fa-recycle"></i></button>
+                    </div>';
+                
+            }
+            echo json_encode($data, JSON_UNESCAPED_UNICODE);
+            die();
+            
         }
     }
 ?>
