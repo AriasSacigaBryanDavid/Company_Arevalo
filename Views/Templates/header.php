@@ -48,8 +48,8 @@
                             </a>
                             <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="<?php echo base_url;?>Usuarios"><i class="fas fa-user-cog"></i> Usuarios</a>
-                                    <a class="nav-link" href="<?php echo base_url;?>Cajas"> <i class="fas fa-cash-register"></i>Rol</a>
+                                    <a class="nav-link" href="<?php echo base_url;?>Usuarios"> Usuarios</a>
+                                    <a class="nav-link" href="<?php echo base_url;?>Cargos"> Rol</a>
                                 </nav>
                             </div>
                             <!-- menu de clientes -->

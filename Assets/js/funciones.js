@@ -1,5 +1,5 @@
 
-let tblUsuarios;
+let tblUsuarios , tblCargos;
 
 /** Inicio de Usuario */
 document.addEventListener("DOMContentLoaded", function(){
@@ -19,6 +19,20 @@ document.addEventListener("DOMContentLoaded", function(){
         ]
     } );
     /** Fin de la tabla usuarios*/
+    /** Inicio de cargos */
+    tblCargos = $('#tblCargos').DataTable( {
+        ajax: {
+            url: base_url + "Cargos/listar" ,
+            dataSrc: ''
+        },
+        columns: [
+            {'data' : 'id'},
+            {'data' : 'nombre'},
+            {'data' : 'estado'},
+            {'data' : 'acciones'}
+        ]
+    });
+     /** Fin de la tabla cargos*/
 })
 /** Inicio de Usuario */
 function frmUsuario(){
@@ -194,3 +208,170 @@ function btnReingresarUser(id){
       })
 }
 /** Fin de Usuario */
+/*******************************/
+/** inicio de cargo */
+function frmCargo(){
+    document.getElementById("title").innerHTML ="Agregar Cargo";
+    document.getElementById("btnAccion").innerHTML ="Agregar";
+    document.getElementById("frmCargo").reset();
+    $("#nuevo_cargo").modal("show");
+    document.getElementById("id").value ="";
+}
+function registrarCar(e){
+    e.preventDefault();
+    const nombre = document.getElementById("nombre");
+    if( nombre.value=="" ){
+        Swal.fire({
+            position: 'top-end',
+            icon: 'error',
+            title: 'Porfavor ingrese los datos, es obligatorios',
+            showConfirmButton: false,
+            timer: 3000
+          })
+    }else{
+        const url = base_url +"Cargos/registrar";
+        const frm = document.getElementById("frmCargo");
+        const http = new XMLHttpRequest();
+        http.open("POST",url, true);
+        http.send(new FormData(frm));
+        http.onreadystatechange = function(){
+            if(this.readyState == 4 && this.status == 200){
+                const res= JSON.parse(this.responseText);
+                    if(res == "si"){
+                        Swal.fire({
+                            position: 'top-end',
+                            icon: 'success',
+                            title: 'Cargo registrado con éxito',
+                            showConfirmButton: false,
+                            timer: 3000
+                          })
+                          frm.reset();
+                          tblCargos.ajax.reload();
+                          $("#nuevo_cargo").modal("hide");
+                    }else if (res == "modificado") {
+                        Swal.fire({
+                            position: 'top-end',
+                            icon: 'success',
+                            title: 'Cargo modificado con éxito',
+                            showConfirmButton: false,
+                            timer: 3000
+                          })
+                          $("#nuevo_cargo").modal("hide");
+                          tblCargos.ajax.reload();
+                    }else{
+                        Swal.fire({
+                            position: 'top-end',
+                            icon: 'error',
+                            title: res,
+                            showConfirmButton: false,
+                            timer: 3000
+                          })
+                    }
+                    
+                }
+                
+            }
+
+        }
+}
+function btnEditarCaj(id){
+    document.getElementById("title").innerHTML ="Actualizar Cargo";
+    document.getElementById("btnAccion").innerHTML ="Actualizar";
+    const url = base_url +"Cargos/editar/"+id;
+    const http = new XMLHttpRequest();
+    http.open("GET",url, true);
+    http.send();
+    http.onreadystatechange = function(){
+        if(this.readyState == 4 && this.status == 200){
+            const res = JSON.parse(this.responseText); 
+            document.getElementById("id").value =res.id;
+            document.getElementById("nombre").value=res.nombre; 
+            $("#nuevo_cargo").modal("show");  
+        }
+
+    }
+}
+function btnEliminarCaj(id){
+    Swal.fire({
+        title: '¿Deseas Eliminar Cargo?',
+        text: "¡El cargo no se eliminara de forma permanente!,  solo cambiará el estado a inactivo",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'si',
+        cancelButtonText:'No'
+      }).then((result) => {
+        if (result.isConfirmed) {
+            const url = base_url +"Cargos/eliminar/"+id;
+            const http = new XMLHttpRequest();
+            http.open("GET",url, true);
+            http.send();
+            http.onreadystatechange = function(){
+                if(this.readyState == 4 && this.status == 200){
+                  const res=JSON.parse(this.responseText);
+                  if(res == "ok"){
+                    Swal.fire(
+                     'Mensaje!',
+                     'Cargo eliminado con éxito.',
+                     'success'
+                     )
+                     tblCargos.ajax.reload();
+               }else{
+                 Swal.fire(
+                     'Mensaje!',
+                     res,
+                     'error'
+                     )
+                    }
+               }
+            }
+
+            Swal.fire(
+            'Mensaje!',
+            'elimiado',
+            'error'
+            )
+        }
+        
+    })
+}
+function btnReingresarCaj(id){
+    Swal.fire({
+        title: '¿Está seguro de reingresar?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'si',
+        cancelButtonText:'No'
+      }).then((result) => {
+        if (result.isConfirmed) {
+            const url = base_url +"Cargos/reingresar/"+id;
+            const http = new XMLHttpRequest();
+            http.open("GET",url, true);
+            http.send();
+            http.onreadystatechange = function(){
+                if(this.readyState == 4 && this.status == 200){
+                  const res= JSON.parse(this.responseText);
+                    if(res == "ok"){
+                       Swal.fire(
+                        'Mensaje!',
+                        'Cargo reingresado con éxito.',
+                        'success'
+                        )
+                        tblCargos.ajax.reload();
+                  }else{
+                    Swal.fire(
+                        'Mensaje!',
+                        res,
+                        'error'
+                        )
+                  }
+                }
+            }
+        }
+      })
+}
+/** Fin de cajas */
+/*******************************/
