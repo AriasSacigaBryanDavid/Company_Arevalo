@@ -49,7 +49,7 @@
                             <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
                                     <a class="nav-link" href="<?php echo base_url;?>Usuarios"> Usuarios</a>
-                                    <a class="nav-link" href="<?php echo base_url;?>Cargos"> Rol</a>
+                                    <a class="nav-link" href="<?php echo base_url;?>Cargos"> Cargos</a>
                                     <a class="nav-link" href="<?php echo base_url;?>Almacenes"> Almacén</a>
                                 </nav>
                             </div>
