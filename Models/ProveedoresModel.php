@@ -1,6 +1,6 @@
 <?php
     class ProveedoresModel extends Query{
-        private $nombre,$ruc, $telefono, $direccion, $id, $estado;
+        private $nombre,$ruc, $telefono, $correo, $direccion, $id, $estado;
         
         public function __construct(){
             parent::__construct();
@@ -12,16 +12,17 @@
             return $data;
         }
 
-        public function registarProveedor(string $nombre,string $ruc, string $telefono, string $direccion){
+        public function registarProveedor(string $nombre,string $ruc, string $telefono, string $correo, string $direccion){
             $this->nombre =$nombre;
             $this->ruc = $ruc;
             $this->telefono =$telefono;
+            $this->correo=$correo;
             $this->direccion =$direccion;
             $verificar="SELECT * FROM proveedores WHERE nombre = '$this->nombre'";
             $existe=$this->select($verificar);
             if (empty($existe)) {
-                $sql="INSERT INTO proveedores(nombre,ruc, telefono, direccion) VALUES (?,?,?,?)";
-                $datos= array($this->nombre,$this->ruc, $this->telefono, $this->direccion);
+                $sql="INSERT INTO proveedores(nombre,ruc, telefono,correo, direccion) VALUES (?,?,?,?,?)";
+                $datos= array($this->nombre,$this->ruc, $this->telefono, $this->correo, $this->direccion);
                 $data=$this->save($sql, $datos);
                     if ($data == 1){
                         $res = "ok";
@@ -35,14 +36,15 @@
             return $res;
         }
 
-        public function modificarProveedor(string $nombre, string $ruc, string $telefono, string $direccion, int $id){
+        public function modificarProveedor(string $nombre, string $ruc, string $telefono, string $correo, string $direccion, int $id){
             $this->nombre =$nombre;
             $this->ruc = $ruc;
             $this->telefono =$telefono;
+            $this->correo = $correo;
             $this->direccion =$direccion;
             $this->id=$id;
-            $sql="UPDATE proveedores SET nombre=?,ruc=?, telefono=?, direccion=? WHERE id=?";
-            $datos= array($this->nombre, $this->ruc, $this->telefono, $this->direccion, $this->id);
+            $sql="UPDATE proveedores SET nombre=?,ruc=?, telefono=?, correo=?,direccion=?  WHERE id=?";
+            $datos= array($this->nombre, $this->ruc, $this->telefono,$this->correo, $this->direccion, $this->id);
             $data=$this->save($sql, $datos);
                 if ($data == 1){
                     $res = "modificado";

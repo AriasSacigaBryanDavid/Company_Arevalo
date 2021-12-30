@@ -1,6 +1,6 @@
 <?php
     class AlmacenesModel extends Query{
-        private $nombre, $direccion, $estado,$id;
+        private $nombre, $direccion,$encargado,$telefono,$correo, $estado,$id;
         public function __construct(){
             parent::__construct();
         }
@@ -9,14 +9,17 @@
             $data= $this->selectAll($sql);
             return $data;
         }
-        public function registrarAlmacen(string $nombre, string $direccion){
+        public function registrarAlmacen(string $nombre,string $direccion, string $encargado, string $telefono, string $correo){
             $this->nombre =$nombre;
             $this->direccion=$direccion;
+            $this->encargado =$encargado;
+            $this->telefono =$telefono;
+            $this->correo=$correo;
             $verificar="SELECT * FROM almacenes WHERE nombre = '$this->nombre'";
             $existe=$this->select($verificar);
             if (empty($existe)) {
-                $sql="INSERT INTO almacenes (nombre, direccion) VALUES (?,?)";
-                $datos= array( $this->nombre, $this->direccion);
+                $sql="INSERT INTO almacenes (nombre, direccion,encargado,telefono,correo) VALUES (?,?,?,?,?)";
+                $datos= array( $this->nombre, $this->direccion, $this->encargado, $this->telefono, $this->correo);
                 $data=$this->save($sql, $datos);
                 if ($data == 1){
                         $res = "ok";
@@ -29,12 +32,15 @@
             
             return $res;
         }
-        public function modificarAlmacen( string $nombre, string $direccion, int $id){
+        public function modificarAlmacen( string $nombre, string $direccion, string $encargado, string $telefono, string $correo,int $id){
             $this->nombre =$nombre;
             $this->direccion =$direccion;
+            $this->encargado =$encargado;
+            $this->telefono = $telefono;
+            $this->correo = $correo;
             $this->id=$id;
-            $sql="UPDATE almacenes SET nombre=? , direccion=? WHERE id=?";
-            $datos= array($this->nombre, $this->direccion ,$this->id);
+            $sql="UPDATE almacenes SET nombre=? , direccion=?, encargado =?, telefono=?, correo=? WHERE id=?";
+            $datos= array($this->nombre, $this->direccion,$this->encargado,$this->telefono, $this->correo ,$this->id);
             $data=$this->save($sql, $datos);
                 if ($data == 1){
                     $res = "modificado";

@@ -33,12 +33,15 @@
         public function registrar(){
             $nombre=$_POST['nombre'];
             $direccion=$_POST['direccion'];
+            $encargado=$_POST['encargado'];
+            $telefono =$_POST['telefono'];
+            $correo =$_POST['correo'];
             $id=$_POST['id'];
             if(empty($nombre) || empty($direccion)){
                 $msg="Todos los campos son obligatorios";
             }else{
                 if ($id== "") {
-                    $data=$this->model->registrarAlmacen($nombre, $direccion);
+                    $data=$this->model->registrarAlmacen($nombre, $direccion, $encargado, $telefono, $correo);
                     if($data == "ok") {
                         $msg="si";
                     }else if($data == "existe"){ 
@@ -47,7 +50,7 @@
                         $msg="Error al registrar el almacén";
                     }
                 }else {
-                    $data=$this->model->modificarAlmacen($nombre,$direccion,$id);
+                    $data=$this->model->modificarAlmacen($nombre,$direccion,$encargado, $telefono, $correo,$id);
                     if($data == "modificado") {
                         $msg="modificado";
                     }else {

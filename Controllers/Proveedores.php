@@ -34,13 +34,14 @@
             $nombre=$_POST['nombre'];
             $ruc= $_POST['ruc'];
             $telefono=$_POST['telefono'];
+            $correo =$_POST['correo'];
             $direccion=$_POST['direccion'];
             $id=$_POST['id'];
-            if(empty($nombre) || empty($ruc) || empty($telefono) || empty($direccion)){
+            if(empty($nombre) || empty($ruc) || empty($telefono) || empty($correo)  || empty($direccion)){
                 $msg= "Todos los campos son obligatorios";
             }else{
                 if ($id== "") {
-                    $data=$this->model->registarProveedor($nombre,$ruc,$telefono,$direccion);
+                    $data=$this->model->registarProveedor($nombre,$ruc,$telefono,$correo,$direccion);
                     if($data == "ok") {
                         $msg="si";
                     }else if($data == "existe"){
@@ -49,7 +50,7 @@
                         $msg="Error al registrar el proveedor";
                     } 
                 }else {
-                    $data=$this->model->modificarProveedor($nombre,$ruc,$telefono,$direccion,$id);
+                    $data=$this->model->modificarProveedor($nombre,$ruc,$telefono,$correo,$direccion,$id);
                     if($data == "modificado") {
                         $msg="modificado";
                     }else {

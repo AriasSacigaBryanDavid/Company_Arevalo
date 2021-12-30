@@ -9,6 +9,9 @@
                 <th>Id</th>
                 <th>Nombre</th>
                 <th>Direccion</th>
+                <th>Encargado</th>
+                <th>Teléfono</th>
+                <th>Correo</th>
                 <th>Estado</th>
                 <th></th>
             </tr>
@@ -33,10 +36,22 @@
                             <input type="hidden" id="id" name="id">
                             <input id="nombre" class="form-control" type="text" name="nombre" placeholder="Almacén">
                         </div>      
-                        <div class="form-group mb-2">
+                        <div class="form-group">
                             <label for="direccion">Dirección</label>
                             <textarea id="direccion" class="form-control" name="direccion" placeholder="Dirección" rows="3"></textarea>
+                        </div>  
+                        <div class="form-group">
+                            <label for="encargado">Encargado</label>
+                            <input id="encargado" class="form-control" type="text" name="encargado" placeholder="Encargado de Almacén">
                         </div>     
+                        <div class="form-group mb-2">
+                            <label for="telefono">Teléfono</label>
+                            <input id="telefono" class="form-control" type="text" name="telefono" placeholder="Teléfono">
+                        </div>  
+                        <div class="form-group mb-2">
+                            <label for="correo">Correo</label>
+                            <input id="correo" class="form-control" type="text" name="correo" placeholder="Correo">
+                        </div>
                         <button class="btn btn-primary" type="button" onclick="registrarAlm(event);" id="btnAccion">Agregar</button>
                         <button class="btn btn-danger" type="button" data-bs-dismiss="modal">Cancelar</button>         
                     </form>

@@ -43,6 +43,9 @@ document.addEventListener("DOMContentLoaded", function(){
             {'data' : 'id'},
             {'data' : 'nombre'},
             {'data' : 'direccion'},
+            {'data' : 'encargado'},
+            {'data' : 'telefono'},
+            {'data' : 'correo'},
             {'data' : 'estado'},
             {'data' : 'acciones'}
         ]
@@ -59,6 +62,7 @@ document.addEventListener("DOMContentLoaded", function(){
             {'data' : 'nombre'},
             {'data' : 'ruc'},
             {'data' : 'telefono'},
+            {'data' : 'correo'},
             {'data' : 'direccion'},
             {'data' : 'estado'},
             {'data' : 'acciones'}
@@ -137,7 +141,6 @@ function registrarUser(e){
         }
     }
 }
-
 function btnEditarUser(id){
     document.getElementById("title").innerHTML = "Actualizar usuario";
     document.getElementById("btnAccion").innerHTML = "Actualizar";
@@ -160,7 +163,6 @@ function btnEditarUser(id){
         }
     
 }
-
 function btnEliminarUser(id){
     Swal.fire({
         title: '¿Deseas Eliminar Usuario?',
@@ -200,7 +202,6 @@ function btnEliminarUser(id){
         }
       })
 }
-
 function btnReingresarUser(id){
     Swal.fire({
         title: '¿Está seguro de reingresar?',
@@ -419,7 +420,10 @@ function registrarAlm(e){
     e.preventDefault();
     const nombre = document.getElementById("nombre");
     const direccion = document.getElementById("direccion");
-    if( nombre.value=="" || direccion.value==""){
+    const encargado = document.getElementById("encargado");
+    const telefono = document.getElementById("telefono");
+    const correo = document.getElementById("correo");
+    if( nombre.value=="" || direccion.value=="" || encargado.value=="" || telefono.value=="" || correo.value==""){
         Swal.fire({
             position: 'top-end',
             icon: 'error',
@@ -473,7 +477,6 @@ function registrarAlm(e){
 
         }
 }
-
 function btnEditarAlm(id){
     document.getElementById("title").innerHTML ="Actualizar Almacén";
     document.getElementById("btnAccion").innerHTML="Actualizar";
@@ -487,11 +490,13 @@ function btnEditarAlm(id){
           document.getElementById("id").value =res.id;
             document.getElementById("nombre").value=res.nombre;
             document.getElementById("direccion").value=res.direccion;
+            document.getElementById("encargado").value=res.encargado;
+            document.getElementById("telefono").value=res.telefono;
+            document.getElementById("correo").value=res.correo;
             $("#nuevo_almacen").modal("show");  
         }
     }   
 }
-
 function btnEliminarAlm(id){
     Swal.fire({
         title: '¿Deseas Eliminar Almacén?',
@@ -530,7 +535,6 @@ function btnEliminarAlm(id){
         }
       })
 }
-
 function btnReingresarAlm(id){
     Swal.fire({
         title: '¿Está seguro de reingresar?',
@@ -578,14 +582,14 @@ function frmProveedor(){
     $("#nuevo_proveedor").modal("show");
     document.getElementById("id").value ="";
 }
-
 function registrarPro(e){
     e.preventDefault();
     const nombre = document.getElementById("nombre");
     const ruc= document.getElementById("ruc");
     const telefono = document.getElementById("telefono");
+    const correo = document.getElementById("correo");
     const direccion = document.getElementById("direccion");
-    if(nombre.value=="" || ruc.value=="" ||telefono.value==""||direccion.value==""){
+    if(nombre.value=="" || ruc.value=="" ||telefono.value==""||correo.value=="" ||direccion.value==""){
         Swal.fire({
             position: 'top-end',
             icon: 'error',
@@ -638,7 +642,6 @@ function registrarPro(e){
         }
     }
 }
-
 function btnEditarPro(id){
     document.getElementById("title").innerHTML ="Actualizar Proveedor";
     document.getElementById("btnAccion").innerHTML="Actualizar";
@@ -653,6 +656,7 @@ function btnEditarPro(id){
             document.getElementById("nombre").value=res.nombre;
             document.getElementById("ruc").value =res.ruc;
             document.getElementById("telefono").value=res.telefono;
+            document.getElementById("correo").value = res.correo;
             document.getElementById("direccion").value=res.direccion;  
             $("#nuevo_proveedor").modal("show");  
         }
@@ -661,7 +665,6 @@ function btnEditarPro(id){
 
     
 }
-
 function btnEliminarPro(id){
     Swal.fire({
         title: '¿Deseas Eliminar proveedor?',
@@ -700,7 +703,6 @@ function btnEliminarPro(id){
         }
       })
 }
-
 function btnReingresarPro(id){
     Swal.fire({
         title: '¿Está seguro de reingresar?',

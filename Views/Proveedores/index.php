@@ -10,6 +10,7 @@
                 <th>Nombre</th>
                 <th>RUC</th>
                 <th>Teléfono</th>
+                <th>Correo</th>
                 <th>Dirección</th>
                 <th>Estado</th>
                 <th></th>
@@ -42,6 +43,10 @@
                         <div class="form-group">
                             <label for="telefono">Teléfono</label>
                             <input id="telefono" class="form-control" type="text" name="telefono" placeholder="Teléfono">
+                        </div>
+                        <div class="form-group">
+                            <label for="correo">Correo</label>
+                            <input id="correo" class="form-control" type="text" name="correo" placeholder="Correo">
                         </div>
                         <div class="form-group mb-2">
                             <label for="direccion">Dirección</label>
