@@ -1,5 +1,5 @@
 
-let tblUsuarios , tblCargos, tblAlmacenes, tblProveedores,tblCategorias,tblMarcas,tblUnidades;
+let tblUsuarios , tblCargos, tblAlmacenes, tblProveedores,tblCategorias,tblMarcas,tblUnidades,tblProductos;
 
 /** Inicio de Usuario */
 document.addEventListener("DOMContentLoaded", function(){
@@ -111,6 +111,24 @@ document.addEventListener("DOMContentLoaded", function(){
         ]
     });
     /** Fin de Marcas*/
+    /** Inicio de Productos */
+    tblProductos = $('#tblProductos').DataTable( {
+        ajax: {
+            url: base_url + "Productos/listar",
+            dataSrc: ''
+        },
+        columns: [
+            {'data' : 'id'},
+            {'data' : 'nombre'},
+            {'data' : 'descripcion'},
+            {'data' : 'marca'},
+            {'data' : 'categoria'},
+            {'data' : 'unidad'},
+            {'data' : 'estado'},
+            {'data' : 'acciones'}
+        ]
+    } );
+    /** Fin de la tabla productos*/
     
 })
 /** Inicio de Usuario */
@@ -1295,3 +1313,172 @@ function btnReingresarUni(id){
 }
 /** Fin de unidades */
 /*******************************/
+/** Inicio de productos */
+function frmProducto(){
+    document.getElementById("title").innerHTML = "Registrar Producto";
+    document.getElementById("btnAccion").innerHTML = "Registrar";
+    document.getElementById("frmProducto").reset();
+    $("#nuevo_producto").modal("show");
+    document.getElementById("id").value ="";
+}
+function registrarProd(e){
+    e.preventDefault();
+    const nombre=document.getElementById("nombre");
+    const descripcion=document.getElementById("descripcion");
+    const marca=document.getElementById("marca");
+    const categoria=document.getElementById("categoria");
+    const unidad=document.getElementById("unidad");
+    if(nombre.value == "" || descripcion.value== "" || marca.value== "" || categoria.value=="" || unidad.value=="") {
+        Swal.fire({
+            position: 'top-end',
+            icon: 'error',
+            title: 'Porfavor ingrese los datos, es obligatorio',
+            showConfirmButton: false,
+            timer: 3000
+          })
+    }else{
+        const url =base_url + "Productos/registrar";
+        const frm =document.getElementById("frmProducto");
+        const http=new XMLHttpRequest();
+        http.open("POST", url, true);
+        http.send( new FormData(frm));
+        http.onreadystatechange=function(){
+            if(this.readyState == 4 && this.status ==200){
+               const res = JSON.parse(this.responseText);
+               if(res == "si"){
+                  Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'Producto Registrado con éxito',
+                    showConfirmButton: false,
+                    timer: 3000
+                    })
+                  frm.reset();
+                  $("#nuevo_producto").modal("hide");
+                  tblProductos.ajax.reload();
+               }else if(res == "modificado"){
+                    Swal.fire({
+                        position: 'top-end',
+                        icon: 'success',
+                        title: 'Producto modificado con éxito',
+                        showConfirmButton: false,
+                        timer: 3000
+                    })
+                    $("#nuevo_producto").modal("hide");
+                    tblProductos.ajax.reload();
+               }else{
+                    Swal.fire({
+                        position: 'top-end',
+                        icon: 'error',
+                        title: res,
+                        showConfirmButton: false,
+                     timer: 3000
+                    })
+               }
+                   
+                
+            
+            }
+        }
+    }
+}
+function btnEditarPro(id){
+    document.getElementById("title").innerHTML = "Actualizar producto";
+    document.getElementById("btnAccion").innerHTML = "Actualizar";
+    const url =base_url + "Productos/editar/"+id;
+        const http=new XMLHttpRequest();
+        http.open("GET", url, true);
+        http.send();
+        http.onreadystatechange=function(){
+            if(this.readyState == 4 && this.status ==200){
+               const res = JSON.parse(this.responseText);
+               document.getElementById("id").value = res.id;
+               document.getElementById("nombre").value = res.nombre;
+               document.getElementById("descripcion").value = res.descripcion;
+               document.getElementById("marca").value = res.id_marca;
+               document.getElementById("categoria").value = res.id_categoria;
+               document.getElementById("unidad").value = res.id_unidad;
+               $("#nuevo_producto").modal("show");
+
+            }
+        }
+    
+}
+function btnEliminarPro(id){
+    Swal.fire({
+        title: '¿Deseas Eliminar Producto?',
+        text: "¡El Producto no se eliminara de forma permanente!,  solo cambiará el estado a inactivo",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'si',
+        cancelButtonText:'No'
+      }).then((result) => {
+        if (result.isConfirmed) {
+            const url =base_url + "Productos/eliminar/"+id;
+            const http=new XMLHttpRequest();
+            http.open("GET", url, true);
+            http.send();
+            http.onreadystatechange=function(){
+                if(this.readyState == 4 && this.status ==200){
+                    const res = JSON.parse(this.responseText);
+                    if (res == "ok" ){
+                        Swal.fire(
+                            'Mensaje!',
+                            'Producto eliminado con éxito.',
+                            'success'
+                        )
+                        tblProductos.ajax.reload();
+                    }else{
+                        Swal.fire(
+                            'Mensaje!',
+                            res,
+                            'error'
+                        )
+                    }
+                }
+            }
+            
+        }
+      })
+}
+function btnReingresarPro(id){
+    Swal.fire({
+        title: '¿Está seguro de reingresar?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'si',
+        cancelButtonText:'No'
+      }).then((result) => {
+        if (result.isConfirmed) {
+            const url =base_url + "Productos/reingresar/"+id;
+            const http=new XMLHttpRequest();
+            http.open("GET", url, true);
+            http.send();
+            http.onreadystatechange=function(){
+                if(this.readyState == 4 && this.status ==200){
+                    const res = JSON.parse(this.responseText);
+                    if (res == "ok" ){
+                        Swal.fire(
+                            'Mensaje!',
+                            'Producto reingresado con éxito.',
+                            'success'
+                        )
+                        tblProductos.ajax.reload();
+                    }else{
+                        Swal.fire(
+                            'Mensaje!',
+                            res,
+                            'error'
+                        )
+                    }
+                }
+            }
+            
+        }
+      })
+}
+/** Fin de Usuario */
