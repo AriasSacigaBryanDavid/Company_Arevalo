@@ -47,7 +47,7 @@
                                 <?php } ?>
                             </select>
                         </div>
-                        <div class="form-group mb-2" > 
+                        <div class="form-group " > 
                             <label for="categoria">Categoria</label>
                             <select id="categoria" class="form-control" name="categoria">
                             <?php foreach ($data['categorias'] as $row) { ?>

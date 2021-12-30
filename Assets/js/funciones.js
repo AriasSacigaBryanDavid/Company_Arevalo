@@ -1,5 +1,5 @@
 
-let tblUsuarios , tblCargos, tblAlmacenes, tblProveedores,tblCategorias,tblMarcas,tblUnidades,tblProductos,tblDocumentos;
+let tblUsuarios , tblCargos, tblAlmacenes, tblProveedores,tblCategorias,tblMarcas,tblUnidades,tblProductos,tblDocumentos,tblEntradas;
 
 /** Inicio de Usuario */
 document.addEventListener("DOMContentLoaded", function(){
@@ -142,7 +142,29 @@ document.addEventListener("DOMContentLoaded", function(){
             {'data' : 'acciones'}
         ]
     });
-    /** Fin de Marcas*/
+    /** Fin de documentos*/
+    /** Inicio de entradas */
+    tblEntradas = $('#tblEntradas').DataTable( {
+        ajax: {
+            url: base_url + "Entradas/listar" ,
+            dataSrc: ''
+        },
+        columns: [
+            {'data' : 'id'},
+            {'data' : 'fecha_compra'},
+            {'data' : 'documento'},
+            {'data' : 'n_documento'},
+            {'data' : 'proveedor'},
+            {'data' : 'almacen'},
+            {'data' : 'producto'},
+            {'data' : 'cantidad'},
+            {'data' : 'precio_compra'},
+            {'data' : 'precio_venta'},
+            {'data' : 'fecha_vencimiento'},
+            {'data' : 'acciones'}
+        ]
+    });
+    /** Fin de entradas*/
 })
 /** Inicio de Usuario */
 function frmUsuario(){
@@ -1666,3 +1688,107 @@ function btnReingresarDoc(id){
 }
 /** Fin de documento */
 /*******************************/
+/*******************************/
+/** Inicio de entradas */
+function frmEntrada(){
+    document.getElementById("title").innerHTML = "Registrar Entrada";
+    document.getElementById("btnAccion").innerHTML = "Registrar";
+    document.getElementById("frmEntrada").reset();
+    $("#nuevo_entrada").modal("show");
+    document.getElementById("id").value ="";
+}
+function registrarEnt(e){
+    e.preventDefault();
+    const fecha_compra=document.getElementById("fecha_compra");
+    const documento=document.getElementById("documento");
+    const n_documento=document.getElementById("n_documento");
+    const proveedor=document.getElementById("proveedor");
+    const almacen=document.getElementById("almacen");
+    const producto=document.getElementById("producto");
+    const cantidad=document.getElementById("cantidad");
+    const precio_compra=document.getElementById("precio_compra");
+    const precio_venta=document.getElementById("precio_venta");
+    const fecha_vencimiento=document.getElementById("fecha_vencimiento");
+    if(fecha_compra.value=="" || documento.value=="" || n_documento.value=="" || proveedor.value=="" || almacen.value=="" || producto.value=="" || cantidad.value=="" || precio_compra.value=="" || precio_venta.value=="" || fecha_vencimiento.value=="") {
+        Swal.fire({
+            position: 'top-end',
+            icon: 'error',
+            title: 'Porfavor ingrese los datos, es obligatorio',
+            showConfirmButton: false,
+            timer: 3000
+          })
+    }else{
+        const url =base_url + "Entradas/registrar";
+        const frm =document.getElementById("frmEntrada");
+        const http=new XMLHttpRequest();
+        http.open("POST", url, true);
+        http.send( new FormData(frm));
+        http.onreadystatechange=function(){
+            if(this.readyState == 4 && this.status ==200){
+               const res = JSON.parse(this.responseText);
+               if(res == "si"){
+                  Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'Entrada Registrado con éxito',
+                    showConfirmButton: false,
+                    timer: 3000
+                    })
+                  frm.reset();
+                  $("#nuevo_entrada").modal("hide");
+                  tblEntradas.ajax.reload();
+               }else if(res == "modificado"){
+                    Swal.fire({
+                        position: 'top-end',
+                        icon: 'success',
+                        title: 'Entrada modificado con éxito',
+                        showConfirmButton: false,
+                        timer: 3000
+                    })
+                    $("#nuevo_entrada").modal("hide");
+                    tblEntradas.ajax.reload();
+               }else{
+                    Swal.fire({
+                        position: 'top-end',
+                        icon: 'error',
+                        title: res,
+                        showConfirmButton: false,
+                     timer: 3000
+                    })
+               }
+                   
+                
+            
+            }
+        }
+    }
+}
+function btnEditarEnt(id){
+    document.getElementById("title").innerHTML = "Actualizar Entrada";
+    document.getElementById("btnAccion").innerHTML = "Actualizar";
+    const url =base_url + "Entradas/editar/"+id;
+        const http=new XMLHttpRequest();
+        http.open("GET", url, true);
+        http.send();
+        http.onreadystatechange=function(){
+            if(this.readyState == 4 && this.status ==200){
+               const res = JSON.parse(this.responseText);
+               document.getElementById("id").value = res.id;
+               document.getElementById("fecha_compra").value = res.fecha_compra;
+               document.getElementById("documento").value = res.id_documento;
+               document.getElementById("n_documento").value = res.n_documento;
+               document.getElementById("proveedor").value = res.id_proveedor;
+               document.getElementById("almacen").value = res.id_almacen;
+               document.getElementById("producto").value = res.id_producto;
+               document.getElementById("cantidad").value = res.cantidad;
+               document.getElementById("precio_compra").value =res.precio_compra;
+               document.getElementById("precio_venta").value =res.precio_venta;
+               document.getElementById("fecha_vencimiento").value =res.fecha_vencimiento;
+               $("#nuevo_entrada").modal("show");
+
+            }
+        }
+    
+}
+
+/** Fin de Usuario */
