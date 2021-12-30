@@ -58,6 +58,11 @@
                                 <div class="sb-nav-link-icon"><i class="fas fa-users text-success"></i></div>
                                 Proveedor
                             </a>
+                            <!-- menu de clientes -->
+                            <a class="nav-link" href="<?php echo base_url; ?>Clientes" >
+                                <div class="sb-nav-link-icon"><i class="fas fa-users text-success"></i></div>
+                                Clientes 
+                            </a>
                             <!-- menu de Productos -->
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
                                 <div class="sb-nav-link-icon"><i class="fas fa-store text-success"></i></div>
