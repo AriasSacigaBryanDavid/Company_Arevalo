@@ -82,6 +82,11 @@
                                 <div class="sb-nav-link-icon"><i class="fas fa-dolly-flatbed"></i></div>
                                 Salida
                             </a>
+                            <!-- menu de documentacion -->
+                            <a class="nav-link" href="<?php echo base_url; ?>Documentos " >
+                                <div class="sb-nav-link-icon"><i class="fas fa-users text-success"></i></div>
+                                Documentos
+                            </a>
                         </div>
                     </div>
                     <div class="sb-sidenav-footer">

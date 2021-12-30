@@ -1,5 +1,5 @@
 
-let tblUsuarios , tblCargos, tblAlmacenes, tblProveedores,tblCategorias,tblMarcas,tblUnidades,tblProductos;
+let tblUsuarios , tblCargos, tblAlmacenes, tblProveedores,tblCategorias,tblMarcas,tblUnidades,tblProductos,tblDocumentos;
 
 /** Inicio de Usuario */
 document.addEventListener("DOMContentLoaded", function(){
@@ -97,7 +97,7 @@ document.addEventListener("DOMContentLoaded", function(){
         ]
     });
     /** Fin de Marcas*/
-     /** Inicio de Marcas */
+     /** Inicio de unidades */
      tblUnidades = $('#tblUnidades').DataTable( {
         ajax: {
             url: base_url + "Unidades/listar" ,
@@ -110,7 +110,7 @@ document.addEventListener("DOMContentLoaded", function(){
             {'data' : 'acciones'}
         ]
     });
-    /** Fin de Marcas*/
+    /** Fin de unidades*/
     /** Inicio de Productos */
     tblProductos = $('#tblProductos').DataTable( {
         ajax: {
@@ -129,7 +129,20 @@ document.addEventListener("DOMContentLoaded", function(){
         ]
     } );
     /** Fin de la tabla productos*/
-    
+     /** Inicio de documentos */
+     tblDocumentos = $('#tblDocumentos').DataTable( {
+        ajax: {
+            url: base_url + "Documentos/listar" ,
+            dataSrc: ''
+        },
+        columns: [
+            {'data' : 'id'},
+            {'data' : 'nombre'},
+            {'data' : 'estado'},
+            {'data' : 'acciones'}
+        ]
+    });
+    /** Fin de Marcas*/
 })
 /** Inicio de Usuario */
 function frmUsuario(){
@@ -1482,3 +1495,174 @@ function btnReingresarPro(id){
       })
 }
 /** Fin de Usuario */
+/*******************************/
+/** inicio de documento */
+function frmDocumento(){
+    document.getElementById("title").innerHTML ="Agregar Documento";
+    document.getElementById("btnAccion").innerHTML ="Agregar";
+    document.getElementById("frmDocumento").reset();
+    $("#nuevo_documento").modal("show");
+    document.getElementById("id").value ="";
+}
+
+function registrarDoc(e){
+    e.preventDefault();
+    const nombre = document.getElementById("nombre");
+    if( nombre.value=="" ){
+        Swal.fire({
+            position: 'top-end',
+            icon: 'error',
+            title: 'Porfavor ingrese los datos, es obligatorios',
+            showConfirmButton: false,
+            timer: 3000
+          })
+    }else{
+        const url = base_url +"Documentos/registrar";
+        const frm = document.getElementById("frmDocumento");
+        const http = new XMLHttpRequest();
+        http.open("POST",url, true);
+        http.send(new FormData(frm));
+        http.onreadystatechange = function(){
+            if(this.readyState == 4 && this.status == 200){
+                const res= JSON.parse(this.responseText);
+                    if(res == "si"){
+                        Swal.fire({
+                            position: 'top-end',
+                            icon: 'success',
+                            title: 'Documento agregado con éxito',
+                            showConfirmButton: false,
+                            timer: 3000
+                          })
+                          frm.reset();
+                          tblDocumentos.ajax.reload();
+                          $("#nuevo_documento").modal("hide");
+                    }else if (res == "modificado") {
+                        Swal.fire({
+                            position: 'top-end',
+                            icon: 'success',
+                            title: 'Documento modificado con éxito',
+                            showConfirmButton: false,
+                            timer: 3000
+                          })
+                          $("#nuevo_documento ").modal("hide");
+                          tblDocumentos.ajax.reload();
+                    }else{
+                        Swal.fire({
+                            position: 'top-end',
+                            icon: 'error',
+                            title: res,
+                            showConfirmButton: false,
+                            timer: 3000
+                          })
+                    }
+                    
+                }
+                
+            }
+
+        }
+}
+
+function btnEditarDoc(id){
+    document.getElementById("title").innerHTML ="Actualizar Documento";
+    document.getElementById("btnAccion").innerHTML ="Actualizar";
+    const url = base_url +"Documentos/editar/"+id;
+    const http = new XMLHttpRequest();
+    http.open("GET",url, true);
+    http.send();
+    http.onreadystatechange = function(){
+        if(this.readyState == 4 && this.status == 200){
+            const res = JSON.parse(this.responseText); 
+            document.getElementById("id").value =res.id;
+            document.getElementById("nombre").value=res.nombre; 
+            $("#nuevo_documento").modal("show");  
+        }
+
+    }
+}
+
+function btnEliminarDoc(id){
+    Swal.fire({
+        title: '¿Deseas Eliminar documento?',
+        text: "¡El documento no se eliminara de forma permanente!,  solo cambiará el estado a inactivo",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'si',
+        cancelButtonText:'No'
+      }).then((result) => {
+        if (result.isConfirmed) {
+            const url = base_url +"Documentos/eliminar/"+id;
+            const http = new XMLHttpRequest();
+            http.open("GET",url, true);
+            http.send();
+            http.onreadystatechange = function(){
+                if(this.readyState == 4 && this.status == 200){
+                  const res=JSON.parse(this.responseText);
+                  if(res == "ok"){
+                    Swal.fire(
+                     'Mensaje!',
+                     'Documento eliminado con éxito.',
+                     'success'
+                     )
+                     tblDocumentos.ajax.reload();
+               }else{
+                 Swal.fire(
+                     'Mensaje!',
+                     res,
+                     'error'
+                     )
+                    }
+               }
+            }
+
+            Swal.fire(
+            'Mensaje!',
+            'elimiado',
+            'error'
+            )
+        }
+        
+    })
+}
+
+function btnReingresarDoc(id){
+    Swal.fire({
+        title: '¿Está seguro de reingresar?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'si',
+        cancelButtonText:'No'
+      }).then((result) => {
+        if (result.isConfirmed) {
+            const url = base_url +"Documentos/reingresar/"+id;
+            const http = new XMLHttpRequest();
+            http.open("GET",url, true);
+            http.send();
+            http.onreadystatechange = function(){
+                if(this.readyState == 4 && this.status == 200){
+                  const res= JSON.parse(this.responseText);
+                    if(res == "ok"){
+                       Swal.fire(
+                        'Mensaje!',
+                        'Documento reingresado con éxito.',
+                        'success'
+                        )
+                        tblDocumentos.ajax.reload();
+                  }else{
+                    Swal.fire(
+                        'Mensaje!',
+                        res,
+                        'error'
+                        )
+                  }
+                }
+            }
+        }
+      })
+}
+/** Fin de documento */
+/*******************************/
