@@ -1,5 +1,5 @@
 
-let tblUsuarios , tblCargos, tblAlmacenes, tblProveedores,tblCategorias;
+let tblUsuarios , tblCargos, tblAlmacenes, tblProveedores,tblCategorias,tblMarcas,tblUnidades;
 
 /** Inicio de Usuario */
 document.addEventListener("DOMContentLoaded", function(){
@@ -69,7 +69,7 @@ document.addEventListener("DOMContentLoaded", function(){
         ]
     });
      /** Fin de la tabla clientes*/ 
-     /** Inicio de categoria */
+     /** Inicio de categorias */
     tblCategorias = $('#tblCategorias').DataTable( {
         ajax: {
             url: base_url + "Categorias/listar" ,
@@ -82,7 +82,36 @@ document.addEventListener("DOMContentLoaded", function(){
             {'data' : 'acciones'}
         ]
     });
-    /** Fin de categoria */
+    /** Fin de categorias */
+     /** Inicio de Marcas */
+     tblMarcas = $('#tblMarcas').DataTable( {
+        ajax: {
+            url: base_url + "Marcas/listar" ,
+            dataSrc: ''
+        },
+        columns: [
+            {'data' : 'id'},
+            {'data' : 'nombre'},
+            {'data' : 'estado'},
+            {'data' : 'acciones'}
+        ]
+    });
+    /** Fin de Marcas*/
+     /** Inicio de Marcas */
+     tblUnidades = $('#tblUnidades').DataTable( {
+        ajax: {
+            url: base_url + "Unidades/listar" ,
+            dataSrc: ''
+        },
+        columns: [
+            {'data' : 'id'},
+            {'data' : 'nombre'},
+            {'data' : 'estado'},
+            {'data' : 'acciones'}
+        ]
+    });
+    /** Fin de Marcas*/
+    
 })
 /** Inicio de Usuario */
 function frmUsuario(){
@@ -925,4 +954,344 @@ function btnReingresarCateg(id){
       })
 }
 /** Fin de categorias */
+/*******************************/
+/** inicio de marcas */
+function frmMarca(){
+    document.getElementById("title").innerHTML ="Agregar Marca";
+    document.getElementById("btnAccion").innerHTML ="Agregar";
+    document.getElementById("frmMarca").reset();
+    $("#nuevo_marca").modal("show");
+    document.getElementById("id").value ="";
+}
+
+function registrarMar(e){
+    e.preventDefault();
+    const nombre = document.getElementById("nombre");
+    if( nombre.value=="" ){
+        Swal.fire({
+            position: 'top-end',
+            icon: 'error',
+            title: 'Porfavor ingrese los datos, es obligatorios',
+            showConfirmButton: false,
+            timer: 3000
+          })
+    }else{
+        const url = base_url +"Marcas/registrar";
+        const frm = document.getElementById("frmMarca");
+        const http = new XMLHttpRequest();
+        http.open("POST",url, true);
+        http.send(new FormData(frm));
+        http.onreadystatechange = function(){
+            if(this.readyState == 4 && this.status == 200){
+                const res= JSON.parse(this.responseText);
+                    if(res == "si"){
+                        Swal.fire({
+                            position: 'top-end',
+                            icon: 'success',
+                            title: 'Marca agregado con éxito',
+                            showConfirmButton: false,
+                            timer: 3000
+                          })
+                          frm.reset();
+                          tblMarcas.ajax.reload();
+                          $("#nuevo_marca").modal("hide");
+                    }else if (res == "modificado") {
+                        Swal.fire({
+                            position: 'top-end',
+                            icon: 'success',
+                            title: 'Marca modificado con éxito',
+                            showConfirmButton: false,
+                            timer: 3000
+                          })
+                          $("#nuevo_marca").modal("hide");
+                          tblMarcas.ajax.reload();
+                    }else{
+                        Swal.fire({
+                            position: 'top-end',
+                            icon: 'error',
+                            title: res,
+                            showConfirmButton: false,
+                            timer: 3000
+                          })
+                    }
+                    
+                }
+                
+            }
+
+        }
+}
+
+function btnEditarMar(id){
+    document.getElementById("title").innerHTML ="Actualizar Marca";
+    document.getElementById("btnAccion").innerHTML ="Actualizar";
+    const url = base_url +"Marcas/editar/"+id;
+    const http = new XMLHttpRequest();
+    http.open("GET",url, true);
+    http.send();
+    http.onreadystatechange = function(){
+        if(this.readyState == 4 && this.status == 200){
+            const res = JSON.parse(this.responseText); 
+            document.getElementById("id").value =res.id;
+            document.getElementById("nombre").value=res.nombre; 
+            $("#nuevo_marca").modal("show");  
+        }
+
+    }
+}
+
+function btnEliminarMar(id){
+    Swal.fire({
+        title: '¿Deseas Eliminar marca?',
+        text: "¡La categoria no se eliminara de forma permanente!,  solo cambiará el estado a inactivo",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'si',
+        cancelButtonText:'No'
+      }).then((result) => {
+        if (result.isConfirmed) {
+            const url = base_url +"Marcas/eliminar/"+id;
+            const http = new XMLHttpRequest();
+            http.open("GET",url, true);
+            http.send();
+            http.onreadystatechange = function(){
+                if(this.readyState == 4 && this.status == 200){
+                  const res=JSON.parse(this.responseText);
+                  if(res == "ok"){
+                    Swal.fire(
+                     'Mensaje!',
+                     'Marca eliminado con éxito.',
+                     'success'
+                     )
+                     tblMarcas.ajax.reload();
+               }else{
+                 Swal.fire(
+                     'Mensaje!',
+                     res,
+                     'error'
+                     )
+                    }
+               }
+            }
+
+            Swal.fire(
+            'Mensaje!',
+            'elimiado',
+            'error'
+            )
+        }
+        
+    })
+}
+
+function btnReingresarMar(id){
+    Swal.fire({
+        title: '¿Está seguro de reingresar?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'si',
+        cancelButtonText:'No'
+      }).then((result) => {
+        if (result.isConfirmed) {
+            const url = base_url +"Marcas/reingresar/"+id;
+            const http = new XMLHttpRequest();
+            http.open("GET",url, true);
+            http.send();
+            http.onreadystatechange = function(){
+                if(this.readyState == 4 && this.status == 200){
+                  const res= JSON.parse(this.responseText);
+                    if(res == "ok"){
+                       Swal.fire(
+                        'Mensaje!',
+                        'Marca reingresado con éxito.',
+                        'success'
+                        )
+                        tblMarcas.ajax.reload();
+                  }else{
+                    Swal.fire(
+                        'Mensaje!',
+                        res,
+                        'error'
+                        )
+                  }
+                }
+            }
+        }
+      })
+}
+/** Fin de marcas */
+/*******************************/
+/** inicio de unidades */
+function frmUnidad(){
+    document.getElementById("title").innerHTML ="Agregar Unidad";
+    document.getElementById("btnAccion").innerHTML ="Agregar";
+    document.getElementById("frmUnidad").reset();
+    $("#nuevo_unidad").modal("show");
+    document.getElementById("id").value ="";
+}
+
+function registrarUni(e){
+    e.preventDefault();
+    const nombre = document.getElementById("nombre");
+    if( nombre.value=="" ){
+        Swal.fire({
+            position: 'top-end',
+            icon: 'error',
+            title: 'Porfavor ingrese los datos, es obligatorios',
+            showConfirmButton: false,
+            timer: 3000
+          })
+    }else{
+        const url = base_url +"Unidades/registrar";
+        const frm = document.getElementById("frmUnidad");
+        const http = new XMLHttpRequest();
+        http.open("POST",url, true);
+        http.send(new FormData(frm));
+        http.onreadystatechange = function(){
+            if(this.readyState == 4 && this.status == 200){
+                const res= JSON.parse(this.responseText);
+                    if(res == "si"){
+                        Swal.fire({
+                            position: 'top-end',
+                            icon: 'success',
+                            title: 'Unidad agregado con éxito',
+                            showConfirmButton: false,
+                            timer: 3000
+                          })
+                          frm.reset();
+                          tblUnidades.ajax.reload();
+                          $("#nuevo_unidad").modal("hide");
+                    }else if (res == "modificado") {
+                        Swal.fire({
+                            position: 'top-end',
+                            icon: 'success',
+                            title: 'Unidad modificado con éxito',
+                            showConfirmButton: false,
+                            timer: 3000
+                          })
+                          $("#nuevo_unidad").modal("hide");
+                          tblUnidades.ajax.reload();
+                    }else{
+                        Swal.fire({
+                            position: 'top-end',
+                            icon: 'error',
+                            title: res,
+                            showConfirmButton: false,
+                            timer: 3000
+                          })
+                    }
+                    
+                }
+                
+            }
+
+        }
+}
+
+function btnEditarUni(id){
+    document.getElementById("title").innerHTML ="Actualizar Unidad";
+    document.getElementById("btnAccion").innerHTML ="Actualizar";
+    const url = base_url +"Unidades/editar/"+id;
+    const http = new XMLHttpRequest();
+    http.open("GET",url, true);
+    http.send();
+    http.onreadystatechange = function(){
+        if(this.readyState == 4 && this.status == 200){
+            const res = JSON.parse(this.responseText); 
+            document.getElementById("id").value =res.id;
+            document.getElementById("nombre").value=res.nombre; 
+            $("#nuevo_unidad").modal("show");  
+        }
+
+    }
+}
+
+function btnEliminarUni(id){
+    Swal.fire({
+        title: '¿Deseas Eliminar unidad?',
+        text: "¡La categoria no se eliminara de forma permanente!,  solo cambiará el estado a inactivo",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'si',
+        cancelButtonText:'No'
+      }).then((result) => {
+        if (result.isConfirmed) {
+            const url = base_url +"Unidades/eliminar/"+id;
+            const http = new XMLHttpRequest();
+            http.open("GET",url, true);
+            http.send();
+            http.onreadystatechange = function(){
+                if(this.readyState == 4 && this.status == 200){
+                  const res=JSON.parse(this.responseText);
+                  if(res == "ok"){
+                    Swal.fire(
+                     'Mensaje!',
+                     'Unidades eliminado con éxito.',
+                     'success'
+                     )
+                     tblUnidades.ajax.reload();
+               }else{
+                 Swal.fire(
+                     'Mensaje!',
+                     res,
+                     'error'
+                     )
+                    }
+               }
+            }
+
+            Swal.fire(
+            'Mensaje!',
+            'elimiado',
+            'error'
+            )
+        }
+        
+    })
+}
+
+function btnReingresarUni(id){
+    Swal.fire({
+        title: '¿Está seguro de reingresar?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'si',
+        cancelButtonText:'No'
+      }).then((result) => {
+        if (result.isConfirmed) {
+            const url = base_url +"Unidades/reingresar/"+id;
+            const http = new XMLHttpRequest();
+            http.open("GET",url, true);
+            http.send();
+            http.onreadystatechange = function(){
+                if(this.readyState == 4 && this.status == 200){
+                  const res= JSON.parse(this.responseText);
+                    if(res == "ok"){
+                       Swal.fire(
+                        'Mensaje!',
+                        'Unidad reingresado con éxito.',
+                        'success'
+                        )
+                        tblUnidades.ajax.reload();
+                  }else{
+                    Swal.fire(
+                        'Mensaje!',
+                        res,
+                        'error'
+                        )
+                  }
+                }
+            }
+        }
+      })
+}
+/** Fin de unidades */
 /*******************************/
