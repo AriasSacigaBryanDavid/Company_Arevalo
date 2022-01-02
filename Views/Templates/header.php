@@ -89,7 +89,7 @@
                             </a>
                             <!-- menu de documentacion -->
                             <a class="nav-link" href="<?php echo base_url; ?>Documentos " >
-                                <div class="sb-nav-link-icon"><i class="fas fa-users text-success"></i></div>
+                                <div class="sb-nav-link-icon"><i class="fas fa-archive"></i></div>
                                 Documentos
                             </a>
                         </div>
