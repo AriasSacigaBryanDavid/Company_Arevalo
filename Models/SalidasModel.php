@@ -37,7 +37,7 @@
             $existe=$this ->select($verificar);
             if(empty($existe)){
                 $sql="INSERT INTO salidas(fecha_salida, id_documento, n_documento, id_almacen, motivo, id_producto, cantidad, precio) VALUES (?,?,?,?,?,?,?,?)";
-                $datos = array($this->fecha_salida, $this->id_documento, $this->n_documento, $this->id_almacen, $this-> motivo, $this->id_producto, $this->cantidad, $this->precio);
+                $datos = array($this->fecha_salida, $this->id_documento, $this->n_documento, $this->id_almacen, $this->motivo, $this->id_producto, $this->cantidad, $this->precio);
                 if($data ==1){
                     $res= "ok";
                 }else{
