@@ -3,12 +3,12 @@
     <li class="breadcrumb-item active">Salidas</li>
     </ol>
 
-    <button class="btn btn-primary mb-2" type="button" onclick="frmSalida();"><i class="fas fa-user-plus"></i></button>
+    <button class="btn btn-primary" type="button" onclick="frmSalida();"><i class="fas fa-user-plus"></i></button>
     <table class="table table-dark" id="tblSalidas">
         <thead class="thead-dark">
             <tr>
                 <th>ID</th>
-                <th>Fecha_Salida</th>
+                <th>Fecha_salida</th>
                 <th>Documento</th>
                 <th>N°</th>
                 <th>Almacén</th>
@@ -23,17 +23,17 @@
         </tbody>
     </table>
     <div id="nuevo_salida" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="my-modal-title" aria-hidden="true">
-        <div class="modal-dialog" role="document">
+    <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header bg-dark">
-                    <h5 class="modal-title text-white" id="title">Nuevo Salida</h5>
+                    <h5 class="modal-title text-white" id="title">Nuevo Entrada</h5>
                     <button type="button"    class="btn-close bg-white" data-bs-dismiss="modal" aria-label="Close">
                         <!--<span aria-hidden="true">&times;</span>-->
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form method="post" id="frmSalida">
-                        <div class="form-group">
+                    <form method ="post" id="frmSalida">
+                    <div class="form-group">
                             <label for="fecha_salida">fecha de Salida</label>
                             <input type="hidden" id="id" name="id">
                             <input id="fecha_salida" class="form-control" type="text" name="fecha_salida" placeholder="Fecha de Salida">
@@ -76,16 +76,16 @@
                             <input id="cantidad" class="form-control" type="text" name="cantidad" placeholder="Cantidad">
                         </div>
                         <div class="form-group mb-2">
-                            <label for="precio">Precio </label>
+                            <label for="precio">Precio</label>
                             <input id="precio" class="form-control" type="text" name="precio" placeholder="Precio">
                         </div>
                         
                         <button class="btn btn-primary" type="button" onclick="registrarSal(event);" id="btnAccion">Registrar</button>
                         <button class="btn btn-danger" type="button" data-bs-dismiss="modal">Cancelar</button>
-
                     </form>
                 </div>
             </div>
         </div>
     </div>
+   
 <?php include "Views/Templates/footer.php";?>

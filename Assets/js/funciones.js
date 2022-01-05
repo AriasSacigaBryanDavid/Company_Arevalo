@@ -1880,7 +1880,7 @@ function registrarSal(e){
                     Swal.fire({
                         position: 'top-end',
                         icon: 'success',
-                        title: 'Entrada modificado con éxito',
+                        title: 'Salida modificado con éxito',
                         showConfirmButton: false,
                         timer: 3000
                     })
@@ -1928,6 +1928,7 @@ function btnEditarSal(id){
     
 }
 /** Fin de Salidas */
+/*******************************/
 /** inicio de cliente */
 function frmCliente(){
     document.getElementById("title").innerHTML ="Registrar Cliente";
