@@ -1927,7 +1927,7 @@ function btnEditarSal(id){
         }
     
 }
-/** Fin de Entradas */
+/** Fin de Salidas */
 /** inicio de cliente */
 function frmCliente(){
     document.getElementById("title").innerHTML ="Registrar Cliente";

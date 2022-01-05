@@ -13,9 +13,9 @@
                 <th>N°</th>
                 <th>Almacén</th>
                 <th>Motivo</th>
-                <th>productos</th>
-                <th>cantidad</th>
-                <th>precio</th>
+                <th>Producto</th>
+                <th>Cantidad</th>
+                <th>Precio</th>
                 <th></th>
             </tr>
         </thead>
