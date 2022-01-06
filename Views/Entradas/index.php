@@ -7,16 +7,21 @@
         <thead class="thead-dark">
             <tr>
                 <th>ID</th>
+                <th>Codigo</th>
                 <th>Fecha_Compra</th>
                 <th>Documento</th>
                 <th>N°</th>
                 <th>Proveedor</th>
                 <th>Almacén</th>
-                <th>productos</th>
-                <th>cantidad</th>
-                <th>precio_compra</th>
-                <th>precio_venta</th>
-                <th>fecha_vencimiento</th>
+                <th>Producto</th>
+                <th>Cantidad</th>
+                <th>Peso_bruto</th>
+                <th>Peso_neto</th>
+                <th>Kilos_tara</th>
+                <th>Precio_compra</th>
+                <th>Precio_venta</th>
+                <th>Precio_total</th>
+                <th>Fecha_vencimiento</th>
                 <th></th>
             </tr>
         </thead>
@@ -34,9 +39,13 @@
                 </div>
                 <div class="modal-body">
                     <form method="post" id="frmEntrada">
+                    <div class="form-group">
+                            <label for="codigo">Código</label>
+                            <input type="hidden" id="id" name="id">
+                            <input id="codigo" class="form-control" type="text" name="codigo" placeholder="Código">
+                        </div>
                         <div class="form-group">
                             <label for="fecha_compra">fecha de Compra</label>
-                            <input type="hidden" id="id" name="id">
                             <input id="fecha_compra" class="form-control" type="text" name="fecha_compra" placeholder="Fecha de Compra">
                         </div>
                         <div class="form-group " > 
@@ -80,12 +89,28 @@
                             <input id="cantidad" class="form-control" type="text" name="cantidad" placeholder="Cantidad">
                         </div>
                         <div class="form-group">
+                            <label for="peso_bruto">Peso Bruto</label>
+                            <input id="peso_bruto" class="form-control" type="text" name="peso_bruto" placeholder="Peso Bruto">
+                        </div>
+                        <div class="form-group">
+                            <label for="peso_neto">Peso Neto</label>
+                            <input id="peso_neto" class="form-control" type="text" name="peso_neto" placeholder="Peso Neto">
+                        </div>
+                        <div class="form-group">
+                            <label for="kilos_tara">Kilos de Taras</label>
+                            <input id="kilos_tara" class="form-control" type="text" name="kilos_tara" placeholder="Kilos de Tara">
+                        </div>
+                        <div class="form-group">
                             <label for="precio_compra">Precio de Compra</label>
                             <input id="precio_compra" class="form-control" type="text" name="precio_compra" placeholder="Precio de Compra">
                         </div>
                         <div class="form-group">
                             <label for="precio_venta">Precio de Venta</label>
                             <input id="precio_venta" class="form-control" type="text" name="precio_venta" placeholder="Precio de Venta">
+                        </div>
+                        <div class="form-group">
+                            <label for="precio_total">Precio de Total</label>
+                            <input id="precio_total" class="form-control" type="text" name="precio_total" placeholder="Precio Total">
                         </div>
                         <div class="form-group mb-2">
                             <label for="fecha_vencimiento">fecha de Vencimiento</label>

@@ -1,0 +1,24 @@
+<?php
+
+    class Ventas extends Controller{
+        public function __construct(){
+            session_start();
+            parent::__construct();
+        }
+        
+        public function index(){
+            if (empty($_SESSION['activo'])) {
+                header("location: ".base_url);
+            }
+            $data['documentos']=$this->model->getDocumentos();
+            $data['identidad']=$this->model->getIdentidades();
+            $data['almacenes']=$this->model->getAlmacenes();
+            $this->views->getView($this,"index",$data);
+        }
+
+
+
+
+
+    }
+?>

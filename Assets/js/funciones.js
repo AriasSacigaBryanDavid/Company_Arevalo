@@ -151,6 +151,7 @@ document.addEventListener("DOMContentLoaded", function(){
         },
         columns: [
             {'data' : 'id'},
+            {'data' : 'codigo'},
             {'data' : 'fecha_compra'},
             {'data' : 'documento'},
             {'data' : 'n_documento'},
@@ -158,8 +159,12 @@ document.addEventListener("DOMContentLoaded", function(){
             {'data' : 'almacen'},
             {'data' : 'producto'},
             {'data' : 'cantidad'},
+            {'data' : 'peso_bruto'},
+            {'data' : 'peso_neto'},
+            {'data' : 'kilos_tara'},
             {'data' : 'precio_compra'},
             {'data' : 'precio_venta'},
+            {'data' : 'precio_total'},
             {'data' : 'fecha_vencimiento'},
             {'data' : 'acciones'}
         ]

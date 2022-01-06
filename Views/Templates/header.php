@@ -87,10 +87,15 @@
                                 <div class="sb-nav-link-icon"><i class="fas fa-dolly-flatbed"></i></div>
                                 Salida
                             </a>
-                            <!-- menu de documentacion -->
+                            <!-- menu de Documentacion -->
                             <a class="nav-link" href="<?php echo base_url; ?>Documentos " >
                                 <div class="sb-nav-link-icon"><i class="fas fa-archive"></i></div>
                                 Documentos
+                            </a>
+                            <!-- menu de Ventas -->
+                            <a class="nav-link" href="<?php echo base_url; ?>Ventas " >
+                                <div class="sb-nav-link-icon"><i class="fas fa-cash-register"></i></div>
+                                Ventas
                             </a>
                         </div>
                     </div>
