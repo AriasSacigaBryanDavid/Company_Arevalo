@@ -8,7 +8,8 @@
             if (empty($_SESSION['activo'])) {
                 header("location: ".base_url);
             }
-            $this->views->getView($this,"index");
+            $data['identidades']=$this->model->getIdentidades();
+            $this->views->getView($this,"index",$data);
         }
         public function listar(){
              $data = $this->model->getProveedores();

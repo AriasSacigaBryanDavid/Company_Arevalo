@@ -7,6 +7,7 @@
         <thead class="thead-dark">
             <tr>
                 <th>ID</th>
+                <th>Código</th>
                 <th>Nombre</th>
                 <th>Descripcion</th>
                 <th>Marca</th>
@@ -30,9 +31,13 @@
                 </div>
                 <div class="modal-body">
                     <form method="post" id="frmProducto">
+                         <div class="form-group">
+                            <label for="codigo">Código</label>
+                            <input type="hidden" id="id" name="id">
+                            <input id="codigo" class="form-control" type="text" name="codigo" placeholder="Código">
+                        </div>
                         <div class="form-group">
                             <label for="nombre">Nombre</label>
-                            <input type="hidden" id="id" name="id">
                             <input id="nombre" class="form-control" type="text" name="nombre" placeholder="Nombre Completo">
                         </div>
                         <div class="form-group">

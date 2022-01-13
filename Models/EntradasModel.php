@@ -24,6 +24,16 @@
             $data =$this->selectAll($sql);
             return $data;
         }
+        public function getIdentidades(){
+            $sql="SELECT * FROM identidades WHERE estado=1";
+            $data =$this->selectAll($sql);
+            return $data;
+        }
+        public function getNidentidad(string $pro){
+            $sql= "SELECT* FROM proveedores WHERE n_identidad='$pro'";
+            $data = $this->select($sql);
+            return $data;
+        }
         public function getEntradas(){
             $sql = "SELECT e.*, d.id AS id_documento, d.nombre AS documento, p.id AS id_proveedor, p.nombre AS proveedor, a.id As id_almacen, a.nombre AS almacen, pd.id AS id_producto, pd.nombre AS producto FROM entradas e INNER JOIN documentos d ON e.id_documento = d.id INNER JOIN proveedores p ON e.id_proveedor = p.id INNER JOIN almacenes a ON e.id_almacen = a.id INNER JOIN productos pd ON e.id_producto=pd.id; ";
             $data = $this->selectAll($sql);

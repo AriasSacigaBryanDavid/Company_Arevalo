@@ -10,7 +10,7 @@
             return $data;
         }
         public function getIdentidades(){
-            $sql="SELECT * FROM identidad WHERE estado=1";
+            $sql="SELECT * FROM identidades WHERE estado=1";
             $data =$this->selectAll($sql);
             return $data;
         }

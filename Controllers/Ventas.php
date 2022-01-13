@@ -11,7 +11,7 @@
                 header("location: ".base_url);
             }
             $data['documentos']=$this->model->getDocumentos();
-            $data['identidad']=$this->model->getIdentidades();
+            $data['identidades']=$this->model->getIdentidades();
             $data['almacenes']=$this->model->getAlmacenes();
             $this->views->getView($this,"index",$data);
         }

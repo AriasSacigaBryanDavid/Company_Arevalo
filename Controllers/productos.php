@@ -35,6 +35,7 @@
             
         }
         public function registrar(){
+            $codigo =$_POST['codigo'];
             $nombre =$_POST['nombre'];
             $descripcion=$_POST['descripcion'];
             $marca=$_POST['marca'];
@@ -45,7 +46,7 @@
                 $msg =" Todo los campos son obligatorios";
             }else{
                 if ($id == ""){
-                        $data= $this->model->registrarProducto($nombre,$descripcion,$marca,$categoria,$unidad);
+                        $data= $this->model->registrarProducto($codigo, $nombre,$descripcion,$marca,$categoria,$unidad);
                         if ($data == "ok"){
                             $msg = "si";  
                         }else if($data =="existe") {
@@ -54,7 +55,7 @@
                             $msg="Error al registrar el producto";
                         }
                 }else {
-                    $data= $this->model->modificarProducto($nombre,$descripcion,$marca,$categoria,$unidad, $id);
+                    $data= $this->model->modificarProducto($codigo, $nombre,$descripcion,$marca,$categoria,$unidad, $id);
                         if ($data == "modificado"){
                             $msg = "modificado";  
                         }else {

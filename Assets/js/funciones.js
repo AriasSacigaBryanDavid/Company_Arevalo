@@ -60,7 +60,8 @@ document.addEventListener("DOMContentLoaded", function(){
         columns: [
             {'data' : 'id'},
             {'data' : 'nombre'},
-            {'data' : 'ruc'},
+            {'data' : 'identidad'},
+            {'data' : 'n_identidad'},
             {'data' : 'telefono'},
             {'data' : 'correo'},
             {'data' : 'direccion'},
@@ -119,6 +120,7 @@ document.addEventListener("DOMContentLoaded", function(){
         },
         columns: [
             {'data' : 'id'},
+            {'data' : 'codigo'},
             {'data' : 'nombre'},
             {'data' : 'descripcion'},
             {'data' : 'marca'},
@@ -1400,12 +1402,13 @@ function frmProducto(){
 }
 function registrarProd(e){
     e.preventDefault();
+    const codigo=document.getElementById("codigo");
     const nombre=document.getElementById("nombre");
     const descripcion=document.getElementById("descripcion");
     const marca=document.getElementById("marca");
     const categoria=document.getElementById("categoria");
     const unidad=document.getElementById("unidad");
-    if(nombre.value == "" || descripcion.value== "" || marca.value== "" || categoria.value=="" || unidad.value=="") {
+    if(codigo.value=="" ||nombre.value == "" || descripcion.value== "" || marca.value== "" || categoria.value=="" || unidad.value=="") {
         Swal.fire({
             position: 'top-end',
             icon: 'error',
@@ -1470,6 +1473,7 @@ function btnEditarPro(id){
             if(this.readyState == 4 && this.status ==200){
                const res = JSON.parse(this.responseText);
                document.getElementById("id").value = res.id;
+               document.getElementById("codigo").value = res.codigo;
                document.getElementById("nombre").value = res.nombre;
                document.getElementById("descripcion").value = res.descripcion;
                document.getElementById("marca").value = res.id_marca;
@@ -1732,6 +1736,38 @@ function btnReingresarDoc(id){
 /*******************************/
 /*******************************/
 /** Inicio de entradas */
+function buscarProveedor(e){
+    e.preventDefault();
+    if(e.which == 13){
+        const pro = document.getElementById("n_identidad").value;
+        const url =base_url + "Compras/buscarProveedor/"+ pro;
+        const http=new XMLHttpRequest();
+        http.open("GET", url, true);
+        http.send();
+        http.onreadystatechange=function(){
+                if(this.readyState == 4 && this.status ==200){
+                    const res =JSON.parse(this.responseText);
+                    if(res){
+                        document.getElementById("nombre").value = res.nombre;
+                        document.getElementById("id").value = res.id;
+                        
+                    }else{
+                        Swal.fire({
+                            position: 'top-end',
+                            icon: 'error',
+                            title: 'El producto no existe',
+                            showConfirmButton: false,
+                         timer: 2000
+                        })
+                        document.getElementById("n_identidad").value='';
+                        document.getElementById("n_identidad").focus();
+                    }
+        
+                }
+        }
+    }
+}
+
 function frmEntrada(){
     document.getElementById("title").innerHTML = "Registrar Entrada";
     document.getElementById("btnAccion").innerHTML = "Registrar";

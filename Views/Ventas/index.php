@@ -33,7 +33,7 @@
                         <div class="form-group mb-3">
                             <label for="identidad">Documento de Identidad</label>
                                 <select id="identidad" class="form-control" name="identidad">
-                                <?php foreach ($data['identidad'] as $row) { ?>
+                                <?php foreach ($data['identidades'] as $row) { ?>
                                     <option value="<?php echo $row['id']; ?>"><?php echo $row['nombre']; ?></option>
                                     <?php } ?>
                                 </select>

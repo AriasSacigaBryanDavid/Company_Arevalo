@@ -13,7 +13,13 @@
             $data['proveedores']=$this->model->getProveedores();
             $data['almacenes']=$this->model->getAlmacenes();
             $data['productos']=$this->model->getProductos();
+            $data['identidad']=$this->model->getIdentidades();
             $this->views->getView($this,"index", $data);
+        }
+        public function buscarProveedor($pro){
+            $data =$this->model->getNidentidad($pro);
+            echo json_encode($data, JSON_UNESCAPED_UNICODE);
+            die();
         }
         public function listar(){
             $data = $this-> model->getEntradas();

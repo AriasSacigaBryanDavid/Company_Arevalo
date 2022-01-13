@@ -5,9 +5,13 @@
         public function __construct(){
             parent::__construct();
         }
-
+        public function getIdentidades(){
+            $sql="SELECT * FROM identidades WHERE estado=1";
+            $data =$this->selectAll($sql);
+            return $data;
+        }
         public function getProveedores(){
-            $sql="SELECT * FROM proveedores";
+            $sql="SELECT p.*, i.id AS id_identidad, i.nombre AS identidad FROM proveedores p INNER JOIN identidades i ON p.id_identidad =i.id";
             $data= $this->selectAll($sql);
             return $data;
         }

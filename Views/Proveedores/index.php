@@ -8,7 +8,8 @@
             <tr>
                 <th>Id</th>
                 <th>Nombre</th>
-                <th>RUC</th>
+                <th>Identidad</th>
+                <th>n_identidad</th>
                 <th>Teléfono</th>
                 <th>Correo</th>
                 <th>Dirección</th>
@@ -33,12 +34,20 @@
                     <form method="post" id="frmProveedor">
                         <div class="form-group">
                             <label for="nombre">Nombre</label>
+                            <input type="hidden" id="id" name="id">
                             <input id="nombre" class="form-control" type="text" name="nombre" placeholder="Nombre del Proveedor">
                         </div>
                         <div class="form-group">
-                            <label for="ruc">RUC</label>
-                            <input type="hidden" id="id" name="id">
-                            <input id="ruc" class="form-control" type="text" name="ruc" placeholder="Registro Único de Contribuyentes">
+                            <label for="identidad">Documento de Identidad</label>
+                                <select id="identidad" class="form-control" name="identidad">
+                                <?php foreach ($data['identidades'] as $row) { ?>
+                                    <option value="<?php echo $row['id']; ?>"><?php echo $row['nombre']; ?></option>
+                                    <?php } ?>
+                                </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="n_identidad">N° de Identidad</label>
+                            <input id="n_identidad" class="form-control" type="text" name="n_identidad" placeholder="Registro Único de Contribuyentes">
                         </div>
                         <div class="form-group">
                             <label for="telefono">Teléfono</label>
