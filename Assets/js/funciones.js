@@ -1740,7 +1740,7 @@ function buscarProveedor(e){
     e.preventDefault();
     if(e.which == 13){
         const pro = document.getElementById("n_identidad").value;
-        const url =base_url + "Compras/buscarProveedor/"+ pro;
+        const url =base_url + "Entradas/buscarProveedor/"+ pro;
         const http=new XMLHttpRequest();
         http.open("GET", url, true);
         http.send();

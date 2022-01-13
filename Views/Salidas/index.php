@@ -1,3 +1,7 @@
+<?php
+    date_default_timezone_set('America/Mexico_City');
+    $Fech = date("Y-m-d");  ?>
+
 <?php include "Views/Templates/header.php";?>
 <div class="card">
     <div class="card">
@@ -11,7 +15,7 @@
                 <div class="col-md-4">
                         <div class="form-group mb-2">
                             <label for="fecha_salida">Fecha de Salida</label>
-                            <input id="fecha_salida" class="form-control" type="text" name="fecha_salida" placeholder="Fecha de salida">
+                            <input id="fecha_salida" class="form-control" type="date" value="<?php echo ($Fech); ?>" name="fecha_salida" placeholder="Fecha de salida">
                         </div>
                     </div>
                     <div class="col-md-4">

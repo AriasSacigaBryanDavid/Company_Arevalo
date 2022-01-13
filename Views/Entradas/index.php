@@ -1,3 +1,6 @@
+<?php
+    date_default_timezone_set('America/Mexico_City');
+    $Fech = date("Y-m-d");  ?>
 <?php include "Views/Templates/header.php";?>
 <div class="card">
     <div class="card">
@@ -11,7 +14,7 @@
                 <div class="col-md-4">
                         <div class="form-group mb-2">
                             <label for="fecha_compra">Fecha de Compra</label>
-                            <input id="fecha_compra" class="form-control" type="text" name="fecha_compra" placeholder="Fecha de compra">
+                            <input id="fecha_compra" class="form-control" type="date" value="<?php echo ($Fech); ?>" name="fecha_compra" placeholder="Fecha de compra">
                         </div>
                     </div>
                     <div class="col-md-4">
