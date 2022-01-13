@@ -19,6 +19,7 @@
             $data =$this->selectAll($sql);
             return $data;
         }
+        
 
     }
     

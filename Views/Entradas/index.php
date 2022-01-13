@@ -10,8 +10,8 @@
                 <div class="row">
                 <div class="col-md-4">
                         <div class="form-group mb-2">
-                            <label for="fecha_venta">Fecha de venta</label>
-                            <input id="fecha_venta" class="form-control" type="text" name="fecha_venta" placeholder="Fecha de Venta">
+                            <label for="fecha_compra">Fecha de Compra</label>
+                            <input id="fecha_compra" class="form-control" type="text" name="fecha_compra" placeholder="Fecha de compra">
                         </div>
                     </div>
                     <div class="col-md-4">
@@ -49,7 +49,7 @@
                     </div>
                     <div class="col-md-7">
                         <div class="form-group mb-3">
-                            <label for="nombre">Nombre</label>
+                            <label for="nombre">Nombre de Proveedor</label>
                             <input id="nombre" class="form-control" type="text" name="nombre" placeholder="Nombre" disabled>
                         </div>
                     </div>

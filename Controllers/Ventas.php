@@ -13,6 +13,7 @@
             $data['documentos']=$this->model->getDocumentos();
             $data['identidades']=$this->model->getIdentidades();
             $data['almacenes']=$this->model->getAlmacenes();
+            $data['identidad']=$this->model->getIdentidades();
             $this->views->getView($this,"index",$data);
         }
 
