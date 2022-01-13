@@ -133,7 +133,7 @@
                     <div class="col-md-4">
                     <div class="form-group mb-2">
                             <label for="fecha_vencimiento">fecha de Vencimiento</label>
-                            <input id="fecha_vencimiento" class="form-control" type="text" name="fecha_vencimiento" placeholder="Fecha de Venta">
+                            <input id="fecha_vencimiento" class="form-control" type="date" value="<?php echo ($Fech); ?>" name="fecha_vencimiento" placeholder="Fecha de Venta">
                         </div>
                     </div>
                    
