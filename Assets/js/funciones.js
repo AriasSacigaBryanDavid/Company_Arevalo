@@ -1985,11 +1985,13 @@ function frmCliente(){
 
 function registrarCli(e){
     e.preventDefault();
-    const dni= document.getElementById("dni");
     const nombre = document.getElementById("nombre");
+    const identidad =document.getElementById("identidad");
+    const n_identidad = document.getElementById("n_identidad");
     const telefono = document.getElementById("telefono");
+    const correo = document.getElementById("correo");
     const direccion = document.getElementById("direccion");
-    if(dni.value=="" || nombre.value=="" || telefono.value==""||direccion.value==""){
+    if(nombre.value=="" || identidad.value=="" || n_identidad.value=="" || telefono.value==""|| correo.value=="" || direccion.value==""){
         Swal.fire({
             position: 'top-end',
             icon: 'error',
@@ -2054,9 +2056,11 @@ function btnEditarCli(id){
         if(this.readyState == 4 && this.status == 200){
           const res = JSON.parse(this.responseText); 
             document.getElementById("id").value =res.id;
-            document.getElementById("dni").value =res.dni;
             document.getElementById("nombre").value=res.nombre;
+            document.getElementById("identidad").value=res.id_identidad;
+            document.getElementById("n_identidad").value= res.n_identidad;
             document.getElementById("telefono").value=res.telefono;
+            document.getElementById("correo").value=res.correo;
             document.getElementById("direccion").value=res.direccion;  
             $("#nuevo_cliente").modal("show");  
         }

@@ -1,27 +1,29 @@
 <?php
     class ClientesModel extends Query{
-        private $dni, $nombre, $telefono, $direccion, $id, $estado;
+        private $nombre, $id_identidad,$n_identidad, $telefono,$correo, $direccion, $id, $estado;
         
         public function __construct(){
             parent::__construct();
         }
 
         public function getClientes(){
-            $sql="SELECT * FROM clientes";
+            $sql="SELECT c.*, i.id AS id_identidad, i.nombre AS identidad FROM clientes c INNER JOIN identidades i ON c.id_identidad =i.id";
             $data= $this->selectAll($sql);
             return $data;
         }
 
-        public function registarCliente(String $dni, string $nombre, string $telefono, string $direccion){
-            $this->dni = $dni;
+        public function registarCliente(string $nombre, string $id_identidad, string $n_identidad, string $telefono, string $correo, string $direccion){
             $this->nombre =$nombre;
+            $this->id_identidad = $id_identidad;
+            $this->n_identidad = $n_identidad;
             $this->telefono =$telefono;
+            $this->correo=$correo;
             $this->direccion =$direccion;
             $verificar="SELECT * FROM clientes WHERE dni = '$this->dni'";
             $existe=$this->select($verificar);
             if (empty($existe)) {
-                $sql="INSERT INTO clientes(dni, nombre, telefono, direccion) VALUES (?,?,?,?)";
-                $datos= array($this->dni , $this->nombre, $this->telefono, $this->direccion);
+                $sql="INSERT INTO clientes(nombre,id_identidad, n_identidad, telefono,correo, direccion) VALUES (?,?,?,?,?,?)";
+                $datos= array($this->nombre, $this->id_identidad, $this->n_identidad, $this->telefono, $this->correo, $this->direccion);
                 $data=$this->save($sql, $datos);
                     if ($data == 1){
                         $res = "ok";
@@ -35,14 +37,16 @@
             return $res;
         }
 
-        public function modificarCliente(String $dni, string $nombre, string $telefono, string $direccion, int $id){
-            $this->dni = $dni;
+        public function modificarCliente(string $nombre, string $id_identidad,string $n_identidad, string $telefono, string $correo, string $direccion, int $id){
             $this->nombre =$nombre;
+            $this->id_identidad = $id_identidad;
+            $this->n_identidad = $n_identidad;
             $this->telefono =$telefono;
+            $this->correo = $correo;
             $this->direccion =$direccion;
             $this->id=$id;
-            $sql="UPDATE clientes SET dni=?, nombre=?, telefono=?, direccion=? WHERE id=?";
-            $datos= array($this->dni , $this->nombre, $this->telefono, $this->direccion, $this->id);
+            $sql="UPDATE clientes SET nombre=?,id_identidad=?, n_identidad=? , telefono=?, correo=?,direccion=? WHERE id=?";
+            $datos= array($this->nombre, $this->id_identidad, $this->n_identidad, $this->telefono,$this->correo, $this->direccion, $this->id);
             $data=$this->save($sql, $datos);
                 if ($data == 1){
                     $res = "modificado";

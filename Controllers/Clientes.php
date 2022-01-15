@@ -31,16 +31,18 @@
              die();
         }
         public function registrar(){
-            $dni= $_POST['dni'];
             $nombre=$_POST['nombre'];
+            $identidad=$_POST['identidad'];
+            $n_identidad=$_POST['n_identidad'];
             $telefono=$_POST['telefono'];
+            $correo= $_POST['correo'];
             $direccion=$_POST['direccion'];
             $id=$_POST['id'];
-            if(empty($dni) || empty($nombre) || empty($telefono) || empty($direccion)){
+            if( empty($nombre) || empty($identidad) || empty($n_identidad) || empty($telefono) || empty($correo) || empty($direccion)){
                 $msg= "Todos los campos son obligatorios";
             }else{
                 if ($id== "") {
-                    $data=$this->model->registarCliente($dni,$nombre,$telefono,$direccion);
+                    $data=$this->model->registarCliente($nombre, $identidad, $n_identidad, $telefono, $correo,$direccion);
                     if($data == "ok") {
                         $msg="si";
                     }else if($data == "existe"){
@@ -49,7 +51,7 @@
                         $msg="Error al registrar el cliente";
                     } 
                 }else {
-                    $data=$this->model->modificarCliente($dni,$nombre,$telefono,$direccion,$id);
+                    $data=$this->model->modificarCliente($nombre, $identidad, $n_identidad, $telefono, $correo, $direccion,$id);
                     if($data == "modificado") {
                         $msg="modificado";
                     }else {
