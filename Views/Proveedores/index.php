@@ -8,8 +8,8 @@
             <tr>
                 <th>Id</th>
                 <th>Nombre</th>
-                <th>Identidad</th>
-                <th>n_identidad</th>
+                <th>Documento de Identidad</th>
+                <th>Número de Identidad</th>
                 <th>Teléfono</th>
                 <th>Correo</th>
                 <th>Dirección</th>

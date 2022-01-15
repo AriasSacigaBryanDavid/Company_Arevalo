@@ -200,9 +200,11 @@ document.addEventListener("DOMContentLoaded", function(){
         },
         columns: [
             {'data' : 'id'},
-            {'data' : 'dni'},
             {'data' : 'nombre'},
+            {'data' : 'identidad'},
+            {'data' : 'n_identidad'},
             {'data' : 'telefono'},
+            {'data' : 'correo'},
             {'data' : 'direccion'},
             {'data' : 'estado'},
             {'data' : 'acciones'}
@@ -725,11 +727,12 @@ function frmProveedor(){
 function registrarPro(e){
     e.preventDefault();
     const nombre = document.getElementById("nombre");
-    const ruc= document.getElementById("ruc");
+    const identidad = document.getElementById("identidad");
+    const n_identidad = document.getElementById("n_identidad");
     const telefono = document.getElementById("telefono");
     const correo = document.getElementById("correo");
     const direccion = document.getElementById("direccion");
-    if(nombre.value=="" || ruc.value=="" ||telefono.value==""||correo.value=="" ||direccion.value==""){
+    if(nombre.value=="" || identidad.value=="" || n_identidad.value=="" || telefono.value==""||correo.value=="" ||direccion.value==""){
         Swal.fire({
             position: 'top-end',
             icon: 'error',
@@ -794,7 +797,8 @@ function btnEditarPro(id){
           const res = JSON.parse(this.responseText); 
             document.getElementById("id").value =res.id;
             document.getElementById("nombre").value=res.nombre;
-            document.getElementById("ruc").value =res.ruc;
+            document.getElementById("identidad").value =res.id_identidad;
+            document.getElementById("n_identidad").value = res.n_identidad;
             document.getElementById("telefono").value=res.telefono;
             document.getElementById("correo").value = res.correo;
             document.getElementById("direccion").value=res.direccion;  
@@ -1462,7 +1466,7 @@ function registrarProd(e){
         }
     }
 }
-function btnEditarPro(id){
+function btnEditarProd(id){
     document.getElementById("title").innerHTML = "Actualizar producto";
     document.getElementById("btnAccion").innerHTML = "Actualizar";
     const url =base_url + "Productos/editar/"+id;
@@ -1485,7 +1489,7 @@ function btnEditarPro(id){
         }
     
 }
-function btnEliminarPro(id){
+function btnEliminarProd(id){
     Swal.fire({
         title: '¿Deseas Eliminar Producto?',
         text: "¡El Producto no se eliminara de forma permanente!,  solo cambiará el estado a inactivo",
@@ -1524,7 +1528,7 @@ function btnEliminarPro(id){
         }
       })
 }
-function btnReingresarPro(id){
+function btnReingresarProd(id){
     Swal.fire({
         title: '¿Está seguro de reingresar?',
         icon: 'warning',

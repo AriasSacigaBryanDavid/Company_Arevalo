@@ -7,9 +7,11 @@
         <thead class="thead-dark">
             <tr>
                 <th>Id</th>
-                <th>DNI</th>
                 <th>Nombre</th>
+                <th>Documento de Identidad</th>
+                <th>Número de Identidad</th>
                 <th>Teléfono</th>
+                <th>Correo</th>
                 <th>Dirección</th>
                 <th>Estado</th>
                 <th></th>
@@ -31,17 +33,29 @@
                 <div class="modal-body">
                     <form method="post" id="frmCliente">
                         <div class="form-group">
-                            <label for="dni">DNI</label>
+                            <label for="nombre">Nombre</label>
                             <input type="hidden" id="id" name="id">
-                            <input id="dni" class="form-control" type="text" name="dni" placeholder="Documento de Identidad">
+                            <input id="nombre" class="form-control" type="text" name="nombre" placeholder="Nombre del cliente">
                         </div>
                         <div class="form-group">
-                            <label for="nombre">Nombre</label>
-                            <input id="nombre" class="form-control" type="text" name="nombre" placeholder="Nombre del cliente">
+                            <label for="identidad">Documento de Identidad</label>
+                                <select id="identidad" class="form-control" name="identidad">
+                                <?php foreach ($data['identidades'] as $row) { ?>
+                                    <option value="<?php echo $row['id']; ?>"><?php echo $row['nombre']; ?></option>
+                                    <?php } ?>
+                                </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="n_identidad">N° de Identidad</label>
+                            <input id="n_identidad" class="form-control" type="text" name="n_identidad" placeholder="Registro Único de Contribuyentes">
                         </div>
                         <div class="form-group">
                             <label for="telefono">Teléfono</label>
                             <input id="telefono" class="form-control" type="text" name="telefono" placeholder="Teléfono">
+                        </div>
+                        <div class="form-group">
+                            <label for="correo">Correo</label>
+                            <input id="correo" class="form-control" type="text" name="correo" placeholder="Correo">
                         </div>
                         <div class="form-group mb-2">
                             <label for="direccion">Dirección</label>
