@@ -5,6 +5,11 @@
         public function __construct(){
             parent::__construct();
         }
+        public function getIdentidades(){
+            $sql="SELECT * FROM identidades WHERE estado=1";
+            $data =$this->selectAll($sql);
+            return $data;
+        }
 
         public function getClientes(){
             $sql="SELECT c.*, i.id AS id_identidad, i.nombre AS identidad FROM clientes c INNER JOIN identidades i ON c.id_identidad =i.id";
@@ -19,10 +24,10 @@
             $this->telefono =$telefono;
             $this->correo=$correo;
             $this->direccion =$direccion;
-            $verificar="SELECT * FROM clientes WHERE dni = '$this->dni'";
+            $verificar="SELECT * FROM clientes WHERE nombre = '$this->nombre'";
             $existe=$this->select($verificar);
             if (empty($existe)) {
-                $sql="INSERT INTO clientes(nombre,id_identidad, n_identidad, telefono,correo, direccion) VALUES (?,?,?,?,?,?)";
+                $sql="INSERT INTO clientes(nombre, id_identidad, n_identidad, telefono, correo, direccion) VALUES (?,?,?,?,?,?)";
                 $datos= array($this->nombre, $this->id_identidad, $this->n_identidad, $this->telefono, $this->correo, $this->direccion);
                 $data=$this->save($sql, $datos);
                     if ($data == 1){
