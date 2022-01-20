@@ -100,7 +100,7 @@
                     <div class="col-md-3">
                         <div class="form-group">
                             <label for="peso_neto">Peso Neto</label>
-                            <input id="peso_neto" class="form-control" type="text" name="peso_neto" placeholder="peso_neto" >
+                            <input id="peso_neto" class="form-control" type="text" name="peso_neto" placeholder="Peso Neto" disabled>
                         </div>
                     </div>
                     <div class="col-md-2">
