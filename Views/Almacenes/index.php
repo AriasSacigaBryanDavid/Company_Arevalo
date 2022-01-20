@@ -1,9 +1,20 @@
 <?php include "Views/Templates/header.php";?>
-    <ol class="breadcrumb mb-4">
-    <li class="breadcrumb-item active">Almacenes</li>
-    </ol>
-    <button class="btn btn-primary mb-2" type="button" onclick="frmAlmacen();"><i class="fas fa-plus"></i></button>
-    <table class="table table-dark" id="tblAlmacenes">
+    
+    <div class="card mb-2">
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <h4>Almacenes</h4>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <button class="btn btn-primary mb-2" type="button" onclick="frmAlmacen();"><i class="fas fa-plus"></i></button>
+                </div>
+            </div>
+    </div>
+    
+    <table class="table table-dark table-hover" id="tblAlmacenes">
         <thead class="thead-dark">
             <tr>
                 <th>Id</th>

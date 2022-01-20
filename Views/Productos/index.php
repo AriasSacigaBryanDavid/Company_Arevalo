@@ -1,9 +1,20 @@
 <?php include "Views/Templates/header.php";?>
-<ol class="breadcrumb mb-4">
-    <li class="breadcrumb-item active">Productos</li>
-    </ol>
-    <button class="btn btn-primary mb-2" type="button" onclick="frmProducto();"><i class="fas fa-user-plus"></i></button>
-    <table class="table table-dark" id="tblProductos">
+
+    <div class="card mb-2">
+        <div class="card">
+            <div class="card-header bg-success text-white">
+                <h4>Productos</h4>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <button class="btn btn-primary" type="button" onclick="frmProducto();"><i class="fas fa-plus"></i></i></button>
+            </div>
+        </div>
+    </div>
+    
+    <table class="table table-dark table-hover" id="tblProductos">
         <thead class="thead-dark">
             <tr>
                 <th>ID</th>
@@ -13,6 +24,8 @@
                 <th>Marca</th>
                 <th>Categoria</th>
                 <th>Unidad</th>
+                <th>Precio Compra</th>
+                <th>Precio Venta</th>
                 <th>Estado</th>
                 <th></th>
             </tr>
@@ -67,6 +80,20 @@
                                 <option value="<?php echo $row['id']; ?>"><?php echo $row['nombre']; ?></option>
                                 <?php } ?>
                             </select>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6  mb-2" >
+                                <div class="form-group">
+                                    <label for="precio_compra">Precio Compra</label>
+                                    <input id="precio_compra" class="form-control" type="text" name="precio_compra" placeholder="Precio compra">
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-2">
+                                <div class="form-group">
+                                    <label for="precio_venta">Precio Venta</label>
+                                    <input id="precio_venta" class="form-control" type="text" name="precio_venta" placeholder="Precio Venta">
+                                </div>
+                            </div>
                         </div>
                         <button class="btn btn-primary" type="button" onclick="registrarProd(event);" id="btnAccion">Registrar</button>
                         <button class="btn btn-danger" type="button" data-bs-dismiss="modal">Cancelar</button>

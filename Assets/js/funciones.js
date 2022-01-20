@@ -126,6 +126,8 @@ document.addEventListener("DOMContentLoaded", function(){
             {'data' : 'marca'},
             {'data' : 'categoria'},
             {'data' : 'unidad'},
+            {'data' : 'precio_compra'},
+            {'data' : 'precio_venta'},
             {'data' : 'estado'},
             {'data' : 'acciones'}
         ]
@@ -1412,7 +1414,9 @@ function registrarProd(e){
     const marca=document.getElementById("marca");
     const categoria=document.getElementById("categoria");
     const unidad=document.getElementById("unidad");
-    if(codigo.value=="" ||nombre.value == "" || descripcion.value== "" || marca.value== "" || categoria.value=="" || unidad.value=="") {
+    const precio_compra=document.getElementById("precio_compra");
+    const precio_venta=document.getElementById("precio_venta");
+    if(codigo.value=="" ||nombre.value == "" || descripcion.value== "" || marca.value== "" || categoria.value=="" || unidad.value=="" || precio_compra.value=="" || precio_venta.value=="") {
         Swal.fire({
             position: 'top-end',
             icon: 'error',
@@ -1483,6 +1487,8 @@ function btnEditarProd(id){
                document.getElementById("marca").value = res.id_marca;
                document.getElementById("categoria").value = res.id_categoria;
                document.getElementById("unidad").value = res.id_unidad;
+               document.getElementById("precio_compra").value = res.precio_compra;
+               document.getElementById("precio_venta").value = res.precio_venta;
                $("#nuevo_producto").modal("show");
 
             }

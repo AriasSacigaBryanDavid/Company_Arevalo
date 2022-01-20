@@ -1,9 +1,20 @@
 <?php include "Views/Templates/header.php";?>
-<ol class="breadcrumb mb-4">
-    <li class="breadcrumb-item active">Unidades</li>
-    </ol>
-    <button class="btn btn-primary mb-2" type="button" onclick="frmUnidad();"><i class="fas fa-plus"></i></button>
-    <table class="table table-dark" id="tblUnidades">
+
+    <div class="card mb-2">
+        <div class="card">
+            <div class="card-header bg-success text-white">
+                <h4>Unidades</h4>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <button class="btn btn-primary mb-2" type="button" onclick="frmUnidad();"><i class="fas fa-plus"></i></button>
+            </div>
+        </div>
+    </div>
+    
+    <table class="table table-dark table-hover" id="tblUnidades">
         <thead class="thead-dark">
             <tr>
                 <th>Id</th>

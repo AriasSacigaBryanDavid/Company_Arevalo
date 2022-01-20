@@ -41,12 +41,14 @@
             $marca=$_POST['marca'];
             $categoria=$_POST['categoria'];
             $unidad= $_POST['unidad'];
+            $precio_compra=$_POST['precio_compra'];
+            $precio_venta=$_POST['precio_venta'];
             $id=$_POST['id'];
-            if(empty($codigo) || empty($nombre) || empty($descripcion) || empty($marca)|| empty($categoria) || empty($unidad)){
+            if(empty($codigo) || empty($nombre) || empty($descripcion) || empty($marca)|| empty($categoria) || empty($unidad) || empty($precio_compra) || empty($precio_venta)){
                 $msg =" Todo los campos son obligatorios";
             }else{
                 if ($id == ""){
-                        $data= $this->model->registrarProducto($codigo, $nombre, $descripcion, $marca, $categoria, $unidad);
+                        $data= $this->model->registrarProducto($codigo, $nombre, $descripcion, $marca, $categoria, $unidad, $precio_compra, $precio_venta);
                         if ($data == "ok"){
                             $msg = "si";  
                         }else if($data =="existe") {
@@ -55,7 +57,7 @@
                             $msg="Error al registrar el producto";
                         }
                 }else {
-                    $data= $this->model->modificarProducto($codigo, $nombre, $descripcion, $marca, $categoria, $unidad, $id);
+                    $data= $this->model->modificarProducto($codigo, $nombre, $descripcion, $marca, $categoria, $unidad, $precio_compra, $precio_venta, $id);
                         if ($data == "modificado"){
                             $msg = "modificado";  
                         }else {

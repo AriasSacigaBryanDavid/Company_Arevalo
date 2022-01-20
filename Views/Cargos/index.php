@@ -1,11 +1,20 @@
 <?php include "Views/Templates/header.php";?>
-    <ol class="breadcrumb mb-4">
-    <li class="breadcrumb-item active">Cargos</li>
-    </ol>
+    
+    <div class="card mb-2">
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <h4>Cargos</h4>
+                </div>
+            </div>
 
-    <button class="btn btn-primary m-2" type="button" onclick="frmCargo();"><i class="fas fa-plus"></i></button>
+            <div class="card">
+                <div class="card-header">
+                    <button class="btn btn-primary m-2" type="button" onclick="frmCargo();"><i class="fas fa-plus"></i></button>
+                </div>
+            </div>
+    </div>
 
-    <table class="table table-dark" id="tblCargos">
+    <table class="table table-dark table-hover" id="tblCargos">
         <thead class="thead-dark">
             <tr>
                 <th>Id</th>

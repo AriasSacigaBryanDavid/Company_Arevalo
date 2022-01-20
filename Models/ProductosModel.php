@@ -1,6 +1,6 @@
 <?php
     class ProductosModel extends Query{
-        private $nombre, $descripcion, $id_marca, $id_categoria,$id_unidad, $id, $estado;
+        private $nombre, $descripcion, $id_marca, $id_categoria, $id_unidad, $precio_compra, $precio_venta, $id, $estado;
         public function __construct(){
             parent::__construct();
         }
@@ -24,18 +24,20 @@
             $data = $this->selectAll($sql);
             return $data;
         }
-        public function registrarProducto(string $codigo,string $nombre,string $descripcion, string $id_marca, string $id_categoria, string $id_unidad){
+        public function registrarProducto(string $codigo,string $nombre,string $descripcion, string $id_marca, string $id_categoria, string $id_unidad, string $precio_compra, string $precio_venta){
             $this->codigo= $codigo;
             $this->nombre = $nombre;
             $this->descripcion =$descripcion;
             $this->id_marca = $id_marca;
             $this->id_categoria = $id_categoria;
             $this->id_unidad = $id_unidad;
-            $verificar="SELECT * FROM productos WHERE nombre='$this->nombre '";
+            $this->precio_compra = $precio_compra;
+            $this->precio_venta = $precio_venta;
+            $verificar="SELECT * FROM productos WHERE nombre='$this->nombre'";
             $existe=$this ->select($verificar);
             if(empty($existe)){
-                $sql ="INSERT INTO productos(codigo, nombre,descripcion, id_marca, id_categoria, id_unidad) VALUES (?,?,?,?,?,?)";
-                $datos = array($this->codigo, $this->nombre, $this->descripcion, $this->id_marca, $this->id_categoria,$this->id_unidad);
+                $sql ="INSERT INTO productos(codigo, nombre, descripcion, id_marca, id_categoria, id_unidad, precio_compra, precio_venta) VALUES (?,?,?,?,?,?,?,?)";
+                $datos = array($this->codigo, $this->nombre, $this->descripcion, $this->id_marca, $this->id_categoria, $this->id_unidad, $this->precio_compra, $this->precio_venta);
                 $data =$this->save($sql, $datos);
                 if($data ==1){
                     $res= "ok";
@@ -48,7 +50,7 @@
             
             return $res;
         }
-        public function modificarProducto(string $codigo, string $nombre,string $descripcion, string $id_marca, string $id_categoria, string $id_unidad,int $id){
+        public function modificarProducto(string $codigo, string $nombre,string $descripcion, string $id_marca, string $id_categoria, string $id_unidad, string $precio_compra, string $precio_venta, int $id){
             $this->codigo = $codigo;
             $this->nombre = $nombre;
             $this->descripcion =$descripcion;
@@ -56,8 +58,10 @@
             $this->id_marca = $id_marca;
             $this->id_categoria=$id_categoria;
             $this->id_unidad= $id_unidad;
-            $sql ="UPDATE productos SET codigo=? ,nombre =?, descripcion = ?, id_marca=?, id_categoria=?, id_unidad =? WHERE id=?";
-            $datos = array($this->codigo, $this->nombre, $this->descripcion, $this->id_marca, $this->id_categoria,$this->id_unidad, $this->id);
+            $this->precio_compra =$precio_compra;
+            $this->precio_venta =$precio_venta;
+            $sql ="UPDATE productos SET codigo=? ,nombre =?, descripcion = ?, id_marca=?, id_categoria=?, id_unidad =?, precio_compra =?, precio_venta =? WHERE id=?";
+            $datos = array($this->codigo, $this->nombre, $this->descripcion, $this->id_marca, $this->id_categoria,$this->id_unidad, $this->precio_compra, $this->precio_venta, $this->id);
             $data =$this->save($sql, $datos);
             if($data ==1){
                     $res= "modificado";
