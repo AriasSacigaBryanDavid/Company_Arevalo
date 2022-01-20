@@ -1898,7 +1898,7 @@ function buscarCliente(e){
                         Swal.fire({
                             position: 'top-end',
                             icon: 'error',
-                            title: 'El producto no existe',
+                            title: 'El cliente no existe',
                             showConfirmButton: false,
                          timer: 2000
                         })
