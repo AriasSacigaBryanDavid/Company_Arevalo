@@ -1,7 +1,7 @@
 <?php include "Views/Templates/header.php";?>
 <div class="card">
     <div class="card">
-        <div class="card-header bg-primary text-white">
+        <div class="card-header bg-dark text-white">
              <h4>Venta</h4>
         </div>
     </div>
