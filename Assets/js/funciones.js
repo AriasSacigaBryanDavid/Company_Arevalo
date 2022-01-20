@@ -1765,7 +1765,7 @@ function buscarProveedor(e){
                         Swal.fire({
                             position: 'top-end',
                             icon: 'error',
-                            title: 'El producto no existe',
+                            title: 'El proveedor no existe',
                             showConfirmButton: false,
                          timer: 2000
                         })
@@ -1789,7 +1789,7 @@ function buscarCodigo(e) {
                 if(this.readyState == 4 && this.status ==200){
                     const res =JSON.parse(this.responseText);
                     if(res){
-                        document.getElementById("nombre").value = res.nombre;
+                        document.getElementById("producto").value = res.nombre;
                         document.getElementById("precio").value = res.precio_compra;
                         document.getElementById("id").value = res.id;
                         
@@ -1809,108 +1809,155 @@ function buscarCodigo(e) {
         }
     }
  }
+ function calcularTara(e){
+    e.preventDefault();
+    const cant = document.getElementById("cantidad").value;
+    document.getElementById("kilos_tara").value= cant * 0.2;
+}
+
+function calcularPrecio(e) {
+    e.preventDefault();
+    const peso_bruto = document.getElementById("peso_bruto").value;
+    const kilos_tara = document.getElementById("kilos_tara").value;
+    const precio = document.getElementById("precio").value;
+    const peso_neto = document.getElementById("peso_neto").value;
+    document.getElementById("peso_neto").value = peso_bruto - kilos_tara;
+    document.getElementById("sub_total").value = precio * peso_neto;
+}
 
 
 /** Fin de Entradas */
 /*******************************/
 /** Inicio de salidas */
-function frmSalida(){
-    document.getElementById("title").innerHTML = "Registrar Salida";
-    document.getElementById("btnAccion").innerHTML = "Registrar";
-    document.getElementById("frmSalida").reset();
-    $("#nuevo_salida").modal("show");
-    document.getElementById("id").value ="";
-}
-function registrarSal(e){
+function buscarCodigoSa(e) {
     e.preventDefault();
-    const fecha_salida=document.getElementById("fecha_salida");
-    const documento=document.getElementById("documento");
-    const n_documento=document.getElementById("n_documento");
-    const almacen=document.getElementById("almacen");
-    const motivo=document.getElementById("motivo");
-    const producto=document.getElementById("producto");
-    const cantidad=document.getElementById("cantidad");
-    const precio=document.getElementById("precio");
-    if(fecha_salida.value=="" || documento.value=="" || n_documento.value==""  || almacen.value=="" || motivo.value=="" || producto.value=="" || cantidad.value=="" || precio.value=="" ) {
-        Swal.fire({
-            position: 'top-end',
-            icon: 'error',
-            title: 'Porfavor ingrese los datos, es obligatorio',
-            showConfirmButton: false,
-            timer: 3000
-          })
-    }else{
-        const url =base_url + "Salidas/registrar";
-        const frm =document.getElementById("frmSalida");
-        const http=new XMLHttpRequest();
-        http.open("POST", url, true);
-        http.send( new FormData(frm));
-        http.onreadystatechange=function(){
-            if(this.readyState == 4 && this.status ==200){
-               const res = JSON.parse(this.responseText);
-               if(res == "si"){
-                  Swal.fire({
-                    position: 'top-end',
-                    icon: 'success',
-                    title: 'Salida Registrado con éxito',
-                    showConfirmButton: false,
-                    timer: 3000
-                    })
-                  frm.reset();
-                  $("#nuevo_salida").modal("hide");
-                  tblSalidas.ajax.reload();
-               }else if(res == "modificado"){
-                    Swal.fire({
-                        position: 'top-end',
-                        icon: 'success',
-                        title: 'Salida modificado con éxito',
-                        showConfirmButton: false,
-                        timer: 3000
-                    })
-                    $("#nuevo_salida").modal("hide");
-                    tblSalidas.ajax.reload();
-               }else{
-                    Swal.fire({
-                        position: 'top-end',
-                        icon: 'error',
-                        title: res,
-                        showConfirmButton: false,
-                     timer: 3000
-                    })
-               }
-                   
-                
-            
-            }
-        }
-    }
-}
-function btnEditarSal(id){
-    document.getElementById("title").innerHTML = "Actualizar Salida";
-    document.getElementById("btnAccion").innerHTML = "Actualizar";
-    const url =base_url + "Salidas/editar/"+id;
+    if(e.which == 13){
+        const cod = document.getElementById("codigo").value;
+        const url =base_url + "Salidas/buscarCodigoSa/"+ cod;
         const http=new XMLHttpRequest();
         http.open("GET", url, true);
         http.send();
         http.onreadystatechange=function(){
-            if(this.readyState == 4 && this.status ==200){
-               const res = JSON.parse(this.responseText);
-               document.getElementById("id").value = res.id;
-               document.getElementById("fecha_salida").value = res.fecha_salida;
-               document.getElementById("documento").value = res.id_documento;
-               document.getElementById("n_documento").value = res.n_documento;
-               document.getElementById("almacen").value = res.id_almacen;
-               document.getElementById("motivo").value =res.motivo;
-               document.getElementById("producto").value = res.id_producto;
-               document.getElementById("cantidad").value = res.cantidad;
-               document.getElementById("precio").value =res.precio;
-               $("#nuevo_salida").modal("show");
-
-            }
+                if(this.readyState == 4 && this.status ==200){
+                    const res =JSON.parse(this.responseText);
+                    if(res){
+                        document.getElementById("producto").value = res.nombre;
+                        document.getElementById("precio").value = res.precio_compra;
+                        document.getElementById("id").value = res.id;
+                        
+                    }else{
+                        Swal.fire({
+                            position: 'top-end',
+                            icon: 'error',
+                            title: 'El producto no existe',
+                            showConfirmButton: false,
+                         timer: 2000
+                        })
+                        document.getElementById("codigo").value='';
+                        document.getElementById("codigo").focus();
+                    }
+        
+                }
         }
-    
+    }
+ }
+ function calcularTaraSa(e){
+    e.preventDefault();
+    const cant = document.getElementById("cantidad").value;
+    document.getElementById("kilos_tara").value= cant * 0.2;
+}
+
+function calcularPrecioSa(e) {
+    e.preventDefault();
+    const peso_bruto = document.getElementById("peso_bruto").value;
+    const kilos_tara = document.getElementById("kilos_tara").value;
+    const precio = document.getElementById("precio").value;
+    const peso_neto = document.getElementById("peso_neto").value;
+    document.getElementById("peso_neto").value = peso_bruto - kilos_tara;
+    document.getElementById("sub_total").value = precio * peso_neto;
 }
 /** Fin de Salidas */
+/*******************************/
+/** inicio de ventas */
+function buscarCliente(e){
+    e.preventDefault();
+    if(e.which == 13){
+        const cli = document.getElementById("n_identidad").value;
+        const url =base_url + "Ventas/buscarCliente/"+ cli;
+        const http=new XMLHttpRequest();
+        http.open("GET", url, true);
+        http.send();
+        http.onreadystatechange=function(){
+                if(this.readyState == 4 && this.status ==200){
+                    const res =JSON.parse(this.responseText);
+                    if(res){
+                        document.getElementById("nombre").value = res.nombre;
+                        document.getElementById("id").value = res.id;
+                        
+                    }else{
+                        Swal.fire({
+                            position: 'top-end',
+                            icon: 'error',
+                            title: 'El producto no existe',
+                            showConfirmButton: false,
+                         timer: 2000
+                        })
+                        document.getElementById("n_identidad").value='';
+                        document.getElementById("n_identidad").focus();
+                    }
+        
+                }
+        }
+    }
+}
+function buscarCodigoVe(e) {
+    e.preventDefault();
+    if(e.which == 13){
+        const cod = document.getElementById("codigo").value;
+        const url =base_url + "Ventas/buscarCodigoVe/"+ cod;
+        const http=new XMLHttpRequest();
+        http.open("GET", url, true);
+        http.send();
+        http.onreadystatechange=function(){
+                if(this.readyState == 4 && this.status ==200){
+                    const res =JSON.parse(this.responseText);
+                    if(res){
+                        document.getElementById("producto").value = res.nombre;
+                        document.getElementById("precio").value = res.precio_compra;
+                        document.getElementById("id").value = res.id;
+                        
+                    }else{
+                        Swal.fire({
+                            position: 'top-end',
+                            icon: 'error',
+                            title: 'El producto no existe',
+                            showConfirmButton: false,
+                         timer: 2000
+                        })
+                        document.getElementById("codigo").value='';
+                        document.getElementById("codigo").focus();
+                    }
+        
+                }
+        }
+    }
+ }
+ function calcularTaraVe(e){
+    e.preventDefault();
+    const cant = document.getElementById("cantidad").value;
+    document.getElementById("kilos_tara").value= cant * 0.2;
+}
+
+function calcularPrecioVe(e) {
+    e.preventDefault();
+    const peso_bruto = document.getElementById("peso_bruto").value;
+    const kilos_tara = document.getElementById("kilos_tara").value;
+    const precio = document.getElementById("precio").value;
+    const peso_neto = document.getElementById("peso_neto").value;
+    document.getElementById("peso_neto").value = peso_bruto - kilos_tara;
+    document.getElementById("sub_total").value = precio * peso_neto;
+}
+/** Fin de ventas */
 /*******************************/
 /** inicio de cliente */
 function frmCliente(){

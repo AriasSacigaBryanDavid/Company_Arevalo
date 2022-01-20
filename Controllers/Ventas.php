@@ -13,8 +13,17 @@
             $data['documentos']=$this->model->getDocumentos();
             $data['identidades']=$this->model->getIdentidades();
             $data['almacenes']=$this->model->getAlmacenes();
-            $data['identidad']=$this->model->getIdentidades();
             $this->views->getView($this,"index",$data);
+        }
+        public function buscarCliente($cli){
+            $data =$this->model->getNidentidad($cli);
+            echo json_encode($data, JSON_UNESCAPED_UNICODE);
+            die();
+        }
+        public function buscarCodigoVe($cod){
+            $data =$this->model->getProCod($cod);
+            echo json_encode($data, JSON_UNESCAPED_UNICODE);
+            die();
         }
 
 

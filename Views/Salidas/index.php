@@ -5,7 +5,7 @@
              <h4>Salida</h4>
         </div>
     </div>
-    <!--Entradas de Datos-->
+    <!--Salidas de Datos-->
     <div class="card-body">
         <form id="frmEntradasa">
             <div class="row">
@@ -50,7 +50,7 @@
             </div>
         </form>
     </div>
-    <!--Entradas de Productos-->
+    <!--Salidas de Productos-->
     <div class="card mb-2">
         <div class="card-body bg-secondary text-white">
             <form id="frmEntradasa">
@@ -59,31 +59,31 @@
                         <div class="form-group">
                             <label for="codigo"><i class="fas fa-barcode"></i>Código de barras</label>
                             <input type="hidden" id="id" name="id">
-                            <input id="codigo" class="form-control" type="text" name="codigo" placeholder="Código de barras" onkeyup="buscarCodigo(event)">
+                            <input id="codigo" class="form-control" type="text" name="codigo" placeholder="Código de barras" onkeyup="buscarCodigoSa(event)">
                         </div>
                     </div>
                     <div class="col-md-5">
                         <div class="form-group">
-                            <label for="nombre">nombre</label>
-                            <input id="nombre" class="form-control" type="text" name="nombre" placeholder="Nombre" disabled>
+                            <label for="producto">nombre</label>
+                            <input id="producto" class="form-control" type="text" name="producto" placeholder="Nombre" disabled>
                         </div>
                     </div>
                     <div class="col-md-2">
                         <div class="form-group">
                             <label for="cantidad">Cantidad</label>
-                            <input id="cantidad" class="form-control" type="number" name="cantidad">
+                            <input id="cantidad" class="form-control" type="number" name="cantidad" onkeyup="calcularTaraSa(event)">
                         </div>
                     </div>
                     <div class="col-md-3">
                         <div class="form-group">
                             <label for="peso_bruto">Peso Bruto </label>
-                            <input id="peso_bruto" class="form-control" type="text" name="peso_bruto" placeholder="Peso Bruto" >
+                            <input id="peso_bruto" class="form-control" type="text" name="peso_bruto" placeholder="Peso Bruto" onkeyup="calcularPrecioSa(event)">
                         </div>
                     </div>
                     <div class="col-md-3">
                         <div class="form-group">
                             <label for="peso_neto">Peso Neto</label>
-                            <input id="peso_neto" class="form-control" type="text" name="peso_neto" placeholder="peso_neto" >
+                            <input id="peso_neto" class="form-control" type="text" name="peso_neto" placeholder="Peso Neto" disabled>
                         </div>
                     </div>
                     <div class="col-md-2">

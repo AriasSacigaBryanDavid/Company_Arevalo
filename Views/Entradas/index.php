@@ -10,7 +10,7 @@
     </div>
     <!--Entradas de Datos-->
     <div class="card-body">
-        <form id="frmEntradasa">
+        <form id="frmDatoEntrada">
             <div class="row">
                 <div class="col-md-4">
                     <div class="form-group mb-3">
@@ -75,7 +75,7 @@
     <!--Entradas de Productos-->
     <div class="card mb-2">
         <div class="card-body bg-secondary text-white">
-            <form id="frmEntradasa">
+            <form id="frmProductoEntrada">
                 <div class="row">
                     <div class="col-md-3">
                         <div class="form-group">
@@ -86,26 +86,26 @@
                     </div>
                     <div class="col-md-5">
                         <div class="form-group">
-                            <label for="nombre">nombre</label>
-                            <input id="nombre" class="form-control" type="text" name="nombre" placeholder="Nombre" disabled>
+                            <label for="producto">Nombre del Producto</label>
+                            <input id="producto" class="form-control" type="text" name="producto" placeholder="Nombre del Producto" disabled>
                         </div>
                     </div>
                     <div class="col-md-2">
                         <div class="form-group">
                             <label for="cantidad">Cantidad</label>
-                            <input id="cantidad" class="form-control" type="number" name="cantidad">
+                            <input id="cantidad" class="form-control" type="number" name="cantidad" onkeyup="calcularTara(event)">
                         </div>
                     </div>
                     <div class="col-md-3">
                         <div class="form-group">
                             <label for="peso_bruto">Peso Bruto </label>
-                            <input id="peso_bruto" class="form-control" type="text" name="peso_bruto" placeholder="Peso Bruto" >
+                            <input id="peso_bruto" class="form-control" type="text" name="peso_bruto" placeholder="Peso Bruto" onkeyup="calcularPrecio(event)">
                         </div>
                     </div>
                     <div class="col-md-3">
                         <div class="form-group">
                             <label for="peso_neto">Peso Neto</label>
-                            <input id="peso_neto" class="form-control" type="text" name="peso_neto" placeholder="peso_neto" >
+                            <input id="peso_neto" class="form-control" type="text" name="peso_neto" placeholder="Peso Neto" disabled >
                         </div>
                     </div>
                     <div class="col-md-2">

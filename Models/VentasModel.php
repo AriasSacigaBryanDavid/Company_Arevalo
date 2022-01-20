@@ -19,6 +19,16 @@
             $data =$this->selectAll($sql);
             return $data;
         }
+        public function getNidentidad(string $cli){
+            $sql= "SELECT* FROM clientes WHERE n_identidad='$cli'";
+            $data = $this->select($sql);
+            return $data;
+        }
+        public function getProCod(string $cod){
+            $sql= "SELECT* FROM productos WHERE codigo='$cod'";
+            $data = $this->select($sql);
+            return $data;
+        }
         
 
     }

@@ -24,8 +24,7 @@
             $data = $this->select($sql);
             return $data;
         }
-        public function getProCod(string $cod)
-        {
+        public function getProCod(string $cod){
             $sql= "SELECT* FROM productos WHERE codigo='$cod'";
             $data = $this->select($sql);
             return $data;
