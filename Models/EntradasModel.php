@@ -1,6 +1,6 @@
 <?php
     class EntradasModel extends Query{
-        private $fecha_compra, $id_documento, $n_documento,$id_proveedor,$id_almacen,$id_producto,$cantidad,$precio_compra,$precio_venta,$fecha_vencimiento, $id;
+       
         public function __construct(){
             parent::__construct();
         }
@@ -29,6 +29,12 @@
             $data = $this->select($sql);
             return $data;
         }
+        public function getProductos(int $id){
+            $sql= "SELECT* FROM productos WHERE id =$id";
+            $data = $this->select($sql);
+            return $data;
+        }
+        
         
     }
 

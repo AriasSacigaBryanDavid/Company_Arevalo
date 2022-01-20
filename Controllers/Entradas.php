@@ -19,10 +19,15 @@
             echo json_encode($data, JSON_UNESCAPED_UNICODE);
             die();
         }
-        public function buscarCodigo($cod){
+        public function buscarCodigoEn($cod){
             $data =$this->model->getProCod($cod);
             echo json_encode($data, JSON_UNESCAPED_UNICODE);
             die();
+        }
+        public function ingresar(){
+            
+            print_r($_POST);
+            
         }
         
 

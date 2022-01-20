@@ -1,6 +1,6 @@
-<?php
+<!--<?php
     date_default_timezone_set('America/Mexico_City');
-    $Fech = date("Y-m-d");  ?>
+    $Fech = date("Y-m-d");  ?>-->
 <?php include "Views/Templates/header.php";?>
 <div class="card">
     <div class="card">
@@ -81,7 +81,7 @@
                         <div class="form-group">
                             <label for="codigo"><i class="fas fa-barcode"></i>Código de barras</label>
                             <input type="hidden" id="id" name="id">
-                            <input id="codigo" class="form-control" type="text" name="codigo" placeholder="Código de barras" onkeyup="buscarCodigo(event)">
+                            <input id="codigo" class="form-control" type="text" name="codigo" placeholder="Código de barras" onkeyup="buscarCodigoEn(event)">
                         </div>
                     </div>
                     <div class="col-md-5">
@@ -93,13 +93,13 @@
                     <div class="col-md-2">
                         <div class="form-group">
                             <label for="cantidad">Cantidad</label>
-                            <input id="cantidad" class="form-control" type="number" name="cantidad" onkeyup="calcularTara(event)">
+                            <input id="cantidad" class="form-control" type="number" name="cantidad" onkeyup="calcularTaraEn(event)">
                         </div>
                     </div>
                     <div class="col-md-3">
                         <div class="form-group">
                             <label for="peso_bruto">Peso Bruto </label>
-                            <input id="peso_bruto" class="form-control" type="text" name="peso_bruto" placeholder="Peso Bruto" onkeyup="calcularPrecio(event)">
+                            <input id="peso_bruto" class="form-control" type="text" name="peso_bruto" placeholder="Peso Bruto" onkeyup="calcularPrecioEn(event)">
                         </div>
                     </div>
                     <div class="col-md-3">
@@ -126,12 +126,13 @@
                             <input id="sub_total" class="form-control" type="text" name="sub_total" placeholder="Sub Total" disabled>
                         </div>
                     </div>
+                    <!--
                     <div class="col-md-4">
                         <div class="form-group mb-2">
                             <label for="fecha_vencimiento">fecha de Vencimiento</label>
                             <input id="fecha_vencimiento" class="form-control" type="date" value="<?php echo ($Fech); ?>" name="fecha_vencimiento" placeholder="Fecha de Venta">
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </form>
         </div>
