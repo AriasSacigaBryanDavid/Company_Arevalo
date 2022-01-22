@@ -41,7 +41,7 @@
                 <div class="col-md-3">
                     <div class="form-group mb-3">
                         <label for="n_identidad">N° de Identidad</label>
-                        <input type="hidden" id="id" name="id">
+                        
                         <input id="n_identidad" class="form-control" type="text" name="n_identidad" placeholder="N° de Identidad" onkeyup="buscarProveedor(event)">
                     </div>
                 </div>
@@ -90,16 +90,16 @@
                             <input id="producto" class="form-control" type="text" name="producto" placeholder="Nombre del Producto" disabled>
                         </div>
                     </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="peso_bruto">Peso Bruto </label>
+                            <input id="peso_bruto" class="form-control" type="text" name="peso_bruto" placeholder="Peso Bruto" >
+                        </div>
+                    </div>
                     <div class="col-md-2">
                         <div class="form-group">
                             <label for="cantidad">Cantidad</label>
                             <input id="cantidad" class="form-control" type="number" name="cantidad" onkeyup="calcularTaraEn(event)">
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="form-group">
-                            <label for="peso_bruto">Peso Bruto </label>
-                            <input id="peso_bruto" class="form-control" type="text" name="peso_bruto" placeholder="Peso Bruto" onkeyup="calcularPrecioEn(event)">
                         </div>
                     </div>
                     <div class="col-md-3">
