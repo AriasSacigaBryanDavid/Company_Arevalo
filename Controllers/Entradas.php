@@ -25,8 +25,25 @@
             die();
         }
         public function ingresar(){
+            $id= $_POST['id'];
+            $datos = $this->model->getProductos($id);
+            $id_producto= $datos['id'];
+            $id_usuario = $_SESSION['id_usuario'];
+            $rendimineto = $_POST['redimiento'];
+            $peso_bruto = $_POST['peso_bruto'];
+            $cantidad = $_POST['cantidad'];
+            $kilos_tara = $cantidad * 0.2;
+            $peso_neto = $peso_bruto - $kilos_tara;
+            $precio = $datos['precio_compra'];
+            $sub_total = $precio * $peso_neto;
             
-            print_r($_POST);
+            $data= $this->model->registrarDetalle($id_producto, $id_usuario, $rendimineto, $peso_bruto, $cantidad, $kilos_tara, $peso_neto, $precio, $sub_total);
+            
+            if($data == "ok"){
+                $msg = "ok";
+                }else{
+                $msg = "Error al ingresar el producto";
+                }
             
         }
         

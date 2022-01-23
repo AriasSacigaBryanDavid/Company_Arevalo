@@ -1810,20 +1810,20 @@ function buscarCodigoEn(e) {
         }
     }
  }
- function calcularTaraEn(e){
+ function calcularPrecioEn(e){
     e.preventDefault();
-    const cant = document.getElementById("cantidad").value;
-    document.getElementById("kilos_tara").value= cant * 0.2;
-
     const peso_bruto = document.getElementById("peso_bruto").value;
+    const cantidad = document.getElementById("cantidad").value;
     const kilos_tara = document.getElementById("kilos_tara").value;
-    const precio = document.getElementById("precio").value;
     const peso_neto = document.getElementById("peso_neto").value;
+    const precio = document.getElementById("precio").value;
+
+    document.getElementById("kilos_tara").value= cantidad * 0.2;
     document.getElementById("peso_neto").value = peso_bruto - kilos_tara;
     document.getElementById("sub_total").value = precio * peso_neto;
     
     if (e.which == 13) {
-        if(peso_bruto > 0){
+        if(cantidad > 0){
             const url =base_url + "Entradas/ingresar";
             const frm =document.getElementById("frmProductoEntrada");
             const http=new XMLHttpRequest();
@@ -1831,7 +1831,19 @@ function buscarCodigoEn(e) {
             http.send(new FormData (frm));
             http.onreadystatechange=function(){
                 if(this.readyState == 4 && this.status ==200){
-                    console.log(this.responseText);
+                    const res = JSON.parse(this.responseText);
+                    if(res == 'ok'){
+                        Swal.fire({
+                            position: 'top-end',
+                            icon: 'success',
+                            title: 'Producto Ingresado',
+                            showConfirmButton: false,
+                            timer: 2000
+                        })
+                        frm.reset();
+                        
+                    }
+                    
                 }
             }
         }

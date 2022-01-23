@@ -90,6 +90,12 @@
                             <input id="producto" class="form-control" type="text" name="producto" placeholder="Nombre del Producto" disabled>
                         </div>
                     </div>
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label for="rendimiento">Rendimiento</label>
+                            <input id="rendimiento" class="form-control" type="number" name="rendimiento" >
+                        </div>
+                    </div>
                     <div class="col-md-3">
                         <div class="form-group">
                             <label for="peso_bruto">Peso Bruto </label>
@@ -99,19 +105,19 @@
                     <div class="col-md-2">
                         <div class="form-group">
                             <label for="cantidad">Cantidad</label>
-                            <input id="cantidad" class="form-control" type="number" name="cantidad" onkeyup="calcularTaraEn(event)">
+                            <input id="cantidad" class="form-control" type="number" name="cantidad" onkeyup="calcularPrecioEn(event)">
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label for="kilos_tara">Kilos de Tara</label>
+                            <input id="kilos_tara" class="form-control" type="text" name="kilos_tara" placeholder="Kilos de Tara" disabled>
                         </div>
                     </div>
                     <div class="col-md-3">
                         <div class="form-group">
                             <label for="peso_neto">Peso Neto</label>
                             <input id="peso_neto" class="form-control" type="text" name="peso_neto" placeholder="Peso Neto" disabled >
-                        </div>
-                    </div>
-                    <div class="col-md-2">
-                        <div class="form-group">
-                            <label for="kilos_tara">Kilos de Taras </label>
-                            <input id="kilos_tara" class="form-control" type="text" name="kilos_tara" placeholder="Kilos de Tara" disabled>
                         </div>
                     </div>
                     <div class="col-md-3">
@@ -144,17 +150,17 @@
         <tr>
             <th>ID</th>
             <th>Nombre</th>
-            <th>Cantidad</th>
+            <th>Rendimiento</th>
             <th>Peso_Bruto</th>
-            <th>Peso_Neto</th>
+            <th>Cantidad</th>
             <th>Kilo_tara</th>
+            <th>Peso_Neto</th>
             <th>Precio</th>
             <th>Sub Total</th>
-            <th>Fecha_vencimiento</th>
             <th></th>
         </tr>
     </thead>
-        <tbody>
+        <tbody id="tblDetalle">
         </tbody>
 </table>
 <!--Total de Entradas Productos-->
