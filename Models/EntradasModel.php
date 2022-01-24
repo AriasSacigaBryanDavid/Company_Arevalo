@@ -37,12 +37,12 @@
         public function registrarDetalle(int $id_producto, int $id_usuario, string $rendimiento, string $peso_bruto, int $cantidad, string $kilos_tara, string $peso_neto, string $precio, string $sub_total){
             $sql= "INSERT INTO detalle(id_producto, id_usuario, rendimiento, peso_bruto, cantidad, kilos_tara, peso_neto, precio, sub_total) VALUES(?,?,?,?,?,?,?,?,?)";
             $datos= array($id_producto, $id_usuario, $rendimiento, $peso_bruto, $cantidad, $kilos_tara, $peso_neto, $precio, $sub_total);
-            $data = $this->save($sql, $datos);
+            $data= $this->save($sql, $datos);
             if($data ==1){
                 $res = "ok";
             }else{
                 $res ="error";
-                }
+            }
             return $res;
         }
         

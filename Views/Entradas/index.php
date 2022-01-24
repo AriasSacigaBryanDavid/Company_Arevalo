@@ -93,7 +93,7 @@
                     <div class="col-md-2">
                         <div class="form-group">
                             <label for="rendimiento">Rendimiento</label>
-                            <input id="rendimiento" class="form-control" type="number" name="rendimiento" >
+                            <input id="rendimiento" class="form-control" type="text" name="rendimiento" >
                         </div>
                     </div>
                     <div class="col-md-3">
@@ -160,7 +160,7 @@
             <th></th>
         </tr>
     </thead>
-        <tbody id="tblDetalle">
+        <tbody>
         </tbody>
 </table>
 <!--Total de Entradas Productos-->

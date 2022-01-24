@@ -29,7 +29,7 @@
             $datos = $this->model->getProductos($id);
             $id_producto= $datos['id'];
             $id_usuario = $_SESSION['id_usuario'];
-            $rendimineto = $_POST['redimiento'];
+            $rendimiento = $_POST['rendimiento'];
             $peso_bruto = $_POST['peso_bruto'];
             $cantidad = $_POST['cantidad'];
             $kilos_tara = $cantidad * 0.2;
@@ -37,14 +37,15 @@
             $precio = $datos['precio_compra'];
             $sub_total = $precio * $peso_neto;
             
-            $data= $this->model->registrarDetalle($id_producto, $id_usuario, $rendimineto, $peso_bruto, $cantidad, $kilos_tara, $peso_neto, $precio, $sub_total);
+            $data= $this->model->registrarDetalle($id_producto, $id_usuario, $rendimiento, $peso_bruto, $cantidad, $kilos_tara, $peso_neto, $precio, $sub_total);
             
             if($data == "ok"){
                 $msg = "ok";
-                }else{
+            }else{
                 $msg = "Error al ingresar el producto";
-                }
-            
+            }
+            echo json_encode($msg, JSON_UNESCAPED_UNICODE);
+            die();
         }
         
 

@@ -1812,18 +1812,18 @@ function buscarCodigoEn(e) {
  }
  function calcularPrecioEn(e){
     e.preventDefault();
-    const peso_bruto = document.getElementById("peso_bruto").value;
-    const cantidad = document.getElementById("cantidad").value;
-    const kilos_tara = document.getElementById("kilos_tara").value;
-    const peso_neto = document.getElementById("peso_neto").value;
+    const p_bruto = document.getElementById("peso_bruto").value;
+    const cant = document.getElementById("cantidad").value;
+    const k_tara = document.getElementById("kilos_tara").value;
+    const p_neto = document.getElementById("peso_neto").value;
     const precio = document.getElementById("precio").value;
 
-    document.getElementById("kilos_tara").value= cantidad * 0.2;
-    document.getElementById("peso_neto").value = peso_bruto - kilos_tara;
-    document.getElementById("sub_total").value = precio * peso_neto;
+    document.getElementById("kilos_tara").value= cant * 0.2;
+    document.getElementById("peso_neto").value= p_bruto - k_tara;
+    document.getElementById("sub_total").value= precio * p_neto;
     
     if (e.which == 13) {
-        if(cantidad > 0){
+        if(cant > 0){
             const url =base_url + "Entradas/ingresar";
             const frm =document.getElementById("frmProductoEntrada");
             const http=new XMLHttpRequest();
