@@ -99,7 +99,7 @@
                     <div class="col-md-3">
                         <div class="form-group">
                             <label for="peso_bruto">Peso Bruto </label>
-                            <input id="peso_bruto" class="form-control" type="text" name="peso_bruto" placeholder="Peso Bruto" >
+                            <input id="peso_bruto" class="form-control" type="text" name="peso_bruto" placeholder="Peso Bruto">
                         </div>
                     </div>
                     <div class="col-md-2">
@@ -160,7 +160,7 @@
             <th></th>
         </tr>
     </thead>
-        <tbody>
+        <tbody  id="tblDetalle">
         </tbody>
 </table>
 <!--Total de Entradas Productos-->

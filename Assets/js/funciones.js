@@ -1812,16 +1812,12 @@ function buscarCodigoEn(e) {
  }
  function calcularPrecioEn(e){
     e.preventDefault();
-    const p_bruto = document.getElementById("peso_bruto").value;
     const cant = document.getElementById("cantidad").value;
-    const k_tara = document.getElementById("kilos_tara").value;
-    const p_neto = document.getElementById("peso_neto").value;
+    const p_bruto = document.getElementById("peso_bruto").value;
     const precio = document.getElementById("precio").value;
-
     document.getElementById("kilos_tara").value= cant * 0.2;
-    document.getElementById("peso_neto").value= p_bruto - k_tara;
-    document.getElementById("sub_total").value= precio * p_neto;
-    
+    document.getElementById("peso_neto").value= p_bruto - (cant * 0.2);
+    document.getElementById("sub_total").value= precio * (p_bruto - (cant * 0.2));
     if (e.which == 13) {
         if(cant > 0){
             const url =base_url + "Entradas/ingresar";
@@ -1840,14 +1836,18 @@ function buscarCodigoEn(e) {
                             showConfirmButton: false,
                             timer: 2000
                         })
+                    
                         frm.reset();
-                        
                     }
                     
                 }
             }
         }
     }
+    
+    
+    
+    
 }
 
 
