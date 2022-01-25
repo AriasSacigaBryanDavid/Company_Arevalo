@@ -1836,18 +1836,79 @@ function buscarCodigoEn(e) {
                             showConfirmButton: false,
                             timer: 2000
                         })
-                    
                         frm.reset();
+                        cargaDetalle();
                     }
                     
                 }
             }
         }
+    }  
+}
+cargaDetalle();
+function cargaDetalle(){
+    const url =base_url + "Entradas/listar";
+    const http=new XMLHttpRequest();
+    http.open("GET", url, true);
+    http.send();
+    http.onreadystatechange=function(){
+        if(this.readyState == 4 && this.status ==200){
+            const res = JSON.parse(this.responseText);
+            let html ='';
+            res.forEach(row => {
+                 html +=`<tr>
+                     <td>${row['id']}</td>
+                     <td>${row['nombre']}</td>
+                     <td>${row['rendimiento']}</td>
+                     <td>${row['peso_bruto']}</td>
+                     <td>${row['cantidad']}</td>
+                     <td>${row['kilos_tara']}</td>
+                     <td>${row['peso_neto']}</td>
+                     <td>${row['precio']}</td>
+                     <td>${row['sub_total']}</td>
+                     <td>
+                        <button class="btn btn-danger" type=""button" onclick="deleteDetalle(${row['id']})">
+                        <i class="fas fa-trash-alt"></i>
+                        </button>
+                     </td>
+ 
+ 
+                 </tr>`;
+             }); 
+             document.getElementById("tblDetalle").innerHTML = html;       
+    
+         }
     }
-    
-    
-    
-    
+}
+
+function deleteDetalle(id){
+    const url =base_url + "Entradas/delete/"+id;
+    const http=new XMLHttpRequest();
+    http.open("GET", url, true);
+    http.send();
+    http.onreadystatechange=function(){
+        if(this.readyState == 4 && this.status ==200){
+          const res=JSON.parse(this.responseText);
+          if( res == 'ok'){
+            Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: 'Producto Eliminado',
+                showConfirmButton: false,
+                timer: 2000
+            })
+            cargaDetalle();
+          }else{
+            Swal.fire({
+                position: 'top-end',
+                icon: 'error',
+                title: 'Error de Eliminar Producto',
+                showConfirmButton: false,
+                 timer: 2000
+            })
+          }
+        }
+    }
 }
 
 

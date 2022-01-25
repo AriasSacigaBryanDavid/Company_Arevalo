@@ -47,6 +47,22 @@
             echo json_encode($msg, JSON_UNESCAPED_UNICODE);
             die();
         }
+        public function listar(){
+            $id_usuario =$_SESSION['id_usuario'];
+            $data = $this->model->getDetalle($id_usuario);
+            echo json_encode($data, JSON_UNESCAPED_UNICODE);
+            die();
+        }
+        public function delete($id){
+            $data = $this->model->deleteDetalle($id);
+            if($data == 'ok'){
+                $msg ='ok';
+            }else{
+                $msg ='error';
+            }
+            echo json_encode($msg);
+            die();
+        }
         
         
         
