@@ -82,7 +82,7 @@
             }
             return $res;
         }
-        public function registrarCompra(string $total){
+        public function registrarEntrada(string $total){
             $sql = "INSERT INTO entradas(total) VALUES (?)";
             $datos = array($total);
             $data = $this->save($sql, $datos);

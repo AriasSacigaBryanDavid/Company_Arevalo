@@ -1946,7 +1946,7 @@ function generarEntrada(){
                             'Entrada generada.',
                             'success'
                         )
-                        window.open(ruta);
+                        
                         setTimeout(() =>{
                             window.location.reload();
                         },300);
