@@ -61,6 +61,11 @@
             }
             return $res;
         }
+        public function calcularEntrada(int $id_usuario){
+            $sql = "SELECT sub_total, SUM(sub_total) AS total FROM detalle WHERE id_usuario=$id_usuario";
+            $data= $this->select($sql);
+            return $data;
+        }
         
     }
 

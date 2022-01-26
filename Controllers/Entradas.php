@@ -49,7 +49,8 @@
         }
         public function listar(){
             $id_usuario =$_SESSION['id_usuario'];
-            $data = $this->model->getDetalle($id_usuario);
+            $data['detalle'] = $this->model->getDetalle($id_usuario);
+            $data['total_pagar'] = $this->model->calcularEntrada($id_usuario);
             echo json_encode($data, JSON_UNESCAPED_UNICODE);
             die();
         }

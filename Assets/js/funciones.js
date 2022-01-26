@@ -1792,7 +1792,7 @@ function buscarCodigoEn(e) {
                         document.getElementById("producto").value = res.nombre;
                         document.getElementById("precio").value = res.precio_compra;
                         document.getElementById("id").value = res.id;
-                        document.getElementById("peso_neto").focus();
+                        document.getElementById("rendimiento").focus();
                         
                     }else{
                         Swal.fire({
@@ -1855,7 +1855,7 @@ function cargaDetalle(){
         if(this.readyState == 4 && this.status ==200){
             const res = JSON.parse(this.responseText);
             let html ='';
-            res.forEach(row => {
+            res.detalle.forEach(row => {
                  html +=`<tr>
                      <td>${row['id']}</td>
                      <td>${row['nombre']}</td>
@@ -1875,7 +1875,8 @@ function cargaDetalle(){
  
                  </tr>`;
              }); 
-             document.getElementById("tblDetalle").innerHTML = html;       
+             document.getElementById("tblDetalle").innerHTML = html;      
+             document.getElementById("total").value = res.total_pagar.total;  
     
          }
     }

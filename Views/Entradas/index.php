@@ -79,7 +79,7 @@
                 <div class="row">
                     <div class="col-md-3">
                         <div class="form-group">
-                            <label for="codigo"><i class="fas fa-barcode"></i>Código de barras</label>
+                            <label for="codigo"><i class="fas fa-barcode"></i> Código de barras</label>
                             <input type="hidden" id="id" name="id">
                             <input id="codigo" class="form-control" type="text" name="codigo" placeholder="Código de barras" onkeyup="buscarCodigoEn(event)">
                         </div>
@@ -169,7 +169,7 @@
         <div class="form-group">
             <label for="total" class="font-weight-bold">Total </label>
             <input id="total" class="form-control" type="text" name="total" placeholder="Total" disabled>
-            <button class="btn btn-primary mt-2 btn-block" type="button">Generar Compra</button>
+            <button class="btn btn-primary mt-2 btn-block" type="button">Generar Entrada</button>
         </div>
     </div>
 </div>
