@@ -1,6 +1,5 @@
 <?php
     class SalidasModel extends Query{
-        private $fecha_salida, $id_documento, $n_documento, $id_almacen, $motivo, $id_producto, $cantidad, $precio, $id;
         public function __construct(){
             parent::__construct();
         }
@@ -73,7 +72,7 @@
             return $res;
         }
         public function registrarSalida(string $total){
-            $sql = "INSERT INTO entradas(total) VALUES (?)";
+            $sql = "INSERT INTO salidas(total) VALUES (?)";
             $datos = array($total);
             $data = $this->save($sql, $datos);
             if($data ==1){
@@ -84,13 +83,13 @@
             return $res;
         }
         public function id_salida(){
-            $sql = "SELECT MAX(id) AS id FROM entradas";
+            $sql = "SELECT MAX(id) AS id FROM salidas";
             $data = $this->select($sql);
             return $data;
         }
-        public function registrarDetalleSalida(int $id_entrada, int $id_pro, string $rendimiento, string $peso_bruto,int $cantidad, string $kilos_tara, string $peso_neto,string $precio, string $sub_total){
-            $sql = "INSERT INTO detalle_entradas(id_entrada, id_producto,rendimiento,peso_bruto,cantidad,kilos_tara,peso_neto, precio, sub_total) VALUES (?,?,?,?,?,?,?,?,?)";
-            $datos = array($id_entrada, $id_pro, $rendimiento, $peso_bruto ,$cantidad, $kilos_tara, $peso_neto, $precio, $sub_total);
+        public function registrarDetalleSalida(int $id_salida, int $id_pro, string $rendimiento, string $peso_bruto,int $cantidad, string $kilos_tara, string $peso_neto,string $precio, string $sub_total){
+            $sql = "INSERT INTO detalle_salidas(id_salida, id_producto,rendimiento,peso_bruto,cantidad,kilos_tara,peso_neto, precio, sub_total) VALUES (?,?,?,?,?,?,?,?,?)";
+            $datos = array($id_salida, $id_pro, $rendimiento, $peso_bruto ,$cantidad, $kilos_tara, $peso_neto, $precio, $sub_total);
             $data = $this->save($sql, $datos);
             if($data ==1){
                 $res = "ok";

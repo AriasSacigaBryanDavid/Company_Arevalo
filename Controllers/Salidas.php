@@ -82,7 +82,7 @@
             $data = $this->model->registrarSalida($total['total']);
             if($data == 'ok'){
                 $detalle = $this->model->getDetalle($id_usuario);
-                $id_entrada = $this->model->id_salida();
+                $id_salida = $this->model->id_salida();
                 foreach($detalle as $row){
                     $id_pro = $row['id_producto'];
                     $rendimiento =$row['rendimiento'];
@@ -92,11 +92,11 @@
                     $peso_neto = $peso_bruto - $kilos_tara;
                     $precio = $row['precio'];
                     $sub_total = $precio * $peso_neto;
-                    $this->model->registrarDetalleSalida($id_entrada['id'],$id_pro, $rendimiento, $peso_bruto, $cantidad, $kilos_tara,$peso_neto,$precio, $sub_total);
+                    $this->model->registrarDetalleSalida($id_salida['id'],$id_pro, $rendimiento, $peso_bruto, $cantidad, $kilos_tara,$peso_neto,$precio, $sub_total);
                 }
                 $vaciar = $this->model->vaciarDetalle($id_usuario);
                 if($vaciar == 'ok'){
-                    $msg =array('msg' => 'ok', 'id_entrada' => $id_entrada['id']);
+                    $msg =array('msg' => 'ok', 'id_salida' => $id_salida['id']);
                 }
                 
             }else{
