@@ -1855,7 +1855,7 @@ function buscarCodigoEn(e) {
         }
     }  
 }
-cargaDetalle();
+cargaDetalleEn();
 function cargaDetalleEn(){
     const url =base_url + "Entradas/listar";
     const http=new XMLHttpRequest();
@@ -1877,7 +1877,7 @@ function cargaDetalleEn(){
                      <td>${row['precio']}</td>
                      <td>${row['sub_total']}</td>
                      <td>
-                        <button class="btn btn-danger" type=""button" onclick="deleteDetalle(${row['id']})">
+                        <button class="btn btn-danger" type=""button" onclick="deleteDetalleEn(${row['id']})">
                         <i class="fas fa-trash-alt"></i>
                         </button>
                      </td>
@@ -1892,7 +1892,7 @@ function cargaDetalleEn(){
     }
 }
 
-function deleteDetalle(id){
+function deleteDetalleEn(id){
     const url =base_url + "Entradas/delete/"+id;
     const http=new XMLHttpRequest();
     http.open("GET", url, true);
@@ -1982,6 +1982,7 @@ function buscarCodigoSa(e) {
                         document.getElementById("producto").value = res.nombre;
                         document.getElementById("precio").value = res.precio_compra;
                         document.getElementById("id").value = res.id;
+                        document.getElementById("rendimiento").focus();
                         
                     }else{
                         Swal.fire({
@@ -1999,20 +2000,158 @@ function buscarCodigoSa(e) {
         }
     }
  }
- function calcularTaraSa(e){
+ function calcularPrecioSa(e){
     e.preventDefault();
     const cant = document.getElementById("cantidad").value;
+    const p_bruto = document.getElementById("peso_bruto").value;
+    const precio = document.getElementById("precio").value;
     document.getElementById("kilos_tara").value= cant * 0.2;
+    document.getElementById("peso_neto").value= p_bruto - (cant * 0.2);
+    document.getElementById("sub_total").value= precio * (p_bruto - (cant * 0.2));
+    if (e.which == 13) {
+        if(cant > 0){
+            const url =base_url + "Salidas/ingresar";
+            const frm =document.getElementById("frmProductoSalida");
+            const http=new XMLHttpRequest();
+            http.open("POST", url, true);
+            http.send(new FormData (frm));
+            http.onreadystatechange=function(){
+                if(this.readyState == 4 && this.status ==200){
+                    const res = JSON.parse(this.responseText);
+                    if(res == 'ok'){
+                        Swal.fire({
+                            position: 'top-end',
+                            icon: 'success',
+                            title: 'Producto Ingresado',
+                            showConfirmButton: false,
+                            timer: 2000
+                        })
+                        frm.reset();
+                        cargaDetalleSa();
+                    }else if (res == 'modificado') {
+                        Swal.fire({
+                            position: 'top-end',
+                            icon: 'success',
+                            title: 'Producto Actualizado',
+                            showConfirmButton: false,
+                            timer: 2000
+                        })
+                        frm.reset();
+                        cargaDetalleSa();
+                    }
+                    
+                }
+            }
+        }
+    }  
+}
+cargaDetalleSa();
+function cargaDetalleSa(){
+    const url =base_url + "Salidas/listar";
+    const http=new XMLHttpRequest();
+    http.open("GET", url, true);
+    http.send();
+    http.onreadystatechange=function(){
+        if(this.readyState == 4 && this.status ==200){
+            const res = JSON.parse(this.responseText);
+            let html ='';
+            res.detalle.forEach(row => {
+                 html +=`<tr>
+                     <td>${row['id']}</td>
+                     <td>${row['nombre']}</td>
+                     <td>${row['rendimiento']}</td>
+                     <td>${row['peso_bruto']}</td>
+                     <td>${row['cantidad']}</td>
+                     <td>${row['kilos_tara']}</td>
+                     <td>${row['peso_neto']}</td>
+                     <td>${row['precio']}</td>
+                     <td>${row['sub_total']}</td>
+                     <td>
+                        <button class="btn btn-danger" type=""button" onclick="deleteDetalleSa(${row['id']})">
+                        <i class="fas fa-trash-alt"></i>
+                        </button>
+                     </td>
+ 
+ 
+                 </tr>`;
+             }); 
+             document.getElementById("tblDetalle").innerHTML = html;      
+             document.getElementById("total").value = res.total_pagar.total;  
+    
+         }
+    }
 }
 
-function calcularPrecioSa(e) {
-    e.preventDefault();
-    const peso_bruto = document.getElementById("peso_bruto").value;
-    const kilos_tara = document.getElementById("kilos_tara").value;
-    const precio = document.getElementById("precio").value;
-    const peso_neto = document.getElementById("peso_neto").value;
-    document.getElementById("peso_neto").value = peso_bruto - kilos_tara;
-    document.getElementById("sub_total").value = precio * peso_neto;
+function deleteDetalleSa(id){
+    const url =base_url + "Salidas/delete/"+id;
+    const http=new XMLHttpRequest();
+    http.open("GET", url, true);
+    http.send();
+    http.onreadystatechange=function(){
+        if(this.readyState == 4 && this.status ==200){
+          const res=JSON.parse(this.responseText);
+          if( res == 'ok'){
+            Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: 'Producto Eliminado',
+                showConfirmButton: false,
+                timer: 2000
+            })
+            cargaDetalleSa();
+          }else{
+            Swal.fire({
+                position: 'top-end',
+                icon: 'error',
+                title: 'Error de Eliminar Producto',
+                showConfirmButton: false,
+                 timer: 2000
+            })
+          }
+        }
+    }
+}
+
+function generarSalida(){
+    Swal.fire({
+        title: '¿Está seguro de realizar la salida?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'si',
+        cancelButtonText:'No'
+      }).then((result) => {
+        if (result.isConfirmed) {
+            const url =base_url + "Salidas/registrarSalida";
+            const http=new XMLHttpRequest();
+            http.open("GET", url, true);
+            http.send();
+            http.onreadystatechange=function(){
+                if(this.readyState == 4 && this.status ==200){
+                    const res = JSON.parse(this.responseText);
+                    if (res.msg == "ok" ){
+                        Swal.fire(
+                            'Mensaje!',
+                            'Salida generada.',
+                            'success'
+                        )
+                        
+                        setTimeout(() =>{
+                            window.location.reload();
+                        },300);
+                    }else{
+                        Swal.fire(
+                            'Mensaje!',
+                            res,
+                            'error'
+                        )
+                    }
+                }
+            }
+            
+        }
+      })   
 }
 /** Fin de Salidas */
 /*******************************/
