@@ -66,6 +66,22 @@
             $data= $this->select($sql);
             return $data;
         }
+        public function consultarDetalle(int $id_producto, int $id_usuario){
+            $sql = "SELECT * FROM detalle WHERE id_producto = $id_producto AND id_usuario = $id_usuario";
+            $data= $this->select($sql);
+            return $data;
+        }
+        public function actualizarDetalle(string $rendimiento,string $peso_bruto, int $cantidad , string $kilos_tara,string $peso_neto, string $precio, string $sub_total, int $id_producto, int $id_usuario){
+            $sql = "UPDATE detalle SET rendimiento=?, peso_bruto=?, cantidad=?, kilos_tara=?, peso_neto=?, precio = ?, sub_total = ? WHERE id_producto = ? AND id_usuario = ?";
+            $datos = array($rendimiento,$peso_bruto,$cantidad,$kilos_tara,$peso_neto, $precio, $sub_total, $id_producto, $id_usuario);
+            $data = $this->save($sql,$datos);
+            if($data ==1){
+                $res ="modificado";
+            }else{
+                $res ="error";
+            }
+            return $res;
+        }
         
     }
 

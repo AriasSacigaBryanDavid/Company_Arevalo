@@ -1838,6 +1838,16 @@ function buscarCodigoEn(e) {
                         })
                         frm.reset();
                         cargaDetalle();
+                    }else if (res == 'modificado') {
+                        Swal.fire({
+                            position: 'top-end',
+                            icon: 'success',
+                            title: 'Producto Actualizado',
+                            showConfirmButton: false,
+                            timer: 2000
+                        })
+                        frm.reset();
+                        cargaDetalle();
                     }
                     
                 }

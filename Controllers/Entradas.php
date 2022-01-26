@@ -32,17 +32,35 @@
             $rendimiento = $_POST['rendimiento'];
             $peso_bruto = $_POST['peso_bruto'];
             $cantidad = $_POST['cantidad'];
-            $kilos_tara = $cantidad * 0.2;
-            $peso_neto = $peso_bruto - $kilos_tara;
-            $precio = $datos['precio_compra'];
-            $sub_total = $precio * $peso_neto;
-            
-            $data= $this->model->registrarDetalle($id_producto, $id_usuario, $rendimiento, $peso_bruto, $cantidad, $kilos_tara, $peso_neto, $precio, $sub_total);
-            
-            if($data == "ok"){
-                $msg = "ok";
+            $comprobar = $this->model->consultarDetalle($id_producto, $id_usuario);
+            if (empty($comprobar)) {
+                $kilos_tara = $cantidad * 0.2;
+                $peso_neto = $peso_bruto - $kilos_tara;
+                $precio = $datos['precio_compra'];
+                $sub_total = $precio * $peso_neto;
+                
+                $data= $this->model->registrarDetalle($id_producto, $id_usuario, $rendimiento, $peso_bruto, $cantidad, $kilos_tara, $peso_neto, $precio, $sub_total);
+                
+                if($data == "ok"){
+                    $msg = "ok";
+                }else{
+                    $msg = "Error al ingresar el producto";
+                }
             }else{
-                $msg = "Error al ingresar el producto";
+                $total_peso_bruto= $comprobar['peso_bruto'] + $peso_bruto;
+                $total_cantidad= $comprobar['cantidad'] + $cantidad;
+                $kilos_tara = $total_cantidad * 0.2;
+                $peso_neto = $total_peso_bruto - $kilos_tara;
+                $precio = $datos['precio_compra'];
+                $sub_total = $precio * $peso_neto;
+                
+                $data= $this->model->actualizarDetalle($rendimiento,$total_peso_bruto, $total_cantidad, $kilos_tara, $peso_neto, $precio, $sub_total, $id_producto, $id_usuario);
+                
+                if($data == "modificado"){
+                    $msg = "modificado";
+                }else{
+                    $msg = "Error al modificar el producto";
+                }
             }
             echo json_encode($msg, JSON_UNESCAPED_UNICODE);
             die();
