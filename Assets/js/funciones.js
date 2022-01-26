@@ -1922,7 +1922,47 @@ function deleteDetalle(id){
     }
 }
 
-
+function generarEntrada(){
+    Swal.fire({
+        title: '¿Está seguro de realizar la entrada?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'si',
+        cancelButtonText:'No'
+      }).then((result) => {
+        if (result.isConfirmed) {
+            const url =base_url + "Entradas/registrarEntrada";
+            const http=new XMLHttpRequest();
+            http.open("GET", url, true);
+            http.send();
+            http.onreadystatechange=function(){
+                if(this.readyState == 4 && this.status ==200){
+                    const res = JSON.parse(this.responseText);
+                    if (res.msg == "ok" ){
+                        Swal.fire(
+                            'Mensaje!',
+                            'Entrada generada.',
+                            'success'
+                        )
+                        window.open(ruta);
+                        setTimeout(() =>{
+                            window.location.reload();
+                        },300);
+                    }else{
+                        Swal.fire(
+                            'Mensaje!',
+                            res,
+                            'error'
+                        )
+                    }
+                }
+            }
+            
+        }
+      })   
+}
 
 /** Fin de Entradas */
 /*******************************/
