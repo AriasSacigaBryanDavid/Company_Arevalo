@@ -53,43 +53,49 @@
     <!--Salidas de Productos-->
     <div class="card mb-2">
         <div class="card-body bg-secondary text-white">
-            <form id="frmEntradasa">
+            <form id="frmProductoSalida">
                 <div class="row">
                     <div class="col-md-3">
                         <div class="form-group">
-                            <label for="codigo"><i class="fas fa-barcode"></i>Código de barras</label>
+                            <label for="codigo"><i class="fas fa-barcode"></i> Código de barras</label>
                             <input type="hidden" id="id" name="id">
                             <input id="codigo" class="form-control" type="text" name="codigo" placeholder="Código de barras" onkeyup="buscarCodigoSa(event)">
                         </div>
                     </div>
                     <div class="col-md-5">
                         <div class="form-group">
-                            <label for="producto">nombre</label>
-                            <input id="producto" class="form-control" type="text" name="producto" placeholder="Nombre" disabled>
+                            <label for="producto">Nombre del Producto</label>
+                            <input id="producto" class="form-control" type="text" name="producto" placeholder="Nombre del Producto" disabled>
                         </div>
                     </div>
                     <div class="col-md-2">
                         <div class="form-group">
-                            <label for="cantidad">Cantidad</label>
-                            <input id="cantidad" class="form-control" type="number" name="cantidad" onkeyup="calcularTaraSa(event)">
+                            <label for="rendimiento">Rendimiento</label>
+                            <input id="rendimiento" class="form-control" type="text" name="rendimiento" >
                         </div>
                     </div>
                     <div class="col-md-3">
                         <div class="form-group">
                             <label for="peso_bruto">Peso Bruto </label>
-                            <input id="peso_bruto" class="form-control" type="text" name="peso_bruto" placeholder="Peso Bruto" onkeyup="calcularPrecioSa(event)">
+                            <input id="peso_bruto" class="form-control" type="text" name="peso_bruto" placeholder="Peso Bruto">
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label for="cantidad">Cantidad</label>
+                            <input id="cantidad" class="form-control" type="number" name="cantidad" onkeyup="calcularPrecioSa(event)">
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label for="kilos_tara">Kilos de Tara</label>
+                            <input id="kilos_tara" class="form-control" type="text" name="kilos_tara" placeholder="Kilos de Tara" disabled>
                         </div>
                     </div>
                     <div class="col-md-3">
                         <div class="form-group">
                             <label for="peso_neto">Peso Neto</label>
-                            <input id="peso_neto" class="form-control" type="text" name="peso_neto" placeholder="Peso Neto" disabled>
-                        </div>
-                    </div>
-                    <div class="col-md-2">
-                        <div class="form-group">
-                            <label for="kilos_tara">Kilos de Taras </label>
-                            <input id="kilos_tara" class="form-control" type="text" name="kilos_tara" placeholder="Kilos de Tara" disabled>
+                            <input id="peso_neto" class="form-control" type="text" name="peso_neto" placeholder="Peso Neto" disabled >
                         </div>
                     </div>
                     <div class="col-md-3">
@@ -115,16 +121,17 @@
         <tr>
             <th>ID</th>
             <th>Nombre</th>
+            <th>Rendimiento</th>
+            <th>Peso Bruto</th>
             <th>Cantidad</th>
-            <th>Peso_Bruto</th>
-            <th>Peso_Neto</th>
-            <th>Kilo_tara</th>
+            <th>Kilo tara</th>
+            <th>Peso Neto</th>
             <th>Precio</th>
             <th>Sub Total</th>
             <th></th>
         </tr>
     </thead>
-        <tbody>
+        <tbody id="tblDetalle">
         </tbody>
 </table>
 <!--Total de Salidas Productos-->
@@ -133,7 +140,7 @@
         <div class="form-group">
             <label for="total" class="font-weight-bold">Total </label>
             <input id="total" class="form-control" type="text" name="total" placeholder="Total" disabled>
-            <button class="btn btn-primary mt-2 btn-block" type="button">Generar Salida</button>
+            <button class="btn btn-primary mt-2 btn-block" type="button" onclick="generarSalida()">Generar Salida</button>
         </div>
     </div>
 </div>

@@ -1837,7 +1837,7 @@ function buscarCodigoEn(e) {
                             timer: 2000
                         })
                         frm.reset();
-                        cargaDetalle();
+                        cargaDetalleEn();
                     }else if (res == 'modificado') {
                         Swal.fire({
                             position: 'top-end',
@@ -1847,7 +1847,7 @@ function buscarCodigoEn(e) {
                             timer: 2000
                         })
                         frm.reset();
-                        cargaDetalle();
+                        cargaDetalleEn();
                     }
                     
                 }
@@ -1856,7 +1856,7 @@ function buscarCodigoEn(e) {
     }  
 }
 cargaDetalle();
-function cargaDetalle(){
+function cargaDetalleEn(){
     const url =base_url + "Entradas/listar";
     const http=new XMLHttpRequest();
     http.open("GET", url, true);
@@ -1908,7 +1908,7 @@ function deleteDetalle(id){
                 showConfirmButton: false,
                 timer: 2000
             })
-            cargaDetalle();
+            cargaDetalleEn();
           }else{
             Swal.fire({
                 position: 'top-end',
