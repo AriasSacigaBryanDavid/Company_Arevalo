@@ -888,6 +888,180 @@ function btnReingresarPro(id){
 }
 /** Fin de proveedores */
 /*******************************/
+/** inicio de cliente */
+function frmCliente(){
+    document.getElementById("title").innerHTML ="Registrar Cliente";
+    document.getElementById("btnAccion").innerHTML ="Registrar";
+    document.getElementById("frmCliente").reset();
+    $("#nuevo_cliente").modal("show");
+    document.getElementById("id").value ="";
+}
+
+function registrarCli(e){
+    e.preventDefault();
+    const nombre = document.getElementById("nombre");
+    const identidad =document.getElementById("identidad");
+    const n_identidad = document.getElementById("n_identidad");
+    const telefono = document.getElementById("telefono");
+    const correo = document.getElementById("correo");
+    const direccion = document.getElementById("direccion");
+    if(nombre.value=="" || identidad.value=="" || n_identidad.value=="" || telefono.value==""|| correo.value=="" || direccion.value==""){
+        Swal.fire({
+            position: 'top-end',
+            icon: 'error',
+            title: 'Porfavor ingrese los datos, es obligatorios',
+            showConfirmButton: false,
+            timer: 3000
+          })
+    }else{
+        const url = base_url +"Clientes/registrar";
+        const frm = document.getElementById("frmCliente");
+        const http = new XMLHttpRequest();
+        http.open("POST",url, true);
+        http.send(new FormData(frm));
+        http.onreadystatechange = function(){
+            if(this.readyState == 4 && this.status == 200){
+                const res = JSON.parse(this.responseText);
+                if(res == "si" ){
+                    Swal.fire({
+                        position: 'top-end',
+                        icon: 'success',
+                        title: 'Cliente registrado con éxito',
+                        showConfirmButton: false,
+                        timer: 3000
+                      })
+                      frm.reset();
+                      tblClientes.ajax.reload();
+                      $("#nuevo_cliente").modal("hide");
+
+                }else if (res == "modificado") {
+                    Swal.fire({
+                        position: 'top-end',
+                        icon: 'success',
+                        title: 'Cliente modificado con éxito',
+                        showConfirmButton: false,
+                        timer: 3000
+                      })
+                      $("#nuevo_cliente").modal("hide");
+                      tblClientes.ajax.reload();
+                }else{
+                    Swal.fire({
+                        position: 'top-end',
+                        icon: 'error',
+                        title: res,
+                        showConfirmButton: false,
+                        timer: 3000
+                      })
+                }
+            }
+
+        }
+    }
+}
+
+function btnEditarCli(id){
+    document.getElementById("title").innerHTML ="Actualizar Cliente";
+    document.getElementById("btnAccion").innerHTML="Actualizar";
+    const url = base_url +"Clientes/editar/"+id;
+    const http = new XMLHttpRequest();
+    http.open("GET",url, true);
+    http.send();
+    http.onreadystatechange = function(){
+        if(this.readyState == 4 && this.status == 200){
+          const res = JSON.parse(this.responseText); 
+            document.getElementById("id").value =res.id;
+            document.getElementById("nombre").value=res.nombre;
+            document.getElementById("identidad").value=res.id_identidad;
+            document.getElementById("n_identidad").value= res.n_identidad;
+            document.getElementById("telefono").value=res.telefono;
+            document.getElementById("correo").value=res.correo;
+            document.getElementById("direccion").value=res.direccion;  
+            $("#nuevo_cliente").modal("show");  
+        }
+
+    }
+
+    
+}
+
+function btnEliminarCli(id){
+    Swal.fire({
+        title: '¿Deseas Eliminar Cliente?',
+        text: "¡El cliente no se eliminara de forma permanente!,  solo cambiará el estado a inactivo",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'si',
+        cancelButtonText:'No'
+      }).then((result) => {
+        if (result.isConfirmed) {
+            const url = base_url +"Clientes/eliminar/"+id;
+            const http = new XMLHttpRequest();
+            http.open("GET",url, true);
+            http.send();
+            http.onreadystatechange = function(){
+                if(this.readyState == 4 && this.status == 200){
+                  const res= JSON.parse(this.responseText);
+                    if(res == "ok"){
+                       Swal.fire(
+                        'Mensaje!',
+                        'Cliente eliminado con éxito.',
+                        'success'
+                        )
+                        tblClientes.ajax.reload();
+                  }else{
+                    Swal.fire(
+                        'Mensaje!',
+                        res,
+                        'error'
+                        )
+                  }
+                }
+            }
+        }
+      })
+}
+
+function btnReingresarCli(id){
+    Swal.fire({
+        title: '¿Está seguro de reingresar?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'si',
+        cancelButtonText:'No'
+      }).then((result) => {
+        if (result.isConfirmed) {
+            const url = base_url +"Clientes/reingresar/"+id;
+            const http = new XMLHttpRequest();
+            http.open("GET",url, true);
+            http.send();
+            http.onreadystatechange = function(){
+                if(this.readyState == 4 && this.status == 200){
+                  const res= JSON.parse(this.responseText);
+                    if(res == "ok"){
+                       Swal.fire(
+                        'Mensaje!',
+                        'Cliente reingresado con éxito.',
+                        'success'
+                        )
+                        tblClientes.ajax.reload();
+                  }else{
+                    Swal.fire(
+                        'Mensaje!',
+                        res,
+                        'error'
+                        )
+                  }
+                }
+            }
+        }
+      })
+}
+/** Fin de cliente */
+/*******************************/
 /** inicio de categorias */
 function frmCategoria(){
     document.getElementById("title").innerHTML ="Agregar Categoria";
@@ -1877,7 +2051,7 @@ function cargaDetalleEn(){
                      <td>${row['precio']}</td>
                      <td>${row['sub_total']}</td>
                      <td>
-                        <button class="btn btn-danger" type=""button" onclick="deleteDetalleEn(${row['id']})">
+                        <button class="btn btn-danger" type="button" onclick="deleteDetalleEn(${row['id']})">
                         <i class="fas fa-trash-alt"></i>
                         </button>
                      </td>
@@ -2374,177 +2548,3 @@ function generarVenta(){
       })   
 }
 /** Fin de ventas */
-/*******************************/
-/** inicio de cliente */
-function frmCliente(){
-    document.getElementById("title").innerHTML ="Registrar Cliente";
-    document.getElementById("btnAccion").innerHTML ="Registrar";
-    document.getElementById("frmCliente").reset();
-    $("#nuevo_cliente").modal("show");
-    document.getElementById("id").value ="";
-}
-
-function registrarCli(e){
-    e.preventDefault();
-    const nombre = document.getElementById("nombre");
-    const identidad =document.getElementById("identidad");
-    const n_identidad = document.getElementById("n_identidad");
-    const telefono = document.getElementById("telefono");
-    const correo = document.getElementById("correo");
-    const direccion = document.getElementById("direccion");
-    if(nombre.value=="" || identidad.value=="" || n_identidad.value=="" || telefono.value==""|| correo.value=="" || direccion.value==""){
-        Swal.fire({
-            position: 'top-end',
-            icon: 'error',
-            title: 'Porfavor ingrese los datos, es obligatorios',
-            showConfirmButton: false,
-            timer: 3000
-          })
-    }else{
-        const url = base_url +"Clientes/registrar";
-        const frm = document.getElementById("frmCliente");
-        const http = new XMLHttpRequest();
-        http.open("POST",url, true);
-        http.send(new FormData(frm));
-        http.onreadystatechange = function(){
-            if(this.readyState == 4 && this.status == 200){
-                const res = JSON.parse(this.responseText);
-                if(res == "si" ){
-                    Swal.fire({
-                        position: 'top-end',
-                        icon: 'success',
-                        title: 'Cliente registrado con éxito',
-                        showConfirmButton: false,
-                        timer: 3000
-                      })
-                      frm.reset();
-                      tblClientes.ajax.reload();
-                      $("#nuevo_cliente").modal("hide");
-
-                }else if (res == "modificado") {
-                    Swal.fire({
-                        position: 'top-end',
-                        icon: 'success',
-                        title: 'Cliente modificado con éxito',
-                        showConfirmButton: false,
-                        timer: 3000
-                      })
-                      $("#nuevo_cliente").modal("hide");
-                      tblClientes.ajax.reload();
-                }else{
-                    Swal.fire({
-                        position: 'top-end',
-                        icon: 'error',
-                        title: res,
-                        showConfirmButton: false,
-                        timer: 3000
-                      })
-                }
-            }
-
-        }
-    }
-}
-
-function btnEditarCli(id){
-    document.getElementById("title").innerHTML ="Actualizar Cliente";
-    document.getElementById("btnAccion").innerHTML="Actualizar";
-    const url = base_url +"Clientes/editar/"+id;
-    const http = new XMLHttpRequest();
-    http.open("GET",url, true);
-    http.send();
-    http.onreadystatechange = function(){
-        if(this.readyState == 4 && this.status == 200){
-          const res = JSON.parse(this.responseText); 
-            document.getElementById("id").value =res.id;
-            document.getElementById("nombre").value=res.nombre;
-            document.getElementById("identidad").value=res.id_identidad;
-            document.getElementById("n_identidad").value= res.n_identidad;
-            document.getElementById("telefono").value=res.telefono;
-            document.getElementById("correo").value=res.correo;
-            document.getElementById("direccion").value=res.direccion;  
-            $("#nuevo_cliente").modal("show");  
-        }
-
-    }
-
-    
-}
-
-function btnEliminarCli(id){
-    Swal.fire({
-        title: '¿Deseas Eliminar Cliente?',
-        text: "¡El cliente no se eliminara de forma permanente!,  solo cambiará el estado a inactivo",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'si',
-        cancelButtonText:'No'
-      }).then((result) => {
-        if (result.isConfirmed) {
-            const url = base_url +"Clientes/eliminar/"+id;
-            const http = new XMLHttpRequest();
-            http.open("GET",url, true);
-            http.send();
-            http.onreadystatechange = function(){
-                if(this.readyState == 4 && this.status == 200){
-                  const res= JSON.parse(this.responseText);
-                    if(res == "ok"){
-                       Swal.fire(
-                        'Mensaje!',
-                        'Cliente eliminado con éxito.',
-                        'success'
-                        )
-                        tblClientes.ajax.reload();
-                  }else{
-                    Swal.fire(
-                        'Mensaje!',
-                        res,
-                        'error'
-                        )
-                  }
-                }
-            }
-        }
-      })
-}
-
-function btnReingresarCli(id){
-    Swal.fire({
-        title: '¿Está seguro de reingresar?',
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'si',
-        cancelButtonText:'No'
-      }).then((result) => {
-        if (result.isConfirmed) {
-            const url = base_url +"Clientes/reingresar/"+id;
-            const http = new XMLHttpRequest();
-            http.open("GET",url, true);
-            http.send();
-            http.onreadystatechange = function(){
-                if(this.readyState == 4 && this.status == 200){
-                  const res= JSON.parse(this.responseText);
-                    if(res == "ok"){
-                       Swal.fire(
-                        'Mensaje!',
-                        'Cliente reingresado con éxito.',
-                        'success'
-                        )
-                        tblClientes.ajax.reload();
-                  }else{
-                    Swal.fire(
-                        'Mensaje!',
-                        res,
-                        'error'
-                        )
-                  }
-                }
-            }
-        }
-      })
-}
-/** Fin de cliente */
