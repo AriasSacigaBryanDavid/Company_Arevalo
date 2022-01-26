@@ -1,6 +1,3 @@
-<!--<?php
-    date_default_timezone_set('America/Mexico_City');
-    $Fech = date("Y-m-d");  ?>-->
 <?php include "Views/Templates/header.php";?>
 <div class="card">
     <div class="card">
@@ -132,13 +129,6 @@
                             <input id="sub_total" class="form-control" type="text" name="sub_total" placeholder="Sub Total" disabled>
                         </div>
                     </div>
-                    <!--
-                    <div class="col-md-4">
-                        <div class="form-group mb-2">
-                            <label for="fecha_vencimiento">fecha de Vencimiento</label>
-                            <input id="fecha_vencimiento" class="form-control" type="date" value="<?php echo ($Fech); ?>" name="fecha_vencimiento" placeholder="Fecha de Venta">
-                        </div>
-                    </div> -->
                 </div>
             </form>
         </div>
