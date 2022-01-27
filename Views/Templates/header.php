@@ -56,7 +56,7 @@
                             <!-- menu de proveedores -->
                             <a class="nav-link" href="<?php echo base_url; ?>Proveedores" >
                                 <div class="sb-nav-link-icon"><i class="fas fa-users text-success"></i></div>
-                                Proveedor
+                                Proveedores
                             </a>
                             <!-- menu de clientes -->
                             <a class="nav-link" href="<?php echo base_url; ?>Clientes" >
@@ -80,12 +80,12 @@
                             <!-- menu de Entrada -->
                             <a class="nav-link" href="<?php echo base_url; ?>Entradas" >
                                 <div class="sb-nav-link-icon"><i class="fas fa-boxes"></i></div>
-                                Entrada
+                                Entradas
                             </a>
                             <!-- menu de Salida -->
                             <a class="nav-link" href="<?php echo base_url; ?>Salidas" >
                                 <div class="sb-nav-link-icon"><i class="fas fa-dolly-flatbed"></i></div>
-                                Salida
+                                Salidas
                             </a>
                             <!-- menu de Documentacion -->
                             <a class="nav-link" href="<?php echo base_url; ?>Documentos " >
@@ -96,6 +96,11 @@
                             <a class="nav-link" href="<?php echo base_url; ?>Ventas " >
                                 <div class="sb-nav-link-icon"><i class="fas fa-cash-register"></i></div>
                                 Ventas
+                            </a>
+                            <!-- menu de kardex -->
+                            <a class="nav-link" href="<?php echo base_url; ?>Kardex" >
+                                <div class="sb-nav-link-icon"><i class="fas fa-cash-register"></i></div>
+                                Kardexs
                             </a>
                         </div>
                     </div>

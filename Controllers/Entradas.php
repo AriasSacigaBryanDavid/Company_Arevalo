@@ -106,7 +106,7 @@
                 }
                 
             }else{
-                $msg='Error al realizar la compra';
+                $msg='Error al realizar la entrada';
             }
             echo json_encode($msg);
             die();
