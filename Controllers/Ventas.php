@@ -112,6 +112,20 @@
             echo json_encode($msg);
             die();
         }
+        
+        public function historial(){
+            $this->views->getView($this,"historial");
+        }
+        public function  listar_historial(){
+           $data=$this->model->getHistorialVentas();
+           for ($i=0; $i<count($data); $i++){
+            $data[$i]['acciones']='<div>
+               <a class="btn btn-danger"><i class="fas fa-file-pdf"></i></a>
+               </div>';
+            }
+           echo json_encode($data, JSON_UNESCAPED_UNICODE);
+           die();
+        }
 
 
 

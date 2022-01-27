@@ -41,12 +41,12 @@
                             <div class="form-floating mb-3" align="center">
                                                 <img src="Assets/img/logo.jpg" width="100" >
                             </div>
-                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseAdministracion" aria-expanded="false" aria-controls="collapseAdministracion">
                                 <div class="sb-nav-link-icon"><i class="fas fa-tools text-success"></i></div>
                                 Administración
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down text-success"></i></div>
                             </a>
-                            <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                            <div class="collapse" id="collapseAdministracion" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
                                     <a class="nav-link" href="<?php echo base_url;?>Usuarios">Usuarios</a>
                                     <a class="nav-link" href="<?php echo base_url;?>Cargos">Cargos</a>
@@ -64,12 +64,12 @@
                                 Clientes 
                             </a>
                             <!-- menu de Productos -->
-                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseProductos" aria-expanded="false" aria-controls="collapseProductos">
                                 <div class="sb-nav-link-icon"><i class="fas fa-store text-success"></i></div>
                                 Productos
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down text-success"></i></div>
                             </a>
-                            <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                            <div class="collapse" id="collapseProductos" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
                                     <a class="nav-link" href="<?php echo base_url;?>Productos">Productos</a>
                                     <a class="nav-link" href="<?php echo base_url;?>Marcas">Marcas</a>
@@ -78,25 +78,57 @@
                                 </nav>
                             </div>
                             <!-- menu de Entrada -->
-                            <a class="nav-link" href="<?php echo base_url; ?>Entradas" >
-                                <div class="sb-nav-link-icon"><i class="fas fa-boxes"></i></div>
+                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseEntradas" aria-expanded="false" aria-controls="collapseEntradas">
+                                <div class="sb-nav-link-icon"><i class="fas fa-boxes text-success"></i></div>
                                 Entradas
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down text-success"></i></div>
                             </a>
+                            <div class="collapse" id="collapseEntradas" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav">
+                                    <a class="nav-link" href="<?php echo base_url;?>Entradas">Nueva Entrada</a>
+                                    <a class="nav-link" href="<?php echo base_url;?>Entradas/historial">Historial Entrada</a>
+                                   
+                                </nav>
+                            </div>
                             <!-- menu de Salida -->
-                            <a class="nav-link" href="<?php echo base_url; ?>Salidas" >
-                                <div class="sb-nav-link-icon"><i class="fas fa-dolly-flatbed"></i></div>
+                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseSalidas" aria-expanded="false" aria-controls="collapseSalidas">
+                                <div class="sb-nav-link-icon"><i class="fas fa-dolly-flatbed text-success"></i></div>
                                 Salidas
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down text-success"></i></div>
                             </a>
-                            <!-- menu de Documentacion -->
-                            <a class="nav-link" href="<?php echo base_url; ?>Documentos " >
-                                <div class="sb-nav-link-icon"><i class="fas fa-archive"></i></div>
-                                Documentos
-                            </a>
+                            <div class="collapse" id="collapseSalidas" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav">
+                                    <a class="nav-link" href="<?php echo base_url;?>Salidas">Nueva Salida</a>      
+                                    <a class="nav-link" href="<?php echo base_url;?>Salidas/historial">Historial Salida</a>
+                                   
+                                </nav>
+                            </div>
                             <!-- menu de Ventas -->
-                            <a class="nav-link" href="<?php echo base_url; ?>Ventas " >
-                                <div class="sb-nav-link-icon"><i class="fas fa-cash-register"></i></div>
+                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseVentas" aria-expanded="false" aria-controls="collapseVentas">
+                                <div class="sb-nav-link-icon"><i class="fas fa-cash-register text-success"></i></div>
                                 Ventas
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down text-success"></i></div>
                             </a>
+                            <div class="collapse" id="collapseVentas" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav">
+                                    <a class="nav-link" href="<?php echo base_url;?>Ventas">Nueva Venta</a>      
+                                    <a class="nav-link" href="<?php echo base_url;?>Ventas/historial">Historial Venta</a>
+                                   
+                                </nav>
+                            </div>
+                            <!-- menu de Documentacion -->
+                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseDocumentos" aria-expanded="false" aria-controls="collapseDocumentos">
+                                <div class="sb-nav-link-icon"><i class="fas fa-archive text-success"></i></div>
+                                Documentos
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down text-success"></i></div>
+                            </a>
+                            <div class="collapse" id="collapseDocumentos" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav">
+                                    <a class="nav-link" href="<?php echo base_url;?>Documentos">Documentos</a>      
+                                    <a class="nav-link" href="<?php echo base_url;?>Marcas">Historial Venta</a>
+                                   
+                                </nav>
+                            </div>
                             <!-- menu de kardex -->
                             <a class="nav-link" href="<?php echo base_url; ?>Kardex" >
                                 <div class="sb-nav-link-icon"><i class="fas fa-cash-register"></i></div>

@@ -121,6 +121,11 @@
             return $res;
            
         }
+        public function getHistorialVentas(){
+            $sql= "SELECT * FROM ventas";
+            $data= $this->selectAll($sql);
+            return $data;
+        }
         
 
     }

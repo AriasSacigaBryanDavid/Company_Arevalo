@@ -110,6 +110,11 @@
             return $res;
            
         }
+        public function getHistorialSalidas(){
+            $sql= "SELECT * FROM salidas";
+            $data= $this->selectAll($sql);
+            return $data;
+        }
         
 
 

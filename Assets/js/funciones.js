@@ -213,6 +213,48 @@ document.addEventListener("DOMContentLoaded", function(){
         ]
     });
      /** Fin de la tabla clientes*/ 
+     /** Inicio de historial de entradas */
+    $('#t_historial_e').DataTable( {
+        ajax: {
+            url: base_url + "Entradas/listar_historial" ,
+            dataSrc: ''
+        },
+        columns: [
+            {'data' : 'id'},
+            {'data' : 'total'},
+            {'data' : 'fecha'},
+            {'data' : 'acciones'}
+        ]
+    });
+    /** Fin de historial de entradas */
+    /** Inicio de historial de salidas */
+    $('#t_historial_s').DataTable( {
+        ajax: {
+            url: base_url + "Salidas/listar_historial" ,
+            dataSrc: ''
+        },
+        columns: [
+            {'data' : 'id'},
+            {'data' : 'total'},
+            {'data' : 'fecha'},
+            {'data' : 'acciones'}
+        ]
+    });
+    /** Fin de historial de salidas */
+     /** Inicio de historial de ventas */
+     $('#t_historial_v').DataTable( {
+        ajax: {
+            url: base_url + "Ventas/listar_historial" ,
+            dataSrc: ''
+        },
+        columns: [
+            {'data' : 'id'},
+            {'data' : 'total'},
+            {'data' : 'fecha'},
+            {'data' : 'acciones'}
+        ]
+    });
+    /** Fin de historial de ventas */
 })
 /** Inicio de Usuario */
 function frmUsuario(){

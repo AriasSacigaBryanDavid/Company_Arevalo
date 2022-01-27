@@ -121,6 +121,11 @@
             return $res;
            
         }
+        public function getHistorialEntradas(){
+            $sql= "SELECT * FROM entradas";
+            $data= $this->selectAll($sql);
+            return $data;
+        }
         
     }
 
