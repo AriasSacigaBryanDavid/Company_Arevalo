@@ -128,11 +128,7 @@
                                     <a class="nav-link" href="<?php echo base_url;?>Identidades">Identidades</a>
                                 </nav>
                             </div>
-                            <!-- menu de kardex -->
-                            <a class="nav-link" href="<?php echo base_url; ?>Kardex" >
-                                <div class="sb-nav-link-icon"><i class="fas fa-cash-register"></i></div>
-                                Kardexs
-                            </a>
+                            
                         </div>
                     </div>
                     <div class="sb-sidenav-footer">
