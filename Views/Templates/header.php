@@ -125,8 +125,7 @@
                             <div class="collapse" id="collapseDocumentos" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
                                     <a class="nav-link" href="<?php echo base_url;?>Documentos">Documentos</a>      
-                                    <a class="nav-link" href="<?php echo base_url;?>Marcas">Historial Venta</a>
-                                   
+                                    <a class="nav-link" href="<?php echo base_url;?>Identidades">Identidades</a>
                                 </nav>
                             </div>
                             <!-- menu de kardex -->

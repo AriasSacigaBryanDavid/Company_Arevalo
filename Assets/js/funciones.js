@@ -1,5 +1,5 @@
 
-let tblUsuarios , tblCargos, tblAlmacenes, tblProveedores,tblCategorias,tblMarcas,tblUnidades,tblProductos,tblDocumentos,tblEntradas, tblSalidas,tblClientes;
+let tblUsuarios , tblCargos, tblAlmacenes, tblProveedores,tblCategorias,tblMarcas,tblUnidades,tblProductos,tblDocumentos,tblClientes, tblIdentidades;
 
 /** Inicio de Usuario */
 document.addEventListener("DOMContentLoaded", function(){
@@ -147,53 +147,21 @@ document.addEventListener("DOMContentLoaded", function(){
         ]
     });
     /** Fin de documentos*/
-    /** Inicio de entradas */
-    tblEntradas = $('#tblEntradas').DataTable( {
-        ajax: {
-            url: base_url + "Entradas/listar" ,
-            dataSrc: ''
-        },
-        columns: [
-            {'data' : 'id'},
-            {'data' : 'codigo'},
-            {'data' : 'fecha_compra'},
-            {'data' : 'documento'},
-            {'data' : 'n_documento'},
-            {'data' : 'proveedor'},
-            {'data' : 'almacen'},
-            {'data' : 'producto'},
-            {'data' : 'cantidad'},
-            {'data' : 'peso_bruto'},
-            {'data' : 'peso_neto'},
-            {'data' : 'kilos_tara'},
-            {'data' : 'precio_compra'},
-            {'data' : 'precio_venta'},
-            {'data' : 'precio_total'},
-            {'data' : 'fecha_vencimiento'},
-            {'data' : 'acciones'}
-        ]
+   /** Inicio de identidades */
+   tblIdentidades = $('#tblIdentidades').DataTable( {
+    ajax: {
+        url: base_url + "Identidades/listar" ,
+        dataSrc: ''
+    },
+    columns: [
+        {'data' : 'id'},
+        {'data' : 'nombre'},
+        {'data' : 'estado'},
+        {'data' : 'acciones'}
+    ]
     });
-    /** Fin de entradas*/
-    /** Inicio de salidas */
-    tblSalidas = $('#tblSalidas').DataTable( {
-        ajax: {
-            url: base_url + "Salidas/listar" ,
-            dataSrc: ''
-        },
-        columns: [
-            {'data' : 'id'},
-            {'data' : 'fecha_salida'},
-            {'data' : 'documento'},
-            {'data' : 'n_documento'},
-            {'data' : 'almacen'},
-            {'data' : 'motivo'},
-            {'data' : 'producto'},
-            {'data' : 'cantidad'},
-            {'data' : 'precio'},
-            {'data' : 'acciones'}
-        ]
-    });
-    /** Fin de salidas*/
+ /** Fin de la tabla identidades*/
+    
     /** Inicio de clientes */
     tblClientes = $('#tblClientes').DataTable( {
         ajax: {
@@ -580,6 +548,173 @@ function btnReingresarCar(id){
                         'success'
                         )
                         tblCargos.ajax.reload();
+                  }else{
+                    Swal.fire(
+                        'Mensaje!',
+                        res,
+                        'error'
+                        )
+                  }
+                }
+            }
+        }
+      })
+}
+/** Fin de cargos */
+/*******************************/
+/*******************************/
+/** inicio de cargo */
+function frmIdentidad(){
+    document.getElementById("title").innerHTML ="Agregar Identidad";
+    document.getElementById("btnAccion").innerHTML ="Agregar";
+    document.getElementById("frmIdentidad").reset();
+    $("#nuevo_identidad").modal("show");
+    document.getElementById("id").value ="";
+}
+function registrarIden(e){
+    e.preventDefault();
+    const nombre = document.getElementById("nombre");
+    if( nombre.value=="" ){
+        Swal.fire({
+            position: 'top-end',
+            icon: 'error',
+            title: 'Porfavor ingrese los datos, es obligatorios',
+            showConfirmButton: false,
+            timer: 3000
+          })
+    }else{
+        const url = base_url +"Identidades/registrar";
+        const frm = document.getElementById("frmIdentidad");
+        const http = new XMLHttpRequest();
+        http.open("POST",url, true);
+        http.send(new FormData(frm));
+        http.onreadystatechange = function(){
+            if(this.readyState == 4 && this.status == 200){
+                const res= JSON.parse(this.responseText);
+                    if(res == "si"){
+                        Swal.fire({
+                            position: 'top-end',
+                            icon: 'success',
+                            title: 'Identidad registrado con éxito',
+                            showConfirmButton: false,
+                            timer: 3000
+                          })
+                          frm.reset();
+                          tblIdentidades.ajax.reload();
+                          $("#nuevo_identidad").modal("hide");
+                    }else if (res == "modificado") {
+                        Swal.fire({
+                            position: 'top-end',
+                            icon: 'success',
+                            title: 'Identidad modificado con éxito',
+                            showConfirmButton: false,
+                            timer: 3000
+                          })
+                          $("#nuevo_identidad").modal("hide");
+                          tblIdentidades.ajax.reload();
+                    }else{
+                        Swal.fire({
+                            position: 'top-end',
+                            icon: 'error',
+                            title: res,
+                            showConfirmButton: false,
+                            timer: 3000
+                          })
+                    }
+                    
+                }
+                
+            }
+
+        }
+}
+function btnEditarIden(id){
+    document.getElementById("title").innerHTML ="Actualizar Identidad";
+    document.getElementById("btnAccion").innerHTML ="Actualizar";
+    const url = base_url +"Identidades/editar/"+id;
+    const http = new XMLHttpRequest();
+    http.open("GET",url, true);
+    http.send();
+    http.onreadystatechange = function(){
+        if(this.readyState == 4 && this.status == 200){
+            const res = JSON.parse(this.responseText); 
+            document.getElementById("id").value =res.id;
+            document.getElementById("nombre").value=res.nombre; 
+            $("#nuevo_identidad").modal("show");  
+        }
+
+    }
+}
+function btnEliminarIden(id){
+    Swal.fire({
+        title: '¿Deseas Eliminar la Identidad?',
+        text: "¡La Identidad no se eliminara de forma permanente!,  solo cambiará el estado a inactivo",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'si',
+        cancelButtonText:'No'
+      }).then((result) => {
+        if (result.isConfirmed) {
+            const url = base_url +"Identidades/eliminar/"+id;
+            const http = new XMLHttpRequest();
+            http.open("GET",url, true);
+            http.send();
+            http.onreadystatechange = function(){
+                if(this.readyState == 4 && this.status == 200){
+                  const res=JSON.parse(this.responseText);
+                  if(res == "ok"){
+                    Swal.fire(
+                     'Mensaje!',
+                     'Identidad eliminado con éxito.',
+                     'success'
+                     )
+                     tblIdentidades.ajax.reload();
+               }else{
+                 Swal.fire(
+                     'Mensaje!',
+                     res,
+                     'error'
+                     )
+                    }
+               }
+            }
+
+            Swal.fire(
+            'Mensaje!',
+            'elimiado',
+            'error'
+            )
+        }
+        
+    })
+}
+function btnReingresarIden(id){
+    Swal.fire({
+        title: '¿Está seguro de reingresar?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'si',
+        cancelButtonText:'No'
+      }).then((result) => {
+        if (result.isConfirmed) {
+            const url = base_url +"Identidades/reingresar/"+id;
+            const http = new XMLHttpRequest();
+            http.open("GET",url, true);
+            http.send();
+            http.onreadystatechange = function(){
+                if(this.readyState == 4 && this.status == 200){
+                  const res= JSON.parse(this.responseText);
+                    if(res == "ok"){
+                       Swal.fire(
+                        'Mensaje!',
+                        'Identidad reingresado con éxito.',
+                        'success'
+                        )
+                        tblIdentidades.ajax.reload();
                   }else{
                     Swal.fire(
                         'Mensaje!',
