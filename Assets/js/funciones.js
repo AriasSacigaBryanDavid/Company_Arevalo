@@ -1932,7 +1932,7 @@ function buscarProveedor(e){
                 if(this.readyState == 4 && this.status ==200){
                     const res =JSON.parse(this.responseText);
                     if(res){
-                        document.getElementById("nombre").value = res.nombre;
+                        document.getElementById("nombre_proveedor").value = res.nombre;
                         document.getElementById("id").value = res.id;
                         
                     }else{
@@ -2112,7 +2112,7 @@ function generarEntrada(){
             http.open("GET", url, true);
             http.send();
             http.onreadystatechange=function(){
-                if(this.readyState == 4 && this.status ==200){
+            if(this.readyState == 4 && this.status ==200){
                     const res = JSON.parse(this.responseText);
                     if (res.msg == "ok" ){
                         Swal.fire(
@@ -2133,6 +2133,8 @@ function generarEntrada(){
                     }
                 }
             }
+            
+            
             
         }
       })   

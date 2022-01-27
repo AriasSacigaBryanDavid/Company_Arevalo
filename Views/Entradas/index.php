@@ -44,8 +44,8 @@
                 </div>
                 <div class="col-md-7">
                     <div class="form-group mb-3">
-                        <label for="nombre">Nombre de Proveedor</label>
-                        <input id="nombre" class="form-control" type="text" name="nombre" placeholder="Nombre" disabled>
+                        <label for="nombre_proveedor">Nombre de Proveedor</label>
+                        <input id="nombre_proveedor" class="form-control" type="text" name="nombre_proveedor" placeholder="Nombre del Proveedor" disabled>
                     </div>
                 </div>
                 <div class="col-md-6">
