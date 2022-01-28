@@ -37,10 +37,11 @@
                 <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                     <div class="sb-sidenav-menu">
                         <div class="nav">
-                            <!-- menu de configuracion-->
+                            <!-- menu de configuracion
                             <div class="form-floating mb-3" align="center">
                                                 <img src="Assets/img/logo.jpg" width="100" >
-                            </div>
+                            </div>-->
+                            <!-- menu de configuracion-->
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseAdministracion" aria-expanded="false" aria-controls="collapseAdministracion">
                                 <div class="sb-nav-link-icon"><i class="fas fa-tools text-success"></i></div>
                                 Administración
