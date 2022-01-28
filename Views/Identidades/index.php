@@ -18,7 +18,7 @@
         <thead class="thead-dark">
             <tr>
                 <th>Id</th>
-                <th>Identidad</th>
+                <th>Nombre</th>
                 <th>Estado</th>
                 <th></th>
             </tr>

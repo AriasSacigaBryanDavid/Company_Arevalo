@@ -563,7 +563,7 @@ function btnReingresarCar(id){
 /** Fin de cargos */
 /*******************************/
 /*******************************/
-/** inicio de cargo */
+/** inicio de identidad */
 function frmIdentidad(){
     document.getElementById("title").innerHTML ="Agregar Identidad";
     document.getElementById("btnAccion").innerHTML ="Agregar";
