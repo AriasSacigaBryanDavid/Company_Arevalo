@@ -99,6 +99,12 @@
                     $precio = $row['precio'];
                     $sub_total = $precio * $peso_neto;
                     $this->model->registrarDetalleEntrada($id_entrada['id'],$id_pro, $rendimiento, $peso_bruto, $cantidad, $kilos_tara,$peso_neto,$precio, $sub_total);
+                    $stock_actual= $this->model->getProductos($id_pro);
+                    $stock = $stock_actual['cantidad'] + $cantidad;
+                    $this->model->actualizarStock($stock, $id_pro);
+                    $kilos_total= $this->model->getProductos($id_pro);
+                    $peso = $kilos_total['peso_total']+ $peso_neto;
+                    $this->model->actualizarPeso($peso, $id_pro);
                 }
                 $vaciar = $this->model->vaciarDetalle($id_usuario);
                 if($vaciar == 'ok'){
@@ -118,7 +124,7 @@
 
             $pdf = new FPDF('P','mm','A4');
             $pdf->AddPage();
-            $pdf->setMargins(5, 0, 0);
+            $pdf->setMargins(3, 0, 0);
             //Datos de la Empresa
             $pdf->SetTitle('Reporte de Entrada');
             $pdf->SetFont('Arial','B',16);
@@ -153,8 +159,8 @@
             $pdf->SetFillColor(0,0,0);
             $pdf->SetTextColor(255,255,255);
             $pdf->Cell(12,5, 'Cant.', 0,0, 'L', true);
-            $pdf->Cell(50,5, utf8_decode('Nombre'), 0,0, 'L', true);
-            $pdf->Cell(26,5, 'Rendimiento', 0,0, 'L', true);
+            $pdf->Cell(70,5, utf8_decode('Nombre'), 0,0, 'L', true);
+            $pdf->Cell(13,5, 'Rend.', 0,0, 'L', true);
             $pdf->Cell(23,5, 'Peso Bruto', 0,0, 'L', true);
             $pdf->Cell(21,5, 'Kilos Tara', 0,0, 'L', true);
             $pdf->Cell(22,5, 'Peso Neto', 0,0, 'L', true);
@@ -166,8 +172,8 @@
             foreach ($productos as $row) {
                 $total = $total + $row['sub_total'];
                 $pdf->Cell(12,5, $row['cantidad'], 0, 0, 'L');
-                $pdf->Cell(50,5, utf8_decode($row['nombre']) , 0,0, 'L');
-                $pdf->Cell(26,5, $row['rendimiento'], 0, 0, 'L');
+                $pdf->Cell(70,5, utf8_decode($row['nombre']) , 0,0, 'L');
+                $pdf->Cell(13,5, $row['rendimiento'], 0, 0, 'L');
                 $pdf->Cell(23,5, number_format($row['peso_bruto'], 2, '.',',') , 0,0, 'L');
                 $pdf->Cell(22,5, number_format($row['cantidad']*0.2, 2, '.',',') , 0,0, 'L');
                 $pdf->Cell(22,5, number_format($row['peso_neto'], 2, '.',',') , 0,0, 'L');

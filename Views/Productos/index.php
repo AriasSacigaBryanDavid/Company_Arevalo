@@ -26,6 +26,8 @@
                 <th>Unidad</th>
                 <th>Precio Compra</th>
                 <th>Precio Venta</th>
+                <th>Stock</th>
+                <th>Kilos Total</th>
                 <th>Estado</th>
                 <th></th>
             </tr>

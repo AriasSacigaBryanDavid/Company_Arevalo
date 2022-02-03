@@ -127,6 +127,8 @@ document.addEventListener("DOMContentLoaded", function(){
             {'data' : 'unidad'},
             {'data' : 'precio_compra'},
             {'data' : 'precio_venta'},
+            {'data' : 'cantidad'},
+            {'data' : 'peso_total'},
             {'data' : 'estado'},
             {'data' : 'acciones'}
         ]
