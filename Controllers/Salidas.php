@@ -147,6 +147,34 @@
             $pdf->Cell(20, 8, $id_salida, 0, 1,'C');
             $pdf->Ln();
 
+            //Datos de la venta
+            $pdf->SetFont('Arial','B',12);
+            $pdf->Cell(45, 8, utf8_decode('Documento: '), 0, 0,'C');
+            $pdf->SetFont('Arial','',12);
+            $pdf->Cell(40, 8,  utf8_decode('documento'), 0, 1,'C');
+
+            $pdf->SetFont('Arial','B',12);
+            $pdf->Cell(50, 8,  utf8_decode('N° Documento: '), 0, 0,'C');
+            $pdf->SetFont('Arial','',12);
+            $pdf->Cell(40, 8,  utf8_decode('#documento'), 0, 1,'C');
+
+            $pdf->SetFont('Arial','B',12);
+            $pdf->Cell(35, 8, 'Motivo: ', 0, 0,'C');
+            $pdf->SetFont('Arial','',12);
+            $pdf->Cell(40, 8,  utf8_decode('documento'), 0, 1,'C');
+
+            $pdf->SetFont('Arial','B',12);
+            $pdf->Cell(42, 8, 'Empleado: ', 0, 0,'C');
+            $pdf->SetFont('Arial','',12);
+            $pdf->Cell(40, 8,  utf8_decode('documento'), 0, 1,'C');
+
+            $pdf->SetFont('Arial','B',12);
+            $pdf->Cell(40, 8, utf8_decode('Almacén: '), 0, 0,'C');
+            $pdf->SetFont('Arial','',12);
+            $pdf->Cell(40, 8,  utf8_decode('documento'), 0, 1,'C');
+
+            $pdf->Ln();
+
             //Encabezado de productos
             $pdf->SetFillColor(0,0,0);
             $pdf->SetTextColor(255,255,255);
