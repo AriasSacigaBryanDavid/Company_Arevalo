@@ -136,6 +136,18 @@
             $data= $this->selectAll($sql);
             return $data;
         }
+        public function actualizarStock(int $cantidad, int $id_pro){
+            $sql = "UPDATE productos SET cantidad =? WHERE id=?";
+            $datos = array($cantidad, $id_pro);
+            $data = $this->save($sql, $datos);
+            return $data;
+        }
+        public function actualizarPeso(string $peso_total, int $id_pro){
+            $sql = "UPDATE productos SET peso_total =? WHERE id=?";
+            $datos = array($peso_total, $id_pro);
+            $data = $this->save($sql, $datos);
+            return $data;
+        }
         
 
     }

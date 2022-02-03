@@ -143,7 +143,7 @@
             $data = $this->save($sql, $datos);
             return $data;
         }
-        public function actualizarPeso(int $peso_total, int $id_pro){
+        public function actualizarPeso(string $peso_total, int $id_pro){
             $sql = "UPDATE productos SET peso_total =? WHERE id=?";
             $datos = array($peso_total, $id_pro);
             $data = $this->save($sql, $datos);

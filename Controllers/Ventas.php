@@ -98,6 +98,12 @@
                     $precio = $row['precio'];
                     $sub_total = $precio * $peso_neto;
                     $this->model->registrarDetalleVenta($id_venta['id'],$id_pro, $peso_bruto, $cantidad, $kilos_tara,$peso_neto,$precio, $sub_total);
+                    $stock_actual= $this->model->getProductos($id_pro);
+                    $stock = $stock_actual['cantidad'] - $cantidad;
+                    $this->model->actualizarStock($stock, $id_pro);
+                    $kilos_total= $this->model->getProductos($id_pro);
+                    $peso = $kilos_total['peso_total']- $peso_neto;
+                    $this->model->actualizarPeso($peso, $id_pro);
                 }
                 $vaciar = $this->model->vaciarDetalle($id_usuario);
                 if($vaciar == 'ok'){
