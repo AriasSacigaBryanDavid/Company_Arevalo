@@ -2296,7 +2296,8 @@ function generarEntrada(){
                             'Entrada generada.',
                             'success'
                         )
-                        
+                        const ruta =base_url +'Entradas/generarPdf/'+ res.id_entrada;
+                        window.open(ruta);
                         setTimeout(() =>{
                             window.location.reload();
                         },300);
@@ -2719,6 +2720,7 @@ function generarVenta(){
                     }
                 }
             }
+
         }
       })   
 }

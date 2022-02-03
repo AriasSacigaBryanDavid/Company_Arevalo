@@ -111,7 +111,77 @@
             echo json_encode($msg);
             die();
         }
+        public function generarPdf($id_entrada){
+            $empresa = $this->model->getEmpresa();
+            $productos = $this->model->getProEntrada($id_entrada);
+            require('Libraries/fpdf/fpdf.php');
 
+            $pdf = new FPDF('P','mm','A4');
+            $pdf->AddPage();
+            $pdf->setMargins(5, 0, 0);
+            //Datos de la Empresa
+            $pdf->SetTitle('Reporte de Entrada');
+            $pdf->SetFont('Arial','B',16);
+            $pdf->Cell(190,10,utf8_decode($empresa['nombre']), 0, 1,'C');
+            $pdf->Image(base_url . 'Assets/img/logo.jpg', 170, 10, 30, 30);
+            $pdf->SetFont('Arial','B',12);
+            $pdf->Cell(170, 8, utf8_decode($empresa['mensaje']), 0, 1,'C');
+
+            $pdf->SetFont('Arial','B',12);
+            $pdf->Cell(31, 8, 'RUC: ', 0, 0,'C');
+            $pdf->SetFont('Arial','',12);
+            $pdf->Cell(40, 8,  $empresa['ruc'], 0, 1,'C');
+
+            $pdf->SetFont('Arial','B',12);
+            $pdf->Cell(39, 8, utf8_decode('Teléfono: '), 0, 0,'C');
+            $pdf->SetFont('Arial','',12);
+            $pdf->Cell(20, 8, $empresa['telefono'], 0, 1,'C');
+
+            $pdf->SetFont('Arial','B',12);
+            $pdf->Cell(40, 8, utf8_decode('Dirección:'), 0, 0,'C');
+            $pdf->SetFont('Arial','',12);
+            $pdf->Cell(140, 8, utf8_decode($empresa['direccion']), 0, 1,'C',0);
+
+
+            $pdf->SetFont('Arial','B',12);
+            $pdf->Cell(31, 8, utf8_decode('Folio:'), 0, 0,'C');
+            $pdf->SetFont('Arial','',12);
+            $pdf->Cell(20, 8, $id_entrada, 0, 1,'C');
+            $pdf->Ln();
+
+            //Encabezado de productos
+            $pdf->SetFillColor(0,0,0);
+            $pdf->SetTextColor(255,255,255);
+            $pdf->Cell(12,5, 'Cant.', 0,0, 'L', true);
+            $pdf->Cell(50,5, utf8_decode('Nombre'), 0,0, 'L', true);
+            $pdf->Cell(26,5, 'Rendimiento', 0,0, 'L', true);
+            $pdf->Cell(23,5, 'Peso Bruto', 0,0, 'L', true);
+            $pdf->Cell(21,5, 'Kilos Tara', 0,0, 'L', true);
+            $pdf->Cell(22,5, 'Peso Neto', 0,0, 'L', true);
+            $pdf->Cell(15,5, 'Precio', 0,0, 'L', true);
+            $pdf->Cell(30,5, 'Sub Total', 0,1, 'L', true);
+
+            $pdf->SetTextColor(0,0,0);
+            $total = 0.00;
+            foreach ($productos as $row) {
+                $total = $total + $row['sub_total'];
+                $pdf->Cell(12,5, $row['cantidad'], 0, 0, 'L');
+                $pdf->Cell(50,5, utf8_decode($row['nombre']) , 0,0, 'L');
+                $pdf->Cell(26,5, $row['rendimiento'], 0, 0, 'L');
+                $pdf->Cell(23,5, number_format($row['peso_bruto'], 2, '.',',') , 0,0, 'L');
+                $pdf->Cell(22,5, number_format($row['cantidad']*0.2, 2, '.',',') , 0,0, 'L');
+                $pdf->Cell(22,5, number_format($row['peso_neto'], 2, '.',',') , 0,0, 'L');
+                $pdf->Cell(15,5, $row['precio'], 0, 0, 'L');
+                $pdf->Cell(30,5, number_format($row['sub_total'], 2, '.',',') , 0,1, 'L');
+            }
+            $pdf->Ln();
+            $pdf->Cell(190, 6, 'Total a pagar', 1, 1,'R');
+            $pdf->Cell(190, 6, number_format($total, 2, '.', ','), 0, 1,'R');
+            $pdf->Output();
+        }    
+
+
+    
         public function historial(){
             $this->views->getView($this,"historial");
         }
@@ -119,7 +189,7 @@
            $data=$this->model->getHistorialEntradas();
            for ($i=0; $i<count($data); $i++){
             $data[$i]['acciones']='<div>
-               <a class="btn btn-danger"><i class="fas fa-file-pdf"></i></a>
+               <a class="btn btn-danger" href="'.base_url."Entradas/generarPdf/".$data[$i]['id'].'" target="_blank"><i class="fas fa-file-pdf"></i></a>
                </div>';
             }
            echo json_encode($data, JSON_UNESCAPED_UNICODE);
