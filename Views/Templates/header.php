@@ -43,7 +43,7 @@
                             </div>-->
                             <!-- menu de configuracion-->
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseAdministracion" aria-expanded="false" aria-controls="collapseAdministracion">
-                                <div class="sb-nav-link-icon"><i class="fas fa-tools text-success"></i></div>
+                                <div class="sb-nav-link-icon"><i class="fas fa-tools text-success fa-2x"></i></div>
                                 Administración
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down text-success"></i></div>
                             </a>
@@ -56,17 +56,17 @@
                             </div>
                             <!-- menu de proveedores -->
                             <a class="nav-link" href="<?php echo base_url; ?>Proveedores" >
-                                <div class="sb-nav-link-icon"><i class="fas fa-users text-success"></i></div>
+                                <div class="sb-nav-link-icon"><i class="fas fa-users text-success fa-2x"></i></div>
                                 Proveedores
                             </a>
                             <!-- menu de clientes -->
                             <a class="nav-link" href="<?php echo base_url; ?>Clientes" >
-                                <div class="sb-nav-link-icon"><i class="fas fa-users text-success"></i></div>
+                                <div class="sb-nav-link-icon"><i class="fas fa-users text-success fa-2x"></i></div>
                                 Clientes 
                             </a>
                             <!-- menu de Productos -->
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseProductos" aria-expanded="false" aria-controls="collapseProductos">
-                                <div class="sb-nav-link-icon"><i class="fas fa-store text-success"></i></div>
+                                <div class="sb-nav-link-icon"><i class="fas fa-store text-success fa-2x"></i></div>
                                 Productos
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down text-success"></i></div>
                             </a>
@@ -80,7 +80,7 @@
                             </div>
                             <!-- menu de Entrada -->
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseEntradas" aria-expanded="false" aria-controls="collapseEntradas">
-                                <div class="sb-nav-link-icon"><i class="fas fa-boxes text-success"></i></div>
+                                <div class="sb-nav-link-icon"><i class="fas fa-boxes text-success fa-2x"></i></div>
                                 Entradas
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down text-success"></i></div>
                             </a>
@@ -93,7 +93,7 @@
                             </div>
                             <!-- menu de Salida -->
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseSalidas" aria-expanded="false" aria-controls="collapseSalidas">
-                                <div class="sb-nav-link-icon"><i class="fas fa-dolly-flatbed text-success"></i></div>
+                                <div class="sb-nav-link-icon"><i class="fas fa-dolly-flatbed text-success fa-2x"></i></div>
                                 Salidas
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down text-success"></i></div>
                             </a>
@@ -106,7 +106,7 @@
                             </div>
                             <!-- menu de Ventas -->
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseVentas" aria-expanded="false" aria-controls="collapseVentas">
-                                <div class="sb-nav-link-icon"><i class="fas fa-cash-register text-success"></i></div>
+                                <div class="sb-nav-link-icon"><i class="fas fa-cash-register text-success fa-2x"></i></div>
                                 Ventas
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down text-success"></i></div>
                             </a>
@@ -119,7 +119,7 @@
                             </div>
                             <!-- menu de Documentacion -->
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseDocumentos" aria-expanded="false" aria-controls="collapseDocumentos">
-                                <div class="sb-nav-link-icon"><i class="fas fa-archive text-success"></i></div>
+                                <div class="sb-nav-link-icon"><i class="fas fa-archive text-success fa-2x"></i></div>
                                 Documentos
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down text-success"></i></div>
                             </a>
