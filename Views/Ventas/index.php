@@ -84,12 +84,6 @@
                             <input id="producto" class="form-control" type="text" name="producto" placeholder="Nombre del Producto" disabled>
                         </div>
                     </div>
-                    <div class="col-md-2">
-                        <div class="form-group">
-                            <label for="rendimiento">Rendimiento</label>
-                            <input id="rendimiento" class="form-control" type="text" name="rendimiento" >
-                        </div>
-                    </div>
                     <div class="col-md-3">
                         <div class="form-group">
                             <label for="peso_bruto">Peso Bruto </label>
@@ -138,7 +132,6 @@
         <tr>
             <th>ID</th>
             <th>Nombre</th>
-            <th>Rendimiento</th>
             <th>Peso Bruto</th>
             <th>Cantidad</th>
             <th>Kilo tara</th>

@@ -30,7 +30,6 @@
             $datos = $this->model->getProductos($id);
             $id_producto= $datos['id'];
             $id_usuario = $_SESSION['id_usuario'];
-            $rendimiento = $_POST['rendimiento'];
             $peso_bruto = $_POST['peso_bruto'];
             $cantidad = $_POST['cantidad'];
             $comprobar = $this->model->consultarDetalle($id_producto, $id_usuario);
@@ -40,7 +39,7 @@
                 $precio = $datos['precio_venta'];
                 $sub_total = $precio * $peso_neto;
                 
-                $data= $this->model->registrarDetalle($id_producto, $id_usuario, $rendimiento, $peso_bruto, $cantidad, $kilos_tara, $peso_neto, $precio, $sub_total);
+                $data= $this->model->registrarDetalle($id_producto, $id_usuario, $peso_bruto, $cantidad, $kilos_tara, $peso_neto, $precio, $sub_total);
                 
                 if($data == "ok"){
                     $msg = "ok";
@@ -55,7 +54,7 @@
                 $precio = $datos['precio_venta'];
                 $sub_total = $precio * $peso_neto;
                 
-                $data= $this->model->actualizarDetalle($rendimiento,$total_peso_bruto, $total_cantidad, $kilos_tara, $peso_neto, $precio, $sub_total, $id_producto, $id_usuario);
+                $data= $this->model->actualizarDetalle($total_peso_bruto, $total_cantidad, $kilos_tara, $peso_neto, $precio, $sub_total, $id_producto, $id_usuario);
                 
                 if($data == "modificado"){
                     $msg = "modificado";
@@ -92,14 +91,13 @@
                 $id_venta = $this->model->id_venta();
                 foreach($detalle as $row){
                     $id_pro = $row['id_producto'];
-                    $rendimiento =$row['rendimiento'];
                     $peso_bruto=$row['peso_bruto'];
                     $cantidad = $row['cantidad'];
                     $kilos_tara = $cantidad * 0.2;
                     $peso_neto = $peso_bruto - $kilos_tara;
                     $precio = $row['precio'];
                     $sub_total = $precio * $peso_neto;
-                    $this->model->registrarDetalleVenta($id_venta['id'],$id_pro, $rendimiento, $peso_bruto, $cantidad, $kilos_tara,$peso_neto,$precio, $sub_total);
+                    $this->model->registrarDetalleVenta($id_venta['id'],$id_pro, $peso_bruto, $cantidad, $kilos_tara,$peso_neto,$precio, $sub_total);
                 }
                 $vaciar = $this->model->vaciarDetalle($id_usuario);
                 if($vaciar == 'ok'){

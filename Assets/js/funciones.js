@@ -2553,7 +2553,7 @@ function buscarCodigoVe(e) {
                         document.getElementById("producto").value = res.nombre;
                         document.getElementById("precio").value = res.precio_venta;
                         document.getElementById("id").value = res.id;
-                        document.getElementById("rendimiento").focus();
+                        document.getElementById("peso_bruto").focus();
                         
                     }else{
                         Swal.fire({
@@ -2630,7 +2630,6 @@ function cargaDetalleVe(){
                  html +=`<tr>
                      <td>${row['id']}</td>
                      <td>${row['nombre']}</td>
-                     <td>${row['rendimiento']}</td>
                      <td>${row['peso_bruto']}</td>
                      <td>${row['cantidad']}</td>
                      <td>${row['kilos_tara']}</td>
