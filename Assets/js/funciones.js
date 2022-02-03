@@ -2488,7 +2488,8 @@ function generarSalida(){
                             'Salida generada.',
                             'success'
                         )
-                        
+                        const ruta =base_url +'Salidas/generarPdf/'+ res.id_salida;
+                        window.open(ruta);
                         setTimeout(() =>{
                             window.location.reload();
                         },300);
@@ -2707,7 +2708,8 @@ function generarVenta(){
                             'Venta generada.',
                             'success'
                         )
-                        
+                        const ruta =base_url +'Ventas/generarPdf/'+ res.id_venta;
+                        window.open(ruta);
                         setTimeout(() =>{
                             window.location.reload();
                         },300);

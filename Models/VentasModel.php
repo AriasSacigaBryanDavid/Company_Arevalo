@@ -109,6 +109,11 @@
             }
             return $res;
         }
+        public function getEmpresa(){
+            $sql ="SELECT * FROM empresa";
+            $data = $this->select($sql);
+            return $data;
+        }
         public function vaciarDetalle(int $id_usuario){
             $sql = "DELETE FROM detalle_s_v WHERE id_usuario = ?";
             $datos = array($id_usuario);
@@ -120,6 +125,11 @@
             }
             return $res;
            
+        }
+        public function getProVenta(int $id_venta){
+            $sql="SELECT e.*, d.*, p.id, p.nombre FROM ventas e INNER JOIN detalle_ventas d ON e.id = d.id_venta INNER JOIN productos p ON p.id = d.id_producto WHERE e.id =$id_venta";
+            $data= $this->selectAll($sql);
+            return $data;
         }
         public function getHistorialVentas(){
             $sql= "SELECT * FROM ventas";
