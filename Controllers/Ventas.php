@@ -37,7 +37,7 @@
             if (empty($comprobar)) {
                 $kilos_tara = $cantidad * 0.2;
                 $peso_neto = $peso_bruto - $kilos_tara;
-                $precio = $datos['precio_compra'];
+                $precio = $datos['precio_venta'];
                 $sub_total = $precio * $peso_neto;
                 
                 $data= $this->model->registrarDetalle($id_producto, $id_usuario, $rendimiento, $peso_bruto, $cantidad, $kilos_tara, $peso_neto, $precio, $sub_total);
@@ -52,7 +52,7 @@
                 $total_cantidad= $comprobar['cantidad'] + $cantidad;
                 $kilos_tara = $total_cantidad * 0.2;
                 $peso_neto = $total_peso_bruto - $kilos_tara;
-                $precio = $datos['precio_compra'];
+                $precio = $datos['precio_venta'];
                 $sub_total = $precio * $peso_neto;
                 
                 $data= $this->model->actualizarDetalle($rendimiento,$total_peso_bruto, $total_cantidad, $kilos_tara, $peso_neto, $precio, $sub_total, $id_producto, $id_usuario);

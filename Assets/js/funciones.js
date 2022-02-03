@@ -2553,7 +2553,7 @@ function buscarCodigoVe(e) {
                     const res =JSON.parse(this.responseText);
                     if(res){
                         document.getElementById("producto").value = res.nombre;
-                        document.getElementById("precio").value = res.precio_compra;
+                        document.getElementById("precio").value = res.precio_venta;
                         document.getElementById("id").value = res.id;
                         document.getElementById("rendimiento").focus();
                         

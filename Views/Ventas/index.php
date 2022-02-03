@@ -116,8 +116,8 @@
                     </div>
                     <div class="col-md-3">
                         <div class="form-group">
-                            <label for="precio">Precio de Compra</label>
-                            <input id="precio" class="form-control" type="text" name="precio" placeholder="Precio de Compra" disabled>
+                            <label for="precio">Precio de Venta</label>
+                            <input id="precio" class="form-control" type="text" name="precio" placeholder="Precio de Venta" disabled>
                         </div>
                     </div>
                     <div class="col-md-3">
