@@ -13,28 +13,30 @@
             </div>
         </div>
     </div>
-    
-    <table class="table table-dark table-hover" id="tblProductos">
-        <thead class="thead-dark">
-            <tr>
-                <th>ID</th>
-                <th>Código</th>
-                <th>Nombre</th>
-                <th>Descripcion</th>
-                <th>Marca</th>
-                <th>Categoria</th>
-                <th>Unidad</th>
-                <th>Precio Compra</th>
-                <th>Precio Venta</th>
-                <th>Stock</th>
-                <th>Kilos Total</th>
-                <th>Estado</th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-        </tbody>
-    </table>
+    <div class="table-responsive">
+        <table class="table table-dark table-hover" id="tblProductos">
+            <thead class="thead-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Código</th>
+                    <th>Nombre</th>
+                    <th>Descripcion</th>
+                    <th>Marca</th>
+                    <th>Categoria</th>
+                    <th>Unidad</th>
+                    <th>Precio Compra</th>
+                    <th>Precio Venta</th>
+                    <th>Stock</th>
+                    <th>Kilos Total</th>
+                    <th>Estado</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+   
     <div id="nuevo_producto" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="my-modal-title" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
