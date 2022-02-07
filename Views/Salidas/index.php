@@ -55,14 +55,14 @@
         <div class="card-body bg-secondary text-white">
             <form id="frmProductoSalida">
                 <div class="row">
-                    <div class="col-md-3">
+                    <div class="col-md-2">
                         <div class="form-group">
                             <label for="codigo"><i class="fas fa-barcode"></i> Código de barras</label>
                             <input type="hidden" id="id" name="id">
                             <input id="codigo" class="form-control" type="text" name="codigo" placeholder="Código de barras" onkeyup="buscarCodigoSa(event)">
                         </div>
                     </div>
-                    <div class="col-md-5">
+                    <div class="col-md-4">
                         <div class="form-group">
                             <label for="producto">Nombre del Producto</label>
                             <input id="producto" class="form-control" type="text" name="producto" placeholder="Nombre del Producto" disabled>
@@ -71,7 +71,7 @@
                     <div class="col-md-3">
                         <div class="form-group">
                             <label for="peso_bruto">Peso Bruto </label>
-                            <input id="peso_bruto" class="form-control" type="text" name="peso_bruto" placeholder="Peso Bruto">
+                            <input id="peso_bruto" class="form-control" type="text" name="peso_bruto" placeholder="0.00" >
                         </div>
                     </div>
                     <div class="col-md-2">
@@ -83,25 +83,25 @@
                     <div class="col-md-2">
                         <div class="form-group">
                             <label for="kilos_tara">Kilos de Tara</label>
-                            <input id="kilos_tara" class="form-control" type="text" name="kilos_tara" placeholder="Kilos de Tara" disabled>
+                            <input id="kilos_tara" class="form-control" type="number" name="kilos_tara" placeholder="0.00" disabled>
                         </div>
                     </div>
                     <div class="col-md-3">
                         <div class="form-group">
                             <label for="peso_neto">Peso Neto</label>
-                            <input id="peso_neto" class="form-control" type="text" name="peso_neto" placeholder="Peso Neto" disabled >
+                            <input id="peso_neto" class="form-control" type="text" name="peso_neto" placeholder="0.00" disabled >
                         </div>
                     </div>
                     <div class="col-md-3">
                         <div class="form-group">
                             <label for="precio">Precio de Venta</label>
-                            <input id="precio" class="form-control" type="text" name="precio" placeholder="Precio de Venta" disabled>
+                            <input id="precio" class="form-control" type="text" name="precio" placeholder="0.00" disabled>
                         </div>
                     </div>
                     <div class="col-md-3">
                         <div class="form-group">
                             <label for="sub_total">Sub Total </label>
-                            <input id="sub_total" class="form-control" type="text" name="sub_total" placeholder="Sub Total" disabled>
+                            <input id="sub_total" class="form-control" type="text" name="sub_total" placeholder="0.00" disabled>
                         </div>
                     </div>
                 </div>
