@@ -64,8 +64,8 @@
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
-                            <label for="producto">Nombre del Producto</label>
-                            <input id="producto" class="form-control" type="text" name="producto" placeholder="Nombre del Producto" disabled>
+                            <label for="producto">Producto</label>
+                            <input id="producto" class="form-control" type="text" name="producto" placeholder="Producto" disabled>
                         </div>
                     </div>
                     <div class="col-md-3">
@@ -114,7 +114,7 @@
     <thead class="thead-dark">
         <tr>
             <th>ID</th>
-            <th>Nombre</th>
+            <th>Producto</th>
             <th>Peso Bruto</th>
             <th>Cantidad</th>
             <th>Kilo tara</th>
