@@ -52,6 +52,7 @@
                                     <a class="nav-link" href="<?php echo base_url;?>Usuarios">Usuarios</a>
                                     <a class="nav-link" href="<?php echo base_url;?>Cargos">Cargos</a>
                                     <a class="nav-link" href="<?php echo base_url;?>Almacenes">Almacén</a>
+                                    <a class="nav-link" href="<?php echo base_url;?>Administracion">Configuración</a>
                                 </nav>
                             </div>
                             <!-- menu de proveedores -->

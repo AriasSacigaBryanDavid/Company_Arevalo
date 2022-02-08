@@ -150,7 +150,7 @@
             <th></th>
         </tr>
     </thead>
-        <tbody  id="tblDetalle">
+        <tbody  id="tblDetalleEN">
         </tbody>
 </table>
 <!--Total de Entradas Productos-->

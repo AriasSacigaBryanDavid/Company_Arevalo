@@ -141,7 +141,7 @@
             <th></th>
         </tr>
     </thead>
-        <tbody id="tblDetalle">
+        <tbody id="tblDetalleVE">
         </tbody>
 </table>
 <!--Total de Ventas Productos-->

@@ -124,7 +124,7 @@
             <th></th>
         </tr>
     </thead>
-        <tbody id="tblDetalle">
+        <tbody id="tblDetalleSA">
         </tbody>
 </table>
 <!--Total de Salidas Productos-->

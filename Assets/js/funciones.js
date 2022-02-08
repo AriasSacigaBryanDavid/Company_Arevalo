@@ -2462,7 +2462,10 @@ function buscarCodigoEn(e) {
         }
     }  
 }
-cargaDetalleEn();
+if(document.getElementById('tblDetalleEN')){
+    cargaDetalleEn();
+}
+
 function cargaDetalleEn(){
     const url =base_url + "Entradas/listar";
     const http=new XMLHttpRequest();
@@ -2492,7 +2495,7 @@ function cargaDetalleEn(){
  
                  </tr>`;
              }); 
-             document.getElementById("tblDetalle").innerHTML = html;      
+             document.getElementById("tblDetalleEN").innerHTML = html;      
              document.getElementById("total").value = res.total_pagar.total;  
     
          }
@@ -2655,7 +2658,10 @@ function buscarCodigoSa(e) {
         }
     }  
 }
-cargaDetalleSa();
+if(document.getElementById('tblDetalleSA')){
+    cargaDetalleSa();
+}
+
 function cargaDetalleSa(){
     const url =base_url + "Salidas/listar";
     const http=new XMLHttpRequest();
@@ -2684,7 +2690,7 @@ function cargaDetalleSa(){
  
                  </tr>`;
              }); 
-             document.getElementById("tblDetalle").innerHTML = html;      
+             document.getElementById("tblDetalleSA").innerHTML = html;      
              document.getElementById("total").value = res.total_pagar.total;  
     
          }
@@ -2875,7 +2881,10 @@ function buscarCodigoVe(e) {
         }
     }  
 }
-cargaDetalleVe();
+if(document.getElementById('tblDetalleVE')){
+    cargaDetalleVe();
+}
+
 function cargaDetalleVe(){
     const url =base_url + "Ventas/listar";
     const http=new XMLHttpRequest();
@@ -2904,7 +2913,7 @@ function cargaDetalleVe(){
  
                  </tr>`;
              }); 
-             document.getElementById("tblDetalle").innerHTML = html;      
+             document.getElementById("tblDetalleVE").innerHTML = html;      
              document.getElementById("total").value = res.total_pagar.total;  
     
          }
@@ -2984,3 +2993,24 @@ function generarVenta(){
       })   
 }
 /** Fin de ventas */
+
+/*******************************/
+/** inicio de Administracion */
+function modificarEmpresa() {
+    const frm = document.getElementById('frmEmpresa');
+    const url =base_url + "Administracion/modificar";
+            const http=new XMLHttpRequest();
+            http.open("POST", url, true);
+            http.send(new FormData(frm));
+            http.onreadystatechange=function(){
+                if(this.readyState == 4 && this.status ==200){
+                    const res = JSON.parse(this.responseText);
+                    if(res =='ok'){
+                        alert('Modificado');
+                    }
+                   
+                }
+            }
+}
+/** Fin de Administracion */
+
