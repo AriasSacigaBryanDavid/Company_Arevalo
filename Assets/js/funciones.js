@@ -3006,7 +3006,17 @@ function modificarEmpresa() {
                 if(this.readyState == 4 && this.status ==200){
                     const res = JSON.parse(this.responseText);
                     if(res =='ok'){
-                        alert('Modificado');
+                        Swal.fire(
+                            'Mensaje!',
+                            'Modificado.',
+                            'success'
+                        )
+                    }else{
+                        Swal.fire(
+                            'Mensaje!',
+                            res,
+                            'error'
+                        )
                     }
                    
                 }

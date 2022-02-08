@@ -9,10 +9,10 @@
         $data = $this->select($sql);
         return $data;
     }
-    public function modificar(String $nombre, string $telefono, string $direccion, string $mensaje, int $id ){
+    public function modificar(String $nombre, string $ruc, string $telefono, string $direccion, string $mensaje, int $id ){
         
-        $sql="UPDATE empresa SET nombre=?, telefono=?, direccion=?, mensaje=? WHERE id=?";
-        $datos= array($nombre, $telefono, $direccion, $mensaje, $id);
+        $sql="UPDATE empresa SET nombre=?,ruc=?, telefono=?, direccion=?, mensaje=? WHERE id=?";
+        $datos= array($nombre, $ruc, $telefono, $direccion, $mensaje, $id);
         $data=$this->save($sql, $datos);
         if ($data == 1){
                 $res = "ok";

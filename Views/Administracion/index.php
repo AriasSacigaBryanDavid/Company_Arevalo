@@ -13,7 +13,13 @@
                         <input id="nombre" class="form-control" type="text" name="nombre" placeholder="Nombre" value="<?php echo $data['nombre'] ?>">
                     </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="ruc">RUC</label>
+                        <input id="ruc" class="form-control" type="text" name="ruc" placeholder="Registro Único de Contribuyente" value="<?php echo $data['ruc'] ?>">
+                    </div>
+                </div>
+                <div class="col-md-3">
                     <div class="form-group">
                         <label for="telefono">Teléfono</label>
                         <input id="telefono" class="form-control" type="text" name="telefono" placeholder="Teléfono" value="<?php echo $data['telefono'] ?>">

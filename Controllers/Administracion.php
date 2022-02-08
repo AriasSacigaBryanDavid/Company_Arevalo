@@ -17,11 +17,12 @@
         public function modificar()
         {
             $nombre = $_POST['nombre'];
+            $ruc =$_POST['ruc'];
             $telefono = $_POST['telefono'];
             $direccion = $_POST['direccion'];
             $mensaje = $_POST['mensaje'];
             $id= $_POST['id'];
-            $data= $this->model->modificar($nombre, $telefono, $direccion, $mensaje, $id);
+            $data= $this->model->modificar($nombre, $ruc, $telefono, $direccion, $mensaje, $id);
             if($data == 'ok'){
                 $msg ='ok';
             }else{
