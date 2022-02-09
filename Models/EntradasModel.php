@@ -19,6 +19,21 @@
             $data =$this->selectAll($sql);
             return $data;
         }
+        public function getMarcas(){
+            $sql="SELECT * FROM marcas WHERE estado=1";
+            $data =$this->selectAll($sql);
+            return $data;
+        }
+        public function getCategorias(){
+            $sql="SELECT * FROM categorias WHERE estado=1";
+            $data =$this->selectAll($sql);
+            return $data;
+        }
+        public function getUnidades(){
+            $sql="SELECT * FROM unidades WHERE estado=1";
+            $data =$this->selectAll($sql);
+            return $data;
+        }
         public function getNidentidad(string $pro){
             $sql= "SELECT* FROM proveedores WHERE n_identidad='$pro'";
             $data = $this->select($sql);
@@ -149,6 +164,7 @@
             $data = $this->save($sql, $datos);
             return $data;
         }
+       
         
     }
 

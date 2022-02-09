@@ -12,6 +12,9 @@
             $data['documentos']=$this->model->getDocumentos();
             $data['almacenes']=$this->model->getAlmacenes();
             $data['identidad']=$this->model->getIdentidades();
+            $data['marcas']=$this->model->getMarcas();
+            $data['categorias']=$this->model->getCategorias();
+            $data['unidades']=$this->model->getUnidades();
             $this->views->getView($this,"index", $data);
         }
         public function buscarProveedor($pro){
@@ -222,8 +225,6 @@
             $pdf->Output();
         }    
 
-
-    
         public function historial(){
             $this->views->getView($this,"historial");
         }
@@ -237,6 +238,7 @@
            echo json_encode($data, JSON_UNESCAPED_UNICODE);
            die();
         }
+        
         
         
         
