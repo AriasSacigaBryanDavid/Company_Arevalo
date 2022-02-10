@@ -134,6 +134,7 @@
             <label for="total" class="font-weight-bold">Total </label>
             <input id="total" class="form-control" type="text" name="total" placeholder="Total" disabled>
             <button class="btn btn-primary mt-2 btn-block" type="button" onclick="generarSalida()">Generar Salida</button>
+            <button class="btn btn-danger mt-2 btn-block" type="button" onclick="CancelarSalida()">Cancelar Salida</button>
         </div>
     </div>
 </div>

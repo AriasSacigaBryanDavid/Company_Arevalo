@@ -235,6 +235,18 @@
            die();
         }
 
+        public function cancelarVenta(){
+            $id_usuario = $_SESSION['id_usuario'];
+            $id_venta = $this->model->id_venta();
+            $vaciar = $this->model->vaciarDetalle($id_usuario);
+            if($vaciar == 'ok'){
+                $msg =array('msg' => 'ok', 'id_entrada' => $id_venta['id']);
+            
+            }
+            echo json_encode($msg);
+            die();
+        }
+
 
 
 

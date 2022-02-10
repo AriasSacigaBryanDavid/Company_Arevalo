@@ -216,6 +216,17 @@
            echo json_encode($data, JSON_UNESCAPED_UNICODE);
            die();
         }
+        public function cancelarSalida(){
+            $id_usuario = $_SESSION['id_usuario'];
+            $id_salida = $this->model->id_salida();
+            $vaciar = $this->model->vaciarDetalle($id_usuario);
+            if($vaciar == 'ok'){
+                $msg =array('msg' => 'ok', 'id_salida' => $id_salida['id']);
+            
+            }
+            echo json_encode($msg);
+            die();
+        }
 
        
 

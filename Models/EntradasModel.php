@@ -40,7 +40,7 @@
             return $data;
         }
         public function getProCod(string $cod){
-            $sql= "SELECT* FROM productos WHERE codigo='$cod'";
+            $sql= "SELECT* FROM productos WHERE codigo='$cod' AND estado=1";
             $data = $this->select($sql);
             return $data;
         }

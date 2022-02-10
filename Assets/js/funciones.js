@@ -2576,7 +2576,47 @@ function generarEntrada(){
         }
       })   
 }
-
+function CancelarEntrada(){
+    Swal.fire({
+        title: '¿Está seguro de cancelar la Entrada?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'si',
+        cancelButtonText:'No'
+      }).then((result) => {
+        if (result.isConfirmed) {
+            const url =base_url + "Entradas/cancelarCompra";
+            const http=new XMLHttpRequest();
+            http.open("GET", url, true);
+            http.send();
+            http.onreadystatechange=function(){
+                if(this.readyState == 4 && this.status ==200){
+                    const res = JSON.parse(this.responseText);
+                    if (res.msg == "ok" ){
+                        Swal.fire(
+                            'Mensaje!',
+                            'Entrada Cancelada.',
+                            'success'
+                        )
+                        
+                        setTimeout(() =>{
+                            window.location.reload();
+                        },300);
+                    }else{
+                        Swal.fire(
+                            'Mensaje!',
+                            res,
+                            'error'
+                        )
+                    }
+                }
+            }
+            
+        }
+      })   
+}
 /** Fin de Entradas */
 /*******************************/
 /** Inicio de salidas */
@@ -2753,6 +2793,47 @@ function generarSalida(){
                         )
                         const ruta =base_url +'Salidas/generarPdf/'+ res.id_salida;
                         window.open(ruta);
+                        setTimeout(() =>{
+                            window.location.reload();
+                        },300);
+                    }else{
+                        Swal.fire(
+                            'Mensaje!',
+                            res,
+                            'error'
+                        )
+                    }
+                }
+            }
+            
+        }
+      })   
+}
+function CancelarSalida(){
+    Swal.fire({
+        title: '¿Está seguro de cancelar la Salida?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'si',
+        cancelButtonText:'No'
+      }).then((result) => {
+        if (result.isConfirmed) {
+            const url =base_url + "Salidas/cancelarSalida";
+            const http=new XMLHttpRequest();
+            http.open("GET", url, true);
+            http.send();
+            http.onreadystatechange=function(){
+                if(this.readyState == 4 && this.status ==200){
+                    const res = JSON.parse(this.responseText);
+                    if (res.msg == "ok" ){
+                        Swal.fire(
+                            'Mensaje!',
+                            'Salida Cancelada.',
+                            'success'
+                        )
+                        
                         setTimeout(() =>{
                             window.location.reload();
                         },300);
@@ -2992,6 +3073,48 @@ function generarVenta(){
         }
       })   
 }
+
+function CancelarVenta(){
+    Swal.fire({
+        title: '¿Está seguro de cancelar la Venta?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'si',
+        cancelButtonText:'No'
+      }).then((result) => {
+        if (result.isConfirmed) {
+            const url =base_url + "Ventas/cancelarVenta";
+            const http=new XMLHttpRequest();
+            http.open("GET", url, true);
+            http.send();
+            http.onreadystatechange=function(){
+                if(this.readyState == 4 && this.status ==200){
+                    const res = JSON.parse(this.responseText);
+                    if (res.msg == "ok" ){
+                        Swal.fire(
+                            'Mensaje!',
+                            'Ventas Cancelada.',
+                            'success'
+                        )
+                        
+                        setTimeout(() =>{
+                            window.location.reload();
+                        },300);
+                    }else{
+                        Swal.fire(
+                            'Mensaje!',
+                            res,
+                            'error'
+                        )
+                    }
+                }
+            }
+            
+        }
+      })   
+}
 /** Fin de ventas */
 
 /*******************************/
@@ -3146,3 +3269,7 @@ function productosSalidas(){
     }
 }
 /** Fin de Panel de administración*/
+/*******************************/
+/** inicio de Alertas */
+
+/** Fin de Alertas*/
