@@ -3023,4 +3023,71 @@ function modificarEmpresa() {
             }
 }
 /** Fin de Administracion */
+/*******************************/
+/** inicio de Panel de administración */
+reporteStock();
+productosVendidos();
+function reporteStock(){
+    const url =base_url + "Administracion/reporteStock";
+    const http=new XMLHttpRequest();
+    http.open("POST", url, true);
+    http.send();
+    http.onreadystatechange=function(){
+    if(this.readyState == 4 && this.status ==200){
+        const res = JSON.parse(this.responseText);
+        let nombre =[];
+        let cantidad =[];
+        for (let i = 0; i < res.length; i++) {
+            nombre.push(res[i]['nombre']);
+            cantidad.push(res[i]['cantidad']);
+        }    
+        var ctx = document.getElementById("stockMinimo");
+        var myPieChart = new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: nombre,
+                datasets: [{
+                    data: cantidad,
+                    backgroundColor: ['#9ba2c8', '#06c6c0', '#3536df','#d5e75b', '#28a745', '#d5e75b','#00aeff','#6b771a','#e36e79','#10af59'],
+                }],
+            },
+        });
+            
+    }
+    }
+}
+function productosVendidos(){
+    const url =base_url + "Administracion/productosVendidos";
+    const http=new XMLHttpRequest();
+    http.open("POST", url, true);
+    http.send();
+    http.onreadystatechange=function(){
+    if(this.readyState == 4 && this.status ==200){
+        const res = JSON.parse(this.responseText);
+        let nombre =[];
+        let total =[];
+        for (let i = 0; i < res.length; i++) {
+            nombre.push(res[i]['nombre']);
+            total.push(res[i]['total']);
+        }    
+        var ctx = document.getElementById("ProductosVendidos");
+        var myPieChart = new Chart(ctx, {
+          type: 'doughnut',
+          data: {
+            labels: nombre,
+            datasets: [{
+              data: total,
+              backgroundColor: ['#9ba2c8', '#06c6c0', '#3536df','#d5e75b', '#28a745', '#d5e75b','#00aeff','#6b771a','#e36e79','#10af59'],
+            }],
+          },
+        });
+            
+    }
+    }
+}
 
+
+
+
+
+/** Fin de Panel de administración*/

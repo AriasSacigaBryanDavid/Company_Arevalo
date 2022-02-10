@@ -19,6 +19,9 @@
             $data['clientes']= $this->model->getDatos('clientes');
             $data['proveedores']= $this->model->getDatos('proveedores');
             $data['productos']= $this->model->getDatos('productos');
+            $data['ventas']= $this->model->getVentas();
+            $data['entradas']= $this->model->getEntradas();
+            $data['salidas']= $this->model->getSalidas();
             $this->views->getView($this,"home", $data);
         }
         public function modificar()
@@ -38,7 +41,16 @@
             echo json_encode($msg);
             die();
         }
-
+        public function reporteStock(){
+            $data = $this->model->getStockMinimo();
+            echo json_encode($data);
+            die();
+        }
+        public function productosVendidos(){
+            $data = $this->model->getproductosVendidos();
+            echo json_encode($data);
+            die();
+        }
        
 
 

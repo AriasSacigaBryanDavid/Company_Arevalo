@@ -1,6 +1,7 @@
 <?php include "Views/Templates/header.php";?>
+    <!-- Card -->
     <div class="row">
-        <div class="col-xl-3 col-md-6">
+        <div class="col-xl-3 col-md-6 mb-2">
             <div class="card bg-primary">
                 <div class="card-body d-flex text-white">
                     Usuarios
@@ -13,7 +14,7 @@
             </div>
         </div>
         <div class="col-xl-3 col-md-6">
-            <div class="card bg-info">
+            <div class="card bg-secondary">
                 <div class="card-body d-flex text-white">
                     Clientes
                     <i class="fas fa-users fa-2x ml-auto"></i>
@@ -48,15 +49,52 @@
                 </div>
             </div>
         </div>
+        <div class="col-xl-3 col-md-6">
+            <div class="card bg-warning">
+                <div class="card-body d-flex text-white">
+                    Ventas por Dia
+                    <i class="fas fa-cash-register fa-2x ml-auto"></i>
+                </div>
+                <div class="card-footer d-flex align-items-center justify-content-between">
+                    <a href="<?php echo base_url; ?>Ventas/historial" class="text-white">Ver Detalle</a>
+                    <span class="text-white"><?php echo $data['ventas']['total']?></span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-md-6">
+            <div class="card bg-success">
+                <div class="card-body d-flex text-white">
+                    Entradas por Dia
+                    <i class="fas fa-boxes fa-2x ml-auto"></i>
+                </div>
+                <div class="card-footer d-flex align-items-center justify-content-between">
+                    <a href="<?php echo base_url; ?>Entradas/historial" class="text-white">Ver Detalle</a>
+                    <span class="text-white"><?php echo $data['entradas']['total']?></span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-md-6">
+            <div class="card bg-dark">
+                <div class="card-body d-flex text-white">
+                    Salidas por Dia
+                    <i class="fas fa-dolly-flatbed fa-2x ml-auto"></i>
+                </div>
+                <div class="card-footer d-flex align-items-center justify-content-between">
+                    <a href="<?php echo base_url; ?>Salidas/historial" class="text-white">Ver Detalle</a>
+                    <span class="text-white"><?php echo $data['salidas']['total']?></span>
+                </div>
+            </div>
+        </div>
     </div>
+    <!-- Graficos -->
     <div class="row mt-2">
         <div class="col-xl-6">
             <div class="card">
                 <div class="card-header bg-dark text-white">
                     Productos con Stock Mínimo
                 </div>
-                <div class="card-body">
-                    
+                <div class="card-body ">
+                    <canvas id="stockMinimo" width="400" height="400"></canvas>
                 </div>
             </div>
         </div>
@@ -66,7 +104,7 @@
                     Productos más Vendidos
                 </div>
                 <div class="card-body">
-                    
+                <canvas id="ProductosVendidos" width="400" height="400"></canvas>
                 </div>
             </div>
         </div>
