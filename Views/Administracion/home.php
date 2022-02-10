@@ -88,10 +88,10 @@
     </div>
     <!-- Graficos -->
     <div class="row mt-2">
-        <div class="col-xl-6">
+        <div class="col-xl-6 mb-2">
             <div class="card">
-                <div class="card-header bg-dark text-white">
-                    Productos con Stock Mínimo
+                <div class="card-header bg-primary text-white">
+                    TOP 10 de Productos con Stock Mínimo
                 </div>
                 <div class="card-body ">
                     <canvas id="stockMinimo" width="400" height="400"></canvas>
@@ -100,11 +100,31 @@
         </div>
         <div class="col-xl-6">
             <div class="card">
+                <div class="card-header bg-primary text-white">
+                    TOP 10 de Productos con Peso Mínimo
+                </div>
+                <div class="card-body ">
+                    <canvas id="pesoMinimo" width="400" height="400"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-6">
+            <div class="card">
                 <div class="card-header bg-dark text-white">
-                    Productos más Vendidos
+                   TOP 10 de Productos más Vendidos
                 </div>
                 <div class="card-body">
                 <canvas id="ProductosVendidos" width="400" height="400"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-6">
+            <div class="card">
+                <div class="card-header bg-dark text-white">
+                   TOP 10 de Productos en Salidas
+                </div>
+                <div class="card-body">
+                <canvas id="productosSalidas" width="400" height="400"></canvas>
                 </div>
             </div>
         </div>

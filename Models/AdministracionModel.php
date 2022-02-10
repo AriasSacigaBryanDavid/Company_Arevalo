@@ -53,6 +53,18 @@
         $data = $this->selectAll($sql);
         return $data;
     }
+    public function getPesoMinimo()
+    {
+        $sql = "SELECT * FROM productos WHERE peso_total < 50.00 ORDER BY peso_total DESC LIMIT 10";
+        $data = $this->selectAll($sql);
+        return $data;
+    }
+    public function getproductosSalidas()
+    {
+        $sql = "SELECT d.id_producto, d.cantidad, p.id, p.nombre, SUM(d.cantidad) AS total FROM detalle_salidas d INNER JOIN productos p ON p.id = d.id_producto GROUP BY d.id_producto ORDER BY d.cantidad DESC LIMIT 10";
+        $data = $this->selectAll($sql);
+        return $data;
+    }
     
     
     

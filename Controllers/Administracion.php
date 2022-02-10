@@ -51,6 +51,16 @@
             echo json_encode($data);
             die();
         }
+        public function reportePeso(){
+            $data = $this->model->getPesoMinimo();
+            echo json_encode($data);
+            die();
+        }
+        public function productosSalidas(){
+            $data = $this->model->getproductosSalidas();
+            echo json_encode($data);
+            die();
+        }
        
 
 
