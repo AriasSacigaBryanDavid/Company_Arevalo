@@ -2543,7 +2543,7 @@ function generarEntrada(){
         cancelButtonText:'No'
       }).then((result) => {
         if (result.isConfirmed) {
-            const url =base_url + "Entradas/registrarEntrada";
+            const url =base_url + "Entradas/registrarEntrada" ;
             const http=new XMLHttpRequest();
             http.open("GET", url, true);
             http.send();
