@@ -2587,7 +2587,7 @@ function CancelarEntrada(){
         cancelButtonText:'No'
       }).then((result) => {
         if (result.isConfirmed) {
-            const url =base_url + "Entradas/cancelarCompra";
+            const url =base_url + "Entradas/cancelarEntrada";
             const http=new XMLHttpRequest();
             http.open("GET", url, true);
             http.send();
@@ -3148,14 +3148,17 @@ function modificarEmpresa() {
 /** Fin de Administracion */
 /*******************************/
 /** inicio de Panel de administración */
-reporteStock();
-productosVendidos();
-reportePeso();
-productosSalidas();
+if (document.getElementById('stockMinimo')) {
+    reporteStock();
+    productosVendidos();
+    reportePeso();
+    productosSalidas();
+}
+
 function reporteStock(){
     const url =base_url + "Administracion/reporteStock";
     const http=new XMLHttpRequest();
-    http.open("POST", url, true);
+    http.open("GET", url, true);
     http.send();
     http.onreadystatechange=function(){
     if(this.readyState == 4 && this.status ==200){
@@ -3167,7 +3170,7 @@ function reporteStock(){
             cantidad.push(res[i]['cantidad']);
         }    
         var ctx = document.getElementById("stockMinimo");
-        var myPieChart = new Chart(ctx, {
+        var mypieChart = new Chart(ctx, {
             type: 'doughnut',
             data: {
                 labels: nombre,
@@ -3184,7 +3187,7 @@ function reporteStock(){
 function reportePeso(){
     const url =base_url + "Administracion/reportePeso";
     const http=new XMLHttpRequest();
-    http.open("POST", url, true);
+    http.open("GET", url, true);
     http.send();
     http.onreadystatechange=function(){
     if(this.readyState == 4 && this.status ==200){
