@@ -3216,7 +3216,7 @@ function reportePeso(){
 function productosVendidos(){
     const url =base_url + "Administracion/productosVendidos";
     const http=new XMLHttpRequest();
-    http.open("POST", url, true);
+    http.open("GET", url, true);
     http.send();
     http.onreadystatechange=function(){
     if(this.readyState == 4 && this.status ==200){
@@ -3245,7 +3245,7 @@ function productosVendidos(){
 function productosSalidas(){
     const url =base_url + "Administracion/productosSalidas";
     const http=new XMLHttpRequest();
-    http.open("POST", url, true);
+    http.open("GET", url, true);
     http.send();
     http.onreadystatechange=function(){
     if(this.readyState == 4 && this.status ==200){
