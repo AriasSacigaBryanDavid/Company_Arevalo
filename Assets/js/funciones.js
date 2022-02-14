@@ -448,7 +448,13 @@ document.addEventListener("DOMContentLoaded", function(){
             {'data' : 'total'},
             {'data' : 'fecha'},
             {'data' : 'acciones'}
-        ]
+        ],
+        language: {
+            "url": "//cdn.datatables.net/plug-ins/1.10.11/i18n/Spanish.json"
+        },
+        dom: "<'row'<'col-sm-4'l><'col-sm-8'f>>" +
+                "<'row'<'col-sm-12'tr>>" +
+                "<'row'<'col-sm-5'i><'col-sm-7'p>>"
     });
     /** Fin de historial de entradas */
     /** Inicio de historial de salidas */
@@ -462,7 +468,14 @@ document.addEventListener("DOMContentLoaded", function(){
             {'data' : 'total'},
             {'data' : 'fecha'},
             {'data' : 'acciones'}
-        ]
+        ],
+        language: {
+            "url": "//cdn.datatables.net/plug-ins/1.10.11/i18n/Spanish.json"
+        },
+        dom: "<'row'<'col-sm-4'l><'col-sm-8'f>>" +
+                "<'row'<'col-sm-12'tr>>" +
+                "<'row'<'col-sm-5'i><'col-sm-7'p>>"
+        
     });
     /** Fin de historial de salidas */
      /** Inicio de historial de ventas */
@@ -476,7 +489,13 @@ document.addEventListener("DOMContentLoaded", function(){
             {'data' : 'total'},
             {'data' : 'fecha'},
             {'data' : 'acciones'}
-        ]
+        ],
+        language: {
+            "url": "//cdn.datatables.net/plug-ins/1.10.11/i18n/Spanish.json"
+        },
+        dom: "<'row'<'col-sm-4'l><'col-sm-8'f>>" +
+                "<'row'<'col-sm-12'tr>>" +
+                "<'row'<'col-sm-5'i><'col-sm-7'p>>"
     });
     /** Fin de historial de ventas */
 })
@@ -664,13 +683,7 @@ function registrarCar(e){
     e.preventDefault();
     const nombre = document.getElementById("nombre");
     if( nombre.value=="" ){
-        Swal.fire({
-            position: 'top-end',
-            icon: 'error',
-            title: 'Porfavor ingrese los datos, es obligatorios',
-            showConfirmButton: false,
-            timer: 3000
-          })
+        alertas('Todo los campos son obligatorios', 'warning' );
     }else{
         const url = base_url +"Cargos/registrar";
         const frm = document.getElementById("frmCargo");
@@ -680,36 +693,10 @@ function registrarCar(e){
         http.onreadystatechange = function(){
             if(this.readyState == 4 && this.status == 200){
                 const res= JSON.parse(this.responseText);
-                    if(res == "si"){
-                        Swal.fire({
-                            position: 'top-end',
-                            icon: 'success',
-                            title: 'Cargo registrado con éxito',
-                            showConfirmButton: false,
-                            timer: 3000
-                          })
-                          frm.reset();
-                          tblCargos.ajax.reload();
-                          $("#nuevo_cargo").modal("hide");
-                    }else if (res == "modificado") {
-                        Swal.fire({
-                            position: 'top-end',
-                            icon: 'success',
-                            title: 'Cargo modificado con éxito',
-                            showConfirmButton: false,
-                            timer: 3000
-                          })
-                          $("#nuevo_cargo").modal("hide");
-                          tblCargos.ajax.reload();
-                    }else{
-                        Swal.fire({
-                            position: 'top-end',
-                            icon: 'error',
-                            title: res,
-                            showConfirmButton: false,
-                            timer: 3000
-                          })
-                    }
+                $("#nuevo_cargo").modal("hide");
+                alertas(res.msg, res.icono);
+                tblCargos.ajax.reload();
+                    
                     
                 }
                 
@@ -3274,5 +3261,13 @@ function productosSalidas(){
 /** Fin de Panel de administración*/
 /*******************************/
 /** inicio de Alertas */
-
+function alertas(mensaje, icono) {
+    Swal.fire({
+        position: 'top-end',
+        icon: icono,
+        title: mensaje,
+        showConfirmButton: false,
+        timer: 3000
+    })
+}
 /** Fin de Alertas*/

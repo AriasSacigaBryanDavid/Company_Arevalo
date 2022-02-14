@@ -37,23 +37,26 @@
             $nombre=$_POST['nombre'];
             $id=$_POST['id'];
             if(empty($nombre)){
-                $msg="Todos los campos son obligatorios";
+                $msg =array('msg' =>'Todo los campos son obligatorios','icono'=>'warning');
             }else{
                 if ($id== "") {
                     $data=$this->model->registrarCargo($nombre);
                     if($data == "ok") {
                         $msg="si";
+                        $msg =array('msg' =>'Cargo registrado con éxito','icono'=>'success');
                     }else if($data == "existe"){ 
-                        $msg="El cargo ya existe";
+                        $msg =array('msg' =>'El cargo ya éxiste','icono'=>'warning');
                     } else {
-                        $msg="Error al registrar el cargo";
+                        $msg =array('msg' =>'Error al registrar el cargo','icono'=>'error');
+
                     }
                 }else {
                     $data=$this->model->modificarCargo($nombre,$id);
                     if($data == "modificado") {
-                        $msg="modificado";
+                        $msg =array('msg' =>'Cargo modificado con éxito','icono'=>'success');
                     }else {
-                        $msg="Error al modificar el cargo";
+                        $msg =array('msg' =>'Error al modificado el cargo','icono'=>'error');
+
                     } 
                 }
                 
