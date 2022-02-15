@@ -4,7 +4,6 @@
             session_start();
             parent::__construct();
         }
-        
         public function index(){
             if (empty($_SESSION['activo'])) {
                 header("location: ".base_url);
@@ -25,8 +24,7 @@
                     $data[$i]['acciones']='<div>
                     <button class="btn btn-success" type="button" onclick="btnReingresarCateg('.$data[$i]['id'].');"><i class="fas fa-recycle"></i></button>
                     </div>';
-                }
-                    
+                }    
             }
             echo json_encode($data, JSON_UNESCAPED_UNICODE);
             die();
@@ -35,26 +33,25 @@
             $nombre=$_POST['nombre'];
             $id=$_POST['id'];
             if(empty($nombre)){
-                $msg="Todos los campos son obligatorios";
+                $msg =array('msg' =>'Todo los campos son obligatorios','icono'=>'warning');
             }else{
                 if ($id== "") {
                     $data=$this->model->registrarCategoria($nombre);
                     if($data == "ok") {
-                        $msg="si";
-                    }else if($data == "existe"){ 
-                        $msg="La categoria ya existe";
+                        $msg =array('msg' =>'Categoría registrado con éxito','icono'=>'success');
+                    }else if($data == "existe"){
+                        $msg =array('msg' =>'La categoría ya éxiste','icono'=>'warning');
                     } else {
-                        $msg="Error al registrar la categoria";
+                        $msg =array('msg' =>'Error al registrar la categoría','icono'=>'error');
                     }
                 }else {
                     $data=$this->model->modificarCategoria($nombre,$id);
                     if($data == "modificado") {
-                        $msg="modificado";
+                        $msg =array('msg' =>'Categoría modificado con éxito','icono'=>'success');
                     }else {
-                        $msg="Error al modificar la categoria";
+                        $msg =array('msg' =>'Error al modificado la categoría','icono'=>'error');
                     } 
-                }
-                
+                } 
             }
             echo json_encode($msg, JSON_UNESCAPED_UNICODE);
             die();
@@ -67,9 +64,9 @@
         public function eliminar(int $id){
             $data = $this->model->accionCateg(0, $id);
             if($data ==1){
-                $msg="ok";
+                $msg =array('msg' =>'Categoría dado de baja','icono'=>'success');
             }else {
-                $msg ="Error al eliminar la categoria";
+                $msg =array('msg' =>'Error al eliminar la categoría','icono'=>'error');
             }
             echo json_encode($msg, JSON_UNESCAPED_UNICODE);
             die();
@@ -77,18 +74,12 @@
         public function reingresar(int $id){
             $data = $this->model->accionCateg(1,$id);
             if($data ==1){
-                $msg="ok";
+                $msg =array('msg' =>'Categoría reingresado con éxito','icono'=>'success');
             }else {
-                $msg ="Error al reingresar el categoria";
+                $msg =array('msg' =>'Error al reingresar la categoría','icono'=>'error');
             }
             echo json_encode($msg, JSON_UNESCAPED_UNICODE);
             die();
         }
-        
-        
-
-
     }
-
-
 ?>

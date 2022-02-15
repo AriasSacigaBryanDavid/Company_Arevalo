@@ -1455,13 +1455,7 @@ function registrarCateg(e){
     e.preventDefault();
     const nombre = document.getElementById("nombre");
     if( nombre.value=="" ){
-        Swal.fire({
-            position: 'top-end',
-            icon: 'error',
-            title: 'Porfavor ingrese los datos, es obligatorios',
-            showConfirmButton: false,
-            timer: 3000
-          })
+        alertas('Todo los campos son obligatorios', 'warning' );
     }else{
         const url = base_url +"Categorias/registrar";
         const frm = document.getElementById("frmCategoria");
@@ -1471,42 +1465,12 @@ function registrarCateg(e){
         http.onreadystatechange = function(){
             if(this.readyState == 4 && this.status == 200){
                 const res= JSON.parse(this.responseText);
-                    if(res == "si"){
-                        Swal.fire({
-                            position: 'top-end',
-                            icon: 'success',
-                            title: 'Categoria agregado con éxito',
-                            showConfirmButton: false,
-                            timer: 3000
-                          })
-                          frm.reset();
-                          tblCategorias.ajax.reload();
-                          $("#nuevo_categoria").modal("hide");
-                    }else if (res == "modificado") {
-                        Swal.fire({
-                            position: 'top-end',
-                            icon: 'success',
-                            title: 'Categoria modificado con éxito',
-                            showConfirmButton: false,
-                            timer: 3000
-                          })
-                          $("#nuevo_categoria").modal("hide");
-                          tblCategorias.ajax.reload();
-                    }else{
-                        Swal.fire({
-                            position: 'top-end',
-                            icon: 'error',
-                            title: res,
-                            showConfirmButton: false,
-                            timer: 3000
-                          })
-                    }
-                    
-                }
-                
-            }
-
+                $("#nuevo_categoria").modal("hide");
+                alertas(res.msg, res.icono);
+                tblCategorias.ajax.reload();    
+            }    
         }
+    }
 }
 function btnEditarCateg(id){
     document.getElementById("title").innerHTML ="Actualizar Categoria";
@@ -1544,28 +1508,10 @@ function btnEliminarCateg(id){
             http.onreadystatechange = function(){
                 if(this.readyState == 4 && this.status == 200){
                   const res=JSON.parse(this.responseText);
-                  if(res == "ok"){
-                    Swal.fire(
-                     'Mensaje!',
-                     'Categoria eliminado con éxito.',
-                     'success'
-                     )
-                     tblCategorias.ajax.reload();
-               }else{
-                 Swal.fire(
-                     'Mensaje!',
-                     res,
-                     'error'
-                     )
-                    }
-               }
+                  alertas(res.msg, res.icono);
+                  tblCategorias.ajax.reload();
+                }
             }
-
-            Swal.fire(
-            'Mensaje!',
-            'elimiado',
-            'error'
-            )
         }
         
     })
@@ -1579,7 +1525,7 @@ function btnReingresarCateg(id){
         cancelButtonColor: '#d33',
         confirmButtonText: 'si',
         cancelButtonText:'No'
-      }).then((result) => {
+    }).then((result) => {
         if (result.isConfirmed) {
             const url = base_url +"Categorias/reingresar/"+id;
             const http = new XMLHttpRequest();
@@ -1588,24 +1534,12 @@ function btnReingresarCateg(id){
             http.onreadystatechange = function(){
                 if(this.readyState == 4 && this.status == 200){
                   const res= JSON.parse(this.responseText);
-                    if(res == "ok"){
-                       Swal.fire(
-                        'Mensaje!',
-                        'Catalogo reingresado con éxito.',
-                        'success'
-                        )
-                        tblCategorias.ajax.reload();
-                  }else{
-                    Swal.fire(
-                        'Mensaje!',
-                        res,
-                        'error'
-                        )
-                  }
+                  tblCategorias.ajax.reload();
+                  alertas(res.msg, res.icono);   
                 }
             }
         }
-      })
+    })
 }
 /** Fin de categorias */
 /*******************************/

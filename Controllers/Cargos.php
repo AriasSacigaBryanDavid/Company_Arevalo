@@ -1,18 +1,15 @@
 <?php
-
     class Cargos extends Controller{
         public function __construct(){
             session_start();
             parent::__construct();
         }
-        
         public function index(){
             if (empty($_SESSION['activo'])) {
                 header("location: ".base_url);
             }
             $this->views->getView($this,"index");
         }
-
         public function listar(){
             $data = $this->model->getCargos();
             for ($i =0; $i<count($data); $i++){
@@ -27,8 +24,7 @@
                     $data[$i]['acciones']='<div>
                     <button class="btn btn-success" type="button" onclick="btnReingresarCar('.$data[$i]['id'].');"><i class="fas fa-recycle"></i></button>
                     </div>';
-                }
-                    
+                }       
             }
             echo json_encode($data, JSON_UNESCAPED_UNICODE);
             die();
@@ -47,7 +43,6 @@
                         $msg =array('msg' =>'El cargo ya éxiste','icono'=>'warning');
                     } else {
                         $msg =array('msg' =>'Error al registrar el cargo','icono'=>'error');
-
                     }
                 }else {
                     $data=$this->model->modificarCargo($nombre,$id);
@@ -55,10 +50,8 @@
                         $msg =array('msg' =>'Cargo modificado con éxito','icono'=>'success');
                     }else {
                         $msg =array('msg' =>'Error al modificado el cargo','icono'=>'error');
-
                     } 
-                }
-                
+                } 
             }
             echo json_encode($msg, JSON_UNESCAPED_UNICODE);
             die();
@@ -84,19 +77,9 @@
                 $msg =array('msg' =>'Cargo reingresado con éxito','icono'=>'success');
             }else {
                 $msg =array('msg' =>'Error al reingresar el cargo','icono'=>'error');
-
             }
             echo json_encode($msg, JSON_UNESCAPED_UNICODE);
             die();
         }
-
-
-
-
-
     }
-    
-
-
-
 ?>
