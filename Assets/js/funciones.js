@@ -783,13 +783,7 @@ function registrarIden(e){
     e.preventDefault();
     const nombre = document.getElementById("nombre");
     if( nombre.value=="" ){
-        Swal.fire({
-            position: 'top-end',
-            icon: 'error',
-            title: 'Porfavor ingrese los datos, es obligatorios',
-            showConfirmButton: false,
-            timer: 3000
-          })
+        alertas('Todo los campos son obligatorios', 'warning');
     }else{
         const url = base_url +"Identidades/registrar";
         const frm = document.getElementById("frmIdentidad");
@@ -799,42 +793,12 @@ function registrarIden(e){
         http.onreadystatechange = function(){
             if(this.readyState == 4 && this.status == 200){
                 const res= JSON.parse(this.responseText);
-                    if(res == "si"){
-                        Swal.fire({
-                            position: 'top-end',
-                            icon: 'success',
-                            title: 'Identidad registrado con éxito',
-                            showConfirmButton: false,
-                            timer: 3000
-                          })
-                          frm.reset();
-                          tblIdentidades.ajax.reload();
-                          $("#nuevo_identidad").modal("hide");
-                    }else if (res == "modificado") {
-                        Swal.fire({
-                            position: 'top-end',
-                            icon: 'success',
-                            title: 'Identidad modificado con éxito',
-                            showConfirmButton: false,
-                            timer: 3000
-                          })
-                          $("#nuevo_identidad").modal("hide");
-                          tblIdentidades.ajax.reload();
-                    }else{
-                        Swal.fire({
-                            position: 'top-end',
-                            icon: 'error',
-                            title: res,
-                            showConfirmButton: false,
-                            timer: 3000
-                          })
-                    }
-                    
-                }
-                
-            }
-
+                $("#nuevo_identidad").modal("hide");
+                alertas(res.msg, res.icono);
+                tblIdentidades.ajax.reload();
+            }    
         }
+    }
 }
 function btnEditarIden(id){
     document.getElementById("title").innerHTML ="Actualizar Identidad";
@@ -850,7 +814,6 @@ function btnEditarIden(id){
             document.getElementById("nombre").value=res.nombre; 
             $("#nuevo_identidad").modal("show");  
         }
-
     }
 }
 function btnEliminarIden(id){
@@ -872,30 +835,12 @@ function btnEliminarIden(id){
             http.onreadystatechange = function(){
                 if(this.readyState == 4 && this.status == 200){
                   const res=JSON.parse(this.responseText);
-                  if(res == "ok"){
-                    Swal.fire(
-                     'Mensaje!',
-                     'Identidad eliminado con éxito.',
-                     'success'
-                     )
-                     tblIdentidades.ajax.reload();
-               }else{
-                 Swal.fire(
-                     'Mensaje!',
-                     res,
-                     'error'
-                     )
-                    }
+                  alertas(res.msg, res.icono);
+                  tblIdentidades.ajax.reload();
                }
             }
 
-            Swal.fire(
-            'Mensaje!',
-            'elimiado',
-            'error'
-            )
-        }
-        
+        } 
     })
 }
 function btnReingresarIden(id){
@@ -916,24 +861,12 @@ function btnReingresarIden(id){
             http.onreadystatechange = function(){
                 if(this.readyState == 4 && this.status == 200){
                   const res= JSON.parse(this.responseText);
-                    if(res == "ok"){
-                       Swal.fire(
-                        'Mensaje!',
-                        'Identidad reingresado con éxito.',
-                        'success'
-                        )
-                        tblIdentidades.ajax.reload();
-                  }else{
-                    Swal.fire(
-                        'Mensaje!',
-                        res,
-                        'error'
-                        )
-                  }
+                  tblIdentidades.ajax.reload();
+                  alertas(res.msg, res.icono);   
                 }
             }
         }
-      })
+    })
 }
 /** Fin de identidad */
 /*******************************/

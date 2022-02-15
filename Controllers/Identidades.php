@@ -4,14 +4,12 @@
             session_start();
             parent::__construct();
         }
-        
         public function index(){
             if (empty($_SESSION['activo'])) {
                 header("location: ".base_url);
             }
             $this->views->getView($this,"index");
         }
-
         public function listar(){
             $data = $this->model->getIdentidades();
             for ($i =0; $i<count($data); $i++){
@@ -26,8 +24,7 @@
                     $data[$i]['acciones']='<div>
                     <button class="btn btn-success" type="button" onclick="btnReingresarIden('.$data[$i]['id'].');"><i class="fas fa-recycle"></i></button>
                     </div>';
-                }
-                    
+                }     
             }
             echo json_encode($data, JSON_UNESCAPED_UNICODE);
             die();
@@ -36,26 +33,25 @@
             $nombre=$_POST['nombre'];
             $id=$_POST['id'];
             if(empty($nombre)){
-                $msg="Todos los campos son obligatorios";
+                $msg =array('msg' =>'Todo los campos son obligatorios','icono'=>'warning');
             }else{
                 if ($id== "") {
                     $data=$this->model->registrarIdentidad($nombre);
                     if($data == "ok") {
-                        $msg="si";
+                        $msg =array('msg' =>'Identidad registrado con éxito','icono'=>'success');
                     }else if($data == "existe"){ 
-                        $msg="La identidad ya existe";
+                        $msg =array('msg' =>'La identidad ya éxiste','icono'=>'warning');
                     } else {
-                        $msg="Error al registrar la identidad";
+                        $msg =array('msg' =>'Error al registrar la identidad','icono'=>'error');
                     }
                 }else {
                     $data=$this->model->modificarIdentidad($nombre,$id);
                     if($data == "modificado") {
-                        $msg="modificado";
+                        $msg =array('msg' =>'Identidad modificado con éxito','icono'=>'success');
                     }else {
-                        $msg="Error al modificar la identidad";
+                        $msg =array('msg' =>'Error al modificado la identidad','icono'=>'error');
                     } 
-                }
-                
+                }   
             }
             echo json_encode($msg, JSON_UNESCAPED_UNICODE);
             die();
@@ -68,9 +64,9 @@
         public function eliminar(int $id){
             $data = $this->model->accionIdentidad(0, $id);
             if($data ==1){
-                $msg="ok";
+                $msg =array('msg' =>'Identidad dado de baja','icono'=>'success');
             }else {
-                $msg ="Error al eliminar la identidad";
+                $msg =array('msg' =>'Error al eliminar la identidad','icono'=>'error');
             }
             echo json_encode($msg, JSON_UNESCAPED_UNICODE);
             die();
@@ -78,21 +74,12 @@
         public function reingresar(int $id){
             $data = $this->model->accionIdentidad(1,$id);
             if($data ==1){
-                $msg="ok";
+                $msg =array('msg' =>'Identidad reingresado con éxito','icono'=>'success');
             }else {
-                $msg ="Error al reingresar la identidad";
+                $msg =array('msg' =>'Error al reingresar la identidad','icono'=>'error');
             }
             echo json_encode($msg, JSON_UNESCAPED_UNICODE);
             die();
         }
-
-
-
-
-
     }
-    
-
-
-
 ?>
