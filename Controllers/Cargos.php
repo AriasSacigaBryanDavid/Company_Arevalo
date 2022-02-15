@@ -72,9 +72,9 @@
         public function eliminar(int $id){
             $data = $this->model->accionCargo(0, $id);
             if($data ==1){
-                $msg="ok";
+                $msg =array('msg' =>'Cargo dado de baja','icono'=>'success');
             }else {
-                $msg ="Error al eliminar el cargo";
+                $msg =array('msg' =>'Error al eliminar el cargo','icono'=>'error');
             }
             echo json_encode($msg, JSON_UNESCAPED_UNICODE);
             die();
@@ -82,9 +82,10 @@
         public function reingresar(int $id){
             $data = $this->model->accionCargo(1,$id);
             if($data ==1){
-                $msg="ok";
+                $msg =array('msg' =>'Cargo reingresado con éxito','icono'=>'success');
             }else {
-                $msg ="Error al reingresar el cargo";
+                $msg =array('msg' =>'Error al reingresar el cargo','icono'=>'error');
+
             }
             echo json_encode($msg, JSON_UNESCAPED_UNICODE);
             die();

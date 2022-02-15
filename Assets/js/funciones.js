@@ -696,8 +696,7 @@ function registrarCar(e){
                 $("#nuevo_cargo").modal("hide");
                 alertas(res.msg, res.icono);
                 tblCargos.ajax.reload();
-                    
-                    
+
                 }
                 
             }
@@ -740,20 +739,9 @@ function btnEliminarCar(id){
             http.onreadystatechange = function(){
                 if(this.readyState == 4 && this.status == 200){
                   const res=JSON.parse(this.responseText);
-                  if(res == "ok"){
-                    Swal.fire(
-                     'Mensaje!',
-                     'Cargo eliminado con éxito.',
-                     'success'
-                     )
-                     tblCargos.ajax.reload();
-               }else{
-                 Swal.fire(
-                     'Mensaje!',
-                     res,
-                     'error'
-                     )
-                    }
+                  alertas(res.msg, res.icono);
+                  tblCargos.ajax.reload();
+                  
                }
             }
 
@@ -784,20 +772,9 @@ function btnReingresarCar(id){
             http.onreadystatechange = function(){
                 if(this.readyState == 4 && this.status == 200){
                   const res= JSON.parse(this.responseText);
-                    if(res == "ok"){
-                       Swal.fire(
-                        'Mensaje!',
-                        'Cargo reingresado con éxito.',
-                        'success'
-                        )
-                        tblCargos.ajax.reload();
-                  }else{
-                    Swal.fire(
-                        'Mensaje!',
-                        res,
-                        'error'
-                        )
-                  }
+                  tblCargos.ajax.reload();
+                  alertas(res.msg, res.icono);
+                    
                 }
             }
         }
