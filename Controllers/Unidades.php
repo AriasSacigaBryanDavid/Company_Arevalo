@@ -4,7 +4,6 @@
             session_start();
             parent::__construct();
         }
-        
         public function index(){
             if (empty($_SESSION['activo'])) {
                 header("location: ".base_url);
@@ -25,8 +24,7 @@
                     $data[$i]['acciones']='<div>
                     <button class="btn btn-success" type="button" onclick="btnReingresarUni('.$data[$i]['id'].');"><i class="fas fa-recycle"></i></button>
                     </div>';
-                }
-                    
+                }    
             }
             echo json_encode($data, JSON_UNESCAPED_UNICODE);
             die();
@@ -35,26 +33,25 @@
             $nombre=$_POST['nombre'];
             $id=$_POST['id'];
             if(empty($nombre)){
-                $msg="Todos los campos son obligatorios";
+                $msg =array('msg' =>'Todo los campos son obligatorios','icono'=>'warning');
             }else{
                 if ($id== "") {
                     $data=$this->model->registrarUnidad($nombre);
                     if($data == "ok") {
-                        $msg="si";
+                        $msg =array('msg' =>'Unidad registrado con éxito','icono'=>'success');
                     }else if($data == "existe"){ 
-                        $msg="La unidad ya existe";
+                        $msg =array('msg' =>'La unidad ya éxiste','icono'=>'warning');
                     } else {
-                        $msg="Error al registrar la unidad";
+                        $msg =array('msg' =>'Error al registrar la unidad','icono'=>'error');
                     }
                 }else {
                     $data=$this->model->modificarUnidad($nombre,$id);
                     if($data == "modificado") {
-                        $msg="modificado";
+                        $msg =array('msg' =>'Unidad modificado con éxito','icono'=>'success');
                     }else {
-                        $msg="Error al modificar la unidad";
+                        $msg =array('msg' =>'Error al modificado la unidad','icono'=>'error');
                     } 
                 }
-                
             }
             echo json_encode($msg, JSON_UNESCAPED_UNICODE);
             die();
@@ -67,9 +64,9 @@
         public function eliminar(int $id){
             $data = $this->model->accionUnidad(0, $id);
             if($data ==1){
-                $msg="ok";
+                $msg =array('msg' =>'Unidad dado de baja','icono'=>'success');
             }else {
-                $msg ="Error al eliminar la unidad";
+                $msg =array('msg' =>'Error al eliminar la unidad','icono'=>'error');
             }
             echo json_encode($msg, JSON_UNESCAPED_UNICODE);
             die();
@@ -77,16 +74,12 @@
         public function reingresar(int $id){
             $data = $this->model->accionUnidad(1,$id);
             if($data ==1){
-                $msg="ok";
+                $msg =array('msg' =>'Unidad reingresado con éxito','icono'=>'success');
             }else {
-                $msg ="Error al reingresar la unidad";
+                $msg =array('msg' =>'Error al reingresar la unidad','icono'=>'error');
             }
             echo json_encode($msg, JSON_UNESCAPED_UNICODE);
             die();
         }
-
-
     }
-
-
 ?>

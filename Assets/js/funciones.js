@@ -683,7 +683,7 @@ function registrarCar(e){
     e.preventDefault();
     const nombre = document.getElementById("nombre");
     if( nombre.value=="" ){
-        alertas('Todo los campos son obligatorios', 'warning' );
+        alertas('Todo los campos son obligatorios', 'warning');
     }else{
         const url = base_url +"Cargos/registrar";
         const frm = document.getElementById("frmCargo");
@@ -1654,13 +1654,7 @@ function registrarUni(e){
     e.preventDefault();
     const nombre = document.getElementById("nombre");
     if( nombre.value=="" ){
-        Swal.fire({
-            position: 'top-end',
-            icon: 'error',
-            title: 'Porfavor ingrese los datos, es obligatorios',
-            showConfirmButton: false,
-            timer: 3000
-          })
+        alertas('Todo los campos son obligatorios', 'warning');
     }else{
         const url = base_url +"Unidades/registrar";
         const frm = document.getElementById("frmUnidad");
@@ -1670,42 +1664,12 @@ function registrarUni(e){
         http.onreadystatechange = function(){
             if(this.readyState == 4 && this.status == 200){
                 const res= JSON.parse(this.responseText);
-                    if(res == "si"){
-                        Swal.fire({
-                            position: 'top-end',
-                            icon: 'success',
-                            title: 'Unidad agregado con éxito',
-                            showConfirmButton: false,
-                            timer: 3000
-                          })
-                          frm.reset();
-                          tblUnidades.ajax.reload();
-                          $("#nuevo_unidad").modal("hide");
-                    }else if (res == "modificado") {
-                        Swal.fire({
-                            position: 'top-end',
-                            icon: 'success',
-                            title: 'Unidad modificado con éxito',
-                            showConfirmButton: false,
-                            timer: 3000
-                          })
-                          $("#nuevo_unidad").modal("hide");
-                          tblUnidades.ajax.reload();
-                    }else{
-                        Swal.fire({
-                            position: 'top-end',
-                            icon: 'error',
-                            title: res,
-                            showConfirmButton: false,
-                            timer: 3000
-                          })
-                    }
-                    
-                }
-                
+                $("#nuevo_unidad").modal("hide");
+                alertas(res.msg, res.icono);
+                tblUnidades.ajax.reload();  
             }
-
         }
+    }
 }
 function btnEditarUni(id){
     document.getElementById("title").innerHTML ="Actualizar Unidad";
@@ -1721,7 +1685,6 @@ function btnEditarUni(id){
             document.getElementById("nombre").value=res.nombre; 
             $("#nuevo_unidad").modal("show");  
         }
-
     }
 }
 function btnEliminarUni(id){
@@ -1743,30 +1706,11 @@ function btnEliminarUni(id){
             http.onreadystatechange = function(){
                 if(this.readyState == 4 && this.status == 200){
                   const res=JSON.parse(this.responseText);
-                  if(res == "ok"){
-                    Swal.fire(
-                     'Mensaje!',
-                     'Unidades eliminado con éxito.',
-                     'success'
-                     )
-                     tblUnidades.ajax.reload();
-               }else{
-                 Swal.fire(
-                     'Mensaje!',
-                     res,
-                     'error'
-                     )
-                    }
+                  alertas(res.msg, res.icono);
+                  tblUnidades.ajax.reload();
                }
-            }
-
-            Swal.fire(
-            'Mensaje!',
-            'elimiado',
-            'error'
-            )
+            } 
         }
-        
     })
 }
 function btnReingresarUni(id){
@@ -1787,24 +1731,12 @@ function btnReingresarUni(id){
             http.onreadystatechange = function(){
                 if(this.readyState == 4 && this.status == 200){
                   const res= JSON.parse(this.responseText);
-                    if(res == "ok"){
-                       Swal.fire(
-                        'Mensaje!',
-                        'Unidad reingresado con éxito.',
-                        'success'
-                        )
-                        tblUnidades.ajax.reload();
-                  }else{
-                    Swal.fire(
-                        'Mensaje!',
-                        res,
-                        'error'
-                        )
-                  }
+                  tblUnidades.ajax.reload();
+                  alertas(res.msg, res.icono);   
                 }
             }
         }
-      })
+    })
 }
 /** Fin de unidades */
 /*******************************/
