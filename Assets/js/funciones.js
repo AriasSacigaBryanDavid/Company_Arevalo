@@ -1293,7 +1293,6 @@ function frmCliente(){
     $("#nuevo_cliente").modal("show");
     document.getElementById("id").value ="";
 }
-
 function registrarCli(e){
     e.preventDefault();
     const nombre = document.getElementById("nombre");
@@ -1355,7 +1354,6 @@ function registrarCli(e){
         }
     }
 }
-
 function btnEditarCli(id){
     document.getElementById("title").innerHTML ="Actualizar Cliente";
     document.getElementById("btnAccion").innerHTML="Actualizar";
@@ -1380,7 +1378,6 @@ function btnEditarCli(id){
 
     
 }
-
 function btnEliminarCli(id){
     Swal.fire({
         title: '¿Deseas Eliminar Cliente?',
@@ -1419,7 +1416,6 @@ function btnEliminarCli(id){
         }
       })
 }
-
 function btnReingresarCli(id){
     Swal.fire({
         title: '¿Está seguro de reingresar?',
@@ -1467,7 +1463,6 @@ function frmCategoria(){
     $("#nuevo_categoria").modal("show");
     document.getElementById("id").value ="";
 }
-
 function registrarCateg(e){
     e.preventDefault();
     const nombre = document.getElementById("nombre");
@@ -1525,7 +1520,6 @@ function registrarCateg(e){
 
         }
 }
-
 function btnEditarCateg(id){
     document.getElementById("title").innerHTML ="Actualizar Categoria";
     document.getElementById("btnAccion").innerHTML ="Actualizar";
@@ -1543,7 +1537,6 @@ function btnEditarCateg(id){
 
     }
 }
-
 function btnEliminarCateg(id){
     Swal.fire({
         title: '¿Deseas Eliminar Categoria?',
@@ -1589,7 +1582,6 @@ function btnEliminarCateg(id){
         
     })
 }
-
 function btnReingresarCateg(id){
     Swal.fire({
         title: '¿Está seguro de reingresar?',
@@ -1637,7 +1629,6 @@ function frmMarca(){
     $("#nuevo_marca").modal("show");
     document.getElementById("id").value ="";
 }
-
 function registrarMar(e){
     e.preventDefault();
     const nombre = document.getElementById("nombre");
@@ -1695,7 +1686,6 @@ function registrarMar(e){
 
         }
 }
-
 function btnEditarMar(id){
     document.getElementById("title").innerHTML ="Actualizar Marca";
     document.getElementById("btnAccion").innerHTML ="Actualizar";
@@ -1713,7 +1703,6 @@ function btnEditarMar(id){
 
     }
 }
-
 function btnEliminarMar(id){
     Swal.fire({
         title: '¿Deseas Eliminar marca?',
@@ -1759,7 +1748,6 @@ function btnEliminarMar(id){
         
     })
 }
-
 function btnReingresarMar(id){
     Swal.fire({
         title: '¿Está seguro de reingresar?',
@@ -1807,7 +1795,6 @@ function frmUnidad(){
     $("#nuevo_unidad").modal("show");
     document.getElementById("id").value ="";
 }
-
 function registrarUni(e){
     e.preventDefault();
     const nombre = document.getElementById("nombre");
@@ -1865,7 +1852,6 @@ function registrarUni(e){
 
         }
 }
-
 function btnEditarUni(id){
     document.getElementById("title").innerHTML ="Actualizar Unidad";
     document.getElementById("btnAccion").innerHTML ="Actualizar";
@@ -1883,7 +1869,6 @@ function btnEditarUni(id){
 
     }
 }
-
 function btnEliminarUni(id){
     Swal.fire({
         title: '¿Deseas Eliminar unidad?',
@@ -1929,7 +1914,6 @@ function btnEliminarUni(id){
         
     })
 }
-
 function btnReingresarUni(id){
     Swal.fire({
         title: '¿Está seguro de reingresar?',
@@ -2153,7 +2137,6 @@ function frmDocumento(){
     $("#nuevo_documento").modal("show");
     document.getElementById("id").value ="";
 }
-
 function registrarDoc(e){
     e.preventDefault();
     const nombre = document.getElementById("nombre");
@@ -2211,7 +2194,6 @@ function registrarDoc(e){
 
         }
 }
-
 function btnEditarDoc(id){
     document.getElementById("title").innerHTML ="Actualizar Documento";
     document.getElementById("btnAccion").innerHTML ="Actualizar";
@@ -2229,7 +2211,6 @@ function btnEditarDoc(id){
 
     }
 }
-
 function btnEliminarDoc(id){
     Swal.fire({
         title: '¿Deseas Eliminar documento?',
@@ -2275,7 +2256,6 @@ function btnEliminarDoc(id){
         
     })
 }
-
 function btnReingresarDoc(id){
     Swal.fire({
         title: '¿Está seguro de reingresar?',
@@ -2380,8 +2360,8 @@ function buscarCodigoEn(e) {
                 }
         }
     }
- }
- function calcularPrecioEn(e){
+}
+function calcularPrecioEn(e){
     e.preventDefault();
     const cant = document.getElementById("cantidad").value;
     const p_bruto = document.getElementById("peso_bruto").value;
@@ -2429,7 +2409,6 @@ function buscarCodigoEn(e) {
 if(document.getElementById('tblDetalleEN')){
     cargaDetalleEn();
 }
-
 function cargaDetalleEn(){
     const url =base_url + "Entradas/listar";
     const http=new XMLHttpRequest();
@@ -2465,7 +2444,6 @@ function cargaDetalleEn(){
          }
     }
 }
-
 function deleteDetalleEn(id){
     const url =base_url + "Entradas/delete/"+id;
     const http=new XMLHttpRequest();
@@ -2495,7 +2473,6 @@ function deleteDetalleEn(id){
         }
     }
 }
-
 function generarEntrada(){
     Swal.fire({
         title: '¿Está seguro de realizar la entrada?',
@@ -2617,7 +2594,7 @@ function buscarCodigoSa(e) {
         }
     }
  }
- function calcularPrecioSa(e){
+function calcularPrecioSa(e){
     e.preventDefault();
     const cant = document.getElementById("cantidad").value;
     const p_bruto = document.getElementById("peso_bruto").value;
@@ -2665,7 +2642,6 @@ function buscarCodigoSa(e) {
 if(document.getElementById('tblDetalleSA')){
     cargaDetalleSa();
 }
-
 function cargaDetalleSa(){
     const url =base_url + "Salidas/listar";
     const http=new XMLHttpRequest();
@@ -2700,7 +2676,6 @@ function cargaDetalleSa(){
          }
     }
 }
-
 function deleteDetalleSa(id){
     const url =base_url + "Salidas/delete/"+id;
     const http=new XMLHttpRequest();
@@ -2730,7 +2705,6 @@ function deleteDetalleSa(id){
         }
     }
 }
-
 function generarSalida(){
     Swal.fire({
         title: '¿Está seguro de realizar la salida?',
@@ -2880,8 +2854,8 @@ function buscarCodigoVe(e) {
                 }
         }
     }
- }
- function calcularPrecioVe(e){
+}
+function calcularPrecioVe(e){
     e.preventDefault();
     const cant = document.getElementById("cantidad").value;
     const p_bruto = document.getElementById("peso_bruto").value;
@@ -2929,7 +2903,6 @@ function buscarCodigoVe(e) {
 if(document.getElementById('tblDetalleVE')){
     cargaDetalleVe();
 }
-
 function cargaDetalleVe(){
     const url =base_url + "Ventas/listar";
     const http=new XMLHttpRequest();
@@ -2964,7 +2937,6 @@ function cargaDetalleVe(){
          }
     }
 }
-
 function deleteDetalleVe(id){
     const url =base_url + "Ventas/delete/"+id;
     const http=new XMLHttpRequest();
@@ -2994,7 +2966,6 @@ function deleteDetalleVe(id){
         }
     }
 }
-
 function generarVenta(){
     Swal.fire({
         title: '¿Está seguro de realizar la venta?',
@@ -3037,7 +3008,6 @@ function generarVenta(){
         }
       })   
 }
-
 function CancelarVenta(){
     Swal.fire({
         title: '¿Está seguro de cancelar la Venta?',
@@ -3080,7 +3050,6 @@ function CancelarVenta(){
       })   
 }
 /** Fin de ventas */
-
 /*******************************/
 /** inicio de Administracion */
 function modificarEmpresa() {
@@ -3118,7 +3087,6 @@ if (document.getElementById('stockMinimo')) {
     reportePeso();
     productosSalidas();
 }
-
 function reporteStock(){
     const url =base_url + "Administracion/reporteStock";
     const http=new XMLHttpRequest();
