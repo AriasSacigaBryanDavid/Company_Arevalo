@@ -35,23 +35,23 @@
             $nombre=$_POST['nombre'];
             $id=$_POST['id'];
             if(empty($nombre)){
-                $msg="Todos los campos son obligatorios";
+                $msg =array('msg' =>'Todo los campos son obligatorios','icono'=>'warning');
             }else{
                 if ($id== "") {
                     $data=$this->model->registrarMarca($nombre);
                     if($data == "ok") {
-                        $msg="si";
+                        $msg =array('msg' =>'Marca registrado con éxito','icono'=>'success');
                     }else if($data == "existe"){ 
-                        $msg="La Marca ya existe";
+                        $msg =array('msg' =>'La marca ya éxiste','icono'=>'warning');
                     } else {
-                        $msg="Error al registrar la marca";
+                        $msg =array('msg' =>'Error al registrar la marca','icono'=>'error');
                     }
                 }else {
                     $data=$this->model->modificarMarca($nombre,$id);
                     if($data == "modificado") {
-                        $msg="modificado";
+                        $msg =array('msg' =>'Marca modificado con éxito','icono'=>'success');
                     }else {
-                        $msg="Error al modificar la marca";
+                        $msg =array('msg' =>'Error al modificado la marca','icono'=>'error');
                     } 
                 }
                 
@@ -67,9 +67,10 @@
         public function eliminar(int $id){
             $data = $this->model->accionMarca(0, $id);
             if($data ==1){
-                $msg="ok";
+                $msg =array('msg' =>'Marca dado de baja','icono'=>'success');
             }else {
-                $msg ="Error al eliminar la marca";
+                $msg =array('msg' =>'Error al eliminar la marca','icono'=>'error');
+
             }
             echo json_encode($msg, JSON_UNESCAPED_UNICODE);
             die();
@@ -77,9 +78,9 @@
         public function reingresar(int $id){
             $data = $this->model->accionMarca(1,$id);
             if($data ==1){
-                $msg="ok";
+                $msg =array('msg' =>'Marca reingresado con éxito','icono'=>'success');
             }else {
-                $msg ="Error al reingresar la marca";
+                $msg =array('msg' =>'Error al reingresar la marca','icono'=>'error');
             }
             echo json_encode($msg, JSON_UNESCAPED_UNICODE);
             die();

@@ -42,7 +42,6 @@
                 if ($id== "") {
                     $data=$this->model->registrarCargo($nombre);
                     if($data == "ok") {
-                        $msg="si";
                         $msg =array('msg' =>'Cargo registrado con éxito','icono'=>'success');
                     }else if($data == "existe"){ 
                         $msg =array('msg' =>'El cargo ya éxiste','icono'=>'warning');

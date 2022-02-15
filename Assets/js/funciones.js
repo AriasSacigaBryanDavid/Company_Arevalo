@@ -696,12 +696,9 @@ function registrarCar(e){
                 $("#nuevo_cargo").modal("hide");
                 alertas(res.msg, res.icono);
                 tblCargos.ajax.reload();
-
-                }
-                
-            }
-
+            }    
         }
+    }
 }
 function btnEditarCar(id){
     document.getElementById("title").innerHTML ="Actualizar Cargo";
@@ -740,18 +737,10 @@ function btnEliminarCar(id){
                 if(this.readyState == 4 && this.status == 200){
                   const res=JSON.parse(this.responseText);
                   alertas(res.msg, res.icono);
-                  tblCargos.ajax.reload();
-                  
-               }
+                  tblCargos.ajax.reload();  
+                }
             }
-
-            Swal.fire(
-            'Mensaje!',
-            'elimiado',
-            'error'
-            )
         }
-        
     })
 }
 function btnReingresarCar(id){
@@ -773,8 +762,7 @@ function btnReingresarCar(id){
                 if(this.readyState == 4 && this.status == 200){
                   const res= JSON.parse(this.responseText);
                   tblCargos.ajax.reload();
-                  alertas(res.msg, res.icono);
-                    
+                  alertas(res.msg, res.icono);   
                 }
             }
         }
@@ -947,7 +935,7 @@ function btnReingresarIden(id){
         }
       })
 }
-/** Fin de cargos */
+/** Fin de identidad */
 /*******************************/
 /** inicio de almacenes */
 function frmAlmacen(){
@@ -1633,13 +1621,7 @@ function registrarMar(e){
     e.preventDefault();
     const nombre = document.getElementById("nombre");
     if( nombre.value=="" ){
-        Swal.fire({
-            position: 'top-end',
-            icon: 'error',
-            title: 'Porfavor ingrese los datos, es obligatorios',
-            showConfirmButton: false,
-            timer: 3000
-          })
+        alertas('Todo los campos son obligatorios', 'warning' );
     }else{
         const url = base_url +"Marcas/registrar";
         const frm = document.getElementById("frmMarca");
@@ -1649,42 +1631,12 @@ function registrarMar(e){
         http.onreadystatechange = function(){
             if(this.readyState == 4 && this.status == 200){
                 const res= JSON.parse(this.responseText);
-                    if(res == "si"){
-                        Swal.fire({
-                            position: 'top-end',
-                            icon: 'success',
-                            title: 'Marca agregado con éxito',
-                            showConfirmButton: false,
-                            timer: 3000
-                          })
-                          frm.reset();
-                          tblMarcas.ajax.reload();
-                          $("#nuevo_marca").modal("hide");
-                    }else if (res == "modificado") {
-                        Swal.fire({
-                            position: 'top-end',
-                            icon: 'success',
-                            title: 'Marca modificado con éxito',
-                            showConfirmButton: false,
-                            timer: 3000
-                          })
-                          $("#nuevo_marca").modal("hide");
-                          tblMarcas.ajax.reload();
-                    }else{
-                        Swal.fire({
-                            position: 'top-end',
-                            icon: 'error',
-                            title: res,
-                            showConfirmButton: false,
-                            timer: 3000
-                          })
-                    }
-                    
-                }
-                
+                $("#nuevo_marca").modal("hide");
+                alertas(res.msg, res.icono);
+                tblMarcas.ajax.reload();
             }
-
         }
+    }
 }
 function btnEditarMar(id){
     document.getElementById("title").innerHTML ="Actualizar Marca";
@@ -1722,30 +1674,11 @@ function btnEliminarMar(id){
             http.onreadystatechange = function(){
                 if(this.readyState == 4 && this.status == 200){
                   const res=JSON.parse(this.responseText);
-                  if(res == "ok"){
-                    Swal.fire(
-                     'Mensaje!',
-                     'Marca eliminado con éxito.',
-                     'success'
-                     )
-                     tblMarcas.ajax.reload();
-               }else{
-                 Swal.fire(
-                     'Mensaje!',
-                     res,
-                     'error'
-                     )
-                    }
-               }
+                  alertas(res.msg, res.icono);
+                  tblMarcas.ajax.reload();
+                }
             }
-
-            Swal.fire(
-            'Mensaje!',
-            'elimiado',
-            'error'
-            )
         }
-        
     })
 }
 function btnReingresarMar(id){
@@ -1766,20 +1699,8 @@ function btnReingresarMar(id){
             http.onreadystatechange = function(){
                 if(this.readyState == 4 && this.status == 200){
                   const res= JSON.parse(this.responseText);
-                    if(res == "ok"){
-                       Swal.fire(
-                        'Mensaje!',
-                        'Marca reingresado con éxito.',
-                        'success'
-                        )
-                        tblMarcas.ajax.reload();
-                  }else{
-                    Swal.fire(
-                        'Mensaje!',
-                        res,
-                        'error'
-                        )
-                  }
+                  tblMarcas.ajax.reload();
+                  alertas(res.msg, res.icono);    
                 }
             }
         }
