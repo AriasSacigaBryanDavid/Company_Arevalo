@@ -34,9 +34,9 @@
             $id= $_POST['id'];
             $data= $this->model->modificar($nombre, $ruc, $telefono, $direccion, $mensaje, $id);
             if($data == 'ok'){
-                $msg ='ok';
+                $msg =array('msg' =>'Datos de la empresa, modificado con éxito','icono'=>'success');
             }else{
-                $msg = 'Error';
+                $msg =array('msg' =>'Error al modificadar los datos de la empresa','icono'=>'error');
             }
             echo json_encode($msg);
             die();

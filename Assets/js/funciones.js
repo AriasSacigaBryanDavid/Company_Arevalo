@@ -1104,13 +1104,7 @@ function registrarCli(e){
     const correo = document.getElementById("correo");
     const direccion = document.getElementById("direccion");
     if(nombre.value=="" || identidad.value=="" || n_identidad.value=="" || telefono.value==""|| correo.value=="" || direccion.value==""){
-        Swal.fire({
-            position: 'top-end',
-            icon: 'error',
-            title: 'Porfavor ingrese los datos, es obligatorios',
-            showConfirmButton: false,
-            timer: 3000
-          })
+        alertas('Todo los campos son obligatorios', 'warning');
     }else{
         const url = base_url +"Clientes/registrar";
         const frm = document.getElementById("frmCliente");
@@ -1120,39 +1114,10 @@ function registrarCli(e){
         http.onreadystatechange = function(){
             if(this.readyState == 4 && this.status == 200){
                 const res = JSON.parse(this.responseText);
-                if(res == "si" ){
-                    Swal.fire({
-                        position: 'top-end',
-                        icon: 'success',
-                        title: 'Cliente registrado con éxito',
-                        showConfirmButton: false,
-                        timer: 3000
-                      })
-                      frm.reset();
-                      tblClientes.ajax.reload();
-                      $("#nuevo_cliente").modal("hide");
-
-                }else if (res == "modificado") {
-                    Swal.fire({
-                        position: 'top-end',
-                        icon: 'success',
-                        title: 'Cliente modificado con éxito',
-                        showConfirmButton: false,
-                        timer: 3000
-                      })
-                      $("#nuevo_cliente").modal("hide");
-                      tblClientes.ajax.reload();
-                }else{
-                    Swal.fire({
-                        position: 'top-end',
-                        icon: 'error',
-                        title: res,
-                        showConfirmButton: false,
-                        timer: 3000
-                      })
-                }
+                $("#nuevo_cliente").modal("hide");
+                alertas(res.msg, res.icono);
+                tblClientes.ajax.reload();
             }
-
         }
     }
 }
@@ -1190,7 +1155,7 @@ function btnEliminarCli(id){
         cancelButtonColor: '#d33',
         confirmButtonText: 'si',
         cancelButtonText:'No'
-      }).then((result) => {
+    }).then((result) => {
         if (result.isConfirmed) {
             const url = base_url +"Clientes/eliminar/"+id;
             const http = new XMLHttpRequest();
@@ -1199,24 +1164,12 @@ function btnEliminarCli(id){
             http.onreadystatechange = function(){
                 if(this.readyState == 4 && this.status == 200){
                   const res= JSON.parse(this.responseText);
-                    if(res == "ok"){
-                       Swal.fire(
-                        'Mensaje!',
-                        'Cliente eliminado con éxito.',
-                        'success'
-                        )
-                        tblClientes.ajax.reload();
-                  }else{
-                    Swal.fire(
-                        'Mensaje!',
-                        res,
-                        'error'
-                        )
-                  }
+                  alertas(res.msg, res.icono);
+                  tblClientes.ajax.reload();
                 }
             }
         }
-      })
+    })
 }
 function btnReingresarCli(id){
     Swal.fire({
@@ -1227,7 +1180,7 @@ function btnReingresarCli(id){
         cancelButtonColor: '#d33',
         confirmButtonText: 'si',
         cancelButtonText:'No'
-      }).then((result) => {
+    }).then((result) => {
         if (result.isConfirmed) {
             const url = base_url +"Clientes/reingresar/"+id;
             const http = new XMLHttpRequest();
@@ -1236,24 +1189,12 @@ function btnReingresarCli(id){
             http.onreadystatechange = function(){
                 if(this.readyState == 4 && this.status == 200){
                   const res= JSON.parse(this.responseText);
-                    if(res == "ok"){
-                       Swal.fire(
-                        'Mensaje!',
-                        'Cliente reingresado con éxito.',
-                        'success'
-                        )
-                        tblClientes.ajax.reload();
-                  }else{
-                    Swal.fire(
-                        'Mensaje!',
-                        res,
-                        'error'
-                        )
-                  }
+                  tblClientes.ajax.reload();
+                  alertas(res.msg, res.icono);   
                 }
             }
         }
-      })
+    })
 }
 /** Fin de cliente */
 /*******************************/
@@ -2656,28 +2597,15 @@ function CancelarVenta(){
 function modificarEmpresa() {
     const frm = document.getElementById('frmEmpresa');
     const url =base_url + "Administracion/modificar";
-            const http=new XMLHttpRequest();
-            http.open("POST", url, true);
-            http.send(new FormData(frm));
-            http.onreadystatechange=function(){
-                if(this.readyState == 4 && this.status ==200){
-                    const res = JSON.parse(this.responseText);
-                    if(res =='ok'){
-                        Swal.fire(
-                            'Mensaje!',
-                            'Modificado.',
-                            'success'
-                        )
-                    }else{
-                        Swal.fire(
-                            'Mensaje!',
-                            res,
-                            'error'
-                        )
-                    }
-                   
-                }
-            }
+    const http=new XMLHttpRequest();
+    http.open("POST", url, true);
+    http.send(new FormData(frm));
+    http.onreadystatechange=function(){
+        if(this.readyState == 4 && this.status ==200){
+            const res = JSON.parse(this.responseText);
+            alertas(res.msg, res.icono);
+        }
+    }
 }
 /** Fin de Administracion */
 /*******************************/

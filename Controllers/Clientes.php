@@ -25,8 +25,7 @@
                     $data[$i]['acciones']='<div>
                     <button class="btn btn-success" type="button" onclick="btnReingresarCli('.$data[$i]['id'].');"><i class="fas fa-recycle"></i></button>
                     </div>';
-                 }
-                 
+                 }  
              }
              echo json_encode($data, JSON_UNESCAPED_UNICODE);
              die();
@@ -40,23 +39,23 @@
             $direccion=$_POST['direccion'];
             $id=$_POST['id'];
             if( empty($nombre) || empty($identidad) || empty($n_identidad) || empty($telefono) || empty($correo) || empty($direccion)){
-                $msg= "Todos los campos son obligatorios";
+                $msg =array('msg' =>'Todo los campos son obligatorios','icono'=>'warning');
             }else{
                 if ($id== "") {
                     $data=$this->model->registarCliente($nombre, $identidad, $n_identidad, $telefono, $correo,$direccion);
                     if($data == "ok") {
-                        $msg="si";
+                        $msg =array('msg' =>'Cliente registrado con éxito','icono'=>'success');
                     }else if($data == "existe"){
-                        $msg="El cliente ya existe";
+                        $msg =array('msg' =>'El cliente ya éxiste','icono'=>'warning');
                     }else {
-                        $msg="Error al registrar el cliente";
+                        $msg =array('msg' =>'Error al registrar el cliente','icono'=>'error');
                     } 
                 }else {
                     $data=$this->model->modificarCliente($nombre, $identidad, $n_identidad, $telefono, $correo, $direccion,$id);
                     if($data == "modificado") {
-                        $msg="modificado";
+                        $msg =array('msg' =>'Cliente modificado con éxito','icono'=>'success');
                     }else {
-                        $msg="Error al modificar el cliente";
+                        $msg =array('msg' =>'Error al modificado el cliente','icono'=>'error');
                     } 
                 }     
             }
@@ -71,9 +70,9 @@
         public function eliminar(int $id){
             $data = $this->model->accionCli(0, $id);
             if($data ==1){
-                $msg="ok";
+                $msg =array('msg' =>'Cliente dado de baja','icono'=>'success');
             }else {
-                $msg ="Error al eliminar el cliente";
+                $msg =array('msg' =>'Error al eliminar el cliente','icono'=>'error');
             }
             echo json_encode($msg, JSON_UNESCAPED_UNICODE);
             die();
@@ -81,9 +80,9 @@
         public function reingresar(int $id){
             $data = $this->model->accionCli(1, $id);
             if($data ==1){
-                $msg="ok";
+                $msg =array('msg' =>'Cliente reingresado con éxito','icono'=>'success');
             }else {
-                $msg ="Error al reingresar el cliente";
+                $msg =array('msg' =>'Error al reingresar el cliente','icono'=>'error');
             }
             echo json_encode($msg, JSON_UNESCAPED_UNICODE);
             die();
@@ -92,8 +91,5 @@
             session_destroy();
             header("location: ".base_url);
         }
-
-
-
     }
 ?>
