@@ -88,7 +88,7 @@
         public function registrarEntrada(){
             $id_usuario = $_SESSION['id_usuario'];
             $total = $this->model->calcularEntrada($id_usuario);
-            $data = $this->model->registrarEntrada($total['total']);
+            $data = $this->model->registrarEntrada($id_usuario,$total['total']);
             if($data == 'ok'){
                 $detalle = $this->model->getDetalle($id_usuario);
                 $id_entrada = $this->model->id_entrada();

@@ -97,9 +97,9 @@
             }
             return $res;
         }
-        public function registrarEntrada(string $total){
-            $sql = "INSERT INTO entradas(total) VALUES (?)";
-            $datos = array($total);
+        public function registrarEntrada(int $id_usuario, string $total){
+            $sql = "INSERT INTO entradas(id_usuario, total) VALUES (?,?)";
+            $datos = array($id_usuario,  $total);
             $data = $this->save($sql, $datos);
             if($data ==1){
                 $res = "ok";
@@ -108,6 +108,7 @@
             }
             return $res;
         }
+        
         public function id_entrada(){
             $sql = "SELECT MAX(id) AS id FROM entradas";
             $data = $this->select($sql);
