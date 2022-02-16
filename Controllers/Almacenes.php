@@ -37,27 +37,26 @@
             $telefono =$_POST['telefono'];
             $correo =$_POST['correo'];
             $id=$_POST['id'];
-            if(empty($nombre) || empty($direccion)){
-                $msg="Todos los campos son obligatorios";
+            if(empty($nombre) || empty($direccion) || empty($encargado) || empty($telefono) || empty($correo)){
+                $msg =array('msg' =>'Todo los campos son obligatorios','icono'=>'warning');
             }else{
                 if ($id== "") {
                     $data=$this->model->registrarAlmacen($nombre, $direccion, $encargado, $telefono, $correo);
                     if($data == "ok") {
-                        $msg="si";
+                        $msg =array('msg' =>'Almacén registrado con éxito','icono'=>'success');
                     }else if($data == "existe"){ 
-                        $msg="El almacén ya existe";
+                        $msg =array('msg' =>'El almacén ya éxiste','icono'=>'warning');
                     } else {
-                        $msg="Error al registrar el almacén";
+                        $msg =array('msg' =>'Error al registrar el almacén','icono'=>'error');
                     }
                 }else {
                     $data=$this->model->modificarAlmacen($nombre,$direccion,$encargado, $telefono, $correo,$id);
                     if($data == "modificado") {
-                        $msg="modificado";
+                        $msg =array('msg' =>'Almacén modificado con éxito','icono'=>'success');
                     }else {
-                        $msg="Error al modificar el almacén";
+                        $msg =array('msg' =>'Error al modificado el almacén','icono'=>'error');
                     } 
                 }
-                
             }
             echo json_encode($msg, JSON_UNESCAPED_UNICODE);
             die();
@@ -70,9 +69,9 @@
         public function eliminar(int $id){
             $data = $this->model->accionAlm(0, $id);
             if($data ==1){
-                $msg="ok";
+                $msg =array('msg' =>'Almacén dado de baja','icono'=>'success');
             }else {
-                $msg ="Error al eliminar el almacén";
+                $msg =array('msg' =>'Error al eliminar el almacén','icono'=>'error');
             }
             echo json_encode($msg, JSON_UNESCAPED_UNICODE);
             die();
@@ -80,17 +79,12 @@
         public function reingresar(int $id){
             $data = $this->model->accionAlm(1,$id);
             if($data ==1){
-                $msg="ok";
+                $msg =array('msg' =>'Almacén reingresado con éxito','icono'=>'success');
             }else {
-                $msg ="Error al reingresar el almacén";
+                $msg =array('msg' =>'Error al reingresar el almacén','icono'=>'error');
             }
             echo json_encode($msg, JSON_UNESCAPED_UNICODE);
             die();
         }
-
-
-
-
     }
-
 ?>

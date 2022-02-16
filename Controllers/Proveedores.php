@@ -40,23 +40,24 @@
             $direccion=$_POST['direccion'];
             $id=$_POST['id'];
             if(empty($nombre) || empty($identidad) || empty($n_identidad) || empty($telefono) || empty($correo)  || empty($direccion)){
-                $msg= "Todos los campos son obligatorios";
+                $msg =array('msg' =>'Todo los campos son obligatorios','icono'=>'warning');
             }else{
                 if ($id== "") {
                     $data=$this->model->registarProveedor($nombre,$identidad,$n_identidad,$telefono,$correo,$direccion);
                     if($data == "ok") {
-                        $msg="si";
+                        $msg =array('msg' =>'Proveedor registrado con éxito','icono'=>'success');
                     }else if($data == "existe"){
-                        $msg="El proveedor ya existe";
+                        $msg =array('msg' =>'El proveedor ya éxiste','icono'=>'warning');
                     }else {
-                        $msg="Error al registrar el proveedor";
+                        $msg =array('msg' =>'Error al registrar el proveedor','icono'=>'error');
+
                     } 
                 }else {
                     $data=$this->model->modificarProveedor($nombre,$identidad,$n_identidad,$telefono,$correo,$direccion,$id);
                     if($data == "modificado") {
-                        $msg="modificado";
+                        $msg =array('msg' =>'Proveedor modificado con éxito','icono'=>'success');
                     }else {
-                        $msg="Error al modificar el proveedor";
+                        $msg =array('msg' =>'Error al modificado el proveedor','icono'=>'error');
                     } 
                 }     
             }
@@ -71,9 +72,9 @@
         public function eliminar(int $id){
             $data = $this->model->accionPro(0, $id);
             if($data ==1){
-                $msg="ok";
+                $msg =array('msg' =>'Proveedor dado de baja','icono'=>'success');
             }else {
-                $msg ="Error al eliminar el proveedor";
+                $msg =array('msg' =>'Error al eliminar el proveedor','icono'=>'error');
             }
             echo json_encode($msg, JSON_UNESCAPED_UNICODE);
             die();
@@ -81,9 +82,9 @@
         public function reingresar(int $id){
             $data = $this->model->accionPro(1, $id);
             if($data ==1){
-                $msg="ok";
+                $msg =array('msg' =>'Proveedor reingresado con éxito','icono'=>'success');
             }else {
-                $msg ="Error al reingresar el proveedor";
+                $msg =array('msg' =>'Error al reingresar el proveedor','icono'=>'error');
             }
             echo json_encode($msg, JSON_UNESCAPED_UNICODE);
             die();

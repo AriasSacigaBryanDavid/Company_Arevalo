@@ -886,13 +886,7 @@ function registrarAlm(e){
     const telefono = document.getElementById("telefono");
     const correo = document.getElementById("correo");
     if( nombre.value=="" || direccion.value=="" || encargado.value=="" || telefono.value=="" || correo.value==""){
-        Swal.fire({
-            position: 'top-end',
-            icon: 'error',
-            title: 'Porfavor ingrese los datos, es obligatorios',
-            showConfirmButton: false,
-            timer: 3000
-          })
+        alertas('Todo los campos son obligatorios', 'warning');
     }else{
         const url = base_url +"Almacenes/registrar";
         const frm = document.getElementById("frmAlmacen");
@@ -902,42 +896,12 @@ function registrarAlm(e){
         http.onreadystatechange = function(){
             if(this.readyState == 4 && this.status == 200){
                 const res= JSON.parse(this.responseText);
-                    if(res == "si"){
-                        Swal.fire({
-                            position: 'top-end',
-                            icon: 'success',
-                            title: 'Almacén registrado con éxito',
-                            showConfirmButton: false,
-                            timer: 3000
-                          })
-                          frm.reset();
-                          tblAlmacenes.ajax.reload();
-                          $("#nuevo_almacen").modal("hide");
-                    }else if (res == "modificado") {
-                        Swal.fire({
-                            position: 'top-end',
-                            icon: 'success',
-                            title: 'Almacén modificado con éxito',
-                            showConfirmButton: false,
-                            timer: 3000
-                          })
-                          $("#nuevo_almacen").modal("hide");
-                          tblAlmacenes.ajax.reload();
-                    }else{
-                        Swal.fire({
-                            position: 'top-end',
-                            icon: 'error',
-                            title: res,
-                            showConfirmButton: false,
-                            timer: 3000
-                          })
-                    }
-                    
-                }
-                
-            }
-
+                $("#nuevo_almacen").modal("hide");
+                alertas(res.msg, res.icono);
+                tblAlmacenes.ajax.reload();
+            }  
         }
+    }
 }
 function btnEditarAlm(id){
     document.getElementById("title").innerHTML ="Actualizar Almacén";
@@ -969,7 +933,7 @@ function btnEliminarAlm(id){
         cancelButtonColor: '#d33',
         confirmButtonText: 'si',
         cancelButtonText:'No'
-      }).then((result) => {
+    }).then((result) => {
         if (result.isConfirmed) {
             const url = base_url +"Almacenes/eliminar/"+id;
             const http = new XMLHttpRequest();
@@ -978,24 +942,12 @@ function btnEliminarAlm(id){
             http.onreadystatechange = function(){
                 if(this.readyState == 4 && this.status == 200){
                   const res= JSON.parse(this.responseText);
-                    if(res == "ok"){
-                       Swal.fire(
-                        'Mensaje!',
-                        'Almacén eliminado con éxito.',
-                        'success'
-                        )
-                        tblAlmacenes.ajax.reload();
-                  }else{
-                    Swal.fire(
-                        'Mensaje!',
-                        res,
-                        'error'
-                        )
-                  }
+                  alertas(res.msg, res.icono);
+                  tblAlmacenes.ajax.reload();
                 }
             }
         }
-      })
+    })
 }
 function btnReingresarAlm(id){
     Swal.fire({
@@ -1006,7 +958,7 @@ function btnReingresarAlm(id){
         cancelButtonColor: '#d33',
         confirmButtonText: 'si',
         cancelButtonText:'No'
-      }).then((result) => {
+    }).then((result) => {
         if (result.isConfirmed) {
             const url = base_url +"Almacenes/reingresar/"+id;
             const http = new XMLHttpRequest();
@@ -1015,24 +967,12 @@ function btnReingresarAlm(id){
             http.onreadystatechange = function(){
                 if(this.readyState == 4 && this.status == 200){
                   const res= JSON.parse(this.responseText);
-                    if(res == "ok"){
-                       Swal.fire(
-                        'Mensaje!',
-                        'Almacén reingresado con éxito.',
-                        'success'
-                        )
-                        tblAlmacenes.ajax.reload();
-                  }else{
-                    Swal.fire(
-                        'Mensaje!',
-                        res,
-                        'error'
-                        )
-                  }
+                  tblAlmacenes.ajax.reload();
+                  alertas(res.msg, res.icono);   
                 }
             }
         }
-      })
+    })
 }
 /** Fin de almacenes */
 /*******************************/
@@ -1053,13 +993,7 @@ function registrarPro(e){
     const correo = document.getElementById("correo");
     const direccion = document.getElementById("direccion");
     if(nombre.value=="" || identidad.value=="" || n_identidad.value=="" || telefono.value==""||correo.value=="" ||direccion.value==""){
-        Swal.fire({
-            position: 'top-end',
-            icon: 'error',
-            title: 'Porfavor ingrese los datos, es obligatorios',
-            showConfirmButton: false,
-            timer: 3000
-          })
+        alertas('Todo los campos son obligatorios', 'warning');
     }else{
         const url = base_url +"Proveedores/registrar";
         const frm = document.getElementById("frmProveedor");
@@ -1069,39 +1003,10 @@ function registrarPro(e){
         http.onreadystatechange = function(){
             if(this.readyState == 4 && this.status == 200){
                 const res = JSON.parse(this.responseText);
-                if(res == "si" ){
-                    Swal.fire({
-                        position: 'top-end',
-                        icon: 'success',
-                        title: 'Proveedor registrado con éxito',
-                        showConfirmButton: false,
-                        timer: 3000
-                      })
-                      frm.reset();
-                      tblProveedores.ajax.reload();
-                      $("#nuevo_proveedor").modal("hide");
-
-                }else if (res == "modificado") {
-                    Swal.fire({
-                        position: 'top-end',
-                        icon: 'success',
-                        title: 'Proveedor modificado con éxito',
-                        showConfirmButton: false,
-                        timer: 3000
-                      })
-                      $("#nuevo_proveedor").modal("hide");
-                      tblProveedores.ajax.reload();
-                }else{
-                    Swal.fire({
-                        position: 'top-end',
-                        icon: 'error',
-                        title: res,
-                        showConfirmButton: false,
-                        timer: 3000
-                      })
-                }
+                $("#nuevo_proveedor").modal("hide");
+                alertas(res.msg, res.icono);
+                tblProveedores.ajax.reload();
             }
-
         }
     }
 }
@@ -1148,20 +1053,8 @@ function btnEliminarPro(id){
             http.onreadystatechange = function(){
                 if(this.readyState == 4 && this.status == 200){
                   const res= JSON.parse(this.responseText);
-                    if(res == "ok"){
-                       Swal.fire(
-                        'Mensaje!',
-                        'Proveedor eliminado con éxito.',
-                        'success'
-                        )
-                        tblProveedores.ajax.reload();
-                  }else{
-                    Swal.fire(
-                        'Mensaje!',
-                        res,
-                        'error'
-                        )
-                  }
+                  alertas(res.msg, res.icono);
+                  tblProveedores.ajax.reload();
                 }
             }
         }
@@ -1176,7 +1069,7 @@ function btnReingresarPro(id){
         cancelButtonColor: '#d33',
         confirmButtonText: 'si',
         cancelButtonText:'No'
-      }).then((result) => {
+    }).then((result) => {
         if (result.isConfirmed) {
             const url = base_url +"Proveedores/reingresar/"+id;
             const http = new XMLHttpRequest();
@@ -1185,24 +1078,12 @@ function btnReingresarPro(id){
             http.onreadystatechange = function(){
                 if(this.readyState == 4 && this.status == 200){
                   const res= JSON.parse(this.responseText);
-                    if(res == "ok"){
-                       Swal.fire(
-                        'Mensaje!',
-                        'Proveedor reingresado con éxito.',
-                        'success'
-                        )
-                        tblProveedores.ajax.reload();
-                  }else{
-                    Swal.fire(
-                        'Mensaje!',
-                        res,
-                        'error'
-                        )
-                  }
+                  tblProveedores.ajax.reload();
+                  alertas(res.msg, res.icono);
                 }
             }
         }
-      })
+    })
 }
 /** Fin de proveedores */
 /*******************************/
