@@ -1810,36 +1810,38 @@ function buscarProveedor(e){
 }
 function buscarCodigoEn(e) {
     e.preventDefault();
-    if(e.which == 13){
-        const cod = document.getElementById("codigo").value;
-        const url =base_url + "Entradas/buscarCodigoEn/"+ cod;
-        const http=new XMLHttpRequest();
-        http.open("GET", url, true);
-        http.send();
-        http.onreadystatechange=function(){
-                if(this.readyState == 4 && this.status ==200){
-                    const res =JSON.parse(this.responseText);
-                    if(res){
-                        document.getElementById("producto").value = res.nombre;
-                        document.getElementById("precio").value = res.precio_compra;
-                        document.getElementById("id").value = res.id;
-                        document.getElementById("rendimiento").focus();
-                        
-                    }else{
-                        Swal.fire({
-                            position: 'top-end',
-                            icon: 'error',
-                            title: 'El producto no existe',
-                            showConfirmButton: false,
-                         timer: 2000
-                        })
-                        document.getElementById("codigo").value='';
-                        document.getElementById("codigo").focus();
+    const cod = document.getElementById("codigo").value;
+    if(cod != '') {
+        if(e.which == 13){
+            const url =base_url + "Entradas/buscarCodigoEn/"+ cod;
+            const http=new XMLHttpRequest();
+            http.open("GET", url, true);
+            http.send();
+            http.onreadystatechange=function(){
+                    if(this.readyState == 4 && this.status ==200){
+                        const res =JSON.parse(this.responseText);
+                        if(res){
+                            document.getElementById("producto").value = res.nombre;
+                            document.getElementById("precio").value = res.precio_compra;
+                            document.getElementById("id").value = res.id;
+                            document.getElementById("rendimiento").removeAttribute('disabled');
+                            document.getElementById("rendimiento").focus();
+                            document.getElementById("peso_bruto").removeAttribute('disabled');
+                            document.getElementById("cantidad").removeAttribute('disabled');
+                        }else{
+                            alertas('El producto no existe', 'warning');
+                            document.getElementById("codigo").value='';
+                            document.getElementById("codigo").focus();
+                        }
+            
                     }
-        
-                }
+            }
         }
+    }else{
+        alertas('Ingrese el Código de Barras ', 'warning');
     }
+
+   
 }
 function calcularPrecioEn(e){
     e.preventDefault();
@@ -1859,28 +1861,13 @@ function calcularPrecioEn(e){
             http.onreadystatechange=function(){
                 if(this.readyState == 4 && this.status ==200){
                     const res = JSON.parse(this.responseText);
-                    if(res == 'ok'){
-                        Swal.fire({
-                            position: 'top-end',
-                            icon: 'success',
-                            title: 'Producto Ingresado',
-                            showConfirmButton: false,
-                            timer: 2000
-                        })
-                        frm.reset();
-                        cargaDetalleEn();
-                    }else if (res == 'modificado') {
-                        Swal.fire({
-                            position: 'top-end',
-                            icon: 'success',
-                            title: 'Producto Actualizado',
-                            showConfirmButton: false,
-                            timer: 2000
-                        })
-                        frm.reset();
-                        cargaDetalleEn();
-                    }
-                    
+                    alertas(res.msg, res.icono);
+                    frm.reset();
+                    cargaDetalleEn();
+                    document.getElementById("rendimiento").setAttribute('disabled', 'disabled');
+                    document.getElementById("peso_bruto").setAttribute('disabled', 'disabled');
+                    document.getElementById("cantidad").setAttribute('disabled', 'disabled');
+                    document.getElementById("codigo").focus();
                 }
             }
         }
@@ -2014,6 +2001,11 @@ function CancelarEntrada(){
             http.send();
             http.onreadystatechange=function(){
                 if(this.readyState == 4 && this.status ==200){
+                    document.getElementById("frmProductoEntrada").reset();
+                    document.getElementById("rendimiento").setAttribute('disabled', 'disabled');
+                    document.getElementById("peso_bruto").setAttribute('disabled', 'disabled');
+                    document.getElementById("cantidad").setAttribute('disabled', 'disabled');
+                    document.getElementById("codigo").focus();
                     const res = JSON.parse(this.responseText);
                     if (res.msg == "ok" ){
                         Swal.fire(
@@ -2244,6 +2236,7 @@ function CancelarSalida(){
             http.send();
             http.onreadystatechange=function(){
                 if(this.readyState == 4 && this.status ==200){
+                    document.getElementById("frmProductoSalida").reset();
                     const res = JSON.parse(this.responseText);
                     if (res.msg == "ok" ){
                         Swal.fire(
@@ -2251,7 +2244,6 @@ function CancelarSalida(){
                             'Salida Cancelada.',
                             'success'
                         )
-                        
                         setTimeout(() =>{
                             window.location.reload();
                         },300);
@@ -2505,6 +2497,7 @@ function CancelarVenta(){
             http.send();
             http.onreadystatechange=function(){
                 if(this.readyState == 4 && this.status ==200){
+                    document.getElementById("frmProductoVenta").reset();
                     const res = JSON.parse(this.responseText);
                     if (res.msg == "ok" ){
                         Swal.fire(
