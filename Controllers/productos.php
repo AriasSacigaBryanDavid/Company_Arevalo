@@ -4,7 +4,6 @@
             session_start();
             parent::__construct();
         }
-        
         public function index(){
             if (empty($_SESSION['activo'])) {
                 header("location: ".base_url);
@@ -31,8 +30,7 @@
                 }
             }
             echo json_encode($data, JSON_UNESCAPED_UNICODE);
-            die();
-            
+            die();  
         }
         public function registrar(){
             $codigo =$_POST['codigo'];
@@ -45,26 +43,25 @@
             $precio_venta=$_POST['precio_venta'];
             $id=$_POST['id'];
             if(empty($codigo) || empty($nombre) || empty($descripcion) || empty($marca)|| empty($categoria) || empty($unidad) || empty($precio_compra) || empty($precio_venta)){
-                $msg =" Todo los campos son obligatorios";
+                $msg =array('msg' =>'Todo los campos son obligatorios','icono'=>'warning');
             }else{
                 if ($id == ""){
                         $data= $this->model->registrarProducto($codigo, $nombre, $descripcion, $marca, $categoria, $unidad, $precio_compra, $precio_venta);
                         if ($data == "ok"){
-                            $msg = "si";  
+                            $msg =array('msg' =>'Producto registrado con éxito','icono'=>'success');
                         }else if($data =="existe") {
-                            $msg = "El Producto ya existe";
+                            $msg =array('msg' =>'El producto ya éxiste','icono'=>'warning');
                         }else {
-                            $msg="Error al registrar el producto";
+                            $msg =array('msg' =>'Error al registrar el producto','icono'=>'error');
                         }
                 }else {
                     $data= $this->model->modificarProducto($codigo, $nombre, $descripcion, $marca, $categoria, $unidad, $precio_compra, $precio_venta, $id);
                         if ($data == "modificado"){
-                            $msg = "modificado";  
+                            $msg =array('msg' =>'Producto modificado con éxito','icono'=>'success');
                         }else {
-                            $msg="Error al modificado el productos";
+                            $msg =array('msg' =>'Error al modificado el producto','icono'=>'error');
                         }
                 }
-                
             }
             echo json_encode($msg, JSON_UNESCAPED_UNICODE);
             die();
@@ -77,9 +74,9 @@
         public function eliminar(int $id){
             $data = $this->model->accionProd(0, $id);
             if($data == 1){
-                $msg ="ok";
+                $msg =array('msg' =>'Producto dado de baja','icono'=>'success');
             }else {
-                $msg ="Error al eliminar el producto ";
+                $msg =array('msg' =>'Error al eliminar el producto','icono'=>'error');
             }
             echo json_encode($msg, JSON_UNESCAPED_UNICODE);
             die();
@@ -87,9 +84,9 @@
         public function reingresar(int $id){
             $data = $this->model->accionProd(1, $id);
             if($data == 1){
-                $msg ="ok";
+                $msg =array('msg' =>'Producto reingresado con éxito','icono'=>'success');
             }else {
-                $msg ="Error al reingresar el producto ";
+                $msg =array('msg' =>'Error al reingresar el producto','icono'=>'error');
             }
             echo json_encode($msg, JSON_UNESCAPED_UNICODE);
             die();

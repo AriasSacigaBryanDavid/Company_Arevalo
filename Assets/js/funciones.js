@@ -1514,13 +1514,7 @@ function registrarProd(e){
     const precio_compra=document.getElementById("precio_compra");
     const precio_venta=document.getElementById("precio_venta");
     if(codigo.value=="" ||nombre.value == "" || descripcion.value== "" || marca.value== "" || categoria.value=="" || unidad.value=="" || precio_compra.value=="" || precio_venta.value=="") {
-        Swal.fire({
-            position: 'top-end',
-            icon: 'error',
-            title: 'Porfavor ingrese los datos, es obligatorio',
-            showConfirmButton: false,
-            timer: 3000
-          })
+        alertas('Todo los campos son obligatorios', 'warning');
     }else{
         const url =base_url + "Productos/registrar";
         const frm =document.getElementById("frmProducto");
@@ -1530,39 +1524,9 @@ function registrarProd(e){
         http.onreadystatechange=function(){
             if(this.readyState == 4 && this.status ==200){
                const res = JSON.parse(this.responseText);
-               if(res == "si"){
-                  Swal.fire({
-                    position: 'top-end',
-                    icon: 'success',
-                    title: 'Producto Registrado con éxito',
-                    showConfirmButton: false,
-                    timer: 3000
-                    })
-                  frm.reset();
-                  $("#nuevo_producto").modal("hide");
-                  tblProductos.ajax.reload();
-               }else if(res == "modificado"){
-                    Swal.fire({
-                        position: 'top-end',
-                        icon: 'success',
-                        title: 'Producto modificado con éxito',
-                        showConfirmButton: false,
-                        timer: 3000
-                    })
-                    $("#nuevo_producto").modal("hide");
-                    tblProductos.ajax.reload();
-               }else{
-                    Swal.fire({
-                        position: 'top-end',
-                        icon: 'error',
-                        title: res,
-                        showConfirmButton: false,
-                     timer: 3000
-                    })
-               }
-                   
-                
-            
+               $("#nuevo_producto").modal("hide");
+               alertas(res.msg, res.icono);
+               tblProductos.ajax.reload();
             }
         }
     }
@@ -1602,7 +1566,7 @@ function btnEliminarProd(id){
         cancelButtonColor: '#d33',
         confirmButtonText: 'si',
         cancelButtonText:'No'
-      }).then((result) => {
+    }).then((result) => {
         if (result.isConfirmed) {
             const url =base_url + "Productos/eliminar/"+id;
             const http=new XMLHttpRequest();
@@ -1611,25 +1575,12 @@ function btnEliminarProd(id){
             http.onreadystatechange=function(){
                 if(this.readyState == 4 && this.status ==200){
                     const res = JSON.parse(this.responseText);
-                    if (res == "ok" ){
-                        Swal.fire(
-                            'Mensaje!',
-                            'Producto eliminado con éxito.',
-                            'success'
-                        )
-                        tblProductos.ajax.reload();
-                    }else{
-                        Swal.fire(
-                            'Mensaje!',
-                            res,
-                            'error'
-                        )
-                    }
+                    alertas(res.msg, res.icono);
+                    tblProductos.ajax.reload();
                 }
-            }
-            
+            } 
         }
-      })
+    })
 }
 function btnReingresarProd(id){
     Swal.fire({
@@ -1640,7 +1591,7 @@ function btnReingresarProd(id){
         cancelButtonColor: '#d33',
         confirmButtonText: 'si',
         cancelButtonText:'No'
-      }).then((result) => {
+    }).then((result) => {
         if (result.isConfirmed) {
             const url =base_url + "Productos/reingresar/"+id;
             const http=new XMLHttpRequest();
@@ -1649,25 +1600,12 @@ function btnReingresarProd(id){
             http.onreadystatechange=function(){
                 if(this.readyState == 4 && this.status ==200){
                     const res = JSON.parse(this.responseText);
-                    if (res == "ok" ){
-                        Swal.fire(
-                            'Mensaje!',
-                            'Producto reingresado con éxito.',
-                            'success'
-                        )
-                        tblProductos.ajax.reload();
-                    }else{
-                        Swal.fire(
-                            'Mensaje!',
-                            res,
-                            'error'
-                        )
-                    }
+                    tblProductos.ajax.reload();
+                    alertas(res.msg, res.icono);   
                 }
             }
-            
         }
-      })
+    })
 }
 /** Fin de Usuario */
 /*******************************/
