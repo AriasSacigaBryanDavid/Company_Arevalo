@@ -1829,7 +1829,7 @@ function buscarCodigoEn(e) {
                             document.getElementById("peso_bruto").removeAttribute('disabled');
                             document.getElementById("cantidad").removeAttribute('disabled');
                         }else{
-                            alertas('El producto no existe', 'warning');
+                            alertas('El producto no éxiste', 'warning');
                             document.getElementById("codigo").value='';
                             document.getElementById("codigo").focus();
                         }
@@ -2035,36 +2035,36 @@ function CancelarEntrada(){
 /** Inicio de salidas */
 function buscarCodigoSa(e) {
     e.preventDefault();
-    if(e.which == 13){
-        const cod = document.getElementById("codigo").value;
-        const url =base_url + "Salidas/buscarCodigoSa/"+ cod;
-        const http=new XMLHttpRequest();
-        http.open("GET", url, true);
-        http.send();
-        http.onreadystatechange=function(){
+    const cod = document.getElementById("codigo").value;
+    if (cod != '') {
+        if(e.which == 13){
+            const url =base_url + "Salidas/buscarCodigoSa/"+ cod;
+            const http=new XMLHttpRequest();
+            http.open("GET", url, true);
+            http.send();
+            http.onreadystatechange=function(){
                 if(this.readyState == 4 && this.status ==200){
                     const res =JSON.parse(this.responseText);
                     if(res){
                         document.getElementById("producto").value = res.nombre;
                         document.getElementById("precio").value = res.precio_venta;
                         document.getElementById("id").value = res.id;
+                        document.getElementById("peso_bruto").removeAttribute('disabled');
                         document.getElementById("peso_bruto").focus();
-                        
+                        document.getElementById("cantidad").removeAttribute('disabled');
                     }else{
-                        Swal.fire({
-                            position: 'top-end',
-                            icon: 'error',
-                            title: 'El producto no existe',
-                            showConfirmButton: false,
-                         timer: 2000
-                        })
+                        alertas('El producto no éxiste', 'warning');
                         document.getElementById("codigo").value='';
                         document.getElementById("codigo").focus();
                     }
-        
                 }
-        }
+            }
+        } 
+    }else{
+        alertas('Ingrese el Código de Barras ', 'warning');
     }
+
+    
  }
 function calcularPrecioSa(e){
     e.preventDefault();
@@ -2084,27 +2084,12 @@ function calcularPrecioSa(e){
             http.onreadystatechange=function(){
                 if(this.readyState == 4 && this.status ==200){
                     const res = JSON.parse(this.responseText);
-                    if(res == 'ok'){
-                        Swal.fire({
-                            position: 'top-end',
-                            icon: 'success',
-                            title: 'Producto Ingresado',
-                            showConfirmButton: false,
-                            timer: 2000
-                        })
-                        frm.reset();
-                        cargaDetalleSa();
-                    }else if (res == 'modificado') {
-                        Swal.fire({
-                            position: 'top-end',
-                            icon: 'success',
-                            title: 'Producto Actualizado',
-                            showConfirmButton: false,
-                            timer: 2000
-                        })
-                        frm.reset();
-                        cargaDetalleSa();
-                    }
+                    alertas(res.msg, res.icono);
+                    frm.reset();
+                    cargaDetalleSa();
+                    document.getElementById("peso_bruto").setAttribute('disabled', 'disabled');
+                    document.getElementById("cantidad").setAttribute('disabled', 'disabled');
+                    document.getElementById("codigo").focus();
                     
                 }
             }
@@ -2237,6 +2222,9 @@ function CancelarSalida(){
             http.onreadystatechange=function(){
                 if(this.readyState == 4 && this.status ==200){
                     document.getElementById("frmProductoSalida").reset();
+                    document.getElementById("peso_bruto").setAttribute('disabled', 'disabled');
+                    document.getElementById("cantidad").setAttribute('disabled', 'disabled');
+                    document.getElementById("codigo").focus();
                     const res = JSON.parse(this.responseText);
                     if (res.msg == "ok" ){
                         Swal.fire(
@@ -2296,35 +2284,36 @@ function buscarCliente(e){
 }
 function buscarCodigoVe(e) {
     e.preventDefault();
-    if(e.which == 13){
-        const cod = document.getElementById("codigo").value;
-        const url =base_url + "Ventas/buscarCodigoVe/"+ cod;
-        const http=new XMLHttpRequest();
-        http.open("GET", url, true);
-        http.send();
-        http.onreadystatechange=function(){
-                if(this.readyState == 4 && this.status ==200){
-                    const res =JSON.parse(this.responseText);
-                    if(res){
-                        document.getElementById("producto").value = res.nombre;
-                        document.getElementById("precio").value = res.precio_venta;
-                        document.getElementById("id").value = res.id;
-                        document.getElementById("peso_bruto").focus();
-                        
-                    }else{
-                        Swal.fire({
-                            position: 'top-end',
-                            icon: 'error',
-                            title: 'El producto no existe',
-                            showConfirmButton: false,
-                         timer: 2000
-                        })
-                        document.getElementById("codigo").value='';
-                        document.getElementById("codigo").focus();
+    const cod = document.getElementById("codigo").value;
+    if (cod != '') {
+        if(e.which == 13){
+            const url =base_url + "Ventas/buscarCodigoVe/"+ cod;
+            const http=new XMLHttpRequest();
+            http.open("GET", url, true);
+            http.send();
+            http.onreadystatechange=function(){
+                    if(this.readyState == 4 && this.status ==200){
+                        const res =JSON.parse(this.responseText);
+                        if(res){
+                            document.getElementById("producto").value = res.nombre;
+                            document.getElementById("precio").value = res.precio_venta;
+                            document.getElementById("id").value = res.id;
+                            document.getElementById("peso_bruto").removeAttribute('disabled');
+                            document.getElementById("peso_bruto").focus();
+                            document.getElementById("cantidad").removeAttribute('disabled');
+
+                            
+                        }else{
+                            alertas('El producto no éxiste', 'warning');
+                            document.getElementById("codigo").value='';
+                            document.getElementById("codigo").focus();
+                        }
+            
                     }
-        
-                }
+            }
         }
+    }else{
+        alertas('Ingrese el Código de Barras ', 'warning');
     }
 }
 function calcularPrecioVe(e){
@@ -2345,28 +2334,12 @@ function calcularPrecioVe(e){
             http.onreadystatechange=function(){
                 if(this.readyState == 4 && this.status ==200){
                     const res = JSON.parse(this.responseText);
-                    if(res == 'ok'){
-                        Swal.fire({
-                            position: 'top-end',
-                            icon: 'success',
-                            title: 'Producto Ingresado',
-                            showConfirmButton: false,
-                            timer: 2000
-                        })
-                        frm.reset();
-                        cargaDetalleVe();
-                    }else if (res == 'modificado') {
-                        Swal.fire({
-                            position: 'top-end',
-                            icon: 'success',
-                            title: 'Producto Actualizado',
-                            showConfirmButton: false,
-                            timer: 2000
-                        })
-                        frm.reset();
-                        cargaDetalleVe();
-                    }
-                    
+                    alertas(res.msg, res.icono);
+                    frm.reset();
+                    cargaDetalleVe();
+                    document.getElementById("peso_bruto").setAttribute('disabled', 'disabled');
+                    document.getElementById("cantidad").setAttribute('disabled', 'disabled');
+                    document.getElementById("codigo").focus();
                 }
             }
         }
@@ -2498,6 +2471,9 @@ function CancelarVenta(){
             http.onreadystatechange=function(){
                 if(this.readyState == 4 && this.status ==200){
                     document.getElementById("frmProductoVenta").reset();
+                    document.getElementById("peso_bruto").setAttribute('disabled', 'disabled');
+                    document.getElementById("cantidad").setAttribute('disabled', 'disabled');
+                    document.getElementById("codigo").focus();
                     const res = JSON.parse(this.responseText);
                     if (res.msg == "ok" ){
                         Swal.fire(

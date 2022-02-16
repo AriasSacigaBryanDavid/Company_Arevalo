@@ -71,13 +71,13 @@
                     <div class="col-md-3">
                         <div class="form-group">
                             <label for="peso_bruto">Peso Bruto </label>
-                            <input id="peso_bruto" class="form-control" type="text" name="peso_bruto" placeholder="0.00" >
+                            <input id="peso_bruto" class="form-control" type="text" name="peso_bruto" placeholder="0.00" disabled>
                         </div>
                     </div>
                     <div class="col-md-2">
                         <div class="form-group">
                             <label for="cantidad">Cantidad</label>
-                            <input id="cantidad" class="form-control" type="number" name="cantidad" onkeyup="calcularPrecioSa(event)">
+                            <input id="cantidad" class="form-control" type="number" name="cantidad" onkeyup="calcularPrecioSa(event)" disabled>
                         </div>
                     </div>
                     <div class="col-md-2">

@@ -35,9 +35,10 @@
                 $data= $this->model->registrarDetalle($id_producto, $id_usuario, $peso_bruto, $cantidad, $kilos_tara, $peso_neto, $precio, $sub_total);
                 
                 if($data == "ok"){
-                    $msg = "ok";
+                    $msg =array('msg' =>'Producto ingresado a la salida','icono'=>'success');
                 }else{
-                    $msg = "Error al ingresar el producto";
+                    $msg =array('msg' =>'Error al ingresar el producto a la salida','icono'=>'error');
+                    
                 }
             }else{
                 $total_peso_bruto= $comprobar['peso_bruto'] + $peso_bruto;
@@ -50,9 +51,9 @@
                 $data= $this->model->actualizarDetalle($total_peso_bruto, $total_cantidad, $kilos_tara, $peso_neto, $precio, $sub_total, $id_producto, $id_usuario);
                 
                 if($data == "modificado"){
-                    $msg = "modificado";
+                    $msg =array('msg' =>'Producto actualizado','icono'=>'success');
                 }else{
-                    $msg = "Error al modificar el producto";
+                    $msg =array('msg' =>'Error al actualizar el producto','icono'=>'error');
                 }
             }
             echo json_encode($msg, JSON_UNESCAPED_UNICODE);
