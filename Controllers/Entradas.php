@@ -87,8 +87,9 @@
             $n_documento =$_POST['n_documento'];
             $id_proveedor = $_POST['proveedor'];
             $id_usuario = $_SESSION['id_usuario'];
+            $id_almacen = $this->model->getAlmacen($id_usuario);
             $total = $this->model->calcularEntrada($id_usuario);
-            $data = $this->model->registrarEntrada($n_documento,$id_proveedor,$id_usuario,$total['total']);
+            $data = $this->model->registrarEntrada($n_documento,$id_proveedor,$id_usuario,$id_almacen['id_almacen'],$total['total']);
             if($data == 'ok'){
                 $detalle = $this->model->getDetalle($id_usuario);
                 $id_entrada = $this->model->id_entrada();

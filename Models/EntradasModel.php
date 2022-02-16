@@ -87,9 +87,9 @@
             }
             return $res;
         }
-        public function registrarEntrada(string $n_documento,int $id_proveedor,int $id_usuario, string $total){
-            $sql = "INSERT INTO entradas(n_documento,id_proveedor,id_usuario, total) VALUES (?,?,?,?)";
-            $datos = array($n_documento,$id_proveedor,$id_usuario,$total);
+        public function registrarEntrada(string $n_documento,int $id_proveedor,int $id_usuario,int $id_almacen, string $total){
+            $sql = "INSERT INTO entradas(n_documento,id_proveedor,id_usuario, id_almacen, total) VALUES (?,?,?,?,?)";
+            $datos = array($n_documento,$id_proveedor,$id_usuario,$id_almacen,$total);
             $data = $this->save($sql, $datos);
             if($data ==1){
                 $res = "ok";
@@ -98,7 +98,6 @@
             }
             return $res;
         }
-        
         public function id_entrada(){
             $sql = "SELECT MAX(id) AS id FROM entradas";
             $data = $this->select($sql);
@@ -153,6 +152,11 @@
             $sql = "UPDATE productos SET peso_total =? WHERE id=?";
             $datos = array($peso_total, $id_pro);
             $data = $this->save($sql, $datos);
+            return $data;
+        }
+        public function getAlmacen($id_usuario){
+            $sql = "SELECT id_almacen AS id_almacen FROM usuarios WHERE id=$id_usuario";
+            $data = $this->select($sql);
             return $data;
         }
        
