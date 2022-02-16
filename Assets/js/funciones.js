@@ -1953,15 +1953,16 @@ function generarEntrada(){
         cancelButtonText:'No'
       }).then((result) => {
         if (result.isConfirmed) {
+            //const n_documento= document.getElementById('n_documento').value;
             const id_proveedor = document.getElementById('proveedor').value;
-            const url =base_url + "Entradas/registrarEntrada/" + id_proveedor ;
+            const url =base_url + "Entradas/registrarEntrada/"+id_proveedor;
             const http=new XMLHttpRequest();
             http.open("GET", url, true);
             http.send();
             http.onreadystatechange=function(){
             if(this.readyState == 4 && this.status ==200){
-                    const res = JSON.parse(this.responseText);
-                    if (res.msg == "ok" ){
+                const res = JSON.parse(this.responseText);
+                if (res.msg == "ok" ){
                         Swal.fire(
                             'Mensaje!',
                             'Entrada generada.',
@@ -1972,15 +1973,17 @@ function generarEntrada(){
                         setTimeout(() =>{
                             window.location.reload();
                         },300);
-                    }else{
+                }else{
                         Swal.fire(
                             'Mensaje!',
                             res,
                             'error'
                         )
-                    }
                 }
             }
+            }
+            
+            
             
             
             
