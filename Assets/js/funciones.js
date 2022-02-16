@@ -2,6 +2,7 @@ let tblUsuarios , tblCargos, tblAlmacenes, tblProveedores,tblCategorias,tblMarca
 
 /** Inicio de Usuario */
 document.addEventListener("DOMContentLoaded", function(){
+    //$('#identidad').select2();
     tblUsuarios = $('#tblUsuarios').DataTable( {
         ajax: {
             url: base_url + "Usuarios/listar",
