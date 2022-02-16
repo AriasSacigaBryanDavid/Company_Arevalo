@@ -1954,11 +1954,13 @@ function generarEntrada(){
       }).then((result) => {
         if (result.isConfirmed) {
             //const n_documento= document.getElementById('n_documento').value;
-            const id_proveedor = document.getElementById('proveedor').value;
-            const url =base_url + "Entradas/registrarEntrada/"+id_proveedor;
+            //const id_proveedor = document.getElementById('proveedor').value;
+            
+            const frm = document.getElementById('frmDatoEntrada');
+            const url =base_url + "Entradas/registrarEntrada";
             const http=new XMLHttpRequest();
-            http.open("GET", url, true);
-            http.send();
+            http.open("POST", url, true);
+            http.send(new FormData(frm));
             http.onreadystatechange=function(){
             if(this.readyState == 4 && this.status ==200){
                 const res = JSON.parse(this.responseText);
