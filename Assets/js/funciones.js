@@ -1970,6 +1970,7 @@ function generarEntrada(){
                             'Entrada generada.',
                             'success'
                         )
+                        document.getElementById("frmDatoEntrada").reset();
                         const ruta =base_url +'Entradas/generarPdf/'+ res.id_entrada;
                         window.open(ruta);
                         setTimeout(() =>{
@@ -2009,6 +2010,7 @@ function CancelarEntrada(){
             http.send();
             http.onreadystatechange=function(){
                 if(this.readyState == 4 && this.status ==200){
+                    document.getElementById("frmDatoEntrada").reset();
                     document.getElementById("frmProductoEntrada").reset();
                     document.getElementById("rendimiento").setAttribute('disabled', 'disabled');
                     document.getElementById("peso_bruto").setAttribute('disabled', 'disabled');
