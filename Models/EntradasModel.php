@@ -4,41 +4,31 @@
         public function __construct(){
             parent::__construct();
         }
-        public function getDocumentos(){
-            $sql="SELECT * FROM documentos WHERE estado=1";
+        //public function getDocumentos(){
+          //  $sql="SELECT * FROM documentos WHERE estado=1";
+           // $data =$this->selectAll($sql);
+            //return $data;
+        //}
+        //public function getAlmacenes(){
+          //  $sql="SELECT * FROM almacenes WHERE estado=1";
+           // $data =$this->selectAll($sql);
+           // return $data;
+        //}
+        //public function getIdentidades(){
+          //  $sql="SELECT * FROM identidades WHERE estado=1";
+           // $data =$this->selectAll($sql);
+           // return $data;
+        //}
+        public function getProveedores(){
+            $sql="SELECT * FROM proveedores WHERE estado=1";
             $data =$this->selectAll($sql);
             return $data;
         }
-        public function getAlmacenes(){
-            $sql="SELECT * FROM almacenes WHERE estado=1";
-            $data =$this->selectAll($sql);
-            return $data;
-        }
-        public function getIdentidades(){
-            $sql="SELECT * FROM identidades WHERE estado=1";
-            $data =$this->selectAll($sql);
-            return $data;
-        }
-        public function getMarcas(){
-            $sql="SELECT * FROM marcas WHERE estado=1";
-            $data =$this->selectAll($sql);
-            return $data;
-        }
-        public function getCategorias(){
-            $sql="SELECT * FROM categorias WHERE estado=1";
-            $data =$this->selectAll($sql);
-            return $data;
-        }
-        public function getUnidades(){
-            $sql="SELECT * FROM unidades WHERE estado=1";
-            $data =$this->selectAll($sql);
-            return $data;
-        }
-        public function getNidentidad(string $pro){
-            $sql= "SELECT* FROM proveedores WHERE n_identidad='$pro'";
-            $data = $this->select($sql);
-            return $data;
-        }
+        //public function getNidentidad(string $pro){
+          //  $sql= "SELECT* FROM proveedores WHERE n_identidad='$pro'";
+           // $data = $this->select($sql);
+           // return $data;
+        //}
         public function getProCod(string $cod){
             $sql= "SELECT* FROM productos WHERE codigo='$cod' AND estado=1";
             $data = $this->select($sql);
@@ -97,9 +87,9 @@
             }
             return $res;
         }
-        public function registrarEntrada(int $id_usuario, string $total){
-            $sql = "INSERT INTO entradas(id_usuario, total) VALUES (?,?)";
-            $datos = array($id_usuario,  $total);
+        public function registrarEntrada(int $id_proveedor,int $id_usuario, string $total){
+            $sql = "INSERT INTO entradas(id_proveedor, id_usuario, total) VALUES (?,?,?)";
+            $datos = array($id_proveedor, $id_usuario,  $total);
             $data = $this->save($sql, $datos);
             if($data ==1){
                 $res = "ok";

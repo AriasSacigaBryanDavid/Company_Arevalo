@@ -9,19 +9,17 @@
             if (empty($_SESSION['activo'])) {
                 header("location: ".base_url);
             }
-            $data['documentos']=$this->model->getDocumentos();
-            $data['almacenes']=$this->model->getAlmacenes();
-            $data['identidad']=$this->model->getIdentidades();
-            $data['marcas']=$this->model->getMarcas();
-            $data['categorias']=$this->model->getCategorias();
-            $data['unidades']=$this->model->getUnidades();
+            //$data['documentos']=$this->model->getDocumentos();
+            //$data['almacenes']=$this->model->getAlmacenes();
+            //$data['identidad']=$this->model->getIdentidades();
+            $data['proveedores']=$this->model->getProveedores();
             $this->views->getView($this,"index", $data);
         }
-        public function buscarProveedor($pro){
-            $data =$this->model->getNidentidad($pro);
-            echo json_encode($data, JSON_UNESCAPED_UNICODE);
-            die();
-        }
+        //public function buscarProveedor($pro){
+          //  $data =$this->model->getNidentidad($pro);
+          //  echo json_encode($data, JSON_UNESCAPED_UNICODE);
+          //  die();
+        // }
         public function buscarCodigoEn($cod){
             $data =$this->model->getProCod($cod);
             echo json_encode($data, JSON_UNESCAPED_UNICODE);
@@ -85,10 +83,10 @@
             echo json_encode($msg);
             die();
         }
-        public function registrarEntrada(){
+        public function registrarEntrada($id_proveedor){
             $id_usuario = $_SESSION['id_usuario'];
             $total = $this->model->calcularEntrada($id_usuario);
-            $data = $this->model->registrarEntrada($id_usuario,$total['total']);
+            $data = $this->model->registrarEntrada($id_proveedor,$id_usuario,$total['total']);
             if($data == 'ok'){
                 $detalle = $this->model->getDetalle($id_usuario);
                 $id_entrada = $this->model->id_entrada();

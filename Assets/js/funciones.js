@@ -2,7 +2,7 @@ let tblUsuarios , tblCargos, tblAlmacenes, tblProveedores,tblCategorias,tblMarca
 
 /** Inicio de Usuario */
 document.addEventListener("DOMContentLoaded", function(){
-    //$('#identidad').select2();
+    $('#proveedor').select2();
     tblUsuarios = $('#tblUsuarios').DataTable( {
         ajax: {
             url: base_url + "Usuarios/listar",
@@ -1778,7 +1778,7 @@ function btnReingresarDoc(id){
 /*******************************/
 /*******************************/
 /** Inicio de entradas */
-function buscarProveedor(e){
+/**function buscarProveedor(e){
     e.preventDefault();
     if(e.which == 13){
         const pro = document.getElementById("n_identidad").value;
@@ -1809,6 +1809,7 @@ function buscarProveedor(e){
         }
     }
 }
+*/
 function buscarCodigoEn(e) {
     e.preventDefault();
     const cod = document.getElementById("codigo").value;
@@ -1952,7 +1953,8 @@ function generarEntrada(){
         cancelButtonText:'No'
       }).then((result) => {
         if (result.isConfirmed) {
-            const url =base_url + "Entradas/registrarEntrada" ;
+            const id_proveedor = document.getElementById('proveedor').value;
+            const url =base_url + "Entradas/registrarEntrada/" + id_proveedor ;
             const http=new XMLHttpRequest();
             http.open("GET", url, true);
             http.send();

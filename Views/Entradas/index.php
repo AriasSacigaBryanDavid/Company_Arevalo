@@ -139,7 +139,7 @@
     <div class="card-body">
         <form id="frmDatoEntrada">
             <div class="row">
-                <div class="col-md-3">
+               <!-- <div class="col-md-3">
                     <div class="form-group mb-3">
                         <label for="documento">Documento</label>
                             <select id="documento" class="form-control" name="documento">
@@ -167,8 +167,18 @@
                         <label for="nombre_proveedor">Nombre de Proveedor</label>
                         <input id="nombre_proveedor" class="form-control" type="text" name="nombre_proveedor" placeholder="Nombre del Proveedor" disabled>
                     </div>
+                </div>-->
+                <div class="col-md-3">
+                    <div class="form-group mb-3">
+                        <label for="proveedor">Proveedor</label>
+                            <select id="proveedor" class="form-control" name="proveedor">
+                                <?php foreach ($data['proveedores'] as $row) { ?>
+                                    <option value="<?php echo $row['id']; ?>"><?php echo $row['nombre']; ?></option>
+                                <?php } ?>
+                            </select>
+                    </div>
                 </div>
-                </div>
+            </div>
 
         </form>
     </div>
