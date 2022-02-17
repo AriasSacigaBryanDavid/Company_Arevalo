@@ -10,6 +10,11 @@
     <thead class="thead-dark">
         <tr>
             <th>ID</th>
+            <th>Documento</th>
+            <th>N° Documento</th>
+            <th>Proveedor</th>
+            <th>Usuario</th>
+            <th>Almacén</th>
             <th>Total</th>
             <th>Fecha Compra</th>
             <th></th>

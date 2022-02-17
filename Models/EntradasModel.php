@@ -138,7 +138,7 @@
         }
         
         public function getHistorialEntradas(){
-            $sql= "SELECT * FROM entradas";
+            $sql= "SELECT e.*, d.id AS id_documento, d.nombre AS documento, p.id AS id_proveedor, p.nombre AS proveedor, u.id AS id_usuario, u.nombre AS usuario, a.id AS id_almacen, a.nombre AS almacen FROM entradas e INNER JOIN documentos d ON e.id_documento=d.id INNER JOIN proveedores p ON e.id_proveedor=p.id INNER JOIN usuarios u ON e.id_usuario=u.id INNER JOIN almacenes a ON e.id_almacen =a.id;";
             $data= $this->selectAll($sql);
             return $data;
         }

@@ -441,11 +441,16 @@ document.addEventListener("DOMContentLoaded", function(){
      /** Inicio de historial de entradas */
     $('#t_historial_e').DataTable( {
         ajax: {
-            url: base_url + "Entradas/listar_historial" ,
+            url: base_url + "Entradas/listar_historial",
             dataSrc: ''
         },
         columns: [
             {'data' : 'id'},
+            {'data' : 'documento'},
+            {'data' : 'n_documento'},
+            {'data' : 'proveedor'},
+            {'data' : 'usuario'},
+            {'data' : 'almacen'},
             {'data' : 'total'},
             {'data' : 'fecha'},
             {'data' : 'acciones'}
