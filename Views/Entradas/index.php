@@ -9,13 +9,23 @@
     <div class="card-body">
         <form id="frmDatoEntrada">
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-3">
+                    <div class="form-group mb-3">
+                        <label for="documento">Tipo de Documento</label>
+                        <select id="documento" class="form-control" name="documento">
+                            <?php foreach ($data['documentos'] as $row) { ?>
+                                <option value="<?php echo $row['id']; ?>"><?php echo $row['nombre']; ?></option>
+                            <?php } ?>
+                        </select>
+                    </div>
+                </div>  
+                <div class="col-md-4">
                     <div class="form-group mb-3">
                         <label for="n_documento">N° de  Documentos</label>
                         <input id="n_documento" class="form-control" type="text" name="n_documento" placeholder="N° de Documento">
                     </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-5">
                     <div class="form-group mb-3">
                         <label for="proveedor">Proveedor</label>
                         <select id="proveedor" class="form-control" name="proveedor">

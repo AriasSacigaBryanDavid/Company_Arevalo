@@ -4,11 +4,11 @@
         public function __construct(){
             parent::__construct();
         }
-        //public function getDocumentos(){
-          //  $sql="SELECT * FROM documentos WHERE estado=1";
-           // $data =$this->selectAll($sql);
-            //return $data;
-        //}
+        public function getDocumentos(){
+            $sql="SELECT * FROM documentos WHERE estado=1";
+            $data =$this->selectAll($sql);
+            return $data;
+        }
         //public function getAlmacenes(){
           //  $sql="SELECT * FROM almacenes WHERE estado=1";
            // $data =$this->selectAll($sql);
@@ -87,9 +87,9 @@
             }
             return $res;
         }
-        public function registrarEntrada(string $n_documento,int $id_proveedor,int $id_usuario,int $id_almacen, string $total){
-            $sql = "INSERT INTO entradas(n_documento,id_proveedor,id_usuario, id_almacen, total) VALUES (?,?,?,?,?)";
-            $datos = array($n_documento,$id_proveedor,$id_usuario,$id_almacen,$total);
+        public function registrarEntrada(int $id_documento, string $n_documento,int $id_proveedor,int $id_usuario,int $id_almacen, string $total){
+            $sql = "INSERT INTO entradas(id_documento,n_documento,id_proveedor,id_usuario, id_almacen, total) VALUES (?,?,?,?,?,?)";
+            $datos = array($id_documento,$n_documento,$id_proveedor,$id_usuario,$id_almacen,$total);
             $data = $this->save($sql, $datos);
             if($data ==1){
                 $res = "ok";

@@ -9,7 +9,7 @@
             if (empty($_SESSION['activo'])) {
                 header("location: ".base_url);
             }
-            //$data['documentos']=$this->model->getDocumentos();
+            $data['documentos']=$this->model->getDocumentos();
             //$data['almacenes']=$this->model->getAlmacenes();
             //$data['identidad']=$this->model->getIdentidades();
             $data['proveedores']=$this->model->getProveedores();
@@ -84,12 +84,13 @@
             die();
         }
         public function registrarEntrada(){
+            $id_documento=$_POST['documento'];
             $n_documento =$_POST['n_documento'];
             $id_proveedor = $_POST['proveedor'];
             $id_usuario = $_SESSION['id_usuario'];
             $id_almacen = $this->model->getAlmacen($id_usuario);
             $total = $this->model->calcularEntrada($id_usuario);
-            $data = $this->model->registrarEntrada($n_documento,$id_proveedor,$id_usuario,$id_almacen['id_almacen'],$total['total']);
+            $data = $this->model->registrarEntrada($id_documento,$n_documento,$id_proveedor,$id_usuario,$id_almacen['id_almacen'],$total['total']);
             if($data == 'ok'){
                 $detalle = $this->model->getDetalle($id_usuario);
                 $id_entrada = $this->model->id_entrada();
