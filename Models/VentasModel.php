@@ -137,7 +137,7 @@
             $data = $this->save($sql, $datos);
             return $data;
         }
-        public function getAlmacen($id_usuario){
+        public function getAlmacen(int $id_usuario){
             $sql = "SELECT id_almacen AS id_almacen FROM usuarios WHERE id=$id_usuario";
             $data = $this->select($sql);
             return $data;

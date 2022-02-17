@@ -72,11 +72,23 @@
         public function accionUser(int $estado, int $id){
             $this->id= $id;
             $this->estado =$estado;
-            $sql = "UPDATE usuarios SET estado=? where id=? ";
+            $sql = "UPDATE usuarios SET estado=? WHERE id=? ";
             $datos= array($this->estado, $this->id);
             $data = $this->save ($sql, $datos);
             return $data;
         }
+        public function modificarPass(string $contrasena, int $id){
+            $sql = "UPDATE usuarios SET contrasena=? WHERE id=? ";
+            $datos= array($contrasena, $id);
+            $data = $this->save ($sql, $datos);
+            return $data;
+        }
+        public function getPass(string $contrasena, int $id){
+            $sql = "SELECT * FROM usuarios WHERE contrasena='$contrasena' AND id=$id";
+            $data = $this->select($sql);
+            return $data;
+        }
+        
 
     }
 

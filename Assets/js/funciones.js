@@ -656,6 +656,38 @@ document.addEventListener("DOMContentLoaded", function(){
     });
 /** Fin de historial de ventas */
 })
+/** Inicio de Actualizar contraseña */
+function frmCambiarPass(e) {
+    e.preventDefault();
+    const actual = document.getElementById('contrasena_actual').value;
+    const nueva = document.getElementById('contrasena_nueva').value;
+    const confirmar = document.getElementById('confirmar_contrasena').value;
+    if(actual ==""|| nueva ==""|| confirmar==""){
+        alertas('Todo los campos son obligatorios', 'warning');
+        return false;
+    }else{
+        if (nueva != confirmar ) {
+            alertas('Las contraseñas no coinciden', 'warning');
+            return false;
+        }else{
+            const url =base_url + "Usuarios/cambiarPass";
+            const frm =document.getElementById("frmCambiarPass");
+            const http=new XMLHttpRequest();
+            http.open("POST", url, true);
+            http.send( new FormData(frm));
+            http.onreadystatechange=function(){
+                if(this.readyState == 4 && this.status ==200){
+                const res = JSON.parse(this.responseText);
+                $("#cambiarPass").modal("hide");
+                alertas(res.msg, res.icono);
+                document.getElementById("frmCambiarPass").reset();
+                }
+            }
+        }
+    }
+}
+
+/** Fin de Actualizar contraseña */
 /** Inicio de Usuario */
 function frmUsuario(){
     document.getElementById("title").innerHTML = "Registrar usuario";

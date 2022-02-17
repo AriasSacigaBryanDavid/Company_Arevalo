@@ -15,6 +15,36 @@
                 </footer>
             </div>
         </div>
+        <!-- modal para modificar contraseña-->
+        <div id="cambiarPass" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="my-modal-title" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header bg-dark text-white">
+                        <h5 class="modal-title" >Modificar Contraseña</h5>
+                        <button class="btn-close bg-white" data-dismiss="modal" aria-label="Close">
+                            <!--<span aria-hidden="true">&times;</span>-->
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="frmCambiarPass" onsubmit="frmCambiarPass(event);" >
+                            <div class="form-group">
+                                <label for="contrasena_actual">Contraseña Actual</label>
+                                <input id="contrasena_actual" class="form-control" type="password" name="contrasena_actual" placeholder="Contraseña Actual">
+                            </div>
+                            <div class="form-group">
+                                <label for="contrasena_nueva">Contraseña Nueva</label>
+                                <input id="contrasena_nueva" class="form-control" type="password" name="contrasena_nueva" placeholder="Contraseña Nueva">
+                            </div>
+                            <div class="form-group">
+                                <label for="confirmar_contrasena">Confirmar Contraseña</label>
+                                <input id="confirmar_contrasena" class="form-control" type="password" name="confirmar_contrasena" placeholder="Confirmar contraseña">
+                            </div>
+                            <button class="btn btn-primary" type="submit">Modificar</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
         <script src="<?php echo base_url; ?>Assets/js/jquery-3.6.0.min.js" crossorigin="anonymous"></script>
         <script src="<?php echo base_url; ?>Assets/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="<?php echo base_url; ?>Assets/js/scripts.js"></script>
