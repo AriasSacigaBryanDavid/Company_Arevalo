@@ -1638,13 +1638,7 @@ function registrarDoc(e){
     e.preventDefault();
     const nombre = document.getElementById("nombre");
     if( nombre.value=="" ){
-        Swal.fire({
-            position: 'top-end',
-            icon: 'error',
-            title: 'Porfavor ingrese los datos, es obligatorios',
-            showConfirmButton: false,
-            timer: 3000
-          })
+        alertas('Todo los campos son obligatorios', 'warning');
     }else{
         const url = base_url +"Documentos/registrar";
         const frm = document.getElementById("frmDocumento");
@@ -1654,42 +1648,12 @@ function registrarDoc(e){
         http.onreadystatechange = function(){
             if(this.readyState == 4 && this.status == 200){
                 const res= JSON.parse(this.responseText);
-                    if(res == "si"){
-                        Swal.fire({
-                            position: 'top-end',
-                            icon: 'success',
-                            title: 'Documento agregado con éxito',
-                            showConfirmButton: false,
-                            timer: 3000
-                          })
-                          frm.reset();
-                          tblDocumentos.ajax.reload();
-                          $("#nuevo_documento").modal("hide");
-                    }else if (res == "modificado") {
-                        Swal.fire({
-                            position: 'top-end',
-                            icon: 'success',
-                            title: 'Documento modificado con éxito',
-                            showConfirmButton: false,
-                            timer: 3000
-                          })
-                          $("#nuevo_documento ").modal("hide");
-                          tblDocumentos.ajax.reload();
-                    }else{
-                        Swal.fire({
-                            position: 'top-end',
-                            icon: 'error',
-                            title: res,
-                            showConfirmButton: false,
-                            timer: 3000
-                          })
-                    }
-                    
-                }
-                
-            }
-
+                $("#nuevo_documento ").modal("hide");
+                alertas(res.msg, res.icono);
+                tblDocumentos.ajax.reload();
+            }     
         }
+    }
 }
 function btnEditarDoc(id){
     document.getElementById("title").innerHTML ="Actualizar Documento";
@@ -1727,30 +1691,11 @@ function btnEliminarDoc(id){
             http.onreadystatechange = function(){
                 if(this.readyState == 4 && this.status == 200){
                   const res=JSON.parse(this.responseText);
-                  if(res == "ok"){
-                    Swal.fire(
-                     'Mensaje!',
-                     'Documento eliminado con éxito.',
-                     'success'
-                     )
-                     tblDocumentos.ajax.reload();
-               }else{
-                 Swal.fire(
-                     'Mensaje!',
-                     res,
-                     'error'
-                     )
-                    }
+                  alertas(res.msg, res.icono);
+                  tblDocumentos.ajax.reload();
                }
             }
-
-            Swal.fire(
-            'Mensaje!',
-            'elimiado',
-            'error'
-            )
         }
-        
     })
 }
 function btnReingresarDoc(id){
@@ -1771,24 +1716,12 @@ function btnReingresarDoc(id){
             http.onreadystatechange = function(){
                 if(this.readyState == 4 && this.status == 200){
                   const res= JSON.parse(this.responseText);
-                    if(res == "ok"){
-                       Swal.fire(
-                        'Mensaje!',
-                        'Documento reingresado con éxito.',
-                        'success'
-                        )
-                        tblDocumentos.ajax.reload();
-                  }else{
-                    Swal.fire(
-                        'Mensaje!',
-                        res,
-                        'error'
-                        )
-                  }
+                  tblDocumentos.ajax.reload();
+                  alertas(res.msg, res.icono);   
                 }
             }
         }
-      })
+    })
 }
 /** Fin de documento */
 /*******************************/

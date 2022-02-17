@@ -35,23 +35,23 @@
             $nombre=$_POST['nombre'];
             $id=$_POST['id'];
             if(empty($nombre)){
-                $msg="Todos los campos son obligatorios";
+                $msg =array('msg' =>'Todo los campos son obligatorios','icono'=>'warning');
             }else{
                 if ($id== "") {
                     $data=$this->model->registrarDocumento($nombre);
                     if($data == "ok") {
-                        $msg="si";
-                    }else if($data == "existe"){ 
-                        $msg="El documento ya existe";
+                        $msg =array('msg' =>'Documento registrado con éxito','icono'=>'success');
+                    }else if($data == "existe"){
+                        $msg =array('msg' =>'El documento ya éxiste','icono'=>'warning');
                     } else {
-                        $msg="Error al registrar El documento";
+                        $msg =array('msg' =>'Error al registrar el documento','icono'=>'error');
                     }
                 }else {
                     $data=$this->model->modificarDocumento($nombre,$id);
                     if($data == "modificado") {
-                        $msg="modificado";
+                        $msg =array('msg' =>'Documento modificado con éxito','icono'=>'success');
                     }else {
-                        $msg="Error al modificar el documento";
+                        $msg =array('msg' =>'Error al modificado el documento','icono'=>'error');
                     } 
                 }
                 
@@ -67,9 +67,9 @@
         public function eliminar(int $id){
             $data = $this->model->accionDoc(0, $id);
             if($data ==1){
-                $msg="ok";
+                $msg =array('msg' =>'Documento dado de baja','icono'=>'success');
             }else {
-                $msg ="Error al eliminar el docuemnto";
+                $msg =array('msg' =>'Error al eliminar el documento','icono'=>'error');
             }
             echo json_encode($msg, JSON_UNESCAPED_UNICODE);
             die();
@@ -77,9 +77,9 @@
         public function reingresar(int $id){
             $data = $this->model->accionDoc(1,$id);
             if($data ==1){
-                $msg="ok";
+                $msg =array('msg' =>'Documento reingresado con éxito','icono'=>'success');
             }else {
-                $msg ="Error al reingresar el documento";
+                $msg =array('msg' =>'Error al reingresar el documento','icono'=>'error');
             }
             echo json_encode($msg, JSON_UNESCAPED_UNICODE);
             die();
