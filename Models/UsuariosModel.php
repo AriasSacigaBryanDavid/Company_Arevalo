@@ -5,7 +5,7 @@
             parent::__construct();
         }
         public function getUsuario(string $usuario, string $contrasena){
-            $sql = "SELECT * FROM usuarios WHERE usuario='$usuario' AND contrasena='$contrasena'";
+            $sql = "SELECT * FROM usuarios WHERE usuario='$usuario' AND contrasena='$contrasena' AND estado=1";
             $data = $this->select($sql);
             return $data;
         }
