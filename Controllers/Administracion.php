@@ -61,6 +61,16 @@
             echo json_encode($data);
             die();
         }
+        public function clientesVendidos(){
+            $data = $this->model->getclientesVendidos();
+            echo json_encode($data);
+            die();
+        }
+        public function almacenVendidos(){
+            $data = $this->model->getalmacenVendidos();
+            echo json_encode($data);
+            die();
+        }
        
 
 

@@ -65,6 +65,18 @@
         $data = $this->selectAll($sql);
         return $data;
     }
+    public function getclientesVendidos()
+    {
+        $sql = "SELECT v.id_cliente, v.total, c.id, c.nombre, SUM(v.total) AS M_total FROM ventas v INNER JOIN clientes c ON c.id = v.id_cliente GROUP BY v.id_cliente ORDER BY v.total DESC LIMIT 10";
+        $data = $this->selectAll($sql);
+        return $data;
+    }
+    public function getalmacenVendidos()
+    {
+        $sql = "SELECT v.id_almacen, v.total, a.id, a.nombre, SUM(v.total) AS M_total FROM ventas v INNER JOIN almacenes a ON a.id = v.id_almacen GROUP BY v.id_almacen ORDER BY v.total DESC LIMIT 4";
+        $data = $this->selectAll($sql);
+        return $data;
+    }
     
     
     

@@ -2588,6 +2588,8 @@ if (document.getElementById('stockMinimo')) {
     productosVendidos();
     reportePeso();
     productosSalidas();
+    clientesVendidos();
+    almacenVendidos();
 }
 function reporteStock(){
     const url =base_url + "Administracion/reporteStock";
@@ -2697,6 +2699,64 @@ function productosSalidas(){
             labels: nombre,
             datasets: [{
               data: total,
+              backgroundColor: ['#9ba2c8', '#06c6c0', '#3536df','#d5e75b', '#28a745', '#d5e75b','#00aeff','#6b771a','#e36e79','#10af59'],
+            }],
+          },
+        });
+            
+    }
+    }
+}
+function clientesVendidos(){
+    const url =base_url + "Administracion/clientesVendidos";
+    const http=new XMLHttpRequest();
+    http.open("GET", url, true);
+    http.send();
+    http.onreadystatechange=function(){
+    if(this.readyState == 4 && this.status ==200){
+        const res = JSON.parse(this.responseText);
+        let nombre =[];
+        let M_total =[];
+        for (let i = 0; i < res.length; i++) {
+            nombre.push(res[i]['nombre']);
+            M_total.push(res[i]['M_total']);
+        }    
+        var ctx = document.getElementById("clientesVendidos");
+        var myPieChart = new Chart(ctx, {
+          type: 'doughnut',
+          data: {
+            labels: nombre,
+            datasets: [{
+              data: M_total,
+              backgroundColor: ['#9ba2c8', '#06c6c0', '#3536df','#d5e75b', '#28a745', '#d5e75b','#00aeff','#6b771a','#e36e79','#10af59'],
+            }],
+          },
+        });
+            
+    }
+    }
+}
+function  almacenVendidos(){
+    const url =base_url + "Administracion/almacenVendidos";
+    const http=new XMLHttpRequest();
+    http.open("GET", url, true);
+    http.send();
+    http.onreadystatechange=function(){
+    if(this.readyState == 4 && this.status ==200){
+        const res = JSON.parse(this.responseText);
+        let nombre =[];
+        let M_total =[];
+        for (let i = 0; i < res.length; i++) {
+            nombre.push(res[i]['nombre']);
+            M_total.push(res[i]['M_total']);
+        }    
+        var ctx = document.getElementById("almacenVendidos");
+        var myPieChart = new Chart(ctx, {
+          type: 'doughnut',
+          data: {
+            labels: nombre,
+            datasets: [{
+              data: M_total,
               backgroundColor: ['#9ba2c8', '#06c6c0', '#3536df','#d5e75b', '#28a745', '#d5e75b','#00aeff','#6b771a','#e36e79','#10af59'],
             }],
           },
