@@ -119,38 +119,38 @@
             $productos = $this->model->getProEntrada($id_entrada);
             require('Libraries/fpdf/fpdf.php');
 
-            $pdf = new FPDF('P','mm','A4');
+            $pdf = new FPDF('P','mm','letter');
             $pdf->AddPage();
-            $pdf->setMargins(3, 0, 0);
+            $pdf->setMargins(5, 5, 5);
             //Datos de la Empresa
             $pdf->SetTitle('Reporte de Entrada');
             $pdf->SetFont('Arial','B',16);
             $pdf->Cell(190,10,utf8_decode($empresa['nombre']), 0, 1,'C');
-            $pdf->Image(base_url . 'Assets/img/logo.jpg', 170, 10, 30, 30);
+            $pdf->Image(base_url . 'Assets/img/logo.jpg', 165, 10, 45, 32);
             $pdf->SetFont('Arial','B',12);
-            $pdf->Cell(170, 8, utf8_decode($empresa['mensaje']), 0, 1,'C');
+            $pdf->Cell(170, 10, utf8_decode($empresa['mensaje']), 0, 1,'C');
 
             $pdf->SetFont('Arial','B',12);
-            $pdf->Cell(31, 8, 'RUC: ', 0, 0,'C');
+            $pdf->Cell(20, 7, 'RUC: ', 0, 0,'L');
             $pdf->SetFont('Arial','',12);
-            $pdf->Cell(40, 8,  $empresa['ruc'], 0, 1,'C');
+            $pdf->Cell(20, 7, $empresa['ruc'], 0, 1,'L');
 
             $pdf->SetFont('Arial','B',12);
-            $pdf->Cell(39, 8, utf8_decode('Teléfono: '), 0, 0,'C');
+            $pdf->Cell(22, 7, utf8_decode('Teléfono: '), 0, 0,'L');
             $pdf->SetFont('Arial','',12);
-            $pdf->Cell(20, 8, $empresa['telefono'], 0, 1,'C');
+            $pdf->Cell(20, 7, $empresa['telefono'], 0, 1,'L');
 
             $pdf->SetFont('Arial','B',12);
-            $pdf->Cell(40, 8, utf8_decode('Dirección:'), 0, 0,'C');
+            $pdf->Cell(22, 7, utf8_decode('Dirección: '), 0, 0,'L');
             $pdf->SetFont('Arial','',12);
-            $pdf->Cell(140, 8, utf8_decode($empresa['direccion']), 0, 1,'C',0);
-
+            $pdf->Cell(20, 7, utf8_decode($empresa['direccion']), 0, 1,'L');
 
             $pdf->SetFont('Arial','B',12);
-            $pdf->Cell(31, 8, utf8_decode('Folio:'), 0, 0,'C');
+            $pdf->Cell(20, 7, utf8_decode('Folio:'), 0, 0,'L');
             $pdf->SetFont('Arial','',12);
-            $pdf->Cell(20, 8, $id_entrada, 0, 1,'C');
+            $pdf->Cell(20, 7, $id_entrada, 0, 1,'L');
             $pdf->Ln();
+
             //Datos de la entrada
             $pdf->SetFont('Arial','B',12);
             $pdf->Cell(45, 8, utf8_decode('Documento: '), 0, 0,'C');
@@ -189,16 +189,19 @@
 
             $pdf->Ln();
             //Encabezado de productos
-            $pdf->SetFillColor(0,0,0);
+            $pdf->SetFont('Arial', 'B', 10);
+            $pdf->SetFillColor(130,198,121);
             $pdf->SetTextColor(255,255,255);
-            $pdf->Cell(12,5, 'Cant.', 0,0, 'L', true);
-            $pdf->Cell(70,5, utf8_decode('Nombre'), 0,0, 'L', true);
-            $pdf->Cell(13,5, 'Rend.', 0,0, 'L', true);
-            $pdf->Cell(23,5, 'Peso Bruto', 0,0, 'L', true);
-            $pdf->Cell(21,5, 'Kilos Tara', 0,0, 'L', true);
-            $pdf->Cell(22,5, 'Peso Neto', 0,0, 'L', true);
-            $pdf->Cell(15,5, 'Precio', 0,0, 'L', true);
-            $pdf->Cell(30,5, 'Sub Total', 0,1, 'L', true);
+            $pdf->Cell(206, 5, "Detalle de Entrada", 1, 1, 'C', 1);
+            $pdf->SetTextColor(255,255,255);
+            $pdf->Cell(12,5, 'Cant.', 1,0, 'L', true);
+            $pdf->Cell(70,5, utf8_decode('Nombre'), 1,0, 'L', true);
+            $pdf->Cell(13,5, 'Rend.', 1,0, 'L', true);
+            $pdf->Cell(23,5, 'Peso Bruto', 1,0, 'L', true);
+            $pdf->Cell(21,5, 'Kilos Tara', 1,0, 'L', true);
+            $pdf->Cell(22,5, 'Peso Neto', 1,0, 'L', true);
+            $pdf->Cell(15,5, 'Precio', 1,0, 'L', true);
+            $pdf->Cell(30,5, 'Sub Total', 1,1, 'L', true);
 
             $pdf->SetTextColor(0,0,0);
             $total = 0.00;
@@ -214,8 +217,8 @@
                 $pdf->Cell(30,5, number_format($row['sub_total'], 2, '.',',') , 0,1, 'L');
             }
             $pdf->Ln();
-            $pdf->Cell(190, 6, 'Total a pagar', 1, 1,'R');
-            $pdf->Cell(190, 6, number_format($total, 2, '.', ','), 0, 1,'R');
+            $pdf->Cell(206, 6, 'Total a pagar', 1, 1,'R');
+            $pdf->Cell(206, 6, number_format($total, 2, '.', ','), 0, 1,'R');
             $pdf->Output();
         }    
 
