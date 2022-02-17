@@ -2736,7 +2736,7 @@ function clientesVendidos(){
     }
     }
 }
-function  almacenVendidos(){
+function almacenVendidos(){
     const url =base_url + "Administracion/almacenVendidos";
     const http=new XMLHttpRequest();
     http.open("GET", url, true);

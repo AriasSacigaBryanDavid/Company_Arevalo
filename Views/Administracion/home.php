@@ -141,16 +141,6 @@
         <div class="col-xl-6">
             <div class="card">
                 <div class="card-header bg-dark text-white">
-                   TOP 10 de clientes mas vendidos
-                </div>
-                <div class="card-body">
-                <canvas id="clientesVendidos" width="400" height="400"></canvas>
-                </div>
-            </div>
-        </div>
-        <div class="col-xl-6">
-            <div class="card">
-                <div class="card-header bg-dark text-white">
                    Top de Almacén mas Vendidos
                 </div>
                 <div class="card-body">
