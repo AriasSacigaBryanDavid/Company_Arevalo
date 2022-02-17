@@ -1,6 +1,5 @@
 <?php
     class VentasModel extends Query{
-        
         public function __construct(){
             parent::__construct();
         }
@@ -140,6 +139,16 @@
         }
         public function getAlmacen($id_usuario){
             $sql = "SELECT id_almacen AS id_almacen FROM usuarios WHERE id=$id_usuario";
+            $data = $this->select($sql);
+            return $data;
+        }
+        public function DetallesSalida(int $id){
+            $sql = "SELECT v.*, v.id, d.id AS id_documento, d.nombre AS documento, u.id AS id_usuario, u.nombre AS usuario, a.id AS id_almacen, a.nombre AS almacen FROM ventas v INNER JOIN documentos d ON v.id_documento =d.id INNER JOIN usuarios u ON v.id_usuario =u.id INNER JOIN almacenes a ON v.id_almacen =a.id WHERE v.id=$id;";
+            $data = $this->select($sql);
+            return $data;
+        }
+        public function clienteEntrada(int $id){
+            $sql = "SELECT v.id, v.id_cliente, c.id, c.nombre As cliente, i.id, i.nombre AS identidad, c.*, i.* FROM ventas v INNER JOIN clientes c ON c.id = v.id_cliente INNER JOIN identidades i ON i.id=c.id_identidad WHERE v.id=$id";
             $data = $this->select($sql);
             return $data;
         }

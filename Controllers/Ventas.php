@@ -124,103 +124,117 @@
             $productos = $this->model->getProVenta($id_venta);
             require('Libraries/fpdf/fpdf.php');
 
-            $pdf = new FPDF('P','mm','A4');
+            $pdf = new FPDF('P','mm','letter');
             $pdf->AddPage();
-            $pdf->setMargins(5, 0, 0);
+            $pdf->setMargins(5, 5, 5);
             //Datos de la Empresa
-            $pdf->SetTitle('Reporte de Entrada');
+            $pdf->SetTitle('Reporte de Venta');
             $pdf->SetFont('Arial','B',16);
             $pdf->Cell(190,10,utf8_decode($empresa['nombre']), 0, 1,'C');
-            $pdf->Image(base_url . 'Assets/img/logo.jpg', 170, 10, 30, 30);
+            $pdf->Image(base_url . 'Assets/img/logo.jpg', 165, 10, 45, 32);
             $pdf->SetFont('Arial','B',12);
-            $pdf->Cell(170, 8, utf8_decode($empresa['mensaje']), 0, 1,'C');
+            $pdf->Cell(170, 10, utf8_decode($empresa['mensaje']), 0, 1,'C');
 
             $pdf->SetFont('Arial','B',12);
-            $pdf->Cell(31, 8, 'RUC: ', 0, 0,'C');
+            $pdf->Cell(20, 7, 'RUC: ', 0, 0,'L');
             $pdf->SetFont('Arial','',12);
-            $pdf->Cell(40, 8,  $empresa['ruc'], 0, 1,'C');
+            $pdf->Cell(20, 7, $empresa['ruc'], 0, 1,'L');
 
             $pdf->SetFont('Arial','B',12);
-            $pdf->Cell(39, 8, utf8_decode('Teléfono: '), 0, 0,'C');
+            $pdf->Cell(22, 7, utf8_decode('Teléfono: '), 0, 0,'L');
             $pdf->SetFont('Arial','',12);
-            $pdf->Cell(20, 8, $empresa['telefono'], 0, 1,'C');
+            $pdf->Cell(20, 7, $empresa['telefono'], 0, 1,'L');
 
             $pdf->SetFont('Arial','B',12);
-            $pdf->Cell(40, 8, utf8_decode('Dirección:'), 0, 0,'C');
+            $pdf->Cell(22, 7, utf8_decode('Dirección: '), 0, 0,'L');
             $pdf->SetFont('Arial','',12);
-            $pdf->Cell(140, 8, utf8_decode($empresa['direccion']), 0, 1,'C',0);
-
+            $pdf->Cell(20, 7, utf8_decode($empresa['direccion']), 0, 1,'L');
 
             $pdf->SetFont('Arial','B',12);
-            $pdf->Cell(31, 8, utf8_decode('Folio:'), 0, 0,'C');
+            $pdf->Cell(20, 7, utf8_decode('Folio:'), 0, 0,'L');
             $pdf->SetFont('Arial','',12);
-            $pdf->Cell(20, 8, $id_venta, 0, 1,'C');
+            $pdf->Cell(20, 7, $id_venta, 0, 1,'L');
             $pdf->Ln();
 
-            //Datos de la venta
-            $pdf->SetFont('Arial','B',12);
-            $pdf->Cell(45, 8, utf8_decode('Documento: '), 0, 0,'C');
-            $pdf->SetFont('Arial','',12);
-            $pdf->Cell(40, 8,  utf8_decode('documento'), 0, 1,'C');
-
-            $pdf->SetFont('Arial','B',12);
-            $pdf->Cell(50, 8,  utf8_decode('N° Documento: '), 0, 0,'C');
-            $pdf->SetFont('Arial','',12);
-            $pdf->Cell(40, 8,  utf8_decode('#documento'), 0, 1,'C');
-
-            $pdf->SetFont('Arial','B',12);
-            $pdf->Cell(70, 8, 'Documento de Identidad: ', 0, 0,'C');
-            $pdf->SetFont('Arial','',12);
-            $pdf->Cell(40, 8,  utf8_decode('documento'), 0, 1,'C');
-
-            $pdf->SetFont('Arial','B',12);
-            $pdf->Cell(46, 8, utf8_decode('N° Identidad: ') , 0, 0,'C');
-            $pdf->SetFont('Arial','',12);
-            $pdf->Cell(40, 8,  utf8_decode('documento'), 0, 1,'C');
-
-            $pdf->SetFont('Arial','B',12);
-            $pdf->Cell(37, 8, 'Cliente: ', 0, 0,'C');
-            $pdf->SetFont('Arial','',12);
-            $pdf->Cell(40, 8,  utf8_decode('documento'), 0, 1,'C');
-
-            $pdf->SetFont('Arial','B',12);
-            $pdf->Cell(42, 8, 'Empleado: ', 0, 0,'C');
-            $pdf->SetFont('Arial','',12);
-            $pdf->Cell(40, 8,  utf8_decode('documento'), 0, 1,'C');
-
-            $pdf->SetFont('Arial','B',12);
-            $pdf->Cell(40, 8, utf8_decode('Almacén: '), 0, 0,'C');
-            $pdf->SetFont('Arial','',12);
-            $pdf->Cell(40, 8,  utf8_decode('documento'), 0, 1,'C');
-
-            $pdf->Ln();
-
-            //Encabezado de productos
-            $pdf->SetFillColor(0,0,0);
+            //Datos de la entrada
+            $pdf->SetFont('Arial', 'B', 8);
+            $pdf->SetFillColor(130,198,121);
             $pdf->SetTextColor(255,255,255);
-            $pdf->Cell(12,5, 'Cant.', 0,0, 'L', true);
-            $pdf->Cell(75,5, utf8_decode('Nombre'), 0,0, 'L', true);
-            $pdf->Cell(23,5, 'Peso Bruto', 0,0, 'L', true);
-            $pdf->Cell(21,5, 'Kilos Tara', 0,0, 'L', true);
-            $pdf->Cell(22,5, 'Peso Neto', 0,0, 'L', true);
-            $pdf->Cell(15,5, 'Precio', 0,0, 'L', true);
-            $pdf->Cell(30,5, 'Sub Total', 0,1, 'L', true);
+            $pdf->Cell(206, 5, utf8_decode('Información de Salida'), 1, 1, 'C', 1);
+            $pdf->SetTextColor(255,255,255);
+            $pdf->Cell(31,5, utf8_decode('Fecha'), 1,0, 'L', true);
+            $pdf->Cell(50,5, utf8_decode('Documento'), 1,0, 'L', true);
+            $pdf->Cell(35,5, utf8_decode('N°Documento'), 1,0, 'L', true);
+            $pdf->Cell(60,5, utf8_decode('Empleado'), 1,0, 'L', true);
+            $pdf->Cell(30,5, utf8_decode('Almacén'), 1,1, 'L', true);
+            
+            $pdf->SetTextColor(0,0,0);
+            
+            $Detallesalida = $this->model->DetallesSalida($id_venta);
+            $pdf->Cell(31,5, utf8_decode($Detallesalida['fecha']) , 0, 0, 'L');
+            $pdf->Cell(50,5, utf8_decode($Detallesalida['documento']), 0, 0, 'L');
+            $pdf->Cell(35,5, utf8_decode($Detallesalida['n_documento']) , 0,0, 'L');
+            $pdf->Cell(60,5, utf8_decode($Detallesalida['usuario']) , 0,0, 'L');
+            $pdf->Cell(30,5, utf8_decode($Detallesalida['almacen']) , 0,1, 'L');
+    
+            $pdf->Ln();
+
+            $pdf->Ln();
+            //Encabezado de clientes
+            $pdf->SetFont('Arial', 'B', 8);
+            $pdf->SetFillColor(130,198,121);
+            $pdf->SetTextColor(255,255,255);
+            $pdf->Cell(206, 5, "Dato del Cliente", 1, 1, 'C', 1);
+            $pdf->SetTextColor(255,255,255);
+            $pdf->Cell(40,5, utf8_decode('Nombre'), 1,0, 'L', true);
+            $pdf->Cell(20,5, utf8_decode('Identidad'), 1,0, 'L', true);
+            $pdf->Cell(30,5, utf8_decode('N°Indentidad'), 1,0, 'L', true);
+            $pdf->Cell(20,5, utf8_decode('Teléfono'), 1,0, 'L', true);
+            $pdf->Cell(40,5, utf8_decode('Correo'), 1,0, 'L', true);
+            $pdf->Cell(56,5, utf8_decode('Dirección'), 1,1, 'L', true);
+
+            $pdf->SetTextColor(0,0,0);
+
+            $cliente = $this->model->clienteEntrada($id_venta);
+            $pdf->Cell(40,5, utf8_decode($cliente['cliente']), 0, 0, 'L');
+            $pdf->Cell(20,5, utf8_decode($cliente['identidad']) , 0,0, 'L');
+            $pdf->Cell(30,5, $cliente['n_identidad'], 0, 0, 'L');
+            $pdf->Cell(20,5, $cliente['telefono'], 0, 0, 'L');
+            $pdf->Cell(40,5, utf8_decode($cliente['correo']) , 0,0, 'L');
+            $pdf->Cell(56,5, utf8_decode($cliente['direccion']) , 0,1, 'L');
+
+            $pdf->Ln();
+
+            $pdf->Ln();
+            //Encabezado de productos
+            $pdf->SetFont('Arial', 'B', 9);
+            $pdf->SetFillColor(130,198,121);
+            $pdf->SetTextColor(255,255,255);
+            $pdf->Cell(206, 5, "Detalles de Productos", 1, 1, 'C', 1);
+            $pdf->SetTextColor(255,255,255);
+            $pdf->Cell(12,5, 'Cant.', 1,0, 'L', true);
+            $pdf->Cell(83,5, utf8_decode('Nombre'), 1,0, 'L', true);
+            $pdf->Cell(23,5, 'Peso Bruto', 1,0, 'L', true);
+            $pdf->Cell(21,5, 'Kilos Tara', 1,0, 'L', true);
+            $pdf->Cell(22,5, 'Peso Neto', 1,0, 'L', true);
+            $pdf->Cell(15,5, 'Precio', 1,0, 'L', true);
+            $pdf->Cell(30,5, 'Sub Total', 1,1, 'L', true);
 
             $pdf->SetTextColor(0,0,0);
             $total = 0.00;
             foreach ($productos as $row) {
                 $total = $total + $row['sub_total'];
                 $pdf->Cell(12,5, $row['cantidad'], 0, 0, 'L');
-                $pdf->Cell(75,5, utf8_decode($row['nombre']) , 0,0, 'L');
+                $pdf->Cell(83,5, utf8_decode($row['nombre']) , 0,0, 'L');
                 $pdf->Cell(23,5, number_format($row['peso_bruto'], 2, '.',',') , 0,0, 'L');
-                $pdf->Cell(22,5, number_format($row['cantidad']*0.2, 2, '.',',') , 0,0, 'L');
+                $pdf->Cell(21,5, number_format($row['cantidad']*0.2, 2, '.',',') , 0,0, 'L');
                 $pdf->Cell(22,5, number_format($row['peso_neto'], 2, '.',',') , 0,0, 'L');
                 $pdf->Cell(15,5, $row['precio'], 0, 0, 'L');
                 $pdf->Cell(30,5, number_format($row['sub_total'], 2, '.',',') , 0,1, 'L');
             }
             $pdf->Ln();
-            $pdf->Cell(198, 6, 'Total a pagar', 1, 1,'R');
-            $pdf->Cell(198, 6, number_format($total, 2, '.', ','), 0, 1,'R');
+            $pdf->Cell(206, 6, 'Total a pagar', 1, 1,'R');
+            $pdf->Cell(206, 6, number_format($total, 2, '.', ','), 0, 1,'R');
             $pdf->Output();
         }  
         
