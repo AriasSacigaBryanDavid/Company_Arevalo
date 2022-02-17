@@ -147,7 +147,7 @@
             $data = $this->select($sql);
             return $data;
         }
-        public function clienteEntrada(int $id){
+        public function clienteVenta(int $id){
             $sql = "SELECT v.id, v.id_cliente, c.id, c.nombre As cliente, i.id, i.nombre AS identidad, c.*, i.* FROM ventas v INNER JOIN clientes c ON c.id = v.id_cliente INNER JOIN identidades i ON i.id=c.id_identidad WHERE v.id=$id";
             $data = $this->select($sql);
             return $data;

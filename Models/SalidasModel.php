@@ -137,6 +137,16 @@
             $data = $this->select($sql);
             return $data;
         }
+        public function DetallesSalida(int $id){
+            $sql = "SELECT s.*, s.id, d.id AS id_documento, d.nombre AS documento, u.id AS id_usuario, u.nombre AS usuario, a.id AS id_almacen, a.nombre AS almacen FROM salidas s INNER JOIN documentos d ON s.id_documento =d.id INNER JOIN usuarios u ON s.id_usuario =u.id INNER JOIN almacenes a ON s.id_almacen =a.id WHERE s.id=$id;";
+            $data = $this->select($sql);
+            return $data;
+        }
+        public function motivoSalida(int $id){
+            $sql = "SELECT * FROM salidas s WHERE id=$id;";
+            $data = $this->select($sql);
+            return $data;
+        }
         
 
 

@@ -195,7 +195,7 @@
 
             $pdf->SetTextColor(0,0,0);
 
-            $cliente = $this->model->clienteEntrada($id_venta);
+            $cliente = $this->model->clienteVenta($id_venta);
             $pdf->Cell(40,5, utf8_decode($cliente['cliente']), 0, 0, 'L');
             $pdf->Cell(20,5, utf8_decode($cliente['identidad']) , 0,0, 'L');
             $pdf->Cell(30,5, $cliente['n_identidad'], 0, 0, 'L');
