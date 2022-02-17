@@ -54,6 +54,8 @@
                                     <a class="nav-link" href="<?php echo base_url;?>Cargos">Cargos</a>
                                     <a class="nav-link" href="<?php echo base_url;?>Almacenes">Almacén</a>
                                     <a class="nav-link" href="<?php echo base_url;?>Administracion">Configuración</a>
+                                    <a class="nav-link" href="<?php echo base_url;?>Documentos">Documentos</a>      
+                                    <a class="nav-link" href="<?php echo base_url;?>Identidades">Identidades</a>
                                 </nav>
                             </div>
                             <!-- menu de proveedores -->
@@ -117,18 +119,6 @@
                                     <a class="nav-link" href="<?php echo base_url;?>Ventas">Nueva Venta</a>      
                                     <a class="nav-link" href="<?php echo base_url;?>Ventas/historial">Historial Venta</a>
                                    
-                                </nav>
-                            </div>
-                            <!-- menu de Documentacion -->
-                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseDocumentos" aria-expanded="false" aria-controls="collapseDocumentos">
-                                <div class="sb-nav-link-icon"><i class="fas fa-archive text-success fa-2x"></i></div>
-                                Documentos
-                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down text-success"></i></div>
-                            </a>
-                            <div class="collapse" id="collapseDocumentos" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
-                                <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="<?php echo base_url;?>Documentos">Documentos</a>      
-                                    <a class="nav-link" href="<?php echo base_url;?>Identidades">Identidades</a>
                                 </nav>
                             </div>
                             
