@@ -8,11 +8,6 @@
             $data =$this->selectAll($sql);
             return $data;
         }
-        public function getAlmacenes(){
-            $sql="SELECT * FROM almacenes WHERE estado=1";
-            $data =$this->selectAll($sql);
-            return $data;
-        }
         public function getProCod(string $cod){
             $sql= "SELECT* FROM productos WHERE codigo='$cod'";
             $data = $this->select($sql);
@@ -71,9 +66,9 @@
             }
             return $res;
         }
-        public function registrarSalida(string $total){
-            $sql = "INSERT INTO salidas(total) VALUES (?)";
-            $datos = array($total);
+        public function registrarSalida(int $id_documento, string $n_documento, string $motivo, int $id_usuario, int $id_almacen, string $total){
+            $sql = "INSERT INTO salidas(id_documento, n_documento, motivo, id_usuario, id_almacen, total) VALUES (?,?,?,?,?,?)";
+            $datos = array($id_documento,$n_documento,$motivo,$id_usuario,$id_almacen,$total);
             $data = $this->save($sql, $datos);
             if($data ==1){
                 $res = "ok";
@@ -121,7 +116,7 @@
             return $data;
         }
         public function getHistorialSalidas(){
-            $sql= "SELECT * FROM salidas";
+            $sql= "SELECT s.*, d.id AS id_documento, d.nombre AS documento, u.id AS id_usuario, u.nombre AS usuario, a.id AS id_almacen, a.nombre AS almacen FROM salidas s INNER JOIN documentos d ON s.id_documento =d.id INNER JOIN usuarios u ON s.id_usuario =u.id INNER JOIN almacenes a ON s.id_almacen =a.id;";
             $data= $this->selectAll($sql);
             return $data;
         }
@@ -135,6 +130,11 @@
             $sql = "UPDATE productos SET peso_total =? WHERE id=?";
             $datos = array($peso_total, $id_pro);
             $data = $this->save($sql, $datos);
+            return $data;
+        }
+        public function getAlmacen($id_usuario){
+            $sql = "SELECT id_almacen AS id_almacen FROM usuarios WHERE id=$id_usuario";
+            $data = $this->select($sql);
             return $data;
         }
         

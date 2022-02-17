@@ -7,18 +7,18 @@
     </div>
     <!--Salidas de Datos-->
     <div class="card-body">
-        <form id="frmEntradasa">
+        <form id="frmDatoSalida">
             <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <div class="form-group mb-3">
-                        <label for="documento">Documento</label>
-                            <select id="documento" class="form-control" name="documento">
-                                <?php foreach ($data['documentos'] as $row) { ?>
-                                    <option value="<?php echo $row['id']; ?>"><?php echo $row['nombre']; ?></option>
-                                <?php } ?>
-                            </select>
+                        <label for="documento">Tipo de Documento</label>
+                        <select id="documento" class="form-control" name="documento">
+                            <?php foreach ($data['documentos'] as $row) { ?>
+                                <option value="<?php echo $row['id']; ?>"><?php echo $row['nombre']; ?></option>
+                            <?php } ?>
+                        </select>
                     </div>
-                </div>
+                </div>  
                 <div class="col-md-4">
                     <div class="form-group mb-3">
                         <label for="n_documento">N° de  Documentos</label>
@@ -28,23 +28,7 @@
                 <div class="col-md-12">
                     <div class="form-group mb-3">
                         <label for="motivo">Motivo</label>
-                        <textarea id="motivo" class="form-control" name="direccion" placeholder="Motivo" rows="3"></textarea>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="form-group mb-3">
-                        <label for="empleado">Empleado</label>
-                        <input id="empleado" class="form-control" type="text" name="empleado" placeholder="Empleado" disabled>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="form-group mb-3" > 
-                        <label for="almacen">Almacén</label>
-                            <select id="almacen" class="form-control" name="almacen">
-                                <?php foreach ($data['almacenes'] as $row) { ?>
-                                    <option value="<?php echo $row['id']; ?>"><?php echo $row['nombre']; ?></option>
-                                <?php } ?>
-                            </select>
+                        <textarea id="motivo" class="form-control" name="motivo" placeholder="Motivo" rows="3"></textarea>
                     </div>
                 </div>
             </div>

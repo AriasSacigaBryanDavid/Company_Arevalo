@@ -10,7 +10,6 @@
                 header("location: ".base_url);
             }
             $data['documentos']=$this->model->getDocumentos();
-            $data['almacenes']=$this->model->getAlmacenes();
             $this->views->getView($this,"index",$data);
         }
         public function buscarCodigoSa($cod){
@@ -77,9 +76,13 @@
             die();
         }
         public function registrarSalida(){
+            $id_documento=$_POST['documento'];
+            $n_documento =$_POST['n_documento'];
+            $motivo = $_POST['motivo'];
             $id_usuario = $_SESSION['id_usuario'];
+            $id_almacen = $this->model->getAlmacen($id_usuario);
             $total = $this->model->calcularSalida($id_usuario);
-            $data = $this->model->registrarSalida($total['total']);
+            $data = $this->model->registrarSalida($id_documento,$n_documento,$motivo,$id_usuario,$id_almacen['id_almacen'],$total['total']);
             if($data == 'ok'){
                 $detalle = $this->model->getDetalle($id_usuario);
                 $id_salida = $this->model->id_salida();

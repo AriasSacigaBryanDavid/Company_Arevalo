@@ -472,6 +472,11 @@ document.addEventListener("DOMContentLoaded", function(){
         },
         columns: [
             {'data' : 'id'},
+            {'data' : 'documento'},
+            {'data' : 'n_documento'},
+            {'data' : 'motivo'},
+            {'data' : 'usuario'},
+            {'data' : 'almacen'},
             {'data' : 'total'},
             {'data' : 'fecha'},
             {'data' : 'acciones'}
@@ -1789,38 +1794,6 @@ function btnReingresarDoc(id){
 /*******************************/
 /*******************************/
 /** Inicio de entradas */
-/**function buscarProveedor(e){
-    e.preventDefault();
-    if(e.which == 13){
-        const pro = document.getElementById("n_identidad").value;
-        const url =base_url + "Entradas/buscarProveedor/"+ pro;
-        const http=new XMLHttpRequest();
-        http.open("GET", url, true);
-        http.send();
-        http.onreadystatechange=function(){
-                if(this.readyState == 4 && this.status ==200){
-                    const res =JSON.parse(this.responseText);
-                    if(res){
-                        document.getElementById("nombre_proveedor").value = res.nombre;
-                        document.getElementById("id").value = res.id;
-                        
-                    }else{
-                        Swal.fire({
-                            position: 'top-end',
-                            icon: 'error',
-                            title: 'El proveedor no existe',
-                            showConfirmButton: false,
-                         timer: 2000
-                        })
-                        document.getElementById("n_identidad").value='';
-                        document.getElementById("n_identidad").focus();
-                    }
-        
-                }
-        }
-    }
-}
-*/
 function buscarCodigoEn(e) {
     e.preventDefault();
     const cod = document.getElementById("codigo").value;
@@ -2186,10 +2159,11 @@ function generarSalida(){
         cancelButtonText:'No'
       }).then((result) => {
         if (result.isConfirmed) {
+            const frm = document.getElementById('frmDatoSalida');
             const url =base_url + "Salidas/registrarSalida";
             const http=new XMLHttpRequest();
-            http.open("GET", url, true);
-            http.send();
+            http.open("POST", url, true);
+            http.send(new FormData(frm));
             http.onreadystatechange=function(){
                 if(this.readyState == 4 && this.status ==200){
                     const res = JSON.parse(this.responseText);
@@ -2199,6 +2173,7 @@ function generarSalida(){
                             'Salida generada.',
                             'success'
                         )
+                        document.getElementById("frmDatoSalida").reset();
                         const ruta =base_url +'Salidas/generarPdf/'+ res.id_salida;
                         window.open(ruta);
                         setTimeout(() =>{
@@ -2234,6 +2209,7 @@ function CancelarSalida(){
             http.send();
             http.onreadystatechange=function(){
                 if(this.readyState == 4 && this.status ==200){
+                    document.getElementById("frmDatoSalida").reset();
                     document.getElementById("frmProductoSalida").reset();
                     document.getElementById("peso_bruto").setAttribute('disabled', 'disabled');
                     document.getElementById("cantidad").setAttribute('disabled', 'disabled');
