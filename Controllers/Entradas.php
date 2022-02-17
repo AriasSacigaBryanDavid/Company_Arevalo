@@ -10,16 +10,9 @@
                 header("location: ".base_url);
             }
             $data['documentos']=$this->model->getDocumentos();
-            //$data['almacenes']=$this->model->getAlmacenes();
-            //$data['identidad']=$this->model->getIdentidades();
             $data['proveedores']=$this->model->getProveedores();
             $this->views->getView($this,"index", $data);
         }
-        //public function buscarProveedor($pro){
-          //  $data =$this->model->getNidentidad($pro);
-          //  echo json_encode($data, JSON_UNESCAPED_UNICODE);
-          //  die();
-        // }
         public function buscarCodigoEn($cod){
             $data =$this->model->getProCod($cod);
             echo json_encode($data, JSON_UNESCAPED_UNICODE);

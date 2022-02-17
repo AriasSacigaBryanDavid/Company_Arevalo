@@ -11,8 +11,7 @@
                 header("location: ".base_url);
             }
             $data['documentos']=$this->model->getDocumentos();
-            $data['identidades']=$this->model->getIdentidades();
-            $data['almacenes']=$this->model->getAlmacenes();
+            $data['clientes']=$this->model->getClientes();
             $this->views->getView($this,"index",$data);
         }
         public function buscarCliente($cli){
@@ -83,9 +82,13 @@
             die();
         }
         public function registrarVenta(){
+            $id_documento=$_POST['documento'];
+            $n_documento =$_POST['n_documento'];
+            $id_cliente = $_POST['cliente'];
             $id_usuario = $_SESSION['id_usuario'];
+            $id_almacen = $this->model->getAlmacen($id_usuario);
             $total = $this->model->calcularVenta($id_usuario);
-            $data = $this->model->registrarVenta($total['total']);
+            $data = $this->model->registrarVenta($id_documento, $n_documento, $id_cliente,$id_usuario,$id_almacen['id_almacen'],$total['total']);
             if($data == 'ok'){
                 $detalle = $this->model->getDetalle($id_usuario);
                 $id_venta = $this->model->id_venta();

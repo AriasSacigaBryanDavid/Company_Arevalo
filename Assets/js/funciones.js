@@ -3,6 +3,7 @@ let tblUsuarios , tblCargos, tblAlmacenes, tblProveedores,tblCategorias,tblMarca
 /** Inicio de Usuario */
 document.addEventListener("DOMContentLoaded", function(){
     $('#proveedor').select2();
+    $('#cliente').select2();
     tblUsuarios = $('#tblUsuarios').DataTable( {
         ajax: {
             url: base_url + "Usuarios/listar",
@@ -492,6 +493,11 @@ document.addEventListener("DOMContentLoaded", function(){
         },
         columns: [
             {'data' : 'id'},
+            {'data' : 'documento'},
+            {'data' : 'n_documento'},
+            {'data' : 'cliente'},
+            {'data' : 'usuario'},
+            {'data' : 'almacen'},
             {'data' : 'total'},
             {'data' : 'fecha'},
             {'data' : 'acciones'}
@@ -2258,37 +2264,6 @@ function CancelarSalida(){
 /** Fin de Salidas */
 /*******************************/
 /** inicio de ventas */
-function buscarCliente(e){
-    e.preventDefault();
-    if(e.which == 13){
-        const cli = document.getElementById("n_identidad").value;
-        const url =base_url + "Ventas/buscarCliente/"+ cli;
-        const http=new XMLHttpRequest();
-        http.open("GET", url, true);
-        http.send();
-        http.onreadystatechange=function(){
-                if(this.readyState == 4 && this.status ==200){
-                    const res =JSON.parse(this.responseText);
-                    if(res){
-                        document.getElementById("nombre").value = res.nombre;
-                        document.getElementById("id").value = res.id;
-                        
-                    }else{
-                        Swal.fire({
-                            position: 'top-end',
-                            icon: 'error',
-                            title: 'El cliente no existe',
-                            showConfirmButton: false,
-                         timer: 2000
-                        })
-                        document.getElementById("n_identidad").value='';
-                        document.getElementById("n_identidad").focus();
-                    }
-        
-                }
-        }
-    }
-}
 function buscarCodigoVe(e) {
     e.preventDefault();
     const cod = document.getElementById("codigo").value;
@@ -2429,10 +2404,11 @@ function generarVenta(){
         cancelButtonText:'No'
       }).then((result) => {
         if (result.isConfirmed) {
+            const frm = document.getElementById('frmDatoVenta');
             const url =base_url + "Ventas/registrarVenta";
             const http=new XMLHttpRequest();
-            http.open("GET", url, true);
-            http.send();
+            http.open("POST", url, true);
+            http.send(new FormData(frm));
             http.onreadystatechange=function(){
                 if(this.readyState == 4 && this.status ==200){
                     const res = JSON.parse(this.responseText);
@@ -2442,6 +2418,7 @@ function generarVenta(){
                             'Venta generada.',
                             'success'
                         )
+                        document.getElementById("frmDatoVenta").reset();
                         const ruta =base_url +'Ventas/generarPdf/'+ res.id_venta;
                         window.open(ruta);
                         setTimeout(() =>{
@@ -2477,6 +2454,7 @@ function CancelarVenta(){
             http.send();
             http.onreadystatechange=function(){
                 if(this.readyState == 4 && this.status ==200){
+                    document.getElementById("frmDatoVenta").reset();
                     document.getElementById("frmProductoVenta").reset();
                     document.getElementById("peso_bruto").setAttribute('disabled', 'disabled');
                     document.getElementById("cantidad").setAttribute('disabled', 'disabled');

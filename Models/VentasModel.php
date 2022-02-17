@@ -9,19 +9,9 @@
             $data =$this->selectAll($sql);
             return $data;
         }
-        public function getIdentidades(){
-            $sql="SELECT * FROM identidades WHERE estado=1";
+        public function getClientes(){
+            $sql="SELECT * FROM clientes WHERE estado=1";
             $data =$this->selectAll($sql);
-            return $data;
-        }
-        public function getAlmacenes(){
-            $sql="SELECT * FROM almacenes WHERE estado=1";
-            $data =$this->selectAll($sql);
-            return $data;
-        }
-        public function getNidentidad(string $cli){
-            $sql= "SELECT* FROM clientes WHERE n_identidad='$cli'";
-            $data = $this->select($sql);
             return $data;
         }
         public function getProCod(string $cod){
@@ -82,9 +72,9 @@
             }
             return $res;
         }
-        public function registrarVenta(string $total){
-            $sql = "INSERT INTO ventas(total) VALUES (?)";
-            $datos = array($total);
+        public function registrarVenta(int $id_documento, string $n_documento,int $id_cliente,int $id_usuario,int $id_almacen,string $total){
+            $sql = "INSERT INTO ventas(id_documento,n_documento,id_cliente,id_usuario, id_almacen,total) VALUES (?,?,?,?,?,?)";
+            $datos = array($id_documento,$n_documento,$id_cliente,$id_usuario,$id_almacen,$total);
             $data = $this->save($sql, $datos);
             if($data ==1){
                 $res = "ok";
@@ -132,7 +122,7 @@
             return $data;
         }
         public function getHistorialVentas(){
-            $sql= "SELECT * FROM ventas";
+            $sql= "SELECT v.*, d.id AS id_documento, d.nombre AS documento, c.id AS id_cliente, c.nombre AS cliente, u.id AS id_usuario, u.nombre AS usuario, a.id AS id_almacen, a.nombre AS almacen FROM ventas v INNER JOIN documentos d ON v.id_documento =d.id INNER JOIN clientes c ON v.id_cliente =c.id INNER JOIN usuarios u ON v.id_usuario =u.id INNER JOIN almacenes a ON v.id_almacen =a.id;";
             $data= $this->selectAll($sql);
             return $data;
         }
@@ -146,6 +136,11 @@
             $sql = "UPDATE productos SET peso_total =? WHERE id=?";
             $datos = array($peso_total, $id_pro);
             $data = $this->save($sql, $datos);
+            return $data;
+        }
+        public function getAlmacen($id_usuario){
+            $sql = "SELECT id_almacen AS id_almacen FROM usuarios WHERE id=$id_usuario";
+            $data = $this->select($sql);
             return $data;
         }
         
