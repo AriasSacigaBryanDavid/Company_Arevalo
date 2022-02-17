@@ -152,44 +152,58 @@
             $pdf->Ln();
 
             //Datos de la entrada
-            $pdf->SetFont('Arial','B',12);
-            $pdf->Cell(45, 8, utf8_decode('Documento: '), 0, 0,'C');
-            $pdf->SetFont('Arial','',12);
-            $pdf->Cell(40, 8,  utf8_decode('documento'), 0, 1,'C');
+            $pdf->SetFont('Arial', 'B', 8);
+            $pdf->SetFillColor(130,198,121);
+            $pdf->SetTextColor(255,255,255);
+            $pdf->Cell(206, 5, "Detalle de la entrada", 1, 1, 'C', 1);
+            $pdf->SetTextColor(255,255,255);
+            $pdf->Cell(50,5, utf8_decode('Documento'), 1,0, 'L', true);
+            $pdf->Cell(35,5, utf8_decode('N°Documento'), 1,0, 'L', true);
+            $pdf->Cell(60,5, utf8_decode('Empleado'), 1,0, 'L', true);
+            $pdf->Cell(30,5, utf8_decode('Almacén'), 1,0, 'L', true);
+            $pdf->Cell(31,5, utf8_decode('Fecha'), 1,1, 'L', true);
             
-            $pdf->SetFont('Arial','B',12);
-            $pdf->Cell(50, 8,  utf8_decode('N° Documento: '), 0, 0,'C');
-            $pdf->SetFont('Arial','',12);
-            $pdf->Cell(40, 8,  utf8_decode('#documento'), 0, 1,'C');
 
-            $pdf->SetFont('Arial','B',12);
-            $pdf->Cell(70, 8, 'Documento de Identidad: ', 0, 0,'C');
-            $pdf->SetFont('Arial','',12);
-            $pdf->Cell(40, 8,  utf8_decode('documento'), 0, 1,'C');
+            $pdf->SetTextColor(0,0,0);
+            
+            $Detalleentrada = $this->model->DetallesEntrada($id_entrada);
+            $pdf->Cell(50,5, utf8_decode($Detalleentrada['documento']), 0, 0, 'L');
+            $pdf->Cell(35,5, utf8_decode($Detalleentrada['n_documento']) , 0,0, 'L');
+            $pdf->Cell(60,5, utf8_decode($Detalleentrada['usuario']) , 0,0, 'L');
+            $pdf->Cell(30,5, utf8_decode($Detalleentrada['almacen']) , 0,0, 'L');
+            $pdf->Cell(31,5, utf8_decode($Detalleentrada['fecha']) , 0,1, 'L');
 
-            $pdf->SetFont('Arial','B',12);
-            $pdf->Cell(46, 8, utf8_decode('N° Identidad: ') , 0, 0,'C');
-            $pdf->SetFont('Arial','',12);
-            $pdf->Cell(40, 8,  utf8_decode('documento'), 0, 1,'C');
+            $pdf->Ln();
 
-            $pdf->SetFont('Arial','B',12);
-            $pdf->Cell(42, 8, 'Proveedor: ', 0, 0,'C');
-            $pdf->SetFont('Arial','',12);
-            $pdf->Cell(40, 8,  utf8_decode('documento'), 0, 1,'C');
+            $pdf->Ln();
+            //Encabezado de proveedor
+            $pdf->SetFont('Arial', 'B', 8);
+            $pdf->SetFillColor(130,198,121);
+            $pdf->SetTextColor(255,255,255);
+            $pdf->Cell(206, 5, "Dato del Proveedor", 1, 1, 'C', 1);
+            $pdf->SetTextColor(255,255,255);
+            $pdf->Cell(40,5, utf8_decode('Nombre'), 1,0, 'L', true);
+            $pdf->Cell(20,5, utf8_decode('Documento'), 1,0, 'L', true);
+            $pdf->Cell(30,5, utf8_decode('N°Documento'), 1,0, 'L', true);
+            $pdf->Cell(20,5, utf8_decode('Télefono'), 1,0, 'L', true);
+            $pdf->Cell(40,5, utf8_decode('Correo'), 1,0, 'L', true);
+            $pdf->Cell(56,5, utf8_decode('Dirección'), 1,1, 'L', true);
 
-            $pdf->SetFont('Arial','B',12);
-            $pdf->Cell(42, 8, 'Empleado: ', 0, 0,'C');
-            $pdf->SetFont('Arial','',12);
-            $pdf->Cell(40, 8,  utf8_decode('documento'), 0, 1,'C');
-
-            $pdf->SetFont('Arial','B',12);
-            $pdf->Cell(40, 8, utf8_decode('Almacén: '), 0, 0,'C');
-            $pdf->SetFont('Arial','',12);
-            $pdf->Cell(40, 8,  utf8_decode('documento'), 0, 1,'C');
+            $pdf->SetTextColor(0,0,0);
+            
+            $proveedor = $this->model->proveedorEntrada($id_entrada);
+            $pdf->Cell(40,5, utf8_decode($proveedor['proveedor']), 0, 0, 'L');
+            $pdf->Cell(20,5, utf8_decode($proveedor['identidad']) , 0,0, 'L');
+            $pdf->Cell(30,5, $proveedor['n_identidad'], 0, 0, 'L');
+            $pdf->Cell(20,5, $proveedor['telefono'], 0, 0, 'L');
+            $pdf->Cell(40,5, utf8_decode($proveedor['correo']) , 0,0, 'L');
+            $pdf->Cell(56,5, utf8_decode($proveedor['direccion']) , 0,1, 'L');
+            
+            $pdf->Ln();
 
             $pdf->Ln();
             //Encabezado de productos
-            $pdf->SetFont('Arial', 'B', 10);
+            $pdf->SetFont('Arial', 'B', 9);
             $pdf->SetFillColor(130,198,121);
             $pdf->SetTextColor(255,255,255);
             $pdf->Cell(206, 5, "Detalle de Entrada", 1, 1, 'C', 1);

@@ -139,11 +139,22 @@
             $data = $this->save($sql, $datos);
             return $data;
         }
-        public function getAlmacen($id_usuario){
+        public function getAlmacen(int $id_usuario){
             $sql = "SELECT id_almacen AS id_almacen FROM usuarios WHERE id=$id_usuario";
             $data = $this->select($sql);
             return $data;
         }
+        public function proveedorEntrada(int $id){
+            $sql = "SELECT e.id, e.id_proveedor,p.id, p.nombre As proveedor,i.id,i.nombre AS identidad, p.*, i.* FROM entradas e INNER JOIN proveedores p ON p.id = e.id_proveedor INNER JOIN identidades i ON i.id=p.id_identidad WHERE e.id=$id";
+            $data = $this->select($sql);
+            return $data;
+        }
+        public function DetallesEntrada(int $id){
+            $sql = "SELECT e.*, e.id, d.id AS id_documento, d.nombre AS documento, u.id AS id_usuario, u.nombre AS usuario, a.id AS id_almacen, a.nombre AS almacen FROM entradas e INNER JOIN documentos d ON e.id_documento =d.id INNER JOIN usuarios u ON e.id_usuario =u.id INNER JOIN almacenes a ON e.id_almacen =a.id WHERE e.id=$id;";
+            $data = $this->select($sql);
+            return $data;
+        }
+        
        
         
     }
