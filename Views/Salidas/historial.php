@@ -6,7 +6,7 @@
         </div>
     </div>
 </div>
-<table class="table table-dark" id="t_historial_s">
+<table class="table table-dark table-hover" id="t_historial_s">
     <thead class="thead-dark">
         <tr>
             <th>ID</th>

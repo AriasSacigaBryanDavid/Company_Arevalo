@@ -13,7 +13,7 @@
     </div>
 </div>
 <!--tabla de documentos-->
-<table class="table table-dark" id="tblDocumentos">
+<table class="table table-dark table-hover" id="tblDocumentos">
     <thead class="thead-dark">
         <tr>
             <th>Id</th>
