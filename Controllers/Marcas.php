@@ -17,7 +17,7 @@
                 if($data[$i]['estado'] ==1){
                     $data[$i]['estado'] = '<span class="p-1 mb-2 bg-success text-white rounded">Activo</span>';
                     $data[$i]['acciones']='<div>
-                    <button class="btn btn-primary" type="button" onclick="btnEditarMar('.$data[$i]['id'].');"><i class="far fa-edit"></i></button>
+                    <button class="btn btn-primary mb-2" type="button" onclick="btnEditarMar('.$data[$i]['id'].');"><i class="far fa-edit"></i></button>
                     <button class="btn btn-danger" type="button" onclick="btnEliminarMar('.$data[$i]['id'].');"><i class="fas fa-trash"></i></button>
                     </div>';
                 }else {
