@@ -24,7 +24,7 @@
             return $data;
         }
         public function registrarDetalle(int $id_producto, int $id_usuario, string $peso_bruto, int $cantidad, string $kilos_tara, string $peso_neto, string $precio, string $sub_total){
-            $sql= "INSERT INTO detalle_s_v(id_producto, id_usuario, peso_bruto, cantidad, kilos_tara, peso_neto, precio, sub_total) VALUES(?,?,?,?,?,?,?,?)";
+            $sql= "INSERT INTO detalle_v(id_producto, id_usuario, peso_bruto, cantidad, kilos_tara, peso_neto, precio, sub_total) VALUES(?,?,?,?,?,?,?,?)";
             $datos= array($id_producto, $id_usuario, $peso_bruto, $cantidad, $kilos_tara, $peso_neto, $precio, $sub_total);
             $data= $this->save($sql, $datos);
             if($data ==1){
@@ -35,12 +35,12 @@
             return $res;
         }
         public function getDetalle(int $id){
-            $sql = "SELECT d.*, p.id AS id_pro, p.nombre FROM detalle_s_v d INNER JOIN productos p ON d.id_producto =p.id  WHERE d.id_usuario =$id";
+            $sql = "SELECT d.*, p.id AS id_pro, p.nombre FROM detalle_v d INNER JOIN productos p ON d.id_producto =p.id  WHERE d.id_usuario =$id";
             $data= $this->selectAll($sql);
             return $data;
         }
         public function deleteDetalle(int $id){
-            $sql = "DELETE FROM detalle_s_v WHERE id = ?";
+            $sql = "DELETE FROM detalle_v WHERE id = ?";
             $datos= array($id);
             $data= $this-> save($sql, $datos);
             if($data ==1){
@@ -51,17 +51,17 @@
             return $res;
         }
         public function calcularVenta(int $id_usuario){
-            $sql = "SELECT sub_total, SUM(sub_total) AS total FROM detalle_s_v WHERE id_usuario=$id_usuario";
+            $sql = "SELECT sub_total, SUM(sub_total) AS total FROM detalle_v WHERE id_usuario=$id_usuario";
             $data= $this->select($sql);
             return $data;
         }
         public function consultarDetalle(int $id_producto, int $id_usuario){
-            $sql = "SELECT * FROM detalle_s_v WHERE id_producto = $id_producto AND id_usuario = $id_usuario";
+            $sql = "SELECT * FROM detalle_v WHERE id_producto = $id_producto AND id_usuario = $id_usuario";
             $data= $this->select($sql);
             return $data;
         }
         public function actualizarDetalle(string $peso_bruto, int $cantidad , string $kilos_tara,string $peso_neto, string $precio, string $sub_total, int $id_producto, int $id_usuario){
-            $sql = "UPDATE detalle_s_v SET peso_bruto=?, cantidad=?, kilos_tara=?, peso_neto=?, precio = ?, sub_total = ? WHERE id_producto = ? AND id_usuario = ?";
+            $sql = "UPDATE detalle_v SET peso_bruto=?, cantidad=?, kilos_tara=?, peso_neto=?, precio = ?, sub_total = ? WHERE id_producto = ? AND id_usuario = ?";
             $datos = array($peso_bruto,$cantidad,$kilos_tara,$peso_neto, $precio, $sub_total, $id_producto, $id_usuario);
             $data = $this->save($sql,$datos);
             if($data ==1){
@@ -104,7 +104,7 @@
             return $data;
         }
         public function vaciarDetalle(int $id_usuario){
-            $sql = "DELETE FROM detalle_s_v WHERE id_usuario = ?";
+            $sql = "DELETE FROM detalle_v WHERE id_usuario = ?";
             $datos = array($id_usuario);
             $data = $this->save($sql, $datos);
             if($data ==1){
