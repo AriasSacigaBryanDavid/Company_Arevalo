@@ -1,5 +1,4 @@
 <?php
-
     class Ventas extends Controller{
         public function __construct(){
             session_start();
@@ -164,31 +163,33 @@
             $pdf->Cell(20, 7, $id_venta, 0, 1,'L');
             $pdf->Ln();
 
-            //Datos de la entrada
+            //Datos de la venta
             $pdf->SetFont('Arial', 'B', 8);
             $pdf->SetFillColor(130,198,121);
             $pdf->SetTextColor(255,255,255);
             $pdf->Cell(206, 5, utf8_decode('Información de Salida'), 1, 1, 'C', 1);
             $pdf->SetTextColor(255,255,255);
-            $pdf->Cell(31,5, utf8_decode('Fecha'), 1,0, 'L', true);
-            $pdf->Cell(50,5, utf8_decode('Documento'), 1,0, 'L', true);
+            $pdf->Cell(18,5, utf8_decode('Fecha'), 1,0, 'L', true);
+            $pdf->Cell(15,5, utf8_decode('Hora'), 1,0, 'L', true);
+            $pdf->Cell(49,5, utf8_decode('Documento'), 1,0, 'L', true);
             $pdf->Cell(35,5, utf8_decode('N°Documento'), 1,0, 'L', true);
-            $pdf->Cell(60,5, utf8_decode('Empleado'), 1,0, 'L', true);
-            $pdf->Cell(30,5, utf8_decode('Almacén'), 1,1, 'L', true);
+            $pdf->Cell(70,5, utf8_decode('Empleado'), 1,0, 'L', true);
+            $pdf->Cell(19,5, utf8_decode('Almacén'), 1,1, 'L', true);
             
             $pdf->SetTextColor(0,0,0);
             
-            $Detallesalida = $this->model->DetallesSalida($id_venta);
-            $pdf->Cell(31,5, utf8_decode($Detallesalida['fecha']) , 0, 0, 'L');
-            $pdf->Cell(50,5, utf8_decode($Detallesalida['documento']), 0, 0, 'L');
-            $pdf->Cell(35,5, utf8_decode($Detallesalida['n_documento']) , 0,0, 'L');
-            $pdf->Cell(60,5, utf8_decode($Detallesalida['usuario']) , 0,0, 'L');
-            $pdf->Cell(30,5, utf8_decode($Detallesalida['almacen']) , 0,1, 'L');
+            $Detalleventa = $this->model->DetallesVenta($id_venta);
+            $pdf->Cell(18,5, utf8_decode($Detalleventa['fecha']) , 0, 0, 'L');
+            $pdf->Cell(15,5, utf8_decode($Detalleventa['hora']) , 0, 0, 'L');
+            $pdf->Cell(49,5, utf8_decode($Detalleventa['documento']), 0, 0, 'L');
+            $pdf->Cell(35,5, utf8_decode($Detalleventa['n_documento']) , 0,0, 'L');
+            $pdf->Cell(70,5, utf8_decode($Detalleventa['usuario']) , 0,0, 'L');
+            $pdf->Cell(19,5, utf8_decode($Detalleventa['almacen']) , 0,1, 'L');
     
             $pdf->Ln();
 
             $pdf->Ln();
-            //Encabezado de clientes
+            //Encabezado de cliente
             $pdf->SetFont('Arial', 'B', 8);
             $pdf->SetFillColor(130,198,121);
             $pdf->SetTextColor(255,255,255);

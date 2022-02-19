@@ -142,7 +142,7 @@
             $data = $this->select($sql);
             return $data;
         }
-        public function DetallesSalida(int $id){
+        public function DetallesVenta(int $id){
             $sql = "SELECT v.*, v.id, d.id AS id_documento, d.nombre AS documento, u.id AS id_usuario, u.nombre AS usuario, a.id AS id_almacen, a.nombre AS almacen FROM ventas v INNER JOIN documentos d ON v.id_documento =d.id INNER JOIN usuarios u ON v.id_usuario =u.id INNER JOIN almacenes a ON v.id_almacen =a.id WHERE v.id=$id;";
             $data = $this->select($sql);
             return $data;
