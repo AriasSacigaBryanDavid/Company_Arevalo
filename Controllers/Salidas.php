@@ -26,18 +26,25 @@
             $cantidad = $_POST['cantidad'];
             $comprobar = $this->model->consultarDetalle($id_producto, $id_usuario);
             if (empty($comprobar)) {
-                $kilos_tara = $cantidad * 0.2;
-                $peso_neto = $peso_bruto - $kilos_tara;
-                $precio = $datos['precio_venta'];
-                $sub_total = $precio * $peso_neto;
-                
-                $data= $this->model->registrarDetalle($id_producto, $id_usuario, $peso_bruto, $cantidad, $kilos_tara, $peso_neto, $precio, $sub_total);
-                
-                if($data == "ok"){
-                    $msg =array('msg' =>'Producto ingresado a la salida','icono'=>'success');
+                if ($datos['cantidad'] >= $cantidad) {
+                    if($datos['peso_total'] >= $peso_bruto){
+                        $kilos_tara = $cantidad * 0.2;
+                        $peso_neto = $peso_bruto - $kilos_tara;
+                        $precio = $datos['precio_venta'];
+                        $sub_total = $precio * $peso_neto;
+                        
+                        $data= $this->model->registrarDetalle($id_producto, $id_usuario, $peso_bruto, $cantidad, $kilos_tara, $peso_neto, $precio, $sub_total);
+                        
+                        if($data == "ok"){
+                            $msg =array('msg' =>'Producto ingresado a la venta','icono'=>'success');
+                        }else{
+                            $msg =array('msg' =>'Error al ingresar el producto a la venta','icono'=>'error');
+                        } 
+                    }else{
+                        $msg =array('msg' =>'Peso no disponible: '.$datos['peso_total'],'icono'=>'warning');
+                    }                   
                 }else{
-                    $msg =array('msg' =>'Error al ingresar el producto a la salida','icono'=>'error');
-                    
+                    $msg =array('msg' =>'Stock no disponible: '.$datos['cantidad'],'icono'=>'warning');
                 }
             }else{
                 $total_peso_bruto= $comprobar['peso_bruto'] + $peso_bruto;
@@ -46,13 +53,18 @@
                 $peso_neto = $total_peso_bruto - $kilos_tara;
                 $precio = $datos['precio_venta'];
                 $sub_total = $precio * $peso_neto;
-                
-                $data= $this->model->actualizarDetalle($total_peso_bruto, $total_cantidad, $kilos_tara, $peso_neto, $precio, $sub_total, $id_producto, $id_usuario);
-                
-                if($data == "modificado"){
-                    $msg =array('msg' =>'Producto actualizado','icono'=>'success');
+                if($datos['cantidad'] < $total_cantidad){  
+                    $msg =array('msg' =>'Stock no disponible: '.$datos['cantidad'],'icono'=>'warning');
+
+                }else if($datos['peso_total'] < $total_peso_bruto) {
+                    $msg =array('msg' =>'Peso no disponible: '.$datos['peso_total'],'icono'=>'warning');
                 }else{
-                    $msg =array('msg' =>'Error al actualizar el producto','icono'=>'error');
+                    $data= $this->model->actualizarDetalle($total_peso_bruto, $total_cantidad, $kilos_tara, $peso_neto, $precio, $sub_total, $id_producto, $id_usuario);
+                    if($data == "modificado"){
+                        $msg =array('msg' =>'Producto actualizado','icono'=>'success');
+                    }else{
+                        $msg =array('msg' =>'Error al actualizar el producto','icono'=>'error');
+                    }
                 }
             }
             echo json_encode($msg, JSON_UNESCAPED_UNICODE);
@@ -99,7 +111,7 @@
                     $stock = $stock_actual['cantidad'] - $cantidad;
                     $this->model->actualizarStock($stock, $id_pro);
                     $kilos_total= $this->model->getProductos($id_pro);
-                    $peso = $kilos_total['peso_total']- $peso_neto;
+                    $peso = $kilos_total['peso_total']- $peso_bruto;
                     $this->model->actualizarPeso($peso, $id_pro);
                 }
                 $vaciar = $this->model->vaciarDetalle($id_usuario);
