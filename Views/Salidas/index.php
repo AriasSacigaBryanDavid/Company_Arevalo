@@ -94,23 +94,25 @@
     </div>
 </div>
 <!--Tablas de Productos-->
-<table class="table table-dark table-bordered table-hover">
-    <thead class="thead-dark">
-        <tr>
-            <th>ID</th>
-            <th>Producto</th>
-            <th>Peso Bruto</th>
-            <th>Cantidad</th>
-            <th>Kilo tara</th>
-            <th>Peso Neto</th>
-            <th>Precio</th>
-            <th>Sub Total</th>
-            <th></th>
-        </tr>
-    </thead>
-        <tbody id="tblDetalleSA">
-        </tbody>
-</table>
+<div class="table-responsive">
+    <table class="table table-dark table-bordered table-hover">
+        <thead class="thead-dark">
+            <tr>
+                <th>ID</th>
+                <th>Producto</th>
+                <th>Peso Bruto</th>
+                <th>Cantidad</th>
+                <th>Kilo tara</th>
+                <th>Peso Neto</th>
+                <th>Precio</th>
+                <th>Sub Total</th>
+                <th></th>
+            </tr>
+        </thead>
+            <tbody id="tblDetalleSA">
+            </tbody>
+    </table>
+</div>
 <!--Total de Salidas Productos-->
 <div class="row">
     <div class="col-md-4 ml-auto">

@@ -13,19 +13,20 @@
             </div>
         </div>
     </div>
-    
-    <table class="table table-dark table-hover" id="tblCategorias">
-        <thead class="thead-dark">
-            <tr>
-                <th>Id</th>
-                <th>nombre</th>
-                <th>Estado</th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-        </tbody>
-    </table>
+    <div class="table-responsive">
+        <table class="table table-dark table-hover" id="tblCategorias">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Id</th>
+                    <th>nombre</th>
+                    <th>Estado</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
     <!--formulario de agregar categorias-->
     <div id="nuevo_categoria" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="my-modal-title" aria-hidden="true">
         <div class="modal-dialog" role="document">

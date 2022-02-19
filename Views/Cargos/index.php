@@ -13,20 +13,21 @@
                 </div>
             </div>
     </div>
-
-    <table class="table table-dark table-hover" id="tblCargos">
-        <thead class="thead-dark">
-            <tr>
-                <th>Id</th>
-                <th>Cargo</th>
-                <th>Estado</th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-        </tbody>
-    </table>
-
+    <div class="table-responsive">
+        <table class="table table-dark table-hover" id="tblCargos">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Id</th>
+                    <th>Cargo</th>
+                    <th>Estado</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+    
     <!--formulario de agregar caja-->
 
     <div id="nuevo_cargo" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="my-modal-title" aria-hidden="true">

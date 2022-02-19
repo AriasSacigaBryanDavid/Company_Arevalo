@@ -73,7 +73,7 @@
     }
     public function getalmacenVendidos()
     {
-        $sql = "SELECT v.id_almacen, v.total, a.id, a.nombre, SUM(v.total) AS M_total FROM ventas v INNER JOIN almacenes a ON a.id = v.id_almacen GROUP BY v.id_almacen ORDER BY v.total DESC LIMIT 4";
+        $sql = "SELECT v.id_almacen, v.total, a.id, a.nombre, SUM(v.total) AS M_total FROM ventas v INNER JOIN almacenes a ON a.id = v.id_almacen GROUP BY v.id_almacen ORDER BY v.total DESC";
         $data = $this->selectAll($sql);
         return $data;
     }

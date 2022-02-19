@@ -13,23 +13,26 @@
     </div>
 </div>
 <!--tabla de proveedores-->
-<table class="table table-dark table-hover" id="tblProveedores">
-    <thead class="thead-dark">
-        <tr>
-            <th>Id</th>
-            <th>Nombre</th>
-            <th>Documento de Identidad</th>
-            <th>Número de Identidad</th>
-            <th>Teléfono</th>
-            <th>Correo</th>
-            <th>Dirección</th>
-            <th>Estado</th>
-            <th></th>
-        </tr>
-    </thead>
-        <tbody>
-        </tbody>
-</table>
+<div class="table-responsive">
+    <table class="table table-dark table-hover" id="tblProveedores">
+        <thead class="thead-dark">
+            <tr>
+                <th>Id</th>
+                <th>Nombre</th>
+                <th>Documento de Identidad</th>
+                <th>Número de Identidad</th>
+                <th>Teléfono</th>
+                <th>Correo</th>
+                <th>Dirección</th>
+                <th>Estado</th>
+                <th></th>
+            </tr>
+        </thead>
+            <tbody>
+            </tbody>
+    </table>
+</div>
+
 <!--formulario de agregar clientes-->
 <div id="nuevo_proveedor" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="my-modal-title" aria-hidden="true">
     <div class="modal-dialog" role="document">
