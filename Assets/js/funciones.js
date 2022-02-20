@@ -2049,10 +2049,10 @@ function generarEntrada(){
                 Swal.fire({
                     position: 'top-end',
                     icon: 'warning',
-                    title: 'Porfavor ingrese los dato de detalle de la entrada, es obligatorios',
+                    title: 'Ingrese los datos de detalle de la entrada, es obligatorios',
                     showConfirmButton: false,
                     timer: 3500
-                  })
+                })
             }else{
                 const frm = document.getElementById('frmDatoEntrada');
                 const url =base_url + "Entradas/registrarEntrada";
@@ -2278,35 +2278,49 @@ function generarSalida(){
         cancelButtonText:'No'
       }).then((result) => {
         if (result.isConfirmed) {
-            const frm = document.getElementById('frmDatoSalida');
-            const url =base_url + "Salidas/registrarSalida";
-            const http=new XMLHttpRequest();
-            http.open("POST", url, true);
-            http.send(new FormData(frm));
-            http.onreadystatechange=function(){
-                if(this.readyState == 4 && this.status ==200){
-                    const res = JSON.parse(this.responseText);
-                    if (res.msg == "ok" ){
-                        Swal.fire(
-                            'Mensaje!',
-                            'Salida generada.',
-                            'success'
-                        )
-                        document.getElementById("frmDatoSalida").reset();
-                        const ruta =base_url +'Salidas/generarPdf/'+ res.id_salida;
-                        window.open(ruta);
-                        setTimeout(() =>{
-                            window.location.reload();
-                        },300);
-                    }else{
-                        Swal.fire(
-                            'Mensaje!',
-                            res,
-                            'error'
-                        )
+            const id_documento = document.getElementById('documento').value;
+            const n_documento = document.getElementById('n_documento').value;
+            const motivo = document.getElementById('motivo').value; 
+            if(id_documento =="" || n_documento =="" || motivo ==""){
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'warning',
+                    title: 'Ingrese los datos de detalle de la salida, es obligatorios',
+                    showConfirmButton: false,
+                    timer: 3500
+                })
+            }else{
+                const frm = document.getElementById('frmDatoSalida');
+                const url =base_url + "Salidas/registrarSalida";
+                const http=new XMLHttpRequest();
+                http.open("POST", url, true);
+                http.send(new FormData(frm));
+                http.onreadystatechange=function(){
+                    if(this.readyState == 4 && this.status ==200){
+                        const res = JSON.parse(this.responseText);
+                        if (res.msg == "ok" ){
+                            Swal.fire(
+                                'Mensaje!',
+                                'Salida generada.',
+                                'success'
+                            )
+                            document.getElementById("frmDatoSalida").reset();
+                            const ruta =base_url +'Salidas/generarPdf/'+ res.id_salida;
+                            window.open(ruta);
+                            setTimeout(() =>{
+                                window.location.reload();
+                            },300);
+                        }else{
+                            Swal.fire(
+                                'Mensaje!',
+                                res,
+                                'error'
+                            )
+                        }
                     }
                 }
             }
+            
             
         }
       })   
@@ -2499,35 +2513,49 @@ function generarVenta(){
         cancelButtonText:'No'
       }).then((result) => {
         if (result.isConfirmed) {
-            const frm = document.getElementById('frmDatoVenta');
-            const url =base_url + "Ventas/registrarVenta";
-            const http=new XMLHttpRequest();
-            http.open("POST", url, true);
-            http.send(new FormData(frm));
-            http.onreadystatechange=function(){
-                if(this.readyState == 4 && this.status ==200){
-                    const res = JSON.parse(this.responseText);
-                    if (res.msg == "ok" ){
-                        Swal.fire(
-                            'Mensaje!',
-                            'Venta generada.',
-                            'success'
-                        )
-                        document.getElementById("frmDatoVenta").reset();
-                        const ruta =base_url +'Ventas/generarPdf/'+ res.id_venta;
-                        window.open(ruta);
-                        setTimeout(() =>{
-                            window.location.reload();
-                        },300);
-                    }else{
-                        Swal.fire(
-                            'Mensaje!',
-                            res,
-                            'error'
-                        )
+            const id_documento = document.getElementById('documento').value;
+            const n_documento = document.getElementById('n_documento').value;
+            const id_cliente = document.getElementById('cliente').value;
+            if (id_documento =="" || n_documento =="" || id_cliente =="") {
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'warning',
+                    title: 'Ingrese los datos de detalle de la venta, es obligatorios',
+                    showConfirmButton: false,
+                    timer: 3500
+                })
+            }else{
+                const frm = document.getElementById('frmDatoVenta');
+                const url =base_url + "Ventas/registrarVenta";
+                const http=new XMLHttpRequest();
+                http.open("POST", url, true);
+                http.send(new FormData(frm));
+                http.onreadystatechange=function(){
+                    if(this.readyState == 4 && this.status ==200){
+                        const res = JSON.parse(this.responseText);
+                        if (res.msg == "ok" ){
+                            Swal.fire(
+                                'Mensaje!',
+                                'Venta generada.',
+                                'success'
+                            )
+                            document.getElementById("frmDatoVenta").reset();
+                            const ruta =base_url +'Ventas/generarPdf/'+ res.id_venta;
+                            window.open(ruta);
+                            setTimeout(() =>{
+                                window.location.reload();
+                            },300);
+                        }else{
+                            Swal.fire(
+                                'Mensaje!',
+                                res,
+                                'error'
+                            )
+                        }
                     }
                 }
             }
+            
 
         }
       })   

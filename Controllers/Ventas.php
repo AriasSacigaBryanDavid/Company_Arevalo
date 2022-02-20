@@ -99,37 +99,42 @@
             $id_documento=$_POST['documento'];
             $n_documento =$_POST['n_documento'];
             $id_cliente = $_POST['cliente'];
-            $id_usuario = $_SESSION['id_usuario'];
-            $id_almacen = $this->model->getAlmacen($id_usuario);
-            $total = $this->model->calcularVenta($id_usuario);
-            $data = $this->model->registrarVenta($id_documento, $n_documento, $id_cliente,$id_usuario,$id_almacen['id_almacen'],$total['total']);
-            if($data == 'ok'){
-                $detalle = $this->model->getDetalle($id_usuario);
-                $id_venta = $this->model->id_venta();
-                foreach($detalle as $row){
-                    $id_pro = $row['id_producto'];
-                    $peso_bruto=$row['peso_bruto'];
-                    $cantidad = $row['cantidad'];
-                    $kilos_tara = $cantidad * 0.2;
-                    $peso_neto = $peso_bruto - $kilos_tara;
-                    $precio = $row['precio'];
-                    $sub_total = $precio * $peso_neto;
-                    $this->model->registrarDetalleVenta($id_venta['id'],$id_pro, $peso_bruto, $cantidad, $kilos_tara,$peso_neto,$precio, $sub_total);
-                    $stock_actual= $this->model->getProductos($id_pro);
-                    $stock = $stock_actual['cantidad'] - $cantidad;
-                    $this->model->actualizarStock($stock, $id_pro);
-                    $kilos_total= $this->model->getProductos($id_pro);
-                    $peso = $kilos_total['peso_total']- $peso_bruto;
-                    $this->model->actualizarPeso($peso, $id_pro);
-                }
-                $vaciar = $this->model->vaciarDetalle($id_usuario);
-                if($vaciar == 'ok'){
-                    $msg =array('msg' => 'ok', 'id_venta' => $id_venta['id']);
-                }
-                
+            if(empty($id_documento) || empty($n_documento) || empty($id_cliente)){
+                $msg="Todos los campos son obligatorios";
             }else{
-                $msg='Error al realizar la venta';
+                $id_usuario = $_SESSION['id_usuario'];
+                $id_almacen = $this->model->getAlmacen($id_usuario);
+                $total = $this->model->calcularVenta($id_usuario);
+                $data = $this->model->registrarVenta($id_documento, $n_documento, $id_cliente,$id_usuario,$id_almacen['id_almacen'],$total['total']);
+                if($data == 'ok'){
+                    $detalle = $this->model->getDetalle($id_usuario);
+                    $id_venta = $this->model->id_venta();
+                    foreach($detalle as $row){
+                        $id_pro = $row['id_producto'];
+                        $peso_bruto=$row['peso_bruto'];
+                        $cantidad = $row['cantidad'];
+                        $kilos_tara = $cantidad * 0.2;
+                        $peso_neto = $peso_bruto - $kilos_tara;
+                        $precio = $row['precio'];
+                        $sub_total = $precio * $peso_neto;
+                        $this->model->registrarDetalleVenta($id_venta['id'],$id_pro, $peso_bruto, $cantidad, $kilos_tara,$peso_neto,$precio, $sub_total);
+                        $stock_actual= $this->model->getProductos($id_pro);
+                        $stock = $stock_actual['cantidad'] - $cantidad;
+                        $this->model->actualizarStock($stock, $id_pro);
+                        $kilos_total= $this->model->getProductos($id_pro);
+                        $peso = $kilos_total['peso_total']- $peso_bruto;
+                        $this->model->actualizarPeso($peso, $id_pro);
+                    }
+                    $vaciar = $this->model->vaciarDetalle($id_usuario);
+                    if($vaciar == 'ok'){
+                        $msg =array('msg' => 'ok', 'id_venta' => $id_venta['id']);
+                    }
+                    
+                }else{
+                    $msg='Error al realizar la venta';
+                }
             }
+            
             echo json_encode($msg);
             die();
         }
