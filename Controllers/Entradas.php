@@ -80,37 +80,42 @@
             $id_documento=$_POST['documento'];
             $n_documento =$_POST['n_documento'];
             $id_proveedor = $_POST['proveedor'];
-            $id_usuario = $_SESSION['id_usuario'];
-            $id_almacen = $this->model->getAlmacen($id_usuario);
-            $total = $this->model->calcularEntrada($id_usuario);
-            $data = $this->model->registrarEntrada($id_documento,$n_documento,$id_proveedor,$id_usuario,$id_almacen['id_almacen'],$total['total']);
-            if($data == 'ok'){
-                $detalle = $this->model->getDetalle($id_usuario);
-                $id_entrada = $this->model->id_entrada();
-                foreach($detalle as $row){
-                    $id_pro = $row['id_producto'];
-                    $rendimiento =$row['rendimiento'];
-                    $peso_bruto=$row['peso_bruto'];
-                    $cantidad = $row['cantidad'];
-                    $kilos_tara = $cantidad * 0.2;
-                    $peso_neto = $peso_bruto - $kilos_tara;
-                    $precio = $row['precio'];
-                    $sub_total = $precio * $peso_neto;
-                    $this->model->registrarDetalleEntrada($id_entrada['id'],$id_pro, $rendimiento, $peso_bruto, $cantidad, $kilos_tara,$peso_neto,$precio, $sub_total);
-                    $stock_actual= $this->model->getProductos($id_pro);
-                    $stock = $stock_actual['cantidad'] + $cantidad;
-                    $this->model->actualizarStock($stock, $id_pro);
-                    $kilos_total= $this->model->getProductos($id_pro);
-                    $peso = $kilos_total['peso_total']+ $peso_neto;
-                    $this->model->actualizarPeso($peso, $id_pro);
+            if(empty($id_documento) || empty($n_documento) || empty($id_proveedor)){
+                $msg="Todos los campos son obligatorios";
+            }else {
+                $id_usuario = $_SESSION['id_usuario'];
+                $id_almacen = $this->model->getAlmacen($id_usuario);
+                $total = $this->model->calcularEntrada($id_usuario);
+                $data = $this->model->registrarEntrada($id_documento,$n_documento,$id_proveedor,$id_usuario,$id_almacen['id_almacen'],$total['total']);
+                if($data == 'ok'){
+                    $detalle = $this->model->getDetalle($id_usuario);
+                    $id_entrada = $this->model->id_entrada();
+                    foreach($detalle as $row){
+                        $id_pro = $row['id_producto'];
+                        $rendimiento =$row['rendimiento'];
+                        $peso_bruto=$row['peso_bruto'];
+                        $cantidad = $row['cantidad'];
+                        $kilos_tara = $cantidad * 0.2;
+                        $peso_neto = $peso_bruto - $kilos_tara;
+                        $precio = $row['precio'];
+                        $sub_total = $precio * $peso_neto;
+                        $this->model->registrarDetalleEntrada($id_entrada['id'],$id_pro, $rendimiento, $peso_bruto, $cantidad, $kilos_tara,$peso_neto,$precio, $sub_total);
+                        $stock_actual= $this->model->getProductos($id_pro);
+                        $stock = $stock_actual['cantidad'] + $cantidad;
+                        $this->model->actualizarStock($stock, $id_pro);
+                        $kilos_total= $this->model->getProductos($id_pro);
+                        $peso = $kilos_total['peso_total']+ $peso_neto;
+                        $this->model->actualizarPeso($peso, $id_pro);
+                    }
+                        $vaciar = $this->model->vaciarDetalle($id_usuario);
+                            if($vaciar == 'ok'){
+                                $msg =array('msg' => 'ok', 'id_entrada' => $id_entrada['id']);
+                            }
+                }else{
+                    $msg='Error al realizar la entrada';
                 }
-                    $vaciar = $this->model->vaciarDetalle($id_usuario);
-                        if($vaciar == 'ok'){
-                            $msg =array('msg' => 'ok', 'id_entrada' => $id_entrada['id']);
-                        }
-            }else{
-                $msg='Error al realizar la entrada';
             }
+            
             echo json_encode($msg);
             die();
         }

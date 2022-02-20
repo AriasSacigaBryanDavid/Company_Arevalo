@@ -2042,35 +2042,49 @@ function generarEntrada(){
         cancelButtonText:'No'
     }).then((result) => {
         if (result.isConfirmed) {
-            const frm = document.getElementById('frmDatoEntrada');
-            const url =base_url + "Entradas/registrarEntrada";
-            const http=new XMLHttpRequest();
-            http.open("POST", url, true);
-            http.send(new FormData(frm));
-            http.onreadystatechange=function(){
-                if(this.readyState == 4 && this.status ==200){
-                    const res = JSON.parse(this.responseText);
-                    if (res.msg == "ok" ){
-                        Swal.fire(
-                            'Mensaje!',
-                            'Entrada generada.',
-                            'success'
-                        )
-                        document.getElementById("frmDatoEntrada").reset();
-                        const ruta =base_url +'Entradas/generarPdf/'+ res.id_entrada;
-                        window.open(ruta);
-                        setTimeout(() =>{
-                            window.location.reload();
-                        },300);
-                    }else{
-                        Swal.fire(
-                            'Mensaje!',
-                            res,
-                            'error'
-                        )
+            const id_documento = document.getElementById('documento').value;
+            const n_documento = document.getElementById('n_documento').value;
+            const id_proveedor = document.getElementById('proveedor').value;
+            if (id_documento =="" || n_documento =="" || id_proveedor =="") {
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'warning',
+                    title: 'Porfavor ingrese los dato de detalle de la entrada, es obligatorios',
+                    showConfirmButton: false,
+                    timer: 3500
+                  })
+            }else{
+                const frm = document.getElementById('frmDatoEntrada');
+                const url =base_url + "Entradas/registrarEntrada";
+                const http=new XMLHttpRequest();
+                http.open("POST", url, true);
+                http.send(new FormData(frm));
+                http.onreadystatechange=function(){
+                    if(this.readyState == 4 && this.status ==200){
+                        const res = JSON.parse(this.responseText);
+                        if (res.msg == "ok" ){
+                            Swal.fire(
+                                'Mensaje!',
+                                'Entrada generada.',
+                                'success'
+                            )
+                            document.getElementById("frmDatoEntrada").reset();
+                            const ruta =base_url +'Entradas/generarPdf/'+ res.id_entrada;
+                            window.open(ruta);
+                            setTimeout(() =>{
+                                window.location.reload();
+                            },300);
+                        }else{
+                            Swal.fire(
+                                'Mensaje!',
+                                res,
+                                'error'
+                            )
+                        }
                     }
                 }
             }
+            
         }
     })   
 }
