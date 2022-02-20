@@ -7,6 +7,7 @@
     </div>
     <!--Ventas de Datos-->
     <div class="card-body">
+    <h5 class="card-title text-center font-weight-bold mb-2"> Detalle de la Venta</h5>
         <form id="frmDatoVenta">
             <div class="row">
                 <div class="col-md-3">

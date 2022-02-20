@@ -7,6 +7,7 @@
     </div>
      <!--Entradas de Datos-->
     <div class="card-body">
+        <h5 class="card-title text-center font-weight-bold mb-2"> Detalle de la Entrada</h5>
         <form id="frmDatoEntrada">
             <div class="row">
                 <div class="col-md-3">
