@@ -1,4 +1,4 @@
-let tblUsuarios , tblCargos, tblAlmacenes, tblProveedores,tblCategorias,tblMarcas,tblUnidades,tblProductos,tblDocumentos,tblClientes, tblIdentidades;
+let tblUsuarios , tblCargos, tblAlmacenes, tblProveedores,tblCategorias,tblMarcas,tblUnidades,tblProductos,tblDocumentos,tblClientes, tblIdentidades, t_h_e;
 
 /** Inicio de Usuario */
 document.addEventListener("DOMContentLoaded", function(){
@@ -440,7 +440,7 @@ document.addEventListener("DOMContentLoaded", function(){
     });
      /** Fin de la tabla clientes*/ 
      /** Inicio de historial de entradas */
-    $('#t_historial_e').DataTable( {
+    t_h_e = $('#t_historial_e').DataTable( {
         ajax: {
             url: base_url + "Entradas/listar_historial",
             dataSrc: ''
@@ -454,6 +454,7 @@ document.addEventListener("DOMContentLoaded", function(){
             {'data' : 'almacen'},
             {'data' : 'total'},
             {'data' : 'fecha'},
+            {'data' : 'estado'},
             {'data' : 'acciones'}
         ],
         language: {
@@ -2135,6 +2136,34 @@ function CancelarEntrada(){
         }
       })   
 }
+
+function btnAnularE(id){
+    Swal.fire({
+        title: '¿Está seguro de anular la entrada?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'si',
+        cancelButtonText:'No'
+      }).then((result) => {
+        if (result.isConfirmed) {
+            const url =base_url + "Entradas/anularEntrada/"+id;
+            const http=new XMLHttpRequest();
+            http.open("GET", url, true);
+            http.send();
+            http.onreadystatechange=function(){
+                if(this.readyState == 4 && this.status ==200){
+                   const res = JSON.parse(this.responseText);
+                   alertas(res.msg, res.icono);
+                   t_h_e.ajax.reload();
+                }
+            }
+        }
+      })   
+}
+
+
 /** Fin de Entradas */
 /*******************************/
 /** Inicio de salidas */
@@ -2606,6 +2635,9 @@ function CancelarVenta(){
         }
       })   
 }
+
+
+
 /** Fin de ventas */
 /*******************************/
 /** inicio de Administracion */

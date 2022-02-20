@@ -154,6 +154,23 @@
             $data = $this->select($sql);
             return $data;
         }
+        public function getAnularEntrada(int $id_entrada){
+            $sql="SELECT e.*, d.* FROM entradas e INNER JOIN detalle_entradas d ON e.id = d.id_entrada WHERE e.id =$id_entrada";
+            $data= $this->selectAll($sql);
+            return $data;
+        }
+        public function getAnular(int $id_entrada){
+            $sql ="UPDATE entradas SET estado = ? WHERE id= ?";
+            $datos= array(0, $id_entrada);
+            $data = $this->save($sql, $datos);
+            if($data == 1){
+                $res = "ok";
+            }else{
+                $res = "error";
+            }
+            return $res;
+        }
+        
         
        
         

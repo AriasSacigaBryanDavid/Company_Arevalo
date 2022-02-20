@@ -3,8 +3,7 @@
         public function __construct(){
             session_start();
             parent::__construct();
-        }
-        
+        }  
         public function index(){
             if (empty($_SESSION['activo'])) {
                 header("location: ".base_url);
@@ -241,16 +240,24 @@
             $pdf->Cell(206, 6, number_format($total, 2, '.', ','), 0, 1,'R');
             $pdf->Output();
         }    
-
         public function historial(){
             $this->views->getView($this,"historial");
         }
         public function  listar_historial(){
            $data=$this->model->getHistorialEntradas();
            for ($i=0; $i<count($data); $i++){
-            $data[$i]['acciones']='<div>
-               <a class="btn btn-primary" href="'.base_url."Entradas/generarPdf/".$data[$i]['id'].'" target="_blank"><i class="fas fa-file-pdf"></i></a>
-               </div>';
+                if($data[$i]['estado'] ==1){
+                    $data[$i]['estado'] = '<span class="p-1 mb-2 bg-success text-white rounded">Completado</span>';
+                    $data[$i]['acciones']='<div>
+                    <button class="btn btn-warning mb-2" type="button" onclick="btnAnularE('.$data[$i]['id'].')"><i class="fas fa-ban"></i></button>
+                    <a class="btn btn-primary" href="'.base_url."Entradas/generarPdf/".$data[$i]['id'].'" target="_blank"><i class="fas fa-file-pdf"></i></a>
+                    </div>';
+                }else {
+                    $data[$i]['estado'] ='<span class="p-1 mb-2 bg-danger text-white rounded">Anulado</span>';
+                    $data[$i]['acciones']='<div>
+                    <a class="btn btn-primary" href="'.base_url."Entradas/generarPdf/".$data[$i]['id'].'" target="_blank"><i class="fas fa-file-pdf"></i></a>
+                    </div>';
+                }  
             }
            echo json_encode($data, JSON_UNESCAPED_UNICODE);
            die();
@@ -263,6 +270,25 @@
                 $msg =array('msg' => 'ok', 'id_entrada' => $id_entrada['id']);
             }
             echo json_encode($msg);
+            die();
+        }
+        public function anularEntrada($id_entrada){
+            $data = $this->model->getAnularEntrada($id_entrada);
+            $anular = $this->model->getAnular($id_entrada);
+            foreach ($data as $row) {
+                $stock_actual= $this->model->getProductos($row['id_producto']);
+                $stock = $stock_actual['cantidad'] - $row['cantidad'] ;
+                $this->model->actualizarStock($stock, $row['id_producto']);
+                $kilos_total= $this->model->getProductos($row['id_producto']);
+                $peso = $kilos_total['peso_total'] - $row['peso_neto'];
+                $this->model->actualizarPeso($peso, $row['id_producto']);
+            }
+            if ($anular == 'ok') {
+                $msg = array('msg' => 'Entrada Anulada', 'icono' => 'success');
+            }else {
+                $msg = array('msg' => 'Error al anular la entrada', 'icono' => 'error');
+            }
+            echo json_encode($msg, JSON_UNESCAPED_UNICODE);
             die();
         }
         
