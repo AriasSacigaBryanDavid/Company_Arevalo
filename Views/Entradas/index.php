@@ -11,7 +11,7 @@
             <div class="row">
                 <div class="col-md-3">
                     <div class="form-group mb-3">
-                        <label for="documento">Tipo de Documento</label>
+                        <label for="documento"><i class="fas fa-file"></i> Tipo de Documento</label>
                         <select id="documento" class="form-control" name="documento">
                             <?php foreach ($data['documentos'] as $row) { ?>
                                 <option value="<?php echo $row['id']; ?>"><?php echo $row['nombre']; ?></option>
@@ -27,7 +27,7 @@
                 </div>
                 <div class="col-md-5">
                     <div class="form-group mb-3">
-                        <label for="proveedor">Proveedor</label>
+                        <label for="proveedor"><i class="fas fa-address-book"></i> Proveedor</label>
                         <select id="proveedor" class="form-control" name="proveedor">
                             <?php foreach ($data['proveedores'] as $row) { ?>
                                 <option value="<?php echo $row['id']; ?>"><?php echo $row['nombre']; ?></option>
@@ -51,49 +51,49 @@
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="producto">Producto</label>
+                        <label for="producto"><i class="fas fa-box"></i> Producto</label>
                         <input id="producto" class="form-control" type="text" name="producto" placeholder="Producto" disabled>
                     </div>
                 </div>
                 <div class="col-md-2">
                     <div class="form-group">
-                        <label for="rendimiento">Rendimiento</label>
+                        <label for="rendimiento"><i class="fas fa-chart-bar"></i> Rendimiento</label>
                         <input id="rendimiento" class="form-control" type="text" name="rendimiento" disabled>
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="form-group">
-                        <label for="peso_bruto">Peso Bruto </label>
+                        <label for="peso_bruto"><i class="fas fa-weight-hanging"></i> Peso Bruto </label>
                         <input id="peso_bruto" class="form-control" type="text" name="peso_bruto" placeholder="0.00" disabled>
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="form-group">
-                        <label for="cantidad">Cantidad</label>
+                        <label for="cantidad"><i class="fas fa-hashtag"></i> Cantidad</label>
                         <input id="cantidad" class="form-control" type="number" name="cantidad" onkeyup="calcularPrecioEn(event)" disabled>
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="form-group">
-                        <label for="kilos_tara">Kilos de Tara</label>
+                        <label for="kilos_tara"><i class="fas fa-calculator"></i> Kilos de Tara</label>
                         <input id="kilos_tara" class="form-control" type="text" name="kilos_tara" placeholder="0.00" disabled>
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="form-group">
-                        <label for="peso_neto">Peso Neto</label>
+                        <label for="peso_neto"><i class="fas fa-weight-hanging"></i> Peso Neto</label>
                         <input id="peso_neto" class="form-control" type="text" name="peso_neto" placeholder="0.00" disabled >
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="form-group">
-                        <label for="precio">Precio de Compra</label>
+                        <label for="precio"> <i class="fas fa-tag"></i> Precio de Compra</label>
                         <input id="precio" class="form-control" type="text" name="precio" placeholder="0.00" disabled>
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="form-group">
-                        <label for="sub_total">Sub Total </label>
+                        <label for="sub_total"><i class="fas fa-cash-register"></i> Sub Total </label>
                         <input id="sub_total" class="form-control" type="text" name="sub_total" placeholder="0.00" disabled>
                     </div>
                 </div>

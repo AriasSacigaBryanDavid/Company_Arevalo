@@ -242,7 +242,7 @@
            $data=$this->model->getHistorialSalidas();
            for ($i=0; $i<count($data); $i++){
             $data[$i]['acciones']='<div>
-               <a class="btn btn-danger" href="'.base_url."Salidas/generarPdf/".$data[$i]['id'].'" target="_blank"><i class="fas fa-file-pdf"></i></a>
+               <a class="btn btn-primary" href="'.base_url."Salidas/generarPdf/".$data[$i]['id'].'" target="_blank"><i class="fas fa-file-pdf"></i></a>
                </div>';
             }
            echo json_encode($data, JSON_UNESCAPED_UNICODE);
