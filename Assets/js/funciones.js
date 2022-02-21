@@ -1,4 +1,4 @@
-let tblUsuarios , tblCargos, tblAlmacenes, tblProveedores,tblCategorias,tblMarcas,tblUnidades,tblProductos,tblDocumentos,tblClientes, tblIdentidades, t_h_e, t_h_v;
+let tblUsuarios , tblCargos, tblAlmacenes, tblProveedores,tblCategorias,tblMarcas,tblUnidades,tblProductos,tblDocumentos,tblClientes, tblIdentidades, t_h_e, t_h_v, t_h_s;
 
 /** Inicio de Usuario */
 document.addEventListener("DOMContentLoaded", function(){
@@ -513,7 +513,7 @@ document.addEventListener("DOMContentLoaded", function(){
     });
     /** Fin de historial de entradas */
     /** Inicio de historial de salidas */
-    $('#t_historial_s').DataTable( {
+    t_h_s = $('#t_historial_s').DataTable( {
         ajax: {
             url: base_url + "Salidas/listar_historial" ,
             dataSrc: ''
@@ -527,6 +527,7 @@ document.addEventListener("DOMContentLoaded", function(){
             {'data' : 'almacen'},
             {'data' : 'total'},
             {'data' : 'fecha'},
+            {'data' : 'estado'},
             {'data' : 'acciones'}
         ],
         language: {
@@ -2400,6 +2401,32 @@ function CancelarSalida(){
         }
       })   
 }
+
+function btnAnularS(id){
+    Swal.fire({
+        title: '¿Está seguro de anular la salida?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'si',
+        cancelButtonText:'No'
+      }).then((result) => {
+        if (result.isConfirmed) {
+            const url =base_url + "Salidas/anularSalida/"+id;
+            const http=new XMLHttpRequest();
+            http.open("GET", url, true);
+            http.send();
+            http.onreadystatechange=function(){
+                if(this.readyState == 4 && this.status ==200){
+                   const res = JSON.parse(this.responseText);
+                   alertas(res.msg, res.icono);
+                   t_h_s.ajax.reload();
+                }
+            }
+        }
+      })   
+}
 /** Fin de Salidas */
 /*******************************/
 /** inicio de ventas */
@@ -2661,9 +2688,6 @@ function btnAnularV(id){
         }
       })   
 }
-
-
-
 
 /** Fin de ventas */
 /*******************************/

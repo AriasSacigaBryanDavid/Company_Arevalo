@@ -147,6 +147,22 @@
             $data = $this->select($sql);
             return $data;
         }
+        public function getAnularSalida(int $id_salida){
+            $sql="SELECT s.*, d.* FROM salidas s INNER JOIN detalle_salidas d ON s.id = d.id_salida WHERE s.id =$id_salida";
+            $data= $this->selectAll($sql);
+            return $data;
+        }
+        public function getAnular(int $id_salida){
+            $sql ="UPDATE salidas s INNER JOIN detalle_salidas d ON s.id = d.id_salida set s.estado = ?, d.estado = ? WHERE s.id= ? AND d.id_salida = ?";
+            $datos= array(0,0, $id_salida,$id_salida);
+            $data = $this->save($sql, $datos);
+            if($data == 1){
+                $res = "ok";
+            }else{
+                $res = "error";
+            }
+            return $res;
+        }
         
 
 

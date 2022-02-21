@@ -246,9 +246,18 @@
         public function  listar_historial(){
            $data=$this->model->getHistorialSalidas();
            for ($i=0; $i<count($data); $i++){
-            $data[$i]['acciones']='<div>
-               <a class="btn btn-primary" href="'.base_url."Salidas/generarPdf/".$data[$i]['id'].'" target="_blank"><i class="fas fa-file-pdf"></i></a>
-               </div>';
+                if($data[$i]['estado'] ==1){
+                    $data[$i]['estado'] = '<span class="p-1 mb-2 bg-success text-white rounded">Completado</span>';
+                    $data[$i]['acciones']='<div>
+                    <button class="btn btn-warning mb-2" type="button" onclick="btnAnularS('.$data[$i]['id'].')"><i class="fas fa-ban"></i></button>
+                    <a class="btn btn-primary" href="'.base_url."Salidas/generarPdf/".$data[$i]['id'].'" target="_blank"><i class="fas fa-file-pdf"></i></a>
+                    </div>';
+                }else {
+                    $data[$i]['estado'] ='<span class="p-1 mb-2 bg-danger text-white rounded">Anulado</span>';
+                    $data[$i]['acciones']='<div>
+                    <a class="btn btn-primary" href="'.base_url."Salidas/generarPdf/".$data[$i]['id'].'" target="_blank"><i class="fas fa-file-pdf"></i></a>
+                    </div>';
+                } 
             }
            echo json_encode($data, JSON_UNESCAPED_UNICODE);
            die();
@@ -262,6 +271,26 @@
             
             }
             echo json_encode($msg);
+            die();
+        }
+
+        public function anularSalida($id_salida){
+            $data = $this->model->getAnularSalida($id_salida);
+            $anular = $this->model->getAnular($id_salida);
+            foreach ($data as $row) {
+                $stock_actual= $this->model->getProductos($row['id_producto']);
+                $stock = $stock_actual['cantidad'] + $row['cantidad'] ;
+                $this->model->actualizarStock($stock, $row['id_producto']);
+                $kilos_total= $this->model->getProductos($row['id_producto']);
+                $peso = $kilos_total['peso_total'] + $row['peso_bruto'];
+                $this->model->actualizarPeso($peso, $row['id_producto']);
+            }
+            if ($anular == 'ok') {
+                $msg = array('msg' => 'Salida Anulada', 'icono' => 'success');
+            }else {
+                $msg = array('msg' => 'Error al anular la Salida', 'icono' => 'error');
+            }
+            echo json_encode($msg, JSON_UNESCAPED_UNICODE);
             die();
         }
 
