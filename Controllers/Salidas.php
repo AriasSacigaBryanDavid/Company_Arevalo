@@ -114,7 +114,7 @@
                         $stock = $stock_actual['cantidad'] - $cantidad;
                         $this->model->actualizarStock($stock, $id_pro);
                         $kilos_total= $this->model->getProductos($id_pro);
-                        $peso = $kilos_total['peso_total']- $peso_bruto;
+                        $peso = $kilos_total['peso_total'] - $peso_bruto;
                         $this->model->actualizarPeso($peso, $id_pro);
                     }
                     $vaciar = $this->model->vaciarDetalle($id_usuario);

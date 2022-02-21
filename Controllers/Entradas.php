@@ -103,7 +103,7 @@
                         $stock = $stock_actual['cantidad'] + $cantidad;
                         $this->model->actualizarStock($stock, $id_pro);
                         $kilos_total= $this->model->getProductos($id_pro);
-                        $peso = $kilos_total['peso_total']+ $peso_bruto;
+                        $peso = $kilos_total['peso_total'] + $peso_bruto;
                         $this->model->actualizarPeso($peso, $id_pro);
                     }
                         $vaciar = $this->model->vaciarDetalle($id_usuario);
@@ -280,7 +280,7 @@
                 $stock = $stock_actual['cantidad'] - $row['cantidad'] ;
                 $this->model->actualizarStock($stock, $row['id_producto']);
                 $kilos_total= $this->model->getProductos($row['id_producto']);
-                $peso = $kilos_total['peso_total'] - $row['peso_neto'];
+                $peso = $kilos_total['peso_total'] - $row['peso_bruto'];
                 $this->model->actualizarPeso($peso, $row['id_producto']);
             }
             if ($anular == 'ok') {
