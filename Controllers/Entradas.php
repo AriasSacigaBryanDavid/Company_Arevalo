@@ -275,7 +275,6 @@
         public function anularEntrada($id_entrada){
             $data = $this->model->getAnularEntrada($id_entrada);
             $anular = $this->model->getAnular($id_entrada);
-            //$anularD_E = $this->model->getAnularDetalle_entrada($id_entrada);
             foreach ($data as $row) {
                 $stock_actual= $this->model->getProductos($row['id_producto']);
                 $stock = $stock_actual['cantidad'] - $row['cantidad'] ;
