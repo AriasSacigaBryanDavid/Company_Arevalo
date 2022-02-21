@@ -18,6 +18,7 @@
                 <th>Almacén</th>
                 <th>Total</th>
                 <th>Fecha Venta</th>
+                <th>Estado</th>
                 <th></th>
             </tr>
         </thead>

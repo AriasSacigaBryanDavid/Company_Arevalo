@@ -152,6 +152,22 @@
             $data = $this->select($sql);
             return $data;
         }
+        public function getAnularVenta(int $id_venta){
+            $sql="SELECT v.*, d.* FROM ventas v INNER JOIN detalle_ventas d ON v.id = d.id_venta WHERE v.id =$id_venta";
+            $data= $this->selectAll($sql);
+            return $data;
+        }
+        public function getAnular(int $id_venta){
+            $sql ="UPDATE ventas v INNER JOIN detalle_ventas d ON v.id = d.id_venta set v.estado = ?, d.estado = ? WHERE v.id= ? AND d.id_venta = ?";
+            $datos= array(0,0, $id_venta,$id_venta);
+            $data = $this->save($sql, $datos);
+            if($data == 1){
+                $res = "ok";
+            }else{
+                $res = "error";
+            }
+            return $res;
+        }
         
 
     }

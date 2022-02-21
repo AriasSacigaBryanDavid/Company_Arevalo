@@ -1,4 +1,4 @@
-let tblUsuarios , tblCargos, tblAlmacenes, tblProveedores,tblCategorias,tblMarcas,tblUnidades,tblProductos,tblDocumentos,tblClientes, tblIdentidades, t_h_e;
+let tblUsuarios , tblCargos, tblAlmacenes, tblProveedores,tblCategorias,tblMarcas,tblUnidades,tblProductos,tblDocumentos,tblClientes, tblIdentidades, t_h_e, t_h_v;
 
 /** Inicio de Usuario */
 document.addEventListener("DOMContentLoaded", function(){
@@ -585,7 +585,7 @@ document.addEventListener("DOMContentLoaded", function(){
     });
     /** Fin de historial de salidas */
      /** Inicio de historial de ventas */
-     $('#t_historial_v').DataTable( {
+    t_h_v = $('#t_historial_v').DataTable( {
         ajax: {
             url: base_url + "Ventas/listar_historial" ,
             dataSrc: ''
@@ -599,6 +599,7 @@ document.addEventListener("DOMContentLoaded", function(){
             {'data' : 'almacen'},
             {'data' : 'total'},
             {'data' : 'fecha'},
+            {'data' : 'estado'},
             {'data' : 'acciones'}
         ],
         language: {
@@ -2635,6 +2636,32 @@ function CancelarVenta(){
         }
       })   
 }
+function btnAnularV(id){
+    Swal.fire({
+        title: '¿Está seguro de anular la venta?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'si',
+        cancelButtonText:'No'
+      }).then((result) => {
+        if (result.isConfirmed) {
+            const url =base_url + "Ventas/anularVenta/"+id;
+            const http=new XMLHttpRequest();
+            http.open("GET", url, true);
+            http.send();
+            http.onreadystatechange=function(){
+                if(this.readyState == 4 && this.status ==200){
+                   const res = JSON.parse(this.responseText);
+                   alertas(res.msg, res.icono);
+                   t_h_v.ajax.reload();
+                }
+            }
+        }
+      })   
+}
+
 
 
 
