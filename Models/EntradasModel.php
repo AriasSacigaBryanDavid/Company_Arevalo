@@ -160,8 +160,8 @@
             return $data;
         }
         public function getAnular(int $id_entrada){
-            $sql ="UPDATE entradas SET estado = ? WHERE id= ?";
-            $datos= array(0, $id_entrada);
+            $sql ="UPDATE entradas e INNER JOIN detalle_entradas de ON e.id = de.id_entrada set e.estado = ?, de.estado = ? WHERE e.id= ? AND de.id_entrada = ?";
+            $datos= array(0,0, $id_entrada,$id_entrada );
             $data = $this->save($sql, $datos);
             if($data == 1){
                 $res = "ok";
@@ -170,17 +170,7 @@
             }
             return $res;
         }
-        public function getAnularDetalle_entrada(int $id_entrada){
-            $sql ="UPDATE detalle_entradas SET estado = ? WHERE id_entrada= ?";
-            $datos= array(0, $id_entrada);
-            $data = $this->save($sql, $datos);
-            if($data == 1){
-                $res = "ok";
-            }else{
-                $res = "error";
-            }
-            return $res;
-        }
+        
         
         
        
