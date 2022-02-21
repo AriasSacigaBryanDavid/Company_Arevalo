@@ -170,6 +170,17 @@
             }
             return $res;
         }
+        public function getAnularDetalle_entrada(int $id_entrada){
+            $sql ="UPDATE detalle_entradas SET estado = ? WHERE id_entrada= ?";
+            $datos= array(0, $id_entrada);
+            $data = $this->save($sql, $datos);
+            if($data == 1){
+                $res = "ok";
+            }else{
+                $res = "error";
+            }
+            return $res;
+        }
         
         
        
