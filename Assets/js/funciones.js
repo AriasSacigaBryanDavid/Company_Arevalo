@@ -3105,7 +3105,6 @@ function abrirArqueo(e) {
         http.send(new FormData(frm));
         http.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
-               // document.getElementById('frmAbrirCaja').reset();
                 const res = JSON.parse(this.responseText);
                 alertas(res.msg , res.icono);
                 tblArqueos.ajax.reload();
