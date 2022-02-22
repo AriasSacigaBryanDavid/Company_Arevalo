@@ -5,7 +5,7 @@
             parent::__construct();
     }
     public function getCajas(){
-        $sql="SELECT * FROM cajas";
+        $sql="SELECT * FROM cajas WHERE estado=1";
         $data= $this->selectAll($sql);
         return $data;
     }

@@ -1,4 +1,4 @@
-let tblUsuarios , tblCargos, tblAlmacenes, tblProveedores,tblCategorias,tblMarcas,tblUnidades,tblProductos,tblDocumentos,tblClientes, tblIdentidades, t_h_e, t_h_v, t_h_s;
+let tblUsuarios , tblCargos, tblAlmacenes, tblProveedores,tblCategorias,tblMarcas,tblUnidades,tblProductos,tblDocumentos,tblClientes, tblIdentidades, t_h_e, t_h_v, t_h_s, tblCajas;
 
 /** Inicio de Usuario */
 document.addEventListener("DOMContentLoaded", function(){
@@ -439,6 +439,26 @@ document.addEventListener("DOMContentLoaded", function(){
             ]
     });
      /** Fin de la tabla clientes*/ 
+      /** Inicio de cajas */
+      tblCajas = $('#tblCajas').DataTable( {
+        ajax: {
+            url: base_url + "Cajas/listar" ,
+            dataSrc: ''
+        },
+        columns: [
+            {'data' : 'id'},
+            {'data' : 'nombre'},
+            {'data' : 'estado'},
+            {'data' : 'acciones'}
+        ],
+        language: {
+            "url": "//cdn.datatables.net/plug-ins/1.10.11/i18n/Spanish.json"
+        },
+        dom: "<'row'<'col-sm-4'l><'col-sm-8'f>>" +
+                "<'row'<'col-sm-12'tr>>" +
+                "<'row'<'col-sm-5'i><'col-sm-7'p>>"
+    });
+     /** Fin de la tabla cajas*/
      /** Inicio de historial de entradas */
     t_h_e = $('#t_historial_e').DataTable( {
         ajax: {
@@ -2904,6 +2924,105 @@ function alertas(mensaje, icono) {
     })
 }
 /** Fin de Alertas*/
+/*******************************/
+/** inicio de Cajas */
+function frmCaja(){
+    document.getElementById("title").innerHTML ="Agregar Caja";
+    document.getElementById("btnAccion").innerHTML ="Agregar";
+    document.getElementById("frmCaja").reset();
+    $("#nuevo_caja").modal("show");
+    document.getElementById("id").value ="";
+}
+function registrarCaj(e){
+    e.preventDefault();
+    const nombre = document.getElementById("nombre");
+    if( nombre.value=="" ){
+        alertas('Todo los campos son obligatorios', 'warning');
+    }else{
+        const url = base_url +"Cajas/registrar";
+        const frm = document.getElementById("frmCaja");
+        const http = new XMLHttpRequest();
+        http.open("POST",url, true);
+        http.send(new FormData(frm));
+        http.onreadystatechange = function(){
+            if(this.readyState == 4 && this.status == 200){
+                const res= JSON.parse(this.responseText);
+                $("#nuevo_caja").modal("hide");
+                alertas(res.msg, res.icono);
+                tblCajas.ajax.reload();
+            }
+        }
+    }
+}
+function btnEditarCaj(id){
+    document.getElementById("title").innerHTML ="Actualizar Categoria";
+    document.getElementById("btnAccion").innerHTML ="Actualizar";
+    const url = base_url +"Cajas/editar/"+id;
+    const http = new XMLHttpRequest();
+    http.open("GET",url, true);
+    http.send();
+    http.onreadystatechange = function(){
+        if(this.readyState == 4 && this.status == 200){
+            const res = JSON.parse(this.responseText); 
+            document.getElementById("id").value =res.id;
+            document.getElementById("nombre").value=res.nombre; 
+            $("#nuevo_caja").modal("show");  
+        }
+
+    }
+}
+function btnEliminarCaj(id){
+    Swal.fire({
+        title: '¿Deseas Eliminar Caja?',
+        text: "¡La caja no se eliminara de forma permanente!,  solo cambiará el estado a inactivo",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'si',
+        cancelButtonText:'No'
+      }).then((result) => {
+        if (result.isConfirmed) {
+            const url = base_url +"Cajas/eliminar/"+id;
+            const http = new XMLHttpRequest();
+            http.open("GET",url, true);
+            http.send();
+            http.onreadystatechange = function(){
+                if(this.readyState == 4 && this.status == 200){
+                  const res=JSON.parse(this.responseText);
+                  alertas(res.msg, res.icono);
+                  tblCajas.ajax.reload();
+               }
+            }
+        }  
+    })
+}
+function btnReingresarCaj(id){
+    Swal.fire({
+        title: '¿Está seguro de reingresar?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'si',
+        cancelButtonText:'No'
+      }).then((result) => {
+        if (result.isConfirmed) {
+            const url = base_url +"Cajas/reingresar/"+id;
+            const http = new XMLHttpRequest();
+            http.open("GET",url, true);
+            http.send();
+            http.onreadystatechange = function(){
+                if(this.readyState == 4 && this.status == 200){
+                  const res= JSON.parse(this.responseText);
+                  tblCajas.ajax.reload();
+                  alertas(res.msg, res.icono);   
+                }
+            }
+        }
+      })
+}
+/** Fin de Cajas*/
 /*******************************/
 /** inicio de Arqueos */
 function arqueoCaja() {
