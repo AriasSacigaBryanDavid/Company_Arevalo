@@ -8,16 +8,18 @@
 
             <div class="card">
                 <div class="card-header">
-                    <button class="btn btn-primary m-2" type="button" onclick="arqueoCaja();"><i class="fas fa-plus"></i></button>
+                    <button class="btn btn-success m-2" type="button" onclick="arqueoCaja();"><i class="fas fa-power-off"></i> Abrir Caja</button>
+                    <button class="btn btn-danger m-2" type="button" onclick="cerrarCaja();"><i class="fas fa-power-off"></i> Cerrar Caja</button>
                 </div>
             </div>
     </div>
     <div class="table-responsive">
-        <table class="table table-dark table-hover" id="t_Arqueo">
+        <table class="table table-dark table-hover" id="tblArqueos">
             <thead class="thead-dark">
                 <tr>
                     <th>Id</th>
                     <th>Usuario</th>
+                    <th>Caja</th>
                     <th>Monto_Inicial</th>
                     <th>Monto_Final</th>
                     <th>Fecha_Apertura</th>
@@ -25,7 +27,6 @@
                     <th>Total Ventas</th>
                     <th>Monto Total</th>
                     <th>Estado</th>
-                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -62,6 +63,14 @@
                         <div class="form-group mb-2">
                             <label for="fecha_apertura">Fecha Apertura</label>
                             <input id="fecha_apertura" class="form-control" type="date" value="<?php echo date('Y-m-d'); ?>" name="fecha_apertura" required>
+                        </div>
+                        <div class="form-group mb-2">
+                            <label for="monto_final">Monto Final</label>
+                            <input id="monto_final" class="form-control" type="text" disabled>
+                        </div>
+                        <div class="form-group mb-2">
+                            <label for="total_ventas">Total Ventas</label>
+                            <input id="total_ventas" class="form-control" type="text" disabled>
                         </div>
                         <button class="btn btn-primary" type="submit" id="btnAccion">Abrir</button>
                         <button class="btn btn-danger" type="button" data-bs-dismiss="modal">Cancelar</button>

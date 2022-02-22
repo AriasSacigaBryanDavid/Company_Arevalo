@@ -83,6 +83,52 @@
             echo json_encode($msg, JSON_UNESCAPED_UNICODE);
             die();
         }
+        public function arqueos(){
+            $data['cajas'] = $this->model->getCaja();
+            $this->views->getView($this,"arqueos",$data);
+        }
+        public function abrirArqueo(){
+            $caja = $_POST['caja'];
+            $monto_inicial=$_POST['monto_inicial'];
+            $fecha_apertura = date('Y-m-d');
+            $id_usuario = $_SESSION['id_usuario'];
+            if(empty($caja) || empty($monto_inicial) || empty($fecha_apertura)){
+                $msg =array('msg' =>'Todo los campos son obligatorios','icono'=>'warning');
+            }else{
+                $data=$this->model->registrarArqueo($id_usuario, $caja, $monto_inicial, $fecha_apertura);
+                    if($data == "ok") {
+                        $msg =array('msg' =>'Caja abierta con éxito','icono'=>'success');
+                    }else if($data == "existe"){ 
+                        $msg =array('msg' =>'La caja ya esta abierta','icono'=>'warning');
+                    } else {
+                        $msg =array('msg' =>'Error al abrir la caja','icono'=>'error');
+                    }
+            }
+            echo json_encode($msg, JSON_UNESCAPED_UNICODE);
+            die();
+        }
+        public function listar_arqueo(){
+            $data = $this->model->getcierreCaja();
+            for ($i =0; $i<count($data); $i++){
+                if($data[$i]['estado'] ==1){
+                    $data[$i]['estado'] = '<span class="p-1 mb-2 bg-success text-white rounded">Abierta</span>';
+                }else {
+                    $data[$i]['estado'] ='<span class="p-1 mb-2 bg-danger text-white rounded">Cerrada</span>';
+                }
+                    
+            }
+            echo json_encode($data, JSON_UNESCAPED_UNICODE);
+            die();
+        }
+
+        public function getVentas(){
+            $id_usuario = $_SESSION['id_usuario'];
+            $data['monto_total'] = $this->model->getVentas($id_usuario);
+            $data['total_ventas'] = $this->model->getTotalVentas($id_usuario);
+            echo json_encode($data, JSON_UNESCAPED_UNICODE);
+            die();
+        }
+
 
     }
 ?>
