@@ -2906,7 +2906,31 @@ function alertas(mensaje, icono) {
 /** Fin de Alertas*/
 /*******************************/
 /** inicio de Arqueos */
-function arqueoCaja(e) {
-    
+function arqueoCaja() {
+    $('#abrir_caja').modal('show');
 }
-/** Fin de Alertas*/
+function abrirArqueo(e) {
+    e.preventDefault();
+    const monto_inicial = document.getElementById('monto_inicial').value;
+    if(monto_inicial ==""){
+        alertas('Ingrese el monto inicial', 'warning');
+    }else{
+        const frm = document.getElementById('frmAbrirCaja');
+        const url= base_url + "Arqueos/abrirArqueo";
+        const http= new XMLHttpRequest();
+        http.open("POST", url, true);
+        http.send(new FormData(frm));
+        http.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                const res = JSON.parse(this.responseText);
+                alertas(res.msg , res.icono);
+                $('#abrir_caja').modal('hide');
+
+            }
+        }
+
+    }
+}
+/** Fin de Arqueos*/
+
+

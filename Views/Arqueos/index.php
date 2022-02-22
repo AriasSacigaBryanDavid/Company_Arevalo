@@ -18,7 +18,6 @@
                 <tr>
                     <th>Id</th>
                     <th>Usuario</th>
-                    <th>caja</th>
                     <th>Monto_Inicial</th>
                     <th>Monto_Final</th>
                     <th>Fecha_Apertura</th>
@@ -47,10 +46,22 @@
                 </div>
                 <div class="modal-body">
                 <form method="post" id="frmAbrirCaja" onsubmit="abrirArqueo(event);">
+                        <div class="form-group " > 
+                            <label for="caja">Cajas</label>
+                            <select id="caja" class="form-control" name="caja">
+                            <?php foreach ($data['cajas'] as $row) { ?>
+                                <option value="<?php echo $row['id']; ?>"><?php echo $row['nombre']; ?></option>
+                                <?php } ?>
+                            </select>
+                        </div>
                         <div class="form-group mb-2">
                             <label for="monto_inicial">Monto Inicial</label>
                             <input type="hidden" id="id" name="id">
-                            <input id="monto_inicial" class="form-control" type="text" name="monto_inicial" placeholder="Monto Inicial" required>
+                            <input id="monto_inicial" class="form-control" type="text" name="monto_inicial" placeholder="Monto Inicial" >
+                        </div>
+                        <div class="form-group mb-2">
+                            <label for="fecha_apertura">Fecha Apertura</label>
+                            <input id="fecha_apertura" class="form-control" type="date" value="<?php echo date('Y-m-d'); ?>" name="fecha_apertura" required>
                         </div>
                         <button class="btn btn-primary" type="submit" id="btnAccion">Abrir</button>
                         <button class="btn btn-danger" type="button" data-bs-dismiss="modal">Cancelar</button>
