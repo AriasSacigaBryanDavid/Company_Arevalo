@@ -58,16 +58,19 @@
                                     <a class="nav-link" href="<?php echo base_url;?>Identidades">Identidades</a>
                                 </nav>
                             </div>
-                            <!-- menu de proveedores -->
-                            <a class="nav-link" href="<?php echo base_url; ?>Proveedores" >
-                                <div class="sb-nav-link-icon"><i class="fas fa-users text-success fa-2x"></i></div>
-                                Proveedores
+                            <!-- menu de Contactos -->
+                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseContactos" aria-expanded="false" aria-controls="collapseContactos">
+                                <div class="sb-nav-link-icon"><i class="fas fa-address-book text-success fa-2x"></i></div>
+                                Contactos
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down text-success"></i></div>
                             </a>
-                            <!-- menu de clientes -->
-                            <a class="nav-link" href="<?php echo base_url; ?>Clientes" >
-                                <div class="sb-nav-link-icon"><i class="fas fa-users text-success fa-2x"></i></div>
-                                Clientes 
-                            </a>
+                            <div class="collapse" id="collapseContactos" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav">
+                                    <a class="nav-link" href="<?php echo base_url; ?>Proveedores">Proveedores</a>
+                                    <a class="nav-link" href="<?php echo base_url; ?>Clientes">Clientes</a>
+                                   
+                                </nav>
+                            </div>
                             <!-- menu de Arqueo -->
                             <a class="nav-link" href="<?php echo base_url;?>Arqueos" >
                                 <div class="sb-nav-link-icon"><i class="fas fa-users text-success fa-2x"></i></div>

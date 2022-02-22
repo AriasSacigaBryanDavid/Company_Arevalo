@@ -28,7 +28,7 @@
                 </div>
                 <div class="col-md-5">
                     <div class="form-group mb-3">
-                        <label for="proveedor"><i class="fas fa-address-book"></i> Proveedor</label>
+                        <label for="proveedor"><i class="fas fa-address-card"></i> Proveedor</label>
                         <select id="proveedor" class="form-control" name="proveedor">
                             <?php foreach ($data['proveedores'] as $row) { ?>
                                 <option value="<?php echo $row['id']; ?>"><?php echo $row['nombre']; ?></option>
