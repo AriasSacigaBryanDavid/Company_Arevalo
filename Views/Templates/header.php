@@ -71,14 +71,22 @@
                                    
                                 </nav>
                             </div>
-                            <!-- menu de Arqueo -->
-                            <a class="nav-link" href="<?php echo base_url;?>Arqueos" >
-                                <div class="sb-nav-link-icon"><i class="fas fa-users text-success fa-2x"></i></div>
-                                Arqueos
+                             <!-- menu de Arqueo -->
+                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseCajas" aria-expanded="false" aria-controls="collapseCajas">
+                                <div class="sb-nav-link-icon"><i class="fas fa-cash-register text-success fa-2x"></i></div>
+                                Cajeros
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down text-success"></i></div>
                             </a>
+                            <div class="collapse" id="collapseCajas" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav">
+                                    <a class="nav-link" href="<?php echo base_url;?>Arqueos">Arqueos</a>
+                                    <a class="nav-link" href="<?php echo base_url;?>Cajas">Cajas</a>
+                                   
+                                </nav>
+                            </div>
                             <!-- menu de Productos -->
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseProductos" aria-expanded="false" aria-controls="collapseProductos">
-                                <div class="sb-nav-link-icon"><i class="fas fa-store text-success fa-2x"></i></div>
+                                <div class="sb-nav-link-icon"><i class="fas fa-box text-success fa-2x"></i></div>
                                 Productos
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down text-success"></i></div>
                             </a>
@@ -118,7 +126,7 @@
                             </div>
                             <!-- menu de Ventas -->
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseVentas" aria-expanded="false" aria-controls="collapseVentas">
-                                <div class="sb-nav-link-icon"><i class="fas fa-cash-register text-success fa-2x"></i></div>
+                                <div class="sb-nav-link-icon"><i class="fas fa-store text-success fa-2x"></i></div>
                                 Ventas
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down text-success"></i></div>
                             </a>
