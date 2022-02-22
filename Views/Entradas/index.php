@@ -22,7 +22,7 @@
                 </div>  
                 <div class="col-md-4">
                     <div class="form-group mb-3">
-                        <label for="n_documento">N° de  Documentos</label>
+                        <label for="n_documento">N° de  Documento</label>
                         <input id="n_documento" class="form-control" type="text" name="n_documento" placeholder="N° de Documento">
                     </div>
                 </div>
