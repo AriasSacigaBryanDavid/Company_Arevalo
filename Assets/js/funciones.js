@@ -2904,3 +2904,9 @@ function alertas(mensaje, icono) {
     })
 }
 /** Fin de Alertas*/
+/*******************************/
+/** inicio de Arqueos */
+function arqueoCaja(e) {
+    
+}
+/** Fin de Alertas*/

@@ -68,6 +68,11 @@
                                 <div class="sb-nav-link-icon"><i class="fas fa-users text-success fa-2x"></i></div>
                                 Clientes 
                             </a>
+                            <!-- menu de Arqueo -->
+                            <a class="nav-link" href="<?php echo base_url;?>Arqueos" >
+                                <div class="sb-nav-link-icon"><i class="fas fa-users text-success fa-2x"></i></div>
+                                Arqueos
+                            </a>
                             <!-- menu de Productos -->
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseProductos" aria-expanded="false" aria-controls="collapseProductos">
                                 <div class="sb-nav-link-icon"><i class="fas fa-store text-success fa-2x"></i></div>
