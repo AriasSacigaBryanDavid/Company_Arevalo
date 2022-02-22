@@ -2667,13 +2667,7 @@ function generarVenta(){
             const n_documento = document.getElementById('n_documento').value;
             const id_cliente = document.getElementById('cliente').value;
             if (id_documento =="" || n_documento =="" || id_cliente =="") {
-                Swal.fire({
-                    position: 'top-end',
-                    icon: 'warning',
-                    title: 'Ingrese los datos de detalle de la venta, es obligatorios',
-                    showConfirmButton: false,
-                    timer: 3500
-                })
+                alertas('Todo los campos son obligatorios', 'warning');
             }else{
                 const frm = document.getElementById('frmDatoVenta');
                 const url =base_url + "Ventas/registrarVenta";
@@ -2684,11 +2678,7 @@ function generarVenta(){
                     if(this.readyState == 4 && this.status ==200){
                         const res = JSON.parse(this.responseText);
                         if (res.msg == "ok" ){
-                            Swal.fire(
-                                'Mensaje!',
-                                'Venta generada.',
-                                'success'
-                            )
+                            alertas(res.msg, res.icono); 
                             document.getElementById("frmDatoVenta").reset();
                             const ruta =base_url +'Ventas/generarPdf/'+ res.id_venta;
                             window.open(ruta);
@@ -2696,11 +2686,8 @@ function generarVenta(){
                                 window.location.reload();
                             },300);
                         }else{
-                            Swal.fire(
-                                'Mensaje!',
-                                res,
-                                'error'
-                            )
+                            alertas(res.msg, res.icono);
+
                         }
                     }
                 }
@@ -3099,6 +3086,10 @@ function btnReingresarCaj(id){
 /*******************************/
 /** inicio de Arqueos */
 function arqueoCaja() {
+    
+    document.getElementById('ocultar_campos').classList.add('d-none');
+    document.getElementById('monto_inicial').value = '';
+    document.getElementById('btnAccion').textContent ='Abrir Caja';
     $('#abrir_caja').modal('show');
 }
 function abrirArqueo(e) {
@@ -3114,9 +3105,10 @@ function abrirArqueo(e) {
         http.send(new FormData(frm));
         http.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
-                document.getElementById('frmAbrirCaja').reset();
+               // document.getElementById('frmAbrirCaja').reset();
                 const res = JSON.parse(this.responseText);
                 alertas(res.msg , res.icono);
+                tblArqueos.ajax.reload();
                 $('#abrir_caja').modal('hide');
             }
         }
@@ -3133,6 +3125,11 @@ function cerrarCaja() {
                 const res = JSON.parse(this.responseText);
                 document.getElementById('monto_final').value = res.monto_total.total;
                 document.getElementById('total_ventas').value = res.total_ventas.total;
+                document.getElementById('monto_inicial').value = res.inicial.monto_inicial;
+                document.getElementById('monto_general').value = res.monto_general;
+                document.getElementById('id').value = res.inicial.id;
+                document.getElementById('ocultar_campos').classList.remove('d-none');
+                document.getElementById('btnAccion').textContent ='Cerrar Caja';
 
                 //alertas(res.msg , res.icono);
                $('#abrir_caja').modal('show');

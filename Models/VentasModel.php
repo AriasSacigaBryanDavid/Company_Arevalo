@@ -168,6 +168,11 @@
             }
             return $res;
         }
+        public function verificarCaja(int $id){ 
+            $sql="SELECT * FROM cierre_cajas WHERE id_usuario = $id AND estado = 1";
+            $data= $this->select($sql);
+            return $data;
+        }
         
 
     }

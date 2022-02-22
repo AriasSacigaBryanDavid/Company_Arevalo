@@ -92,10 +92,12 @@
             $monto_inicial=$_POST['monto_inicial'];
             $fecha_apertura = date('Y-m-d');
             $id_usuario = $_SESSION['id_usuario'];
-            if(empty($caja) || empty($monto_inicial) || empty($fecha_apertura)){
+            $id = $_POST['id'];
+            if(empty($caja) || empty($monto_inicial) ){
                 $msg =array('msg' =>'Todo los campos son obligatorios','icono'=>'warning');
             }else{
-                $data=$this->model->registrarArqueo($id_usuario, $caja, $monto_inicial, $fecha_apertura);
+                if ($id =='') {
+                    $data=$this->model->registrarArqueo($id_usuario, $caja, $monto_inicial, $fecha_apertura);
                     if($data == "ok") {
                         $msg =array('msg' =>'Caja abierta con éxito','icono'=>'success');
                     }else if($data == "existe"){ 
@@ -103,6 +105,19 @@
                     } else {
                         $msg =array('msg' =>'Error al abrir la caja','icono'=>'error');
                     }
+                }else {
+                    $monto_final = $this->model->getVentas($id_usuario);
+                    $total_ventas = $this->model->getTotalVentas($id_usuario);
+                    $inicial= $this->model->getMontoInicial($id_usuario);
+                    $general = $monto_final['total'] + $inicial['monto_inicial'];
+                    $data=$this->model->actualizarArqueo($monto_final['total'], $fecha_apertura, $total_ventas['total'], $general, $inicial['id']);
+                    if($data == "ok") {
+                        $this->model->actualizarApertura($id_usuario);
+                        $msg =array('msg' =>'Caja cerrada con éxito','icono'=>'success');
+                    }else {
+                        $msg =array('msg' =>'Error al cerrar la caja','icono'=>'error');
+                    }
+                }
             }
             echo json_encode($msg, JSON_UNESCAPED_UNICODE);
             die();
@@ -125,6 +140,8 @@
             $id_usuario = $_SESSION['id_usuario'];
             $data['monto_total'] = $this->model->getVentas($id_usuario);
             $data['total_ventas'] = $this->model->getTotalVentas($id_usuario);
+            $data['inicial']= $this->model->getMontoInicial($id_usuario);
+            $data['monto_general']= $data['monto_total']['total'] + $data['inicial']['monto_inicial']; 
             echo json_encode($data, JSON_UNESCAPED_UNICODE);
             die();
         }

@@ -60,17 +60,19 @@
                             <input type="hidden" id="id" name="id">
                             <input id="monto_inicial" class="form-control" type="text" name="monto_inicial" placeholder="Monto Inicial" >
                         </div>
-                        <div class="form-group mb-2">
-                            <label for="fecha_apertura">Fecha Apertura</label>
-                            <input id="fecha_apertura" class="form-control" type="date" value="<?php echo date('Y-m-d'); ?>" name="fecha_apertura" required>
-                        </div>
-                        <div class="form-group mb-2">
-                            <label for="monto_final">Monto Final</label>
-                            <input id="monto_final" class="form-control" type="text" disabled>
-                        </div>
-                        <div class="form-group mb-2">
-                            <label for="total_ventas">Total Ventas</label>
-                            <input id="total_ventas" class="form-control" type="text" disabled>
+                        <div id="ocultar_campos">
+                            <div class="form-group mb-2">
+                                <label for="monto_final">Monto Final</label>
+                                <input id="monto_final" class="form-control" type="text" disabled>
+                            </div>
+                            <div class="form-group mb-2">
+                                <label for="total_ventas">Total Ventas</label>
+                                <input id="total_ventas" class="form-control" type="text" disabled>
+                            </div>
+                            <div class="form-group mb-2">
+                                <label for="monto_general">Monto Total</label>
+                                <input id="monto_general" class="form-control" type="text" disabled>
+                            </div>
                         </div>
                         <button class="btn btn-primary" type="submit" id="btnAccion">Abrir</button>
                         <button class="btn btn-danger" type="button" data-bs-dismiss="modal">Cancelar</button>

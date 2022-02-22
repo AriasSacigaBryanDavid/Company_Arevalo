@@ -92,6 +92,27 @@
         $data = $this->select($sql);
         return $data;
     }
+    public function getMontoInicial(int $id_usuario){
+        $sql = "SELECT id, monto_inicial FROM cierre_cajas WHERE id_usuario = $id_usuario AND estado = 1";
+        $data = $this->select($sql);
+        return $data;
+    }
+    public function actualizarArqueo(string $monto_final, string $fecha_cierre, string $total_ventas, string $general, int $id){
+        $sql="UPDATE cierre_cajas SET monto_final = ?, fecha_cierre = ? , total_ventas = ? , monto_total = ?, estado = ? WHERE id = ?";
+        $datos= array($monto_final ,$fecha_cierre, $total_ventas, $general, 0, $id);
+        $data=$this->save($sql, $datos);
+        if ($data == 1){
+            $res = "ok";
+        }else{
+            $res = "error";
+        }
+        return $res;
+    }
+    public function actualizarApertura(int $id){
+        $sql="UPDATE ventas SET apertura = ? WHERE id_usuario = ?";
+        $datos= array(0, $id);
+        $this->save($sql, $datos);
+    }
 
 
     }
