@@ -105,7 +105,7 @@
                 $n_documento =$_POST['n_documento'];
                 $id_cliente = $_POST['cliente'];
                 if(empty($id_documento) || empty($n_documento) || empty($id_cliente)){
-                    $msg =array('msg' =>'Todo los campos son obligatorios','icono'=>'warning');
+                    $msg =array('msg' =>'Ingrese los datos de detalle de la venta, es obligatorios','icono'=>'warning');
                 }else{
                     $id_usuario = $_SESSION['id_usuario'];
                     $id_almacen = $this->model->getAlmacen($id_usuario);

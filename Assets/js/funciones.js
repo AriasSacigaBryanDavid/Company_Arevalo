@@ -2667,7 +2667,7 @@ function generarVenta(){
             const n_documento = document.getElementById('n_documento').value;
             const id_cliente = document.getElementById('cliente').value;
             if (id_documento =="" || n_documento =="" || id_cliente =="") {
-                alertas('Todo los campos son obligatorios', 'warning');
+                alertas('Ingrese los datos de detalle de la venta, es obligatorios', 'warning');
             }else{
                 const frm = document.getElementById('frmDatoVenta');
                 const url =base_url + "Ventas/registrarVenta";
