@@ -5,10 +5,13 @@
             parent::__construct();
         }
         public function index(){
-            if (empty($_SESSION['activo'])) {
-                header("location: ".base_url);
+            $id_usuario = $_SESSION['id_usuario'];
+            $verificar = $this->model->VerificarPermiso($id_usuario, 'cajas');
+            if(!empty($verificar)|| $id_usuario == 1){
+                $this->views->getView($this,"index");
+            }else {
+                header('Location: '.base_url. 'Errors/permisos');
             }
-            $this->views->getView($this,"index");
         }
         public function listar(){
             $data = $this->model->getCajas();
@@ -84,8 +87,15 @@
             die();
         }
         public function arqueos(){
-            $data['cajas'] = $this->model->getCaja();
-            $this->views->getView($this,"arqueos",$data);
+            $id_usuario = $_SESSION['id_usuario'];
+            $verificar = $this->model->VerificarPermiso($id_usuario, 'arqueos');
+            if(!empty($verificar) || $id_usuario == 1){
+                $data['cajas'] = $this->model->getCaja();
+                $this->views->getView($this,"arqueos",$data);
+            }else {
+                header('Location: '.base_url. 'Errors/permisos');
+            }
+            
         }
         public function abrirArqueo(){
             $caja = $_POST['caja'];

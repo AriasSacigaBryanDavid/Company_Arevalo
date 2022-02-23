@@ -71,9 +71,13 @@
         $data = $this->selectAll($sql);
         return $data;
     }
-    public function getalmacenVendidos()
-    {
+    public function getalmacenVendidos(){
         $sql = "SELECT v.id_almacen, v.total, a.id, a.nombre, SUM(v.total) AS M_total FROM ventas v INNER JOIN almacenes a ON a.id = v.id_almacen GROUP BY v.id_almacen ORDER BY v.total DESC";
+        $data = $this->selectAll($sql);
+        return $data;
+    }
+    public function VerificarPermiso(int $id_usuario, string $nombre){
+        $sql = "SELECT p.id, p.permiso, d.id, d.id_usuario, d.id_permiso FROM permisos p INNER JOIN detalle_permisos d ON p.id=d.id_permiso WHERE d.id_usuario = $id_usuario AND p.permiso = '$nombre'";
         $data = $this->selectAll($sql);
         return $data;
     }

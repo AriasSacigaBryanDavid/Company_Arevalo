@@ -5,11 +5,14 @@
             parent::__construct();
         }
         public function index(){
-            if (empty($_SESSION['activo'])) {
-                header("location: ".base_url);
-            }
-            $data['identidades']=$this->model->getIdentidades();
-            $this->views->getView($this,"index",$data);
+            $id_usuario = $_SESSION['id_usuario'];
+            $verificar = $this->model->VerificarPermiso($id_usuario, 'proveedores');
+            if(!empty($verificar)|| $id_usuario == 1){
+                $data['identidades']=$this->model->getIdentidades();
+                $this->views->getView($this,"index",$data);
+            }else {
+                header('Location: '.base_url. 'Errors/permisos');
+            }      
         }
         public function listar(){
              $data = $this->model->getProveedores();

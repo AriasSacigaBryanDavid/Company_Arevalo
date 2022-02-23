@@ -5,12 +5,16 @@
             parent::__construct();
         }
         public function index(){
-            if (empty($_SESSION['activo'])) {
-                header("location: ".base_url);
+            $id_usuario = $_SESSION['id_usuario'];
+            $verificar = $this->model->VerificarPermiso($id_usuario, 'usuarios');
+            if(!empty($verificar)|| $id_usuario == 1){
+                $data['cargos']=$this->model->getCargos();
+                $data['almacenes']=$this->model->getAlmacenes();
+                $this->views->getView($this,"index",$data);
+            }else {
+                header('Location: '.base_url. 'Errors/permisos');
             }
-            $data['cargos']=$this->model->getCargos();
-            $data['almacenes']=$this->model->getAlmacenes();
-            $this->views->getView($this,"index",$data);
+
         }
         public function validar(){
             if(empty($_POST['usuario']) || empty($_POST['contrasena'])){
@@ -36,13 +40,20 @@
         public function listar(){
             $data = $this-> model->getUsuarios();
             for ($i=0; $i < count($data) ; $i++) { 
+                
                 if ($data[$i]['estado'] == 1) {
                     $data[$i]['estado'] = '<span class="p-1 mb-2 bg-success text-white rounded">Activo</span>';
-                    $data[$i]['acciones'] = '<div>
-                    <a class="btn btn-dark mb-2" href="'.base_url.'Usuarios/permisos/'.$data[$i]['id'].'"><i class="fas fa-key"></i></a>
-                    <button class="btn btn-primary mb-2" type="button" onclick="btnEditarUser('.$data[$i]['id'].');"><i class="fas fa-user-edit"></i></button>
-                    <button class="btn btn-danger" type="button" onclick="btnEliminarUser('.$data[$i]['id'].');"><i class="fas fa-user-slash"></i></button>
-                    </div>';
+                    if ($data[$i]['id'] == 1) {
+                        $data[$i]['acciones'] = '<div>
+                        <span class="p-1 mb-2 bg-primary text-white rounded">Administrador</span>
+                        </div>';
+                    }else {
+                        $data[$i]['acciones'] = '<div>
+                        <a class="btn btn-dark mb-2" href="'.base_url.'Usuarios/permisos/'.$data[$i]['id'].'"><i class="fas fa-key"></i></a>
+                        <button class="btn btn-primary mb-2" type="button" onclick="btnEditarUser('.$data[$i]['id'].');"><i class="fas fa-user-edit"></i></button>
+                        <button class="btn btn-danger" type="button" onclick="btnEliminarUser('.$data[$i]['id'].');"><i class="fas fa-user-slash"></i></button>
+                        </div>';
+                    }
                 }else{
                     $data[$i]['estado'] ='<span class="p-1 mb-2 bg-danger text-white rounded">Inactivo</span>';
                     $data[$i]['acciones'] = '<div>
@@ -167,7 +178,7 @@
             $eliminar = $this->model->eliminarPermisos($id_usuario);
             if($eliminar == 'ok'){
                 foreach ($_POST['permisos'] as $id_permiso) {
-                   $msg = $this->model->registrarPermisos($id_usuario, $id_permiso);
+                    $msg = $this->model->registrarPermisos($id_usuario, $id_permiso);
                 }
                 if ($msg == 'ok') {
                     $msg = array('msg' => 'Permisos asignado', 'icono'=>'success');

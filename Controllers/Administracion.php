@@ -7,12 +7,18 @@
         }
         
         public function index(){
-            if (empty($_SESSION['activo'])) {
-                header("location: ".base_url);
+          // if (empty($_SESSION['activo'])) {
+            //    header("location: ".base_url);
+           // }
+            $id_usuario = $_SESSION['id_usuario'];
+            $verificar = $this->model->VerificarPermiso($id_usuario, 'configuracion');
+            if(!empty($verificar) || $id_usuario == 1){
+                $data= $this->model->getEmpresa();
+                $this->views->getView($this,"index",$data);
+            }else {
+                header('Location: '.base_url. 'Errors/permisos');
             }
-
-            $data= $this->model->getEmpresa();
-            $this->views->getView($this,"index",$data);
+            
         }
         public function home(){
             $data['usuarios']= $this->model->getDatos('usuarios');

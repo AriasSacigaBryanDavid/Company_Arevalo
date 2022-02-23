@@ -6,10 +6,13 @@
         }
         
         public function index(){
-            if (empty($_SESSION['activo'])) {
-                header("location: ".base_url);
+            $id_usuario = $_SESSION['id_usuario'];
+            $verificar = $this->model->VerificarPermiso($id_usuario, 'marcas');
+            if(!empty($verificar)|| $id_usuario == 1){
+                $this->views->getView($this,"index");
+            }else {
+                header('Location: '.base_url. 'Errors/permisos');
             }
-            $this->views->getView($this,"index");
         }
         public function listar(){
             $data = $this->model->getMarcas();

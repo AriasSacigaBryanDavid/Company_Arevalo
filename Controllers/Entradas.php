@@ -5,12 +5,16 @@
             parent::__construct();
         }  
         public function index(){
-            if (empty($_SESSION['activo'])) {
-                header("location: ".base_url);
+            $id_usuario = $_SESSION['id_usuario'];
+            $verificar = $this->model->VerificarPermiso($id_usuario, 'nueva_entrada');
+            if(!empty($verificar) || $id_usuario == 1){
+                $data['documentos']=$this->model->getDocumentos();
+                $data['proveedores']=$this->model->getProveedores();
+                $this->views->getView($this,"index", $data);
+            }else {
+                header('Location: '.base_url. 'Errors/permisos');
             }
-            $data['documentos']=$this->model->getDocumentos();
-            $data['proveedores']=$this->model->getProveedores();
-            $this->views->getView($this,"index", $data);
+
         }
         public function buscarCodigoEn($cod){
             $data =$this->model->getProCod($cod);
@@ -241,7 +245,14 @@
             $pdf->Output();
         }    
         public function historial(){
-            $this->views->getView($this,"historial");
+            $id_usuario = $_SESSION['id_usuario'];
+            $verificar = $this->model->VerificarPermiso($id_usuario, 'historial_entrada');
+            if(!empty($verificar)|| $id_usuario == 1){
+                $this->views->getView($this,"historial");
+            }else {
+                header('Location: '.base_url. 'Errors/permisos');
+            }
+            
         }
         public function  listar_historial(){
            $data=$this->model->getHistorialEntradas();
