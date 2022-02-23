@@ -23,7 +23,7 @@
                 $usuario =$_POST['usuario'];
                 $contrasena=$_POST['contrasena'];
                 $hash = hash("SHA256", $contrasena);
-                $data = $this ->model->getUsuario($usuario, $hash);
+                $data = $this->model->getUsuario($usuario, $hash);
                 if($data){
                     $_SESSION['id_usuario'] = $data['id'];
                     $_SESSION['usuario']= $data['usuario'];
