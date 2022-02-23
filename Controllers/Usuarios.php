@@ -39,6 +39,7 @@
                 if ($data[$i]['estado'] == 1) {
                     $data[$i]['estado'] = '<span class="p-1 mb-2 bg-success text-white rounded">Activo</span>';
                     $data[$i]['acciones'] = '<div>
+                    <a class="btn btn-dark mb-2" href="'.base_url.'Usuarios/permisos/'.$data[$i]['id'].'"><i class="fas fa-key"></i></a>
                     <button class="btn btn-primary mb-2" type="button" onclick="btnEditarUser('.$data[$i]['id'].');"><i class="fas fa-user-edit"></i></button>
                     <button class="btn btn-danger" type="button" onclick="btnEliminarUser('.$data[$i]['id'].');"><i class="fas fa-user-slash"></i></button>
                     </div>';
@@ -145,6 +146,40 @@
             echo json_encode($msg, JSON_UNESCAPED_UNICODE);
             die();
 
+        }
+        public function permisos($id){
+            if (empty($_SESSION['activo'])) {
+                header("location: ".base_url);
+            }
+            $data['datos']=$this->model->getPermisos();
+            $permisos=$this->model->getDetallePermisos($id);
+            $data['asignados'] = array();
+            foreach ($permisos as $permiso){
+                $data['asignados'][$permiso['id_permiso']] = true;
+            }
+            $data['id_usuario'] = $id;
+            $this->views->getView($this,"permisos",$data);
+        }
+        public function registrarPermiso()
+        {
+            $msg = '';
+            $id_usuario = $_POST['id_usuario'];
+            $eliminar = $this->model->eliminarPermisos($id_usuario);
+            if($eliminar == 'ok'){
+                foreach ($_POST['permisos'] as $id_permiso) {
+                   $msg = $this->model->registrarPermisos($id_usuario, $id_permiso);
+                }
+                if ($msg == 'ok') {
+                    $msg = array('msg' => 'Permisos asignado', 'icono'=>'success');
+                }else {
+                    $msg = array('msg' => 'Error al asignar los permisos', 'icono'=>'error');
+                }
+            }else {
+                $msg = array('msg' => 'Error al eliminar los permisos anteriores', 'icono'=>'error');
+            }
+            echo json_encode($msg, JSON_UNESCAPED_UNICODE);
+            //die();
+            
         }
         public function salir(){
             session_destroy();

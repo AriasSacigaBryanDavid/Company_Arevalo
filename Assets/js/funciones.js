@@ -3136,5 +3136,29 @@ function cerrarCaja() {
         }
 }
 /** Fin de Arqueos*/
+/*******************************/
+/** inicio de Permisos*/
+
+function registrarPermisos(e) {
+    e.preventDefault();
+    const frm = document.getElementById('formulario');
+    const url= base_url + "Usuarios/registrarPermiso";
+    const http= new XMLHttpRequest();
+    http.open("POST", url, true);
+    http.send(new FormData(frm));
+    http.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            const res = JSON.parse(this.responseText);
+            if (res != '') {
+                alertas(res.msg, res.icono);
+            }else{
+                alertas('Error no identificado','Error');
+
+            }   
+        }
+    }
+}
+
+/** Fin de Permisos*/
 
 
