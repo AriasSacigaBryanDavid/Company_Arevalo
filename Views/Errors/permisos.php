@@ -13,7 +13,7 @@
         <a href="<?php echo base_url; ?>Administracion/home" class="pagina">Company Arevalo</a>
         <hr>
         <span class="tags">No tienes permisos</span>
-        <p>El administrador  no te asigno el permiso a este módulo</p>
+        <p>El administrador  no te asigno el permiso a este módulo.</p>
     </div>
  
 </body>
