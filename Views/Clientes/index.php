@@ -74,8 +74,8 @@
                         <label for="direccion">Dirección</label>
                         <textarea id="direccion" class="form-control" name="direccion" placeholder="Dirección" rows="3"></textarea>
                     </div>
-                    <button class="btn btn-primary" type="button" onclick="registrarCli(event);" id="btnAccion">Registrar</button>
-                    <button class="btn btn-danger" type="button" data-bs-dismiss="modal">Cancelar</button>
+                    <button class="btn btn-outline-primary" type="button" onclick="registrarCli(event);" id="btnAccion">Registrar</button>
+                    <button class="btn btn-outline-danger" type="button" data-bs-dismiss="modal">Cancelar</button>
                 </form>
             </div>
         </div>

@@ -3015,7 +3015,7 @@ function registrarCaj(e){
     }
 }
 function btnEditarCaj(id){
-    document.getElementById("title").innerHTML ="Actualizar Categoria";
+    document.getElementById("title").innerHTML ="Actualizar Caja";
     document.getElementById("btnAccion").innerHTML ="Actualizar";
     const url = base_url +"Cajas/editar/"+id;
     const http = new XMLHttpRequest();

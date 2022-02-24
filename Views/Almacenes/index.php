@@ -64,8 +64,8 @@
                             <label for="correo">Correo</label>
                             <input id="correo" class="form-control" type="text" name="correo" placeholder="Correo">
                         </div>
-                        <button class="btn btn-primary" type="button" onclick="registrarAlm(event);" id="btnAccion">Agregar</button>
-                        <button class="btn btn-danger" type="button" data-bs-dismiss="modal">Cancelar</button>         
+                        <button class="btn btn-outline-primary" type="button" onclick="registrarAlm(event);" id="btnAccion">Agregar</button>
+                        <button class="btn btn-outline-danger" type="button" data-bs-dismiss="modal">Cancelar</button>         
                     </form>
                 </div>
             </div>

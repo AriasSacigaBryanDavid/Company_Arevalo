@@ -99,8 +99,8 @@
                                 </div>
                             </div>
                         </div>
-                        <button class="btn btn-primary" type="button" onclick="registrarProd(event);" id="btnAccion">Registrar</button>
-                        <button class="btn btn-danger" type="button" data-bs-dismiss="modal">Cancelar</button>
+                        <button class="btn btn-outline-primary" type="button" onclick="registrarProd(event);" id="btnAccion">Registrar</button>
+                        <button class="btn btn-outline-danger" type="button" data-bs-dismiss="modal">Cancelar</button>
 
                     </form>
                 </div>

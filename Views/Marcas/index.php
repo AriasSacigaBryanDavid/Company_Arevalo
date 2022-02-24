@@ -46,8 +46,8 @@
                             <input type="hidden" id="id" name="id">
                             <input id="nombre" class="form-control" type="text" name="nombre" placeholder="Marca">
                         </div>
-                        <button class="btn btn-primary" type="button" onclick="registrarMar(event);" id="btnAccion">Agregar</button>
-                        <button class="btn btn-danger" type="button" data-bs-dismiss="modal">Cancelar</button>
+                        <button class="btn btn-outline-primary" type="button" onclick="registrarMar(event);" id="btnAccion">Agregar</button>
+                        <button class="btn btn-outline-danger" type="button" data-bs-dismiss="modal">Cancelar</button>
 
                     </form>
                 </div>
