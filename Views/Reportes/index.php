@@ -8,7 +8,7 @@
             </div>
     </div>
     <div class="table-responsive">
-        <table class="table table-dark table-hover" id="tblR_productos">
+        <table class="table table-dark table-hover" id="tblKardex">
             <thead class="thead-dark">
                 <tr>
                     <th>Id</th>

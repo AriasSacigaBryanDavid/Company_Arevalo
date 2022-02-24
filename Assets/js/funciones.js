@@ -1,4 +1,4 @@
-let tblUsuarios , tblCargos, tblAlmacenes, tblProveedores,tblCategorias,tblMarcas,tblUnidades,tblProductos,tblDocumentos,tblClientes, tblIdentidades, t_h_e, t_h_v, t_h_s, tblCajas, tblArqueos;
+let tblUsuarios , tblCargos, tblAlmacenes, tblProveedores,tblCategorias,tblMarcas,tblUnidades,tblProductos,tblDocumentos,tblClientes, tblIdentidades, t_h_e, t_h_v, t_h_s, tblCajas, tblArqueos, tblKardex;
 
 /** Inicio de Usuario */
 document.addEventListener("DOMContentLoaded", function(){
@@ -117,7 +117,7 @@ document.addEventListener("DOMContentLoaded", function(){
             ]
     });
     /** Fin de almacenes */
-    /** Inicio de clientes */
+    /** Inicio de proveedores */
     tblProveedores = $('#tblProveedores').DataTable( {
         ajax: {
             url: base_url + "Proveedores/listar" ,
@@ -189,7 +189,7 @@ document.addEventListener("DOMContentLoaded", function(){
             ]
         
     });
-     /** Fin de la tabla clientes*/ 
+     /** Fin de la tabla proveedores*/ 
      /** Inicio de categorias */
     tblCategorias = $('#tblCategorias').DataTable( {
         ajax: {
@@ -266,8 +266,6 @@ document.addEventListener("DOMContentLoaded", function(){
             {'data' : 'unidad'},
             {'data' : 'precio_compra'},
             {'data' : 'precio_venta'},
-            {'data' : 'cantidad'},
-            {'data' : 'peso_total'},
             {'data' : 'estado'},
             {'data' : 'acciones'}
         ],
@@ -751,8 +749,8 @@ document.addEventListener("DOMContentLoaded", function(){
             ]
     });
     /** Fin de historial de ventas */
-    /** Inicio de clientes */
-    tblR_productos = $('#tblR_productos').DataTable( {
+    /** Inicio de kardex */
+    tblKardex = $('#tblKardex').DataTable( {
         ajax: {
             url: base_url + "Reportes/listar" ,
             dataSrc: ''
@@ -824,7 +822,7 @@ document.addEventListener("DOMContentLoaded", function(){
                 }
             ]
     });
-     /** Fin de la tabla clientes*/ 
+     /** Fin de la tabla kardex*/ 
 })
 /** Inicio de Actualizar contraseña */
 function frmCambiarPass(e) {
