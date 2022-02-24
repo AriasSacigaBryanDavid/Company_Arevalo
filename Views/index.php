@@ -32,7 +32,7 @@
                                             </div>
                                             <div class="form-floating mb-3">
                                                 <input class="form-control" id="contrasena" name="contrasena" type="password" placeholder="Ingrese contraseña" />
-                                                <label for="contrasena"><i class="fas fa-key"></i>Contraseña</label>
+                                                <label for="contrasena"><i class="fas fa-key"></i> Contraseña</label>
                                             </div>
                                             <div class="alert alert-danger text-center d-none" id="alerta" role="alert">
                                                
