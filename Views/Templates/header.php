@@ -146,7 +146,7 @@
                             </a>
                             <div class="collapse" id="collapseReportes" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="<?php echo base_url;?>Reportes">Reportes Productos</a>
+                                    <a class="nav-link" href="<?php echo base_url;?>Reportes">Kardex</a>
                                 </nav>
                             </div>
                         </div>

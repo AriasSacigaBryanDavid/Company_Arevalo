@@ -3,7 +3,7 @@
     <div class="card mb-2">
             <div class="card">
                 <div class="card-header bg-primary text-white">
-                    <h4>Reporte de Producto</h4>
+                    <h4>Kardex</h4>
                 </div>
             </div>
     </div>
