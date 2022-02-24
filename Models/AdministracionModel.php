@@ -32,12 +32,12 @@
         return $data;
     }
     public function getEntradas(){
-        $sql = "SELECT COUNT(*) AS total FROM Entradas WHERE fecha >= CURDATE()";
+        $sql = "SELECT COUNT(*) AS total FROM entradas WHERE fecha >= CURDATE()";
         $data = $this->select($sql);
         return $data;
     }
     public function getSalidas(){
-        $sql = "SELECT COUNT(*) AS total FROM Salidas WHERE fecha >= CURDATE()";
+        $sql = "SELECT COUNT(*) AS total FROM salidas WHERE fecha >= CURDATE()";
         $data = $this->select($sql);
         return $data;
     }
