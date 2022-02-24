@@ -137,6 +137,18 @@
             $data = $this->save($sql, $datos);
             return $data;
         }
+        public function actualizarVenta(string $total_venta, int $id_pro){
+            $sql = "UPDATE productos SET total_venta=? WHERE id=?";
+            $datos = array($total_venta, $id_pro);
+            $data = $this->save($sql, $datos);
+            return $data;
+        }
+        public function actualizarGanancia(string $ganancia, int $id_pro){
+            $sql = "UPDATE productos SET ganancia=? WHERE id=?";
+            $datos = array($ganancia, $id_pro);
+            $data = $this->save($sql, $datos);
+            return $data;
+        }
         public function getAlmacen(int $id_usuario){
             $sql = "SELECT id_almacen AS id_almacen FROM usuarios WHERE id=$id_usuario";
             $data = $this->select($sql);
