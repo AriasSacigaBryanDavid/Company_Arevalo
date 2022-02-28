@@ -26,6 +26,16 @@
             echo json_encode($data, JSON_UNESCAPED_UNICODE);
             die();
         }
+        public function stockMinimo(){
+            $data = $this->model->getStockMinimo();
+            echo json_encode($data);
+            die();
+        }
+        public function pesoMinimo(){
+            $data = $this->model->getPesoMinimo();
+            echo json_encode($data);
+            die();
+        }
         
     }
 ?>

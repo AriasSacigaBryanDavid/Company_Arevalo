@@ -2903,27 +2903,27 @@ function reportePeso(){
     http.open("GET", url, true);
     http.send();
     http.onreadystatechange=function(){
-    if(this.readyState == 4 && this.status ==200){
-        const res = JSON.parse(this.responseText);
-        let nombre =[];
-        let peso_total =[];
-        for (let i = 0; i < res.length; i++) {
-            nombre.push(res[i]['nombre']);
-            peso_total.push(res[i]['peso_total']);
-        }    
-        var ctx = document.getElementById("pesoMinimo");
-        var myPieChart = new Chart(ctx, {
-            type: 'doughnut',
-            data: {
-                labels: nombre,
-                datasets: [{
-                    data: peso_total,
-                    backgroundColor: ['#9ba2c8', '#06c6c0', '#3536df','#d5e75b', '#28a745', '#d5e75b','#00aeff','#6b771a','#e36e79','#10af59'],
-                }],
-            },
-        });
-            
-    }
+        if(this.readyState == 4 && this.status ==200){
+            const res = JSON.parse(this.responseText);
+            let nombre =[];
+            let peso_total =[];
+            for (let i = 0; i < res.length; i++) {
+                nombre.push(res[i]['nombre']);
+                peso_total.push(res[i]['peso_total']);
+            }    
+            var ctx = document.getElementById("pesoMinimo");
+            var myPieChart = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: nombre,
+                    datasets: [{
+                        data: peso_total,
+                        backgroundColor: ['#9ba2c8', '#06c6c0', '#3536df','#d5e75b', '#28a745', '#d5e75b','#00aeff','#6b771a','#e36e79','#10af59'],
+                    }],
+                },
+            });
+                
+        }
     }
 }
 function productosVendidos(){
@@ -3231,6 +3231,73 @@ function registrarPermisos(e) {
     }
 }
 
+/** Fin de Permisos*/
+/*******************************/
+/** inicio de kardexs */
+if (document.getElementById('RstockMinimo')) {
+    StockMinimo();
+    PesoMinimo();
+}
+function StockMinimo(){
+    const url =base_url + "Reportes/stockMinimo";
+    const http=new XMLHttpRequest();
+    http.open("GET", url, true);
+    http.send();
+    http.onreadystatechange=function(){
+    if(this.readyState == 4 && this.status ==200){
+        const res = JSON.parse(this.responseText);
+        let nombre =[];
+        let cantidad =[];
+        for (let i = 0; i < res.length; i++) {
+            nombre.push(res[i]['nombre']);
+            cantidad.push(res[i]['cantidad']);
+        }    
+        var ctx = document.getElementById("RstockMinimo");
+        var mypieChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: nombre,
+                datasets: [{
+                    label: 'Gráfico de productos',
+                    data: cantidad,
+                    backgroundColor: ['#9ba2c8', '#06c6c0', '#3536df','#d5e75b', '#28a745', '#d5e75b','#00aeff','#6b771a','#e36e79','#10af59'],
+                }],
+            },
+        });
+            
+    }
+    }
+}
+function PesoMinimo(){
+    const url =base_url + "Reportes/pesoMinimo";
+    const http=new XMLHttpRequest();
+    http.open("GET", url, true);
+    http.send();
+    http.onreadystatechange=function(){
+    if(this.readyState == 4 && this.status ==200){
+        const res = JSON.parse(this.responseText);
+        let nombre =[];
+        let peso_total =[];
+        for (let i = 0; i < res.length; i++) {
+            nombre.push(res[i]['nombre']);
+            peso_total.push(res[i]['peso_total']);
+        }    
+        var ctx = document.getElementById("RpesoMinimo");
+        var mypieChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: nombre,
+                datasets: [{
+                    label: 'Gráfico de productos',
+                    data: peso_total,
+                    backgroundColor: ['#9ba2c8', '#06c6c0', '#3536df','#d5e75b', '#28a745', '#d5e75b','#00aeff','#6b771a','#e36e79','#10af59'],
+                }],
+            },
+        });
+            
+    }
+    }
+}
 /** Fin de Permisos*/
 
 

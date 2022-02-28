@@ -14,6 +14,16 @@
         $data = $this->selectAll($sql);
         return $data;
     }
+    public function getStockMinimo(){
+        $sql = "SELECT * FROM productos WHERE estado = 1 AND cantidad < 15 ORDER BY cantidad DESC LIMIT 10 ";
+        $data = $this->selectAll($sql);
+        return $data;
+    }
+    public function getPesoMinimo(){
+        $sql = "SELECT * FROM productos WHERE estado = 1 AND peso_total < 50.00 ORDER BY peso_total DESC LIMIT 10";
+        $data = $this->selectAll($sql);
+        return $data;
+    }
 
 
 
