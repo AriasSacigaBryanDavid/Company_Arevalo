@@ -2,7 +2,7 @@
 <div class="col-md-12 mx-auto">
     <div class="card">
         <div class="card-header text-center bg-primary text-white">
-            Asignar Permisos
+            <h4>Asignar Permisos</h4>
         </div>
         <div class="card-body bg-secondary text-white">
             <form id="formulario" onsubmit="registrarPermisos(event);">
