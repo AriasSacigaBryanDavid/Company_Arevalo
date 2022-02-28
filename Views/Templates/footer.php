@@ -51,9 +51,6 @@
         <script src="<?php echo base_url; ?>Assets/js/scripts.js"></script>
         
         <script src="<?php echo base_url; ?>Assets/DataTables/datatables.min.js" crossorigin="anonymous"></script>
-        <!-- 
-        <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
-        <script src="<?php echo base_url; ?>Assets/demo/datatables-simple-demo.js"></script>-->
         <script>
             const base_url="<?php echo base_url; ?>";
         </script>
