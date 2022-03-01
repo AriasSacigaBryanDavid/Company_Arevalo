@@ -6,7 +6,7 @@
         }
         public function index(){
             $id_usuario = $_SESSION['id_usuario'];
-            $verificar = $this->model->VerificarPermiso($id_usuario, 'reportes');
+            $verificar = $this->model->VerificarPermiso($id_usuario, 'kardex');
             if(!empty($verificar)|| $id_usuario == 1){
                 $this->views->getView($this,"index");
             }else {
@@ -34,6 +34,26 @@
         public function pesoMinimo(){
             $data = $this->model->getPesoMinimo();
             echo json_encode($data);
+            die();
+        }
+        public function reportesventas(){
+            $id_usuario = $_SESSION['id_usuario'];
+            $verificar = $this->model->VerificarPermiso($id_usuario,'reporte_ventas');
+            if(!empty($verificar)|| $id_usuario == 1){
+                $this->views->getView($this,"reportesventas");
+            }else {
+                header('Location: '.base_url. 'Errors/permisos');
+            }
+
+        }
+        public function productosVendidos(){
+            $data = $this->model->getproductosVendidos();
+            echo json_encode($data);
+            die();
+        }
+        public function listarProductoVendido(){
+            $data = $this->model->getproductosVendidos();
+            echo json_encode($data, JSON_UNESCAPED_UNICODE);
             die();
         }
         

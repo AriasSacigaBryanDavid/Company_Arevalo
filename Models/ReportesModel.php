@@ -24,6 +24,11 @@
         $data = $this->selectAll($sql);
         return $data;
     }
+    public function getproductosVendidos(){
+        $sql = "SELECT d.id_producto, d.cantidad,d.estado, p.id, p.nombre, SUM(d.cantidad) AS total FROM detalle_ventas d INNER JOIN productos p ON p.id = d.id_producto WHERE d.estado=1 GROUP BY d.id_producto ORDER BY d.cantidad DESC LIMIT 10";
+        $data = $this->selectAll($sql);
+        return $data;
+    }
 
 
 

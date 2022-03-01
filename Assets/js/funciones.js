@@ -1,4 +1,4 @@
-let tblUsuarios , tblCargos, tblAlmacenes, tblProveedores,tblCategorias,tblMarcas,tblUnidades,tblProductos,tblDocumentos,tblClientes, tblIdentidades, t_h_e, t_h_v, t_h_s, tblCajas, tblArqueos, tblKardex;
+let tblUsuarios , tblCargos, tblAlmacenes, tblProveedores,tblCategorias,tblMarcas,tblUnidades,tblProductos,tblDocumentos,tblClientes, tblIdentidades, t_h_e, t_h_v, t_h_s, tblCajas, tblArqueos, tblKardex, tblVproductos;
 
 /** Inicio de Usuario */
 document.addEventListener("DOMContentLoaded", function(){
@@ -823,6 +823,24 @@ document.addEventListener("DOMContentLoaded", function(){
             ]
     });
      /** Fin de la tabla kardex*/ 
+     /** Inicio de cajas */
+     tblVproductos = $('#tblproductovendido').DataTable( {
+        ajax: {
+            url: base_url + "Reportes/listarProductoVendido" ,
+            dataSrc: ''
+        },
+        columns: [
+            {'data' : 'nombre'},
+            {'data' : 'total'}
+        ],
+        language: {
+            "url": "//cdn.datatables.net/plug-ins/1.10.11/i18n/Spanish.json"
+        },
+        dom: "<'row'<'col-sm-4'l><'col-sm-8'f>>" +
+                "<'row'<'col-sm-12'tr>>" +
+                "<'row'<'col-sm-5'i><'col-sm-7'p>>"
+    });
+     /** Fin de la tabla cajas*/
 })
 /** Inicio de Actualizar contraseña */
 function frmCambiarPass(e) {
@@ -3233,7 +3251,7 @@ function registrarPermisos(e) {
 
 /** Fin de Permisos*/
 /*******************************/
-/** inicio de kardexs */
+/** inicio de reportes */
 if (document.getElementById('RstockMinimo')) {
     StockMinimo();
     PesoMinimo();
@@ -3298,6 +3316,39 @@ function PesoMinimo(){
     }
     }
 }
-/** Fin de Permisos*/
+if (document.getElementById('RproductosVendidos')) {
+    productosVendidos();
+}
+function productosVendidos(){
+    const url =base_url + "Reportes/productosVendidos";
+    const http=new XMLHttpRequest();
+    http.open("GET", url, true);
+    http.send();
+    http.onreadystatechange=function(){
+    if(this.readyState == 4 && this.status ==200){
+        const res = JSON.parse(this.responseText);
+        let nombre =[];
+        let total =[];
+        for (let i = 0; i < res.length; i++) {
+            nombre.push(res[i]['nombre']);
+            total.push(res[i]['total']);
+        }    
+        var ctx = document.getElementById("RproductosVendidos");
+        var myPieChart = new Chart(ctx, {
+          type: 'bar',
+          data: {
+            labels: nombre,
+            datasets: [{
+              label: 'Gráfico de productos',
+              data: total,
+              backgroundColor: ['#9ba2c8', '#06c6c0', '#3536df','#d5e75b', '#28a745', '#d5e75b','#00aeff','#6b771a','#e36e79','#10af59'],
+            }],
+          },
+        });
+            
+    }
+    }
+}
+/** Fin de Reportes*/
 
 
