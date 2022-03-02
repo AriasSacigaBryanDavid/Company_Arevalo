@@ -3333,7 +3333,7 @@ function StockMinimo(){
             data: {
                 labels: nombre,
                 datasets: [{
-                    label: 'Gráfico de productos',
+                    label: 'TOP 10 DE PRODUCTOS CON STOCK MÍNIMO',
                     data: cantidad,
                     backgroundColor: ['#9ba2c8', '#06c6c0', '#3536df','#d5e75b', '#28a745', '#d5e75b','#00aeff','#6b771a','#e36e79','#10af59'],
                 }],
@@ -3363,7 +3363,7 @@ function PesoMinimo(){
             data: {
                 labels: nombre,
                 datasets: [{
-                    label: 'Gráfico de productos',
+                    label: 'TOP 10 DE PRODUCTOS CON PESO MÍNIMO',
                     data: peso_total,
                     backgroundColor: ['#9ba2c8', '#06c6c0', '#3536df','#d5e75b', '#28a745', '#d5e75b','#00aeff','#6b771a','#e36e79','#10af59'],
                 }],
