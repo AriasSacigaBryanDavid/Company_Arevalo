@@ -65,7 +65,36 @@
         $data = $this->selectAll($sql);
         return $data;
     }
-
+    public function getproductosSalidos(){
+        $sql = "SELECT d.id_producto, d.cantidad,d.estado, p.id, p.nombre, SUM(d.cantidad) AS total FROM detalle_salidas d INNER JOIN productos p ON p.id = d.id_producto WHERE d.estado=1 GROUP BY d.id_producto ORDER BY d.cantidad DESC LIMIT 10";
+        $data = $this->selectAll($sql);
+        return $data;
+    }
+    public function getproductosSalidosDetalles(){
+        $sql = "SELECT d.id_producto, d.cantidad,d.estado, p.id, p.nombre, SUM(d.cantidad) AS total FROM detalle_salidas d INNER JOIN productos p ON p.id = d.id_producto WHERE d.estado=1 GROUP BY d.id_producto ORDER BY d.cantidad DESC";
+        $data = $this->selectAll($sql);
+        return $data;
+    }
+    public function getalmacenesSalidos(){
+        $sql = "SELECT s.id,s.id_almacen, s.estado, a.id, a.nombre, COUNT(s.id) AS total FROM salidas s INNER JOIN almacenes a ON s.id_almacen = a.id WHERE s.estado =1 GROUP BY s.id_almacen ORDER BY s.total DESC LIMIT 10";
+        $data = $this->selectAll($sql);
+        return $data;
+    }
+    public function getalmacenesSalidosDetalles(){
+        $sql = "SELECT s.id,s.id_almacen, s.total,s.estado, a.id, a.nombre, COUNT(s.id) AS total, SUM(s.total) AS montototal FROM salidas s INNER JOIN almacenes a ON s.id_almacen = a.id WHERE s.estado =1 GROUP BY id_almacen ORDER BY total, montototal DESC";
+        $data = $this->selectAll($sql);
+        return $data;
+    }
+    public function getusuariosSalidos(){
+        $sql = "SELECT s.id,s.id_usuario, s.estado, u.id, u.nombre, COUNT(s.id) AS total FROM salidas s INNER JOIN usuarios u ON s.id_usuario = u.id WHERE s.estado =1 GROUP BY s.id_usuario ORDER BY s.total DESC LIMIT 10";
+        $data = $this->selectAll($sql);
+        return $data;
+    }
+    public function getusuariosSalidosDetalles(){
+        $sql = "SELECT s.id,s.id_usuario, s.total,s.estado, u.id, u.nombre, COUNT(s.id) AS total, SUM(s.total) AS montototal FROM salidas s INNER JOIN usuarios u ON s.id_usuario = u.id WHERE s.estado =1 GROUP BY id_usuario ORDER BY total, montototal DESC";
+        $data = $this->selectAll($sql);
+        return $data;
+    }
 
 
     }

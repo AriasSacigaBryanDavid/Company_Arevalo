@@ -86,6 +86,46 @@
             echo json_encode($data, JSON_UNESCAPED_UNICODE);
             die();
         }
+
+        public function reportessalidas(){
+            $id_usuario = $_SESSION['id_usuario'];
+            $verificar = $this->model->VerificarPermiso($id_usuario,'reporte_salidas');
+            if(!empty($verificar)|| $id_usuario == 1){
+                $this->views->getView($this,"reportessalidas");
+            }else {
+                header('Location: '.base_url. 'Errors/permisos');
+            }
+        }
+        public function productosSalidos(){
+            $data = $this->model->getproductosSalidos();
+            echo json_encode($data);
+            die();
+        }
+        public function listarProductoSalido(){
+            $data = $this->model->getproductosSalidosDetalles();
+            echo json_encode($data, JSON_UNESCAPED_UNICODE);
+            die();
+        }
+        public function almacenesSalidos(){
+            $data = $this->model->getalmacenesSalidos();
+            echo json_encode($data);
+            die();
+        }
+        public function listarAlmacenSalido(){
+            $data = $this->model->getalmacenesSalidosDetalles();
+            echo json_encode($data, JSON_UNESCAPED_UNICODE);
+            die();
+        }
+        public function usuariosSalidos(){
+            $data = $this->model->getusuariosSalidos();
+            echo json_encode($data);
+            die();
+        }
+        public function listarUsuarioSalido(){
+            $data = $this->model->getusuariosSalidosDetalles();
+            echo json_encode($data, JSON_UNESCAPED_UNICODE);
+            die();
+        }
         
     }
 ?>

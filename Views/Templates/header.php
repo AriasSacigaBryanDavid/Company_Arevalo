@@ -148,6 +148,7 @@
                                 <nav class="sb-sidenav-menu-nested nav">
                                     <a class="nav-link" href="<?php echo base_url;?>Reportes">Kardex</a>
                                     <a class="nav-link" href="<?php echo base_url;?>Reportes/reportesventas">Reportes de Ventas</a>
+                                    <a class="nav-link" href="<?php echo base_url;?>Reportes/reportessalidas">Reportes de Salidas</a>
                                 </nav>
                             </div>
                         </div>

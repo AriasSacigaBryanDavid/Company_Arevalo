@@ -1,4 +1,4 @@
-let tblUsuarios , tblCargos, tblAlmacenes, tblProveedores,tblCategorias,tblMarcas,tblUnidades,tblProductos,tblDocumentos,tblClientes, tblIdentidades, t_h_e, t_h_v, t_h_s, tblCajas, tblArqueos, tblKardex, tblProductosVendidos, tblClientesVendidos, tblAlmacenesVendidos, tblUsuariosVendidos;
+let tblUsuarios , tblCargos, tblAlmacenes, tblProveedores,tblCategorias,tblMarcas,tblUnidades,tblProductos,tblDocumentos,tblClientes, tblIdentidades, t_h_e, t_h_v, t_h_s, tblCajas, tblArqueos, tblKardex, tblProductosVendidos, tblClientesVendidos, tblAlmacenesVendidos, tblUsuariosVendidos,tblProductosSalidos, tblAlmacenesSalidos,tblUsuariosSalidos;
 
 /** Inicio de Usuario */
 document.addEventListener("DOMContentLoaded", function(){
@@ -898,6 +898,62 @@ document.addEventListener("DOMContentLoaded", function(){
                 "<'row'<'col-sm-5'i><'col-sm-7'p>>"
     });
      /** Fin de Total de usuarios vendidos*/
+    /** Inicio de Total de productos salidos */
+      tblProductosSalidos = $('#tblproductosalido').DataTable( {
+        ajax: {
+            url: base_url + "Reportes/listarProductoSalido" ,
+            dataSrc: ''
+        },
+        columns: [
+            {'data' : 'nombre'},
+            {'data' : 'total'}
+        ],
+        language: {
+            "url": "//cdn.datatables.net/plug-ins/1.10.11/i18n/Spanish.json"
+        },
+        dom: "<'row'<'col-sm-4'l><'col-sm-8'f>>" +
+                "<'row'<'col-sm-12'tr>>" +
+                "<'row'<'col-sm-5'i><'col-sm-7'p>>"
+    });
+    /** Fin de Total de productos salidos*/
+    /** Inicio de Total de almacenes salidos */
+    tblAlmacenesSalidos = $('#tblalmacenessalido').DataTable( {
+        ajax: {
+            url: base_url + "Reportes/listarAlmacenSalido" ,
+            dataSrc: ''
+        },
+        columns: [
+            {'data' : 'nombre'},
+            {'data' : 'total'},
+            {'data' : 'montototal'}
+        ],
+        language: {
+            "url": "//cdn.datatables.net/plug-ins/1.10.11/i18n/Spanish.json"
+        },
+        dom: "<'row'<'col-sm-4'l><'col-sm-8'f>>" +
+                "<'row'<'col-sm-12'tr>>" +
+                "<'row'<'col-sm-5'i><'col-sm-7'p>>"
+    });
+    /** Fin de Total de almacenes salidos*/
+    /** Inicio de Total de usuarios salidos */
+    tblUsuariosSalidos = $('#tblusuariossalido').DataTable( {
+        ajax: {
+            url: base_url + "Reportes/listarUsuarioSalido",
+            dataSrc: ''
+        },
+        columns: [
+            {'data' : 'nombre'},
+            {'data' : 'total'},
+            {'data' : 'montototal'}
+        ],
+        language: {
+            "url": "//cdn.datatables.net/plug-ins/1.10.11/i18n/Spanish.json"
+        },
+        dom: "<'row'<'col-sm-4'l><'col-sm-8'f>>" +
+                "<'row'<'col-sm-12'tr>>" +
+                "<'row'<'col-sm-5'i><'col-sm-7'p>>"
+    });
+     /** Fin de Total de usuarios salidos*/
 })
 /** Inicio de Actualizar contraseña */
 function frmCambiarPass(e) {
@@ -3377,7 +3433,7 @@ if (document.getElementById('RproductosVendidos')) {
     productosVendidos();
     clientesVendidos();
     almacenesVendidos();
-    usuariosVendidos()
+    usuariosVendidos();
 }
 function productosVendidos(){
     const url =base_url + "Reportes/productosVendidos";
@@ -3491,6 +3547,101 @@ function usuariosVendidos(){
             labels: nombre,
             datasets: [{
               label: 'TOP 10 DE USUARIOS MÁS VENDIDOS',
+              data: total,
+              backgroundColor: ['#9ba2c8', '#06c6c0', '#3536df','#d5e75b', '#28a745', '#d5e75b','#00aeff','#6b771a','#e36e79','#10af59'],
+            }],
+          },
+        });
+            
+    }
+    }
+}
+if (document.getElementById('RproductosSalidos')) {
+    productosSalidos();
+    almacenesSalidos();
+    usuariosSalidos();
+}
+function productosSalidos(){
+    const url =base_url + "Reportes/productosSalidos";
+    const http=new XMLHttpRequest();
+    http.open("GET", url, true);
+    http.send();
+    http.onreadystatechange=function(){
+    if(this.readyState == 4 && this.status ==200){
+        const res = JSON.parse(this.responseText);
+        let nombre =[];
+        let total =[];
+        for (let i = 0; i < res.length; i++) {
+            nombre.push(res[i]['nombre']);
+            total.push(res[i]['total']);
+        }    
+        var ctx = document.getElementById("RproductosSalidos");
+        var myPieChart = new Chart(ctx, {
+          type: 'bar',
+          data: {
+            labels: nombre,
+            datasets: [{
+              label:'TOP 10 DE PRODUCTOS MÁS SALIDOS',
+              data: total,
+              backgroundColor: ['#9ba2c8', '#06c6c0', '#3536df','#d5e75b', '#28a745', '#d5e75b','#00aeff','#6b771a','#e36e79','#10af59'],
+            }],
+          },
+        });
+            
+    }
+    }
+}
+function almacenesSalidos(){
+    const url =base_url + "Reportes/almacenesSalidos";
+    const http=new XMLHttpRequest();
+    http.open("GET", url, true);
+    http.send();
+    http.onreadystatechange=function(){
+    if(this.readyState == 4 && this.status ==200){
+        const res = JSON.parse(this.responseText);
+        let nombre =[];
+        let total =[];
+        for (let i = 0; i < res.length; i++) {
+            nombre.push(res[i]['nombre']);
+            total.push(res[i]['total']);
+        }    
+        var ctx = document.getElementById("RalmacenSalidos");
+        var myPieChart = new Chart(ctx, {
+          type: 'bar',
+          data: {
+            labels: nombre,
+            datasets: [{
+              label: 'TOP 10 DE ALMACENES MÁS SALIDOS',
+              data: total,
+              backgroundColor: ['#9ba2c8', '#06c6c0', '#3536df','#d5e75b', '#28a745', '#d5e75b','#00aeff','#6b771a','#e36e79','#10af59'],
+            }],
+          },
+        });
+            
+    }
+    }
+}
+function usuariosSalidos(){
+    const url =base_url + "Reportes/usuariosSalidos";
+    const http=new XMLHttpRequest();
+    http.open("GET", url, true);
+    http.send();
+    http.onreadystatechange=function(){
+    if(this.readyState == 4 && this.status ==200){
+        const res = JSON.parse(this.responseText);
+        let nombre =[];
+        let total =[];
+        for (let i = 0; i < res.length; i++) {
+            nombre.push(res[i]['nombre']);
+            total.push(res[i]['total']);
+        }    
+        var ctx = document.getElementById("RusuarioSalidos");
+        var myPieChart = new Chart(ctx, {
+          type: 'bar',
+          data: {
+            labels: nombre,
+            datasets: [{
+              label: 'TOP 10 DE USUARIOS MÁS SALIDOS',
               data: total,
               backgroundColor: ['#9ba2c8', '#06c6c0', '#3536df','#d5e75b', '#28a745', '#d5e75b','#00aeff','#6b771a','#e36e79','#10af59'],
             }],

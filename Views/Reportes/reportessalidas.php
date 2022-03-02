@@ -2,27 +2,27 @@
 <div class="card">
     <div class="card">
         <div class="card-header bg-info text-white text-center">
-            <h4> Reportes de Productos más Vendidos</h4>
+            <h4> Reportes de Productos más Salidos</h4>
         </div>
         <div class="card-body bg-secondary">
             <div class="row mt-2">
                 <div class="col-md-6 mb-2">
                     <div class="card">
                         <div class="card-body ">
-                            <canvas id="RproductosVendidos" width="400" height="400"></canvas>
+                            <canvas id="RproductosSalidos" width="400" height="400"></canvas>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-6 mb-2">
                     <div class="card">
                         <div class="card-body ">
-                            <h5 class="font-weight-bold text-center">CANTIDAD DE PRODUCTOS VENDIDOS</h5>
+                            <h5 class="font-weight-bold text-center">CANTIDAD DE PRODUCTOS SALIDOS</h5>
                             <div class="table-responsive">
-                                <table class="table table-dark table-hover" id="tblproductovendido">
+                                <table class="table table-dark table-hover" id="tblproductosalido">
                                     <thead class="thead-dark">
                                         <tr>
                                             <th>Producto</th>
-                                            <th>Cant. Vendido</th>
+                                            <th>Cant. Salidos</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -39,65 +39,27 @@
 <div class="card">
     <div class="card">
         <div class="card-header bg-info text-white text-center">
-            <h4> Reportes de Clientes más Vendidos</h4>
+            <h4> Reportes de Almacén más Salidos</h4>
         </div>
         <div class="card-body bg-secondary">
             <div class="row mt-2">
                 <div class="col-md-6 mb-2">
                     <div class="card">
                         <div class="card-body ">
-                            <canvas id="RclientesVendidos" width="400" height="400"></canvas>
+                            <canvas id="RalmacenSalidos" width="400" height="400"></canvas>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-6 mb-2">
                     <div class="card">
                         <div class="card-body ">
-                            <h5 class="font-weight-bold text-center">CLIENTES VENDIDOS</h5>
+                            <h5 class="font-weight-bold text-center">ALMACENES SALIDOS</h5>
                             <div class="table-responsive">
-                                <table class="table table-dark table-hover" id="tblclientesvendido">
-                                    <thead class="thead-dark">
-                                        <tr>
-                                            <th>Cliente</th>
-                                            <th>Cant. vendido</th>
-                                            <th>Monto total</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="card">
-    <div class="card">
-        <div class="card-header bg-info text-white text-center">
-            <h4> Reportes de Almacén más Vendidos</h4>
-        </div>
-        <div class="card-body bg-secondary">
-            <div class="row mt-2">
-                <div class="col-md-6 mb-2">
-                    <div class="card">
-                        <div class="card-body ">
-                            <canvas id="RalmacenVendidos" width="400" height="400"></canvas>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 mb-2">
-                    <div class="card">
-                        <div class="card-body ">
-                            <h5 class="font-weight-bold text-center">ALMACENES VENDIDOS</h5>
-                            <div class="table-responsive">
-                                <table class="table table-dark table-hover" id="tblalmacenesvendido">
+                                <table class="table table-dark table-hover" id="tblalmacenessalido">
                                     <thead class="thead-dark">
                                         <tr>
                                             <th>Almacenes</th>
-                                            <th>Cant. vendido</th>
+                                            <th>Cant. salida</th>
                                             <th>Monto total</th>
                                         </tr>
                                     </thead>
@@ -115,27 +77,27 @@
 <div class="card">
     <div class="card">
         <div class="card-header bg-info text-white text-center">
-            <h4> Reportes de Usuarios más Vendidos</h4>
+            <h4> Reportes de Usuarios más Salidos</h4>
         </div>
         <div class="card-body bg-secondary">
             <div class="row mt-2">
                 <div class="col-md-6 mb-2">
                     <div class="card">
                         <div class="card-body ">
-                            <canvas id="RusuarioVendidos" width="400" height="400"></canvas>
+                            <canvas id="RusuarioSalidos" width="400" height="400"></canvas>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-6 mb-2">
                     <div class="card">
                         <div class="card-body ">
-                            <h5 class="font-weight-bold text-center">USUARIOS VENDIDOS</h5>
+                            <h5 class="font-weight-bold text-center">USUARIOS SALIDOS</h5>
                             <div class="table-responsive">
-                                <table class="table table-dark table-hover" id="tblusuariosvendido">
+                                <table class="table table-dark table-hover" id="tblusuariossalido">
                                     <thead class="thead-dark">
                                         <tr>
                                             <th>Usuarios</th>
-                                            <th>Cant. vendido</th>
+                                            <th>Cant. salido</th>
                                             <th>Monto total</th>
                                         </tr>
                                     </thead>
