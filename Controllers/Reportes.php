@@ -52,7 +52,37 @@
             die();
         }
         public function listarProductoVendido(){
-            $data = $this->model->getproductosVendidos();
+            $data = $this->model->getproductosVendidosDetalles();
+            echo json_encode($data, JSON_UNESCAPED_UNICODE);
+            die();
+        }
+        public function clientesVendidos(){
+            $data = $this->model->getclientesVendidos();
+            echo json_encode($data);
+            die();
+        }
+        public function listarClienteVendido(){
+            $data = $this->model->getclientesVendidosDetalles();
+            echo json_encode($data, JSON_UNESCAPED_UNICODE);
+            die();
+        }
+        public function almacenesVendidos(){
+            $data = $this->model->getalmacenesVendidos();
+            echo json_encode($data);
+            die();
+        }
+        public function listarAlmacenVendido(){
+            $data = $this->model->getalmacenesVendidosDetalles();
+            echo json_encode($data, JSON_UNESCAPED_UNICODE);
+            die();
+        }
+        public function usuariosVendidos(){
+            $data = $this->model->getusuariosVendidos();
+            echo json_encode($data);
+            die();
+        }
+        public function listarUsuarioVendido(){
+            $data = $this->model->getusuariosVendidosDetalles();
             echo json_encode($data, JSON_UNESCAPED_UNICODE);
             die();
         }

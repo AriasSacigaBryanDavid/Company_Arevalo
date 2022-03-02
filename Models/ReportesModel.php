@@ -29,6 +29,42 @@
         $data = $this->selectAll($sql);
         return $data;
     }
+    public function getproductosVendidosDetalles(){
+        $sql = "SELECT d.id_producto, d.cantidad,d.estado, p.id, p.nombre, SUM(d.cantidad) AS total FROM detalle_ventas d INNER JOIN productos p ON p.id = d.id_producto WHERE d.estado=1 GROUP BY d.id_producto ORDER BY d.cantidad DESC";
+        $data = $this->selectAll($sql);
+        return $data;
+    }
+    public function getclientesVendidos()
+    {
+        $sql = "SELECT v.id,v.id_cliente, v.estado, c.id, c.nombre, COUNT(v.id) AS total FROM ventas v INNER JOIN clientes c ON c.id =v.id_cliente WHERE v.estado =1 GROUP BY v.id_cliente ORDER BY v.total DESC LIMIT 10";
+        $data = $this->selectAll($sql);
+        return $data;
+    }
+    public function getclientesVendidosDetalles(){
+        $sql = "SELECT v.id,v.id_cliente, v.total,v.estado, c.id, c.nombre, COUNT(v.id) AS total, SUM(v.total) AS montototal FROM ventas v INNER JOIN clientes c ON v.id_cliente = c.id WHERE v.estado =1 GROUP BY id_cliente ORDER BY total, montototal DESC";
+        $data = $this->selectAll($sql);
+        return $data;
+    }
+    public function getalmacenesVendidos(){
+        $sql = "SELECT v.id,v.id_almacen, v.estado, a.id, a.nombre, COUNT(v.id) AS total FROM ventas v INNER JOIN almacenes a ON v.id_almacen = a.id WHERE v.estado =1 GROUP BY v.id_almacen ORDER BY v.total DESC LIMIT 10";
+        $data = $this->selectAll($sql);
+        return $data;
+    }
+    public function getalmacenesVendidosDetalles(){
+        $sql = "SELECT v.id,v.id_almacen, v.total,v.estado, a.id, a.nombre, COUNT(v.id) AS total, SUM(v.total) AS montototal FROM ventas v INNER JOIN almacenes a ON v.id_almacen = a.id WHERE v.estado =1 GROUP BY id_almacen ORDER BY total, montototal DESC";
+        $data = $this->selectAll($sql);
+        return $data;
+    }
+    public function getusuariosVendidos(){
+        $sql = "SELECT v.id,v.id_usuario, v.estado, u.id, u.nombre, COUNT(v.id) AS total FROM ventas v INNER JOIN usuarios u ON v.id_usuario = u.id WHERE v.estado =1 GROUP BY v.id_usuario ORDER BY v.total DESC LIMIT 10";
+        $data = $this->selectAll($sql);
+        return $data;
+    }
+    public function getusuariosVendidosDetalles(){
+        $sql = "SELECT v.id,v.id_usuario, v.total,v.estado, u.id, u.nombre, COUNT(v.id) AS total, SUM(v.total) AS montototal FROM ventas v INNER JOIN usuarios u ON v.id_usuario = u.id WHERE v.estado =1 GROUP BY id_usuario ORDER BY total, montototal DESC";
+        $data = $this->selectAll($sql);
+        return $data;
+    }
 
 
 

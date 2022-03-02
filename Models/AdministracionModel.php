@@ -67,7 +67,7 @@
     }
     public function getclientesVendidos()
     {
-        $sql = "SELECT v.id_cliente, v.total, c.id, c.nombre, SUM(v.total) AS M_total FROM ventas v INNER JOIN clientes c ON c.id = v.id_cliente GROUP BY v.id_cliente ORDER BY v.total DESC LIMIT 10";
+        $sql = "SELECT v.id_cliente, v.total, v.estado, c.id, c.nombre, SUM(v.total) AS M_total FROM ventas v INNER JOIN clientes c ON c.id = v.id_cliente WHERE v.estado =1 GROUP BY v.id_cliente ORDER BY v.total DESC LIMIT 10";
         $data = $this->selectAll($sql);
         return $data;
     }

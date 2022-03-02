@@ -1,4 +1,4 @@
-let tblUsuarios , tblCargos, tblAlmacenes, tblProveedores,tblCategorias,tblMarcas,tblUnidades,tblProductos,tblDocumentos,tblClientes, tblIdentidades, t_h_e, t_h_v, t_h_s, tblCajas, tblArqueos, tblKardex, tblVproductos;
+let tblUsuarios , tblCargos, tblAlmacenes, tblProveedores,tblCategorias,tblMarcas,tblUnidades,tblProductos,tblDocumentos,tblClientes, tblIdentidades, t_h_e, t_h_v, t_h_s, tblCajas, tblArqueos, tblKardex, tblProductosVendidos, tblClientesVendidos, tblAlmacenesVendidos, tblUsuariosVendidos;
 
 /** Inicio de Usuario */
 document.addEventListener("DOMContentLoaded", function(){
@@ -823,8 +823,8 @@ document.addEventListener("DOMContentLoaded", function(){
             ]
     });
      /** Fin de la tabla kardex*/ 
-     /** Inicio de cajas */
-     tblVproductos = $('#tblproductovendido').DataTable( {
+     /** Inicio de Total de productos vendidos */
+     tblProductosVendidos = $('#tblproductovendido').DataTable( {
         ajax: {
             url: base_url + "Reportes/listarProductoVendido" ,
             dataSrc: ''
@@ -840,7 +840,64 @@ document.addEventListener("DOMContentLoaded", function(){
                 "<'row'<'col-sm-12'tr>>" +
                 "<'row'<'col-sm-5'i><'col-sm-7'p>>"
     });
-     /** Fin de la tabla cajas*/
+     /** Fin de Total de productos vendidos*/
+     /** Inicio de Total de clientes vendidos */
+     tblClientesVendidos = $('#tblclientesvendido').DataTable( {
+        ajax: {
+            url: base_url + "Reportes/listarClienteVendido",
+            dataSrc: ''
+        },
+        columns: [
+            {'data' : 'nombre'},
+            {'data' : 'total'},
+            {'data' : 'montototal'}
+        ],
+        language: {
+            "url": "//cdn.datatables.net/plug-ins/1.10.11/i18n/Spanish.json"
+        },
+        dom: "<'row'<'col-sm-4'l><'col-sm-8'f>>" +
+                "<'row'<'col-sm-12'tr>>" +
+                "<'row'<'col-sm-5'i><'col-sm-7'p>>"
+    });
+     /** Fin de Total de clientes vendidos*/
+     /** Inicio de Total de almacenes vendidos */
+     tblAlmacenesVendidos = $('#tblalmacenesvendido').DataTable( {
+        ajax: {
+            url: base_url + "Reportes/listarAlmacenVendido",
+            dataSrc: ''
+        },
+        columns: [
+            {'data' : 'nombre'},
+            {'data' : 'total'},
+            {'data' : 'montototal'}
+        ],
+        language: {
+            "url": "//cdn.datatables.net/plug-ins/1.10.11/i18n/Spanish.json"
+        },
+        dom: "<'row'<'col-sm-4'l><'col-sm-8'f>>" +
+                "<'row'<'col-sm-12'tr>>" +
+                "<'row'<'col-sm-5'i><'col-sm-7'p>>"
+    });
+     /** Fin de Total de almacenes vendidos*/
+     /** Inicio de Total de usuarios vendidos */
+     tblUsuariosVendidos = $('#tblusuariosvendido').DataTable( {
+        ajax: {
+            url: base_url + "Reportes/listarUsuarioVendido",
+            dataSrc: ''
+        },
+        columns: [
+            {'data' : 'nombre'},
+            {'data' : 'total'},
+            {'data' : 'montototal'}
+        ],
+        language: {
+            "url": "//cdn.datatables.net/plug-ins/1.10.11/i18n/Spanish.json"
+        },
+        dom: "<'row'<'col-sm-4'l><'col-sm-8'f>>" +
+                "<'row'<'col-sm-12'tr>>" +
+                "<'row'<'col-sm-5'i><'col-sm-7'p>>"
+    });
+     /** Fin de Total de usuarios vendidos*/
 })
 /** Inicio de Actualizar contraseña */
 function frmCambiarPass(e) {
@@ -3318,6 +3375,9 @@ function PesoMinimo(){
 }
 if (document.getElementById('RproductosVendidos')) {
     productosVendidos();
+    clientesVendidos();
+    almacenesVendidos();
+    usuariosVendidos()
 }
 function productosVendidos(){
     const url =base_url + "Reportes/productosVendidos";
@@ -3339,7 +3399,98 @@ function productosVendidos(){
           data: {
             labels: nombre,
             datasets: [{
-              label: 'Gráfico de productos',
+              label: 'TOP 10 DE PRODUCTOS MÁS VENDIDOS',
+              data: total,
+              backgroundColor: ['#9ba2c8', '#06c6c0', '#3536df','#d5e75b', '#28a745', '#d5e75b','#00aeff','#6b771a','#e36e79','#10af59'],
+            }],
+          },
+        });
+            
+    }
+    }
+}
+function clientesVendidos(){
+    const url =base_url + "Reportes/clientesVendidos";
+    const http=new XMLHttpRequest();
+    http.open("GET", url, true);
+    http.send();
+    http.onreadystatechange=function(){
+    if(this.readyState == 4 && this.status ==200){
+        const res = JSON.parse(this.responseText);
+        let nombre =[];
+        let total =[];
+        for (let i = 0; i < res.length; i++) {
+            nombre.push(res[i]['nombre']);
+            total.push(res[i]['total']);
+        }    
+        var ctx = document.getElementById("RclientesVendidos");
+        var myPieChart = new Chart(ctx, {
+          type: 'bar',
+          data: {
+            labels: nombre,
+            datasets: [{
+              label: 'TOP 10 DE CLIENTES MÁS VENDIDOS',
+              data: total,
+              backgroundColor: ['#9ba2c8', '#06c6c0', '#3536df','#d5e75b', '#28a745', '#d5e75b','#00aeff','#6b771a','#e36e79','#10af59'],
+            }],
+          },
+        });
+            
+    }
+    }
+}
+function almacenesVendidos(){
+    const url =base_url + "Reportes/almacenesVendidos";
+    const http=new XMLHttpRequest();
+    http.open("GET", url, true);
+    http.send();
+    http.onreadystatechange=function(){
+    if(this.readyState == 4 && this.status ==200){
+        const res = JSON.parse(this.responseText);
+        let nombre =[];
+        let total =[];
+        for (let i = 0; i < res.length; i++) {
+            nombre.push(res[i]['nombre']);
+            total.push(res[i]['total']);
+        }    
+        var ctx = document.getElementById("RalmacenVendidos");
+        var myPieChart = new Chart(ctx, {
+          type: 'bar',
+          data: {
+            labels: nombre,
+            datasets: [{
+              label: 'TOP 10 DE ALMACENES MÁS VENDIDOS',
+              data: total,
+              backgroundColor: ['#9ba2c8', '#06c6c0', '#3536df','#d5e75b', '#28a745', '#d5e75b','#00aeff','#6b771a','#e36e79','#10af59'],
+            }],
+          },
+        });
+            
+    }
+    }
+}
+
+function usuariosVendidos(){
+    const url =base_url + "Reportes/usuariosVendidos";
+    const http=new XMLHttpRequest();
+    http.open("GET", url, true);
+    http.send();
+    http.onreadystatechange=function(){
+    if(this.readyState == 4 && this.status ==200){
+        const res = JSON.parse(this.responseText);
+        let nombre =[];
+        let total =[];
+        for (let i = 0; i < res.length; i++) {
+            nombre.push(res[i]['nombre']);
+            total.push(res[i]['total']);
+        }    
+        var ctx = document.getElementById("RusuarioVendidos");
+        var myPieChart = new Chart(ctx, {
+          type: 'bar',
+          data: {
+            labels: nombre,
+            datasets: [{
+              label: 'TOP 10 DE USUARIOS MÁS VENDIDOS',
               data: total,
               backgroundColor: ['#9ba2c8', '#06c6c0', '#3536df','#d5e75b', '#28a745', '#d5e75b','#00aeff','#6b771a','#e36e79','#10af59'],
             }],
