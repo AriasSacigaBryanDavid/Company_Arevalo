@@ -122,9 +122,9 @@
                         $total_salida=$this->model->getProductos($id_pro);
                         $salida=$total_salida['total_salida'] + $sub_total;
                         $this->model->actualizarSalida($salida, $id_pro);
-                        $ganacia_total=$this->model->getProductos($id_pro);
-                        $ganacia = $ganacia_total['ganancia'] + $sub_total;
-                        $this->model->actualizarGanancia($ganacia, $id_pro);
+                        $ganancia_total=$this->model->getProductos($id_pro);
+                        $ganancia = $ganancia_total['ganancia'] + $sub_total;
+                        $this->model->actualizarGanancia($ganancia, $id_pro);
                     }
                     $vaciar = $this->model->vaciarDetalle($id_usuario);
                     if($vaciar == 'ok'){
@@ -302,9 +302,9 @@
                 $total_salida=$this->model->getProductos($row['id_producto']);
                 $salida=$total_salida['total_salida'] - $row['sub_total'];
                 $this->model->actualizarSalida($salida, $row['id_producto']);
-                $ganacia_total=$this->model->getProductos($row['id_producto']);
-                $ganacia = $ganacia_total['ganancia'] - $row['sub_total'];
-                $this->model->actualizarGanancia($ganacia, $row['id_producto']);
+                $ganancia_total=$this->model->getProductos($row['id_producto']);
+                $ganancia = $ganancia_total['ganancia'] - $row['sub_total'];
+                $this->model->actualizarGanancia($ganancia, $row['id_producto']);
             }
             if ($anular == 'ok') {
                 $msg = array('msg' => 'Salida Anulada', 'icono' => 'success');

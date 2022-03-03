@@ -4,7 +4,7 @@
             parent::__construct();
     }
     public function getR_productos(){
-        $sql="SELECT * FROM Productos";
+        $sql="SELECT * FROM productos";
         $data= $this->selectAll($sql);
         return $data;
     }

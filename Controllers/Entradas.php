@@ -112,9 +112,9 @@
                         $total_entrada=$this->model->getProductos($id_pro);
                         $compra=$total_entrada['total_entrada'] + $sub_total;
                         $this->model->actualizarEntrada($compra, $id_pro);
-                        $ganacia_total=$this->model->getProductos($id_pro);
-                        $ganacia = $ganacia_total['ganancia'] - $sub_total;
-                        $this->model->actualizarGanancia($ganacia, $id_pro);
+                        $ganancia_total=$this->model->getProductos($id_pro);
+                        $ganancia = $ganancia_total['ganancia'] - $sub_total;
+                        $this->model->actualizarGanancia($ganancia, $id_pro);
                         
                     }
                         $vaciar = $this->model->vaciarDetalle($id_usuario);
@@ -303,10 +303,9 @@
                 $total_entrada=$this->model->getProductos($row['id_producto']);
                 $compra=$total_entrada['total_entrada'] - $row['sub_total'];
                 $this->model->actualizarEntrada($compra, $row['id_producto']);
-                $ganacia_total=$this->model->getProductos($row['id_producto']);
-                $ganacia = $ganacia_total['ganancia'] + $row['sub_total'];
-                $this->model->actualizarGanancia($ganacia,$row['id_producto']);
-                
+                $ganancia_total=$this->model->getProductos($row['id_producto']);
+                $ganancia = $ganancia_total['ganancia'] + $row['sub_total'];
+                $this->model->actualizarGanancia($ganancia,$row['id_producto']);       
             }
             if ($anular == 'ok') {
                 $msg = array('msg' => 'Entrada Anulada', 'icono' => 'success');
