@@ -1,4 +1,6 @@
-let tblUsuarios , tblCargos, tblAlmacenes, tblProveedores,tblCategorias,tblMarcas,tblUnidades,tblProductos,tblDocumentos,tblClientes, tblIdentidades, t_h_e, t_h_v, t_h_s, tblCajas, tblArqueos, tblKardex, tblProductosVendidos, tblClientesVendidos, tblAlmacenesVendidos, tblUsuariosVendidos,tblProductosSalidos, tblAlmacenesSalidos,tblUsuariosSalidos;
+let tblUsuarios , tblCargos, tblAlmacenes, tblProveedores,tblCategorias,tblMarcas,tblUnidades,tblProductos,tblDocumentos,tblClientes, tblIdentidades,
+t_h_e, t_h_v, t_h_s, tblCajas, tblArqueos, tblKardex, tblProductosVendidos, tblClientesVendidos, tblAlmacenesVendidos, tblUsuariosVendidos,tblProductosSalidos,
+tblAlmacenesSalidos,tblUsuariosSalidos,tblProductosRendimientos, tblProductosEntrados,tblProveedoresEntrados,tblAlmacenesEntrados,tblUsuariosEntrados;
 
 /** Inicio de Usuario */
 document.addEventListener("DOMContentLoaded", function(){
@@ -954,6 +956,99 @@ document.addEventListener("DOMContentLoaded", function(){
                 "<'row'<'col-sm-5'i><'col-sm-7'p>>"
     });
      /** Fin de Total de usuarios salidos*/
+      /** Inicio de Promedio de rendimiento de productos */
+    tblProductosRendimientos = $('#tblproductorendimiento').DataTable( {
+        ajax: {
+            url: base_url + "Reportes/listarProductoRendimiento",
+            dataSrc: ''
+        },
+        columns: [
+            {'data' : 'nombre'},
+            {'data' : 'rendimiento'}
+        ],
+        language: {
+            "url": "//cdn.datatables.net/plug-ins/1.10.11/i18n/Spanish.json"
+        },
+        dom: "<'row'<'col-sm-4'l><'col-sm-8'f>>" +
+                "<'row'<'col-sm-12'tr>>" +
+                "<'row'<'col-sm-5'i><'col-sm-7'p>>"
+    });
+     /** Fin de Promedio de rendimiento de productos*/
+     /** Inicio de Total de productos entradas */
+     tblProductosEntrados = $('#tblproductoentrado').DataTable( {
+        ajax: {
+            url: base_url + "Reportes/listarProductoEntrado" ,
+            dataSrc: ''
+        },
+        columns: [
+            {'data' : 'nombre'},
+            {'data' : 'total'}
+        ],
+        language: {
+            "url": "//cdn.datatables.net/plug-ins/1.10.11/i18n/Spanish.json"
+        },
+        dom: "<'row'<'col-sm-4'l><'col-sm-8'f>>" +
+                "<'row'<'col-sm-12'tr>>" +
+                "<'row'<'col-sm-5'i><'col-sm-7'p>>"
+    });
+    /** Fin de Total de productos entradas*/
+     /** Inicio de Total de proveedores entradas */
+     tblProveedoresEntrados = $('#tblproveedorentrado').DataTable( {
+        ajax: {
+            url: base_url + "Reportes/listarProveedorEntrado",
+            dataSrc: ''
+        },
+        columns: [
+            {'data' : 'nombre'},
+            {'data' : 'total'},
+            {'data' : 'montototal'}
+        ],
+        language: {
+            "url": "//cdn.datatables.net/plug-ins/1.10.11/i18n/Spanish.json"
+        },
+        dom: "<'row'<'col-sm-4'l><'col-sm-8'f>>" +
+                "<'row'<'col-sm-12'tr>>" +
+                "<'row'<'col-sm-5'i><'col-sm-7'p>>"
+    });
+     /** Fin de Total de proveedores entradas*/
+     /** Inicio de Total de almacenes entradas */
+    tblAlmacenesEntrados = $('#tblalmacenesentrado').DataTable( {
+        ajax: {
+            url: base_url + "Reportes/listarAlmacenEntrado" ,
+            dataSrc: ''
+        },
+        columns: [
+            {'data' : 'nombre'},
+            {'data' : 'total'},
+            {'data' : 'montototal'}
+        ],
+        language: {
+            "url": "//cdn.datatables.net/plug-ins/1.10.11/i18n/Spanish.json"
+        },
+        dom: "<'row'<'col-sm-4'l><'col-sm-8'f>>" +
+                "<'row'<'col-sm-12'tr>>" +
+                "<'row'<'col-sm-5'i><'col-sm-7'p>>"
+    });
+    /** Fin de Total de almacenes entradas*/
+    /** Inicio de Total de usuarios entradas */
+    tblUsuariosEntrados = $('#tblusuariosentrado').DataTable( {
+        ajax: {
+            url: base_url + "Reportes/listarUsuarioEntrado",
+            dataSrc: ''
+        },
+        columns: [
+            {'data' : 'nombre'},
+            {'data' : 'total'},
+            {'data' : 'montototal'}
+        ],
+        language: {
+            "url": "//cdn.datatables.net/plug-ins/1.10.11/i18n/Spanish.json"
+        },
+        dom: "<'row'<'col-sm-4'l><'col-sm-8'f>>" +
+                "<'row'<'col-sm-12'tr>>" +
+                "<'row'<'col-sm-5'i><'col-sm-7'p>>"
+    });
+     /** Fin de Total de usuarios entradas*/
 })
 /** Inicio de Actualizar contraseña */
 function frmCambiarPass(e) {
@@ -3642,6 +3737,165 @@ function usuariosSalidos(){
             labels: nombre,
             datasets: [{
               label: 'TOP 10 DE USUARIOS MÁS SALIDOS',
+              data: total,
+              backgroundColor: ['#9ba2c8', '#06c6c0', '#3536df','#d5e75b', '#28a745', '#d5e75b','#00aeff','#6b771a','#e36e79','#10af59'],
+            }],
+          },
+        });
+            
+    }
+    }
+}
+
+if (document.getElementById('RproductosRendimientos')) {
+    productosRendimientos();
+    productosEntrados();
+    proveedoresEntrados();
+    almacenesEntrados();
+    usuariosEntrados();
+    
+}
+function productosRendimientos(){
+    const url =base_url + "Reportes/productosRendimientos";
+    const http=new XMLHttpRequest();
+    http.open("GET", url, true);
+    http.send();
+    http.onreadystatechange=function(){
+    if(this.readyState == 4 && this.status ==200){
+        const res = JSON.parse(this.responseText);
+        let nombre =[];
+        let rendimiento =[];
+        for (let i = 0; i < res.length; i++) {
+            nombre.push(res[i]['nombre']);
+            rendimiento.push(res[i]['rendimiento']);
+        }    
+        var ctx = document.getElementById("RproductosRendimientos");
+        var myPieChart = new Chart(ctx, {
+          type: 'bar',
+          data: {
+            labels: nombre,
+            datasets: [{
+              label:'TOP 10 EN RENDIMIENTOS DE PRODUCTOS',
+              data: rendimiento,
+              backgroundColor: ['#9ba2c8', '#06c6c0', '#3536df','#d5e75b', '#28a745', '#d5e75b','#00aeff','#6b771a','#e36e79','#10af59'],
+            }],
+          },
+        });
+            
+    }
+    }
+}
+function productosEntrados(){
+    const url =base_url + "Reportes/productosEntrados";
+    const http=new XMLHttpRequest();
+    http.open("GET", url, true);
+    http.send();
+    http.onreadystatechange=function(){
+    if(this.readyState == 4 && this.status ==200){
+        const res = JSON.parse(this.responseText);
+        let nombre =[];
+        let total =[];
+        for (let i = 0; i < res.length; i++) {
+            nombre.push(res[i]['nombre']);
+            total.push(res[i]['total']);
+        }    
+        var ctx = document.getElementById("RproductosEntradas");
+        var myPieChart = new Chart(ctx, {
+          type: 'bar',
+          data: {
+            labels: nombre,
+            datasets: [{
+              label:'TOP 10 DE PRODUCTOS MÁS COMPRADOS',
+              data: total,
+              backgroundColor: ['#9ba2c8', '#06c6c0', '#3536df','#d5e75b', '#28a745', '#d5e75b','#00aeff','#6b771a','#e36e79','#10af59'],
+            }],
+          },
+        });
+            
+    }
+    }
+}
+function proveedoresEntrados(){
+    const url =base_url + "Reportes/proveedoresEntrados";
+    const http=new XMLHttpRequest();
+    http.open("GET", url, true);
+    http.send();
+    http.onreadystatechange=function(){
+    if(this.readyState == 4 && this.status ==200){
+        const res = JSON.parse(this.responseText);
+        let nombre =[];
+        let total =[];
+        for (let i = 0; i < res.length; i++) {
+            nombre.push(res[i]['nombre']);
+            total.push(res[i]['total']);
+        }    
+        var ctx = document.getElementById("RproveedoresEntradas");
+        var myPieChart = new Chart(ctx, {
+          type: 'bar',
+          data: {
+            labels: nombre,
+            datasets: [{
+              label: 'TOP 10 DE PROVEEDORES MÁS COMPRADOS',
+              data: total,
+              backgroundColor: ['#9ba2c8', '#06c6c0', '#3536df','#d5e75b', '#28a745', '#d5e75b','#00aeff','#6b771a','#e36e79','#10af59'],
+            }],
+          },
+        });
+            
+    }
+    }
+}
+function almacenesEntrados(){
+    const url =base_url + "Reportes/almacenesEntrados";
+    const http=new XMLHttpRequest();
+    http.open("GET", url, true);
+    http.send();
+    http.onreadystatechange=function(){
+    if(this.readyState == 4 && this.status ==200){
+        const res = JSON.parse(this.responseText);
+        let nombre =[];
+        let total =[];
+        for (let i = 0; i < res.length; i++) {
+            nombre.push(res[i]['nombre']);
+            total.push(res[i]['total']);
+        }    
+        var ctx = document.getElementById("RalmacenEntradas");
+        var myPieChart = new Chart(ctx, {
+          type: 'bar',
+          data: {
+            labels: nombre,
+            datasets: [{
+              label: 'TOP 10 DE ALMACENES MÁS COMPRADOS',
+              data: total,
+              backgroundColor: ['#9ba2c8', '#06c6c0', '#3536df','#d5e75b', '#28a745', '#d5e75b','#00aeff','#6b771a','#e36e79','#10af59'],
+            }],
+          },
+        });
+            
+    }
+    }
+}
+function usuariosEntrados(){
+    const url =base_url + "Reportes/usuariosEntrados";
+    const http=new XMLHttpRequest();
+    http.open("GET", url, true);
+    http.send();
+    http.onreadystatechange=function(){
+    if(this.readyState == 4 && this.status ==200){
+        const res = JSON.parse(this.responseText);
+        let nombre =[];
+        let total =[];
+        for (let i = 0; i < res.length; i++) {
+            nombre.push(res[i]['nombre']);
+            total.push(res[i]['total']);
+        }    
+        var ctx = document.getElementById("RusuarioEntradas");
+        var myPieChart = new Chart(ctx, {
+          type: 'bar',
+          data: {
+            labels: nombre,
+            datasets: [{
+              label: 'TOP 10 DE USUARIOS MÁS COMPRADOS',
               data: total,
               backgroundColor: ['#9ba2c8', '#06c6c0', '#3536df','#d5e75b', '#28a745', '#d5e75b','#00aeff','#6b771a','#e36e79','#10af59'],
             }],

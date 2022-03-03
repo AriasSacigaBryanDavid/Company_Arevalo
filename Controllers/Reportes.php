@@ -126,6 +126,65 @@
             echo json_encode($data, JSON_UNESCAPED_UNICODE);
             die();
         }
+        public function reportesentradas(){
+            $id_usuario = $_SESSION['id_usuario'];
+            $verificar = $this->model->VerificarPermiso($id_usuario,'reporte_entradas');
+            if(!empty($verificar)|| $id_usuario == 1){
+                $this->views->getView($this,"reportesentradas");
+            }else {
+                header('Location: '.base_url. 'Errors/permisos');
+            }
+        }
+        public function productosRendimientos(){
+            $data = $this->model->getproductosRendimientos();
+            echo json_encode($data);
+            die();
+        }
+        public function listarProductoRendimiento(){
+            $data = $this->model->getproductosRendimientosDetalles();
+            echo json_encode($data, JSON_UNESCAPED_UNICODE);
+            die();
+        }
+        public function productosEntrados(){
+            $data = $this->model->getproductosEntrados();
+            echo json_encode($data);
+            die();
+        }
+        public function listarProductoEntrado(){
+            $data = $this->model->getproductosEntradosDetalles();
+            echo json_encode($data, JSON_UNESCAPED_UNICODE);
+            die();
+        }
+        public function proveedoresEntrados(){
+            $data = $this->model->getproveedoresEntrados();
+            echo json_encode($data);
+            die();
+        }
+        public function listarProveedorEntrado(){
+            $data = $this->model->getproveedoresEntradosDetalles();
+            echo json_encode($data, JSON_UNESCAPED_UNICODE);
+            die();
+        }
+        public function almacenesEntrados(){
+            $data = $this->model->getalmacenesEntrados();
+            echo json_encode($data);
+            die();
+        }
+        public function listarAlmacenEntrado(){
+            $data = $this->model->getalmacenesEntradosDetalles();
+            echo json_encode($data, JSON_UNESCAPED_UNICODE);
+            die();
+        }
+        public function usuariosEntrados(){
+            $data = $this->model->getusuariosEntrados();
+            echo json_encode($data);
+            die();
+        }
+        public function listarUsuarioEntrado(){
+            $data = $this->model->getusuariosEntradosDetalles();
+            echo json_encode($data, JSON_UNESCAPED_UNICODE);
+            die();
+        }
         
     }
 ?>

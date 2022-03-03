@@ -95,6 +95,56 @@
         $data = $this->selectAll($sql);
         return $data;
     }
+    public function getproductosRendimientos(){
+        $sql = "SELECT d.id_producto, d.rendimiento,d.estado, p.id, p.nombre, ROUND(AVG(d.rendimiento),2)AS rendimiento  FROM detalle_entradas d INNER JOIN productos p ON p.id = d.id_producto WHERE d.estado=1 GROUP BY d.id_producto ORDER BY d.rendimiento DESC LIMIT 10";
+        $data = $this->selectAll($sql);
+        return $data;
+    }
+    public function getproductosRendimientosDetalles(){
+        $sql = "SELECT d.id_producto, d.rendimiento,d.estado, p.id, p.nombre, ROUND(AVG(d.rendimiento),2)AS rendimiento  FROM detalle_entradas d INNER JOIN productos p ON p.id = d.id_producto WHERE d.estado=1 GROUP BY d.id_producto ORDER BY d.rendimiento DESC";
+        $data = $this->selectAll($sql);
+        return $data;
+    }
+    public function getproductosEntrados(){
+        $sql = "SELECT d.id_producto, d.cantidad,d.estado, p.id, p.nombre, SUM(d.cantidad) AS total FROM detalle_entradas d INNER JOIN productos p ON p.id = d.id_producto WHERE d.estado=1 GROUP BY d.id_producto ORDER BY d.cantidad DESC LIMIT 10";
+        $data = $this->selectAll($sql);
+        return $data;
+    }
+    public function getproductosEntradosDetalles(){
+        $sql = "SELECT d.id_producto, d.cantidad,d.estado, p.id, p.nombre, SUM(d.cantidad) AS total FROM detalle_entradas d INNER JOIN productos p ON p.id = d.id_producto WHERE d.estado=1 GROUP BY d.id_producto ORDER BY d.cantidad DESC";
+        $data = $this->selectAll($sql);
+        return $data;
+    }
+    public function getproveedoresEntrados(){
+        $sql = "SELECT e.id,e.id_proveedor, e.estado, p.id, p.nombre, COUNT(e.id) AS total FROM entradas e INNER JOIN proveedores p ON p.id =e.id_proveedor WHERE e.estado =1 GROUP BY e.id_proveedor ORDER BY e.total DESC LIMIT 10";
+        $data = $this->selectAll($sql);
+        return $data;
+    }
+    public function getproveedoresEntradosDetalles(){
+        $sql = "SELECT e.id,e.id_proveedor, e.total,e.estado, p.id, p.nombre, COUNT(e.id) AS total, SUM(e.total) AS montototal FROM entradas e INNER JOIN proveedores p ON e.id_proveedor = p.id WHERE e.estado =1 GROUP BY id_proveedor ORDER BY total, montototal DESC";
+        $data = $this->selectAll($sql);
+        return $data;
+    }
+    public function getalmacenesEntrados(){
+        $sql = "SELECT e.id,e.id_almacen, e.estado, a.id, a.nombre, COUNT(e.id) AS total FROM entradas e INNER JOIN almacenes a ON e.id_almacen = a.id WHERE e.estado =1 GROUP BY e.id_almacen ORDER BY e.total DESC LIMIT 10";
+        $data = $this->selectAll($sql);
+        return $data;
+    }
+    public function getalmacenesEntradosDetalles(){
+        $sql = "SELECT e.id,e.id_almacen, e.total,e.estado, a.id, a.nombre, COUNT(e.id) AS total, SUM(e.total) AS montototal FROM entradas e INNER JOIN almacenes a ON e.id_almacen = a.id WHERE e.estado =1 GROUP BY id_almacen ORDER BY total, montototal DESC";
+        $data = $this->selectAll($sql);
+        return $data;
+    }
+    public function getusuariosEntrados(){
+        $sql = "SELECT e.id,e.id_usuario, e.estado, u.id, u.nombre, COUNT(e.id) AS total FROM entradas e INNER JOIN usuarios u ON e.id_usuario = u.id WHERE e.estado =1 GROUP BY e.id_usuario ORDER BY e.total DESC LIMIT 10";
+        $data = $this->selectAll($sql);
+        return $data;
+    }
+    public function getusuariosEntradosDetalles(){
+        $sql = "SELECT e.id,e.id_usuario, e.total,e.estado, u.id, u.nombre, COUNT(e.id) AS total, SUM(e.total) AS montototal FROM entradas e INNER JOIN usuarios u ON e.id_usuario = u.id WHERE e.estado =1 GROUP BY id_usuario ORDER BY total, montototal DESC";
+        $data = $this->selectAll($sql);
+        return $data;
+    }
 
 
     }

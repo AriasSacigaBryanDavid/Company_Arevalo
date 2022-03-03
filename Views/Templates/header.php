@@ -147,8 +147,9 @@
                             <div class="collapse" id="collapseReportes" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
                                     <a class="nav-link" href="<?php echo base_url;?>Reportes">Kardex</a>
-                                    <a class="nav-link" href="<?php echo base_url;?>Reportes/reportesventas">Reportes de Ventas</a>
+                                    <a class="nav-link" href="<?php echo base_url;?>Reportes/reportesentradas">Reportes de Entradas</a>
                                     <a class="nav-link" href="<?php echo base_url;?>Reportes/reportessalidas">Reportes de Salidas</a>
+                                    <a class="nav-link" href="<?php echo base_url;?>Reportes/reportesventas">Reportes de Ventas</a>
                                 </nav>
                             </div>
                         </div>
