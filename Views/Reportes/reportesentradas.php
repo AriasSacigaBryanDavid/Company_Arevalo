@@ -39,7 +39,7 @@
 <div class="card">
     <div class="card">
         <div class="card-header bg-info text-white text-center">
-            <h4> Reportes de Productos más Comprado</h4>
+            <h4> Reportes de Productos más Comprados</h4>
         </div>
         <div class="card-body bg-secondary">
             <div class="row mt-2">
