@@ -41,38 +41,13 @@
         $data = $this->select($sql);
         return $data;
     }
-    public function getStockMinimo()
-    {
+    public function getStockMinimo(){
         $sql = "SELECT * FROM productos WHERE cantidad < 15 ORDER BY cantidad DESC LIMIT 10";
         $data = $this->selectAll($sql);
         return $data;
     }
-    public function getproductosVendidos()
-    {
-        $sql = "SELECT d.id_producto, d.cantidad, p.id, p.nombre, SUM(d.cantidad) AS total FROM detalle_ventas d INNER JOIN productos p ON p.id = d.id_producto GROUP BY d.id_producto ORDER BY d.cantidad DESC LIMIT 10";
-        $data = $this->selectAll($sql);
-        return $data;
-    }
-    public function getPesoMinimo()
-    {
+    public function getPesoMinimo(){
         $sql = "SELECT * FROM productos WHERE peso_total < 50.00 ORDER BY peso_total DESC LIMIT 10";
-        $data = $this->selectAll($sql);
-        return $data;
-    }
-    public function getproductosSalidas()
-    {
-        $sql = "SELECT d.id_producto, d.cantidad, p.id, p.nombre, SUM(d.cantidad) AS total FROM detalle_salidas d INNER JOIN productos p ON p.id = d.id_producto GROUP BY d.id_producto ORDER BY d.cantidad DESC LIMIT 10";
-        $data = $this->selectAll($sql);
-        return $data;
-    }
-    public function getclientesVendidos()
-    {
-        $sql = "SELECT v.id_cliente, v.total, v.estado, c.id, c.nombre, SUM(v.total) AS M_total FROM ventas v INNER JOIN clientes c ON c.id = v.id_cliente WHERE v.estado =1 GROUP BY v.id_cliente ORDER BY v.total DESC LIMIT 10";
-        $data = $this->selectAll($sql);
-        return $data;
-    }
-    public function getalmacenVendidos(){
-        $sql = "SELECT v.id_almacen, v.total, a.id, a.nombre, SUM(v.total) AS M_total FROM ventas v INNER JOIN almacenes a ON a.id = v.id_almacen GROUP BY v.id_almacen ORDER BY v.total DESC";
         $data = $this->selectAll($sql);
         return $data;
     }

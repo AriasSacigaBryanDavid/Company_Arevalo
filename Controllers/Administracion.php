@@ -52,31 +52,14 @@
             echo json_encode($data);
             die();
         }
-        public function productosVendidos(){
-            $data = $this->model->getproductosVendidos();
-            echo json_encode($data);
-            die();
-        }
         public function reportePeso(){
             $data = $this->model->getPesoMinimo();
             echo json_encode($data);
             die();
         }
-        public function productosSalidas(){
-            $data = $this->model->getproductosSalidas();
-            echo json_encode($data);
-            die();
-        }
-        public function clientesVendidos(){
-            $data = $this->model->getclientesVendidos();
-            echo json_encode($data);
-            die();
-        }
-        public function almacenVendidos(){
-            $data = $this->model->getalmacenVendidos();
-            echo json_encode($data);
-            die();
-        }
+        
+        
+        
        
 
 

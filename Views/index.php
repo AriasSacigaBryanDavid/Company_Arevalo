@@ -35,11 +35,11 @@
                                                 <label for="contrasena"><i class="fas fa-key"></i> Contraseña</label>
                                             </div>
                                             <div class="alert alert-danger text-center d-none" id="alerta" role="alert">
-                                               
                                             </div>
+                                            <a href="#" data-toggle="modal" data-target="#resetear">Olvidaste tu contraseña</a>
                                             <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
                                                 <button class="btn btn-primary" type="submit" onclick="frmLogin(event);">Login</button>
-                            
+
                                             </div>
                                         </form>
                         
@@ -65,7 +65,23 @@
                 </footer>
             </div>
         </div>
-        <script src="<?php echo base_url; ?>Assets/js/jquery-3.5.1.slim.min.js" crossorigin="anonymous"></script>
+        <div id="resetear" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <form id="frmReset" onsubmit="resetearPass(event)" autocomplete="off">
+                            <div class="form-group">
+                                <label for="correo">Correo Electrónico</label>
+                                <input id="correo" class="form-control" type="email" name="correo" placeholder ="Ingrese correo electrónico" required>
+                            </div>
+                            <button class="btn btn-outline-primary" type="submit">Restablecer</button>
+                            <button class="btn btn-outline-danger" type="button" data-bs-dismiss="modal">Cancelar</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="<?php echo base_url; ?>Assets/js/jquery-3.6.0.min.js" crossorigin="anonymous"></script>
         <script src="<?php echo base_url; ?>Assets/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="<?php echo base_url; ?>Assets/js/scripts.js"></script>
         <script>

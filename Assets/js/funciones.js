@@ -3088,11 +3088,7 @@ function modificarEmpresa() {
 /** inicio de Panel de administración */
 if (document.getElementById('stockMinimo')) {
     reporteStock();
-    productosVendidos();
     reportePeso();
-    productosSalidas();
-    clientesVendidos();
-    almacenVendidos();
 }
 function reporteStock(){
     const url =base_url + "Administracion/reporteStock";
@@ -3150,123 +3146,6 @@ function reportePeso(){
             });
                 
         }
-    }
-}
-function productosVendidos(){
-    const url =base_url + "Administracion/productosVendidos";
-    const http=new XMLHttpRequest();
-    http.open("GET", url, true);
-    http.send();
-    http.onreadystatechange=function(){
-    if(this.readyState == 4 && this.status ==200){
-        const res = JSON.parse(this.responseText);
-        let nombre =[];
-        let total =[];
-        for (let i = 0; i < res.length; i++) {
-            nombre.push(res[i]['nombre']);
-            total.push(res[i]['total']);
-        }    
-        var ctx = document.getElementById("ProductosVendidos");
-        var myPieChart = new Chart(ctx, {
-          type: 'doughnut',
-          data: {
-            labels: nombre,
-            datasets: [{
-              data: total,
-              backgroundColor: ['#9ba2c8', '#06c6c0', '#3536df','#d5e75b', '#28a745', '#d5e75b','#00aeff','#6b771a','#e36e79','#10af59'],
-            }],
-          },
-        });
-            
-    }
-    }
-}
-function productosSalidas(){
-    const url =base_url + "Administracion/productosSalidas";
-    const http=new XMLHttpRequest();
-    http.open("GET", url, true);
-    http.send();
-    http.onreadystatechange=function(){
-    if(this.readyState == 4 && this.status ==200){
-        const res = JSON.parse(this.responseText);
-        let nombre =[];
-        let total =[];
-        for (let i = 0; i < res.length; i++) {
-            nombre.push(res[i]['nombre']);
-            total.push(res[i]['total']);
-        }    
-        var ctx = document.getElementById("productosSalidas");
-        var myPieChart = new Chart(ctx, {
-          type: 'doughnut',
-          data: {
-            labels: nombre,
-            datasets: [{
-              data: total,
-              backgroundColor: ['#9ba2c8', '#06c6c0', '#3536df','#d5e75b', '#28a745', '#d5e75b','#00aeff','#6b771a','#e36e79','#10af59'],
-            }],
-          },
-        });
-            
-    }
-    }
-}
-function clientesVendidos(){
-    const url =base_url + "Administracion/clientesVendidos";
-    const http=new XMLHttpRequest();
-    http.open("GET", url, true);
-    http.send();
-    http.onreadystatechange=function(){
-    if(this.readyState == 4 && this.status ==200){
-        const res = JSON.parse(this.responseText);
-        let nombre =[];
-        let M_total =[];
-        for (let i = 0; i < res.length; i++) {
-            nombre.push(res[i]['nombre']);
-            M_total.push(res[i]['M_total']);
-        }    
-        var ctx = document.getElementById("clientesVendidos");
-        var myPieChart = new Chart(ctx, {
-          type: 'doughnut',
-          data: {
-            labels: nombre,
-            datasets: [{
-              data: M_total,
-              backgroundColor: ['#9ba2c8', '#06c6c0', '#3536df','#d5e75b', '#28a745', '#d5e75b','#00aeff','#6b771a','#e36e79','#10af59'],
-            }],
-          },
-        });
-            
-    }
-    }
-}
-function almacenVendidos(){
-    const url =base_url + "Administracion/almacenVendidos";
-    const http=new XMLHttpRequest();
-    http.open("GET", url, true);
-    http.send();
-    http.onreadystatechange=function(){
-    if(this.readyState == 4 && this.status ==200){
-        const res = JSON.parse(this.responseText);
-        let nombre =[];
-        let total =[];
-        for (let i = 0; i < res.length; i++) {
-            nombre.push(res[i]['nombre']);
-            total.push(res[i]['total']);
-        }    
-        var ctx = document.getElementById("almacenVendidos");
-        var myPieChart = new Chart(ctx, {
-          type: 'bar',
-          data: {
-            labels: nombre,
-            datasets: [{
-              label: 'Record de Venta en cada almacén',
-              data: total,
-              backgroundColor: ['#9ba2c8', '#06c6c0', '#3536df','#d5e75b', '#28a745', '#d5e75b','#00aeff','#6b771a','#e36e79','#10af59'],
-            }],
-          },
-        });
-            
-    }
     }
 }
 /** Fin de Panel de administración*/
