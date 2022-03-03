@@ -19,28 +19,18 @@
                             <div class="col-lg-5">
                                 <div class="card shadow-lg border-0 rounded-lg mt-5">
                                     <div class="card-header text-center">
-                                        <h3 class="font-weight-light ">Iniciar Sesión</h3>
-                                        <img src="Assets/img/logo.jpg" class="img-fluid rounded" alt="logo" width="300">
+                                        <h3 class="font-weight-light ">Ingrese su correo Para recuperar contraseña</h3>
                                     </div>
                                     <div class="card-body">
-                                        
-                                        <!-- Casilla para ingresar datos-->
-                                        <form id="frmLogin" >
-                                            <div class="form-floating mb-3">
-                                                <input class="form-control" id="usuario" name="usuario" type="text" placeholder="Ingrese usuario" />
-                                                <label for="usuario"><i class="fas fa-user"></i> Usuario</label>
+                                    
+                                        <!-- Casilla para ingresar correo-->
+                                        <form id="frmReset" onsubmit="resetearPass(event)" autocomplete="off">
+                                            <div class="form-group mb-2 ">
+                                                <label for="correo">Correo Electrónico</label>
+                                                <input id="correo" class="form-control" type="email" name="correo" placeholder="Ingrese correo electronico" required>
                                             </div>
-                                            <div class="form-floating mb-3">
-                                                <input class="form-control" id="contrasena" name="contrasena" type="password" placeholder="Ingrese contraseña" />
-                                                <label for="contrasena"><i class="fas fa-key"></i> Contraseña</label>
-                                            </div>
-                                            <div class="alert alert-danger text-center d-none" id="alerta" role="alert">
-                                            </div>
-                                            <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
-                                                <button class="btn btn-primary" type="submit" onclick="frmLogin(event);">Login</button>
-                                                <a href="<?php echo base_url;?>Usuarios/correo">Olvidaste tu contraseña</a>
-                                            </div>
-                                            
+                                            <button class="btn btn-outline-primary" type="submit">Restablecer</button>
+                                            <a class="btn btn-outline-danger" href="<?php echo base_url; ?>">Cancelar</a>
                                         </form>
                         
                                     </div>
@@ -55,11 +45,11 @@
                     <div class="container-fluid px-4">
                         <div class="d-flex align-items-center justify-content-between small">
                             <div class="text-muted">Copyright &copy; COMPANY AREVALO E.I.R.L</div>
-                            <!--<div>
+                            <div>
                                 <a href="#">Privacy Policy</a>
                                 &middot;
                                 <a href="#">Terms &amp; Conditions</a>
-                            </div>-->
+                            </div>
                         </div>
                     </div>
                 </footer>

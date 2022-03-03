@@ -192,6 +192,9 @@
             //die();
             
         }
+        public function correo(){
+            $this->views->getView($this,"correo");
+        }
         public function salir(){
             session_destroy();
             header("location: ".base_url);
