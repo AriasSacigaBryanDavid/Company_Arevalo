@@ -20,12 +20,12 @@
                                 <div class="card shadow-lg border-0 rounded-lg mt-5">
                                     <div class="card-header text-center">
                                         <h3 class="font-weight-light ">Iniciar Sesión</h3>
-                                        <img src="Assets/img/logo.jpg" class="img-fluid rounded" alt="logo" width="300"" >
+                                        <img src="Assets/img/logo.jpg" class="img-fluid rounded" alt="logo" width="300">
                                     </div>
                                     <div class="card-body">
                                         
                                         <!-- Casilla para ingresar datos-->
-                                        <form id="frmLogin">
+                                        <form id="frmLogin" >
                                             <div class="form-floating mb-3">
                                                 <input class="form-control" id="usuario" name="usuario" type="text" placeholder="Ingrese usuario" />
                                                 <label for="usuario"><i class="fas fa-user"></i> Usuario</label>
@@ -36,11 +36,11 @@
                                             </div>
                                             <div class="alert alert-danger text-center d-none" id="alerta" role="alert">
                                             </div>
-                                            <a href="#" data-toggle="modal" data-target="#resetear">Olvidaste tu contraseña</a>
                                             <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
                                                 <button class="btn btn-primary" type="submit" onclick="frmLogin(event);">Login</button>
-
+                                                <a href="#" data-toggle="modal" data-target="#resetear"> Olvisdaste tu contraseña</a>
                                             </div>
+                                            
                                         </form>
                         
                                     </div>
@@ -72,16 +72,16 @@
                         <form id="frmReset" onsubmit="resetearPass(event)" autocomplete="off">
                             <div class="form-group">
                                 <label for="correo">Correo Electrónico</label>
-                                <input id="correo" class="form-control" type="email" name="correo" placeholder ="Ingrese correo electrónico" required>
+                                <input id="correo" class="form-control" type="email" name="correo" placeholder="Ingrese correo electronico" required>
                             </div>
                             <button class="btn btn-outline-primary" type="submit">Restablecer</button>
-                            <button class="btn btn-outline-danger" type="button" data-bs-dismiss="modal">Cancelar</button>
+                            <button class="btn btn-outline-danger" type="button" data-dismiss="modal">Cancelar</button>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
-        <script src="<?php echo base_url; ?>Assets/js/jquery-3.6.0.min.js" crossorigin="anonymous"></script>
+        <script src="<?php echo base_url; ?>Assets/js/jquery-3.5.1.slim.min.js" crossorigin="anonymous"></script>
         <script src="<?php echo base_url; ?>Assets/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="<?php echo base_url; ?>Assets/js/scripts.js"></script>
         <script>
