@@ -3262,8 +3262,8 @@ function btnReingresarCaj(id){
 /** Fin de Cajas*/
 /*******************************/
 /** inicio de Arqueos */
+
 function arqueoCaja() {
-    
     document.getElementById('ocultar_campos').classList.add('d-none');
     document.getElementById('monto_inicial').value = '';
     document.getElementById('btnAccion').textContent ='Abrir Caja';
