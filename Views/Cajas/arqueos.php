@@ -8,8 +8,8 @@
 
             <div class="card">
                 <div class="card-header">
-                    <button class="btn btn-success m-2" type="button" onclick="arqueoCaja();"><i class="fas fa-power-off"></i> Abrir Caja</button>
-                    <button class="btn btn-danger m-2" type="button" onclick="cerrarCaja();"><i class="fas fa-power-off"></i> Cerrar Caja</button>
+                    <button class="btn btn-success m-2" type="button" onclick="arqueoCaja();" id="btn_abrir"><i class="fas fa-power-off"></i> Abrir Caja</button>
+                    <button class="btn btn-danger m-2" type="button" onclick="cerrarCaja();" id="btn_cerrar" ><i class="fas fa-power-off"></i> Cerrar Caja</button>
                 </div>
             </div>
     </div>
