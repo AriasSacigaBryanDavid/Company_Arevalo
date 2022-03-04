@@ -30,3 +30,32 @@ function frmLogin(e){
         }
     }
 }
+
+function resetearPass(e){
+    e.preventDefault();
+    const correo=document.getElementById("correo").value;
+    if(correo == ""){
+        alertas('El correo es requerido ', 'warning');
+    }else{
+        const url =base_url + "Usuarios/resetear";
+        const frm =document.getElementById("frmReset");
+        const http=new XMLHttpRequest();
+        http.open("POST", url, true);
+        http.send(new FormData(frm));
+        http.onreadystatechange=function(){
+            if(this.readyState == 4 && this.status ==200){
+                //const res = JSON.parse(this.responseText);
+                console.log(this.responseText);
+            }
+        }
+    }
+}
+function alertas(mensaje, icono) {
+    Swal.fire({
+        position: 'top-end',
+        icon: icono,
+        title: mensaje,
+        showConfirmButton: false,
+        timer: 3000
+    })
+}
