@@ -2,7 +2,7 @@
 <div class="card">
     <div class="card">
         <div class="card-header bg-info text-white text-center">
-            <h4> Reportes de Productos más Vendidos</h4>
+            <h4> REPORTES DE PRODUCTOS MÁS VENDIDOS</h4>
         </div>
         <div class="card-body bg-secondary">
             <div class="row mt-2">
@@ -39,7 +39,7 @@
 <div class="card">
     <div class="card">
         <div class="card-header bg-info text-white text-center">
-            <h4> Reportes de Clientes más Vendidos</h4>
+            <h4> REPORTES DE CLIENTES MÁS VENDIDOS</h4>
         </div>
         <div class="card-body bg-secondary">
             <div class="row mt-2">
@@ -77,7 +77,7 @@
 <div class="card">
     <div class="card">
         <div class="card-header bg-info text-white text-center">
-            <h4> Reportes de Almacén más Vendidos</h4>
+            <h4> REPORTES DE ALMACENES MÁS VENDIDOS</h4>
         </div>
         <div class="card-body bg-secondary">
             <div class="row mt-2">
@@ -115,7 +115,7 @@
 <div class="card">
     <div class="card">
         <div class="card-header bg-info text-white text-center">
-            <h4> Reportes de Usuarios más Vendidos</h4>
+            <h4> REPORTES DE USUARIOS MÁS VENDIDOS</h4>
         </div>
         <div class="card-body bg-secondary">
             <div class="row mt-2">

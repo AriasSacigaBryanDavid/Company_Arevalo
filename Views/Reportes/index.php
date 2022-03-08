@@ -2,7 +2,7 @@
 <div class="card">
     <div class="card">
         <div class="card-header bg-info text-white text-center">
-            <h4> Reportes de Productos con Stock</h4>
+            <h4> REPORTES DE PRODUCTOS CON STOCK</h4>
         </div>
         <div class="card-body">
             <div class="row mt-2">
@@ -23,7 +23,7 @@
                 <div class="col-md-12 mb-2">
                         <div class="card">
                             <div class="card-header bg-info text-white text-center">
-                                <h4>Kardex</h4>
+                                <h4>KARDEX</h4>
                             </div>
                         </div>
     

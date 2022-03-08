@@ -2,7 +2,7 @@
 <div class="card">
     <div class="card">
         <div class="card-header bg-info text-white text-center">
-            <h4> Reportes de Productos más Salidos</h4>
+            <h4> REPORTES DE PRODUCTOS MÁS SALIDOS</h4>
         </div>
         <div class="card-body bg-secondary">
             <div class="row mt-2">
@@ -39,7 +39,7 @@
 <div class="card">
     <div class="card">
         <div class="card-header bg-info text-white text-center">
-            <h4> Reportes de Almacén más Salidos</h4>
+            <h4> REPORTES DE ALMACENES MÁS SALIDOS</h4>
         </div>
         <div class="card-body bg-secondary">
             <div class="row mt-2">
@@ -77,7 +77,7 @@
 <div class="card">
     <div class="card">
         <div class="card-header bg-info text-white text-center">
-            <h4> Reportes de Usuarios más Salidos</h4>
+            <h4> REPORTES DE USUARIOS MÁS SALIDOS</h4>
         </div>
         <div class="card-body bg-secondary">
             <div class="row mt-2">
