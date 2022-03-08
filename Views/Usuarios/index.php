@@ -1,18 +1,12 @@
 <?php include "Views/Templates/header.php";?>
-    <div class="card mb-2">
-            <div class="card">
-                <div class="card-header bg-primary text-white">
-                    <h4>Usuarios</h4>
-                </div>
-            </div>
-
-            <div class="card">
-                <div class="card-header">
-                    <button class="btn btn-primary mb-2" type="button" onclick="frmUsuario();"><i class="fas fa-user-plus"></i></button>
-                </div>
-            </div>
+    
+    <div class="card-header mb-2 bg-primary text-white d-flex justify-content-between">
+        <h4>Usuarios</h4>
+        <!--buton de agregar usuario-->
+        <button class="btn btn-primary" type="button" onclick="frmUsuario();"><i class="fas fa-user-plus"></i></button>
     </div>
-
+    
+    <!--tabla de usuarios-->
     <div class="table-responsive">
         <table class="table table-dark table-hover" id="tblUsuarios">
             <thead class="thead-dark">
@@ -31,14 +25,13 @@
         </table>
     </div>
     
+    <!--formulario de agregar usuarios-->
     <div id="nuevo_usuario" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="my-modal-title" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header bg-dark">
                     <h5 class="modal-title text-white" id="title">Nuevo Usuario</h5>
-                    <button type="button"    class="btn-close bg-white" data-bs-dismiss="modal" aria-label="Close">
-                        <!--<span aria-hidden="true">&times;</span>-->
-                    </button>
+                    <button type="button"    class="btn-close bg-white" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <form method="post" id="frmUsuario">
@@ -56,7 +49,7 @@
                                 <div class="form-group">
                                     <label for="contrasena">Contraseña</label>
                                     <input id="contrasena" class="form-control" type="password" name="contrasena" placeholder="Contraseña">
-                                </div>    
+                                </div>     
                            </div> 
                            <div class="col-md-6">
                                 <div class="form-group">

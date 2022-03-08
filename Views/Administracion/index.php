@@ -1,8 +1,10 @@
 <?php include "Views/Templates/header.php";?>
 <div class="card">
-    <div class="card-header bg-dark text-white">
-            <h4>Datos de la empresa</h4>
+    <div class="card-header bg-primary text-white">
+            <h4>Datos de la Empresa</h4>
     </div>
+
+    <!--formulario de modificar datos de la empresa-->
     <div class="card-body">
         <form id="frmEmpresa">
             <div class="row">

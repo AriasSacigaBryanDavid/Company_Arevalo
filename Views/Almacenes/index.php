@@ -1,18 +1,13 @@
 <?php include "Views/Templates/header.php";?>
     
-    <div class="card mb-2">
-            <div class="card">
-                <div class="card-header bg-primary text-white">
-                    <h4>Almacenes</h4>
-                </div>
-            </div>
 
-            <div class="card">
-                <div class="card-header">
-                    <button class="btn btn-primary mb-2" type="button" onclick="frmAlmacen();"><i class="fas fa-plus"></i></button>
-                </div>
-            </div>
+    <div class="card-header mb-2 bg-primary text-white d-flex justify-content-between">
+        <h4>Almacenes</h4>
+        <!--buton de agregar almacen-->
+        <button class="btn btn-primary" type="button" onclick="frmAlmacen();"><i class="fas fa-plus"></i></button>
     </div>
+    
+    <!--tabla de almacenes-->
     <div class="table-responsive">
         <table class="table table-dark table-hover" id="tblAlmacenes">
             <thead class="thead-dark">
@@ -31,15 +26,14 @@
             </tbody>
         </table>
     </div>
-    <!--formulario de agregar medidas-->
+
+    <!--formulario de agregar almacenes-->
     <div id="nuevo_almacen" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="my-modal-title" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header bg-dark">
                     <h5 class="modal-title text-white" id="title">Nueva almacén</h5>
-                    <button type="button" class="btn-close bg-white" data-bs-dismiss="modal" aria-label="Close">
-                       <!-- <span aria-hidden="true">&times;</span>-->
-                    </button>
+                    <button type="button" class="btn-close bg-white" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <form method="post" id="frmAlmacen">

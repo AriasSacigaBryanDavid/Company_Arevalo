@@ -1,17 +1,12 @@
 <?php include "Views/Templates/header.php";?>
-<div class="card mb-2">
-    <div class="card">
-        <div class="card-header bg-info text-white">
-            <h4>Documentos</h4>
-        </div>
+
+    <div class="card-header mb-2 bg-primary text-white d-flex justify-content-between">
+        <h4>Documentos</h4>
+        <!--buton de agregar documento-->
+        <button class="btn btn-primary" type="button" onclick="frmDocumento();"><i class="fas fa-plus"></i></button>
     </div>
-    <!--buton de agregar proveedores-->
-    <div class="card">
-        <div class="card-header">
-            <button class="btn btn-primary mb-2" type="button" onclick="frmDocumento();"><i class="fas fa-plus"></i></button>
-        </div>
-    </div>
-</div>
+    
+    
 <!--tabla de documentos-->
 <div class="table-responsive">
     <table class="table table-dark table-hover" id="tblDocumentos">
@@ -27,15 +22,13 @@
             </tbody>
     </table>
 </div>
-<!--formulario de agregar categorias-->
+<!--formulario de agregar documentos-->
 <div id="nuevo_documento" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="my-modal-title" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header bg-dark">
                 <h5 class="modal-title text-white" id="title">Nueva documento</h5>
-                <button type="button" class="btn-close bg-white" data-bs-dismiss="modal" aria-label="Close">
-                         <!--<span aria-hidden="true">&times;</span>-->
-                </button>
+                <button type="button" class="btn-close bg-white" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <form method="post" id="frmDocumento">

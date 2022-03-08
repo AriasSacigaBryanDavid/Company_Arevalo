@@ -1,18 +1,11 @@
 <?php include "Views/Templates/header.php";?>
-    
-    <div class="card mb-2">
-            <div class="card">
-                <div class="card-header bg-info text-white">
-                    <h4>Identidades</h4>
-                </div>
-            </div>
-
-            <div class="card">
-                <div class="card-header">
-                    <button class="btn btn-primary m-2" type="button" onclick="frmIdentidad();"><i class="fas fa-plus"></i></button>
-                </div>
-            </div>
+  
+    <div class="card-header mb-2 bg-primary text-white d-flex justify-content-between">
+        <h4>Identidades</h4>
+        <!--buton de agregar identidad-->
+        <button class="btn btn-primary" type="button" onclick="frmIdentidad();"><i class="fas fa-plus"></i></button>
     </div>
+    
     <!-- tabla de identidades-->
     <div class="table-responsive">
         <table class="table table-dark table-hover" id="tblIdentidades">
@@ -28,8 +21,8 @@
             </tbody>
         </table>
     </div>
-    <!--formulario de agregar identidades-->
 
+    <!--formulario de agregar identidades-->
     <div id="nuevo_identidad" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="my-modal-title" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -44,7 +37,7 @@
                         <div class="form-group mb-2">
                             <label for="nombre">Nombre de Identidad</label>
                             <input type="hidden" id="id" name="id">
-                            <input id="nombre" class="form-control" type="text" name="nombre" placeholder="Nombre de Identidad">
+                            <input id="nombre" class="form-control" type="text" name="nombre" placeholder="Identidad">
                         </div>
                         <button class="btn btn-outline-primary" type="button" onclick="registrarIden(event);" id="btnAccion">Agregar</button>
                         <button class="btn btn-outline-danger" type="button" data-bs-dismiss="modal">Cancelar</button>
