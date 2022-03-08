@@ -1,8 +1,8 @@
 <?php include "Views/Templates/header.php";?>
 
     <div class="card-header mb-2 bg-primary text-white d-flex justify-content-between">
-        <h4>Documentos</h4>
-        <!--buton de agregar documento-->
+        <h4>DOCUMENTOS</h4>
+        <!--button de agregar documento-->
         <button class="btn btn-primary" type="button" onclick="frmDocumento();"><i class="fas fa-plus"></i></button>
     </div>
     

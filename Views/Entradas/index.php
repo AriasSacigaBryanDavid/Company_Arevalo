@@ -2,7 +2,7 @@
 <div class="card">
     <div class="card">
         <div class="card-header bg-success text-white">
-             <h4>Entrada</h4>
+             <h4>ENTRADA</h4>
         </div>
     </div>
      <!--Entradas de Datos-->

@@ -1,18 +1,11 @@
 <?php include "Views/Templates/header.php";?>
 
-    <div class="card mb-2">
-        <div class="card">
-            <div class="card-header bg-success text-white">
-                <h4>Marcas</h4>
-            </div>
-        </div>
-
-        <div class="card">
-            <div class="card-header">
-                <button class="btn btn-primary mb-2" type="button" onclick="frmMarca();"><i class="fas fa-plus"></i></button>
-            </div>
-        </div>
+    <div class="card-header mb-2 bg-success text-white d-flex justify-content-between">
+        <h4>MARCAS</h4>
+        <!--button de agregar marca-->
+        <button class="btn btn-success" type="button" onclick="frmMarca();"><i class="fas fa-plus"></i></button>
     </div>
+        
     <!--tablas de marcas-->
     <div class="table-responsive">
         <table class="table table-dark table-hover" id="tblMarcas">
@@ -35,9 +28,7 @@
             <div class="modal-content">
                 <div class="modal-header bg-dark">
                     <h5 class="modal-title text-white" id="title">Nueva marca</h5>
-                    <button type="button" class="btn-close bg-white" data-bs-dismiss="modal" aria-label="Close">
-                         <!--<span aria-hidden="true">&times;</span>-->
-                    </button>
+                    <button type="button" class="btn-close bg-white" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <form method="post" id="frmMarca">

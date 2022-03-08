@@ -1,8 +1,8 @@
 <?php include "Views/Templates/header.php";?>
     
     <div class="card-header mb-2 bg-primary text-white d-flex justify-content-between">
-        <h4>Cargos</h4>
-        <!--buton de agregar cargo-->
+        <h4>CARGOS</h4>
+        <!--button de agregar cargo-->
         <button class="btn btn-primary" type="button" onclick="frmCargo();"><i class="fas fa-plus"></i></button>
     </div>
       

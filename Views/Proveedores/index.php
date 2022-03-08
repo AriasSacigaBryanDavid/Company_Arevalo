@@ -1,17 +1,11 @@
 <?php include "Views/Templates/header.php";?>
-<div class="card mb-2">
-    <div class="card">
-        <div class="card-header bg-primary text-white">
-            <h4>Proveedores</h4>
-        </div>
-    </div>
-    <!--buton de agregar proveedores-->
-    <div class="card">
-        <div class="card-header">
-            <button class="btn btn-primary mb-2" type="button" onclick="frmProveedor();"><i class="fas fa-user-plus"></i></button>
-        </div>
-    </div>
+
+<div class="card-header mb-2 bg-primary text-white d-flex justify-content-between">
+    <h4>PROVEEDORES</h4>
+    <!--button de agregar proveedores-->
+    <button class="btn btn-primary" type="button" onclick="frmProveedor();"><i class="fas fa-user-plus"></i></button>
 </div>
+    
 <!--tabla de proveedores-->
 <div class="table-responsive">
     <table class="table table-dark table-hover" id="tblProveedores">
@@ -33,15 +27,13 @@
     </table>
 </div>
 
-<!--formulario de agregar clientes-->
+<!--formulario de agregar proveedores-->
 <div id="nuevo_proveedor" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="my-modal-title" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header bg-dark">
                 <h5 class="modal-title text-white" id="title">Nuevo Proveedor</h5>
-                <button type="button" class="btn-close bg-white" data-bs-dismiss="modal" aria-label="Close">
-                <!-- <span aria-hidden="true">&times;</span>-->
-                </button>
+                <button type="button" class="btn-close bg-white" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <form method="post" id="frmProveedor">

@@ -1,8 +1,8 @@
 <?php include "Views/Templates/header.php";?>
   
     <div class="card-header mb-2 bg-primary text-white d-flex justify-content-between">
-        <h4>Identidades</h4>
-        <!--buton de agregar identidad-->
+        <h4>IDENTIDADES</h4>
+        <!--button de agregar identidad-->
         <button class="btn btn-primary" type="button" onclick="frmIdentidad();"><i class="fas fa-plus"></i></button>
     </div>
     
@@ -28,9 +28,7 @@
             <div class="modal-content">
                 <div class="modal-header bg-dark" >
                     <h5 class="modal-title text-white" id="title">Nuevo Identidad</h5>
-                    <button type="button" class="btn-close bg-white" data-bs-dismiss="modal" aria-label="Close">
-                       <!-- <span aria-hidden="true">&times;</span>-->
-                    </button>
+                    <button type="button" class="btn-close bg-white" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                 <form method="post" id="frmIdentidad">

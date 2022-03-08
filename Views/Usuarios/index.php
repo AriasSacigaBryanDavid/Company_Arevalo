@@ -1,8 +1,8 @@
 <?php include "Views/Templates/header.php";?>
     
     <div class="card-header mb-2 bg-primary text-white d-flex justify-content-between">
-        <h4>Usuarios</h4>
-        <!--buton de agregar usuario-->
+        <h4>USUARIOS</h4>
+        <!--button de agregar usuario-->
         <button class="btn btn-primary" type="button" onclick="frmUsuario();"><i class="fas fa-user-plus"></i></button>
     </div>
     

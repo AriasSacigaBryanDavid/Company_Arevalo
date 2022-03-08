@@ -2,8 +2,8 @@
     
 
     <div class="card-header mb-2 bg-primary text-white d-flex justify-content-between">
-        <h4>Almacenes</h4>
-        <!--buton de agregar almacen-->
+        <h4>ALMACENES</h4>
+        <!--button de agregar almacen-->
         <button class="btn btn-primary" type="button" onclick="frmAlmacen();"><i class="fas fa-plus"></i></button>
     </div>
     
