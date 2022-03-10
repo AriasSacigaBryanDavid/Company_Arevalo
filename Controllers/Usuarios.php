@@ -253,7 +253,32 @@ require 'vendor/autoload.php';
             }
         }
         public function restablecer($token){
-            $this->views->getView($this,"restablecer");
+            $data =  $this->model->getToken($token);
+            if (empty($data)) {
+                header('Location: '.base_url);
+            }else{
+                $this->views->getView($this,"restablecer", $token);
+            }
+        }
+        public function resetearPass(){
+            $contrasena = $_POST['nueva_contrasena'];
+            $confirmar = $_POST['confirmar'];
+            $token = $_POST['token'];
+            $hash = hash("SHA256", $contrasena);
+            if (empty($contrasena) || empty($confirmar)) {
+                $msg = array('msg' => 'Todo los campos son requeridos', 'icono' => 'warning');
+            }else if($contrasena != $confirmar){
+                $msg = array('msg' => 'Las Contraseñas no coinciden', 'icono' => 'warning');
+            }else {
+                $data = $this->model->nuevaContrasena($hash, $token);
+                if($data == 'ok'){
+                    $msg = array('msg' => 'Contraseña modificada con éxito', 'icono' => 'success');
+                }else{
+                    $msg = array('msg' => 'Error al modificar la contraseña', 'icono' => 'error');
+                }
+            }
+            echo json_encode($msg, JSON_UNESCAPED_UNICODE);
+            die();
         }
         public function salir(){
             session_destroy();

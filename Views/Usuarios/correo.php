@@ -8,7 +8,7 @@
         <meta name="author" content="" />
         <title>Iniciar Sesión</title>
         <link href="<?php echo base_url; ?>Assets/css/styles.css" rel="stylesheet" />
-        <script src="<?php echo base_url; ?>Assets/js/all.min.js" crossorigin="anonymous"></script>
+        <!-- <script src="<?php echo base_url; ?>Assets/js/all.min.js" crossorigin="anonymous"></script> -->
     </head>
     <body class="bg-dark">
         <div id="layoutAuthentication">
@@ -27,9 +27,9 @@
                                         <form id="frmReset" onsubmit="resetearPass(event)" autocomplete="off">
                                             <div class="form-group mb-2 ">
                                                 <label for="correo">Correo Electrónico</label>
-                                                <input id="correo" class="form-control" type="email" name="correo" placeholder="Ingrese correo electronico" required>
+                                                <input id="correo" class="form-control" type="email" name="correo" placeholder="Ingrese correo electronico" >
                                             </div>
-                                            <button class="btn btn-outline-primary" type="submit">Restablecer</button>
+                                            <button class="btn btn-outline-primary" type="submit">solicitar</button>
                                             <a class="btn btn-outline-danger" href="<?php echo base_url; ?>">Cancelar</a>
                                         </form>
                         
@@ -55,7 +55,7 @@
                 </footer>
             </div>
         </div>
-        <script src="<?php echo base_url; ?>Assets/js/jquery-3.5.1.slim.min.js" crossorigin="anonymous"></script>
+        <script src="<?php echo base_url; ?>Assets/js/jquery-3.6.0.min.js" crossorigin="anonymous"></script>
         <script src="<?php echo base_url; ?>Assets/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="<?php echo base_url; ?>Assets/js/scripts.js"></script>
         <script src="<?php echo base_url; ?>Assets/js/sweetalert2.all.min.js"></script>

@@ -141,6 +141,22 @@
             }
             return $res;
         }
+        public function getToken(string $token){
+            $sql ="SELECT * FROM usuarios WHERE token = '$token'";
+            $data = $this->select($sql);
+            return $data;
+        }
+        public function nuevaContrasena(string $contrasena, string $token){
+            $sql = "UPDATE usuarios SET contrasena = ? WHERE token = ?";
+            $datos= array($contrasena, $token);
+            $data = $this->save($sql, $datos);
+            if ($data == 1) {
+                $res = 'ok';
+            }else {
+                $res = 'Error';
+            }
+            return $res;
+        }
         
 
     }  
