@@ -239,12 +239,12 @@ require 'vendor/autoload.php';
                             $mail->Body    = 'Has pedido resetear tu contraseña, si no has sido puedes omitir este mensaje.   <a href="'.base_url.'Usuarios/restablecer/'.$token.'" target="_blank">Para resetear click aqui</a>';
                             $mail->CharSet = 'UTF-8';
                             $mail->send();
-                            $msg = array('msg' => 'correo enviado con exito', 'icono' => 'success');
+                            $msg = array('msg' => 'correo enviado con exito', 'icono'=>'success');
                         } catch (Exception $e) {
-                            $msg = array('msg' => "Message could not be sent. Mailer Error: {$mail->ErrorInfo}", 'icono' => 'error');
+                            $msg = array('msg' => "Message could not be sent. Mailer Error: {$mail->ErrorInfo}",'icono'=>'error');
                         } 
                     }else {
-                        $msg = array('msg' => 'Error al actualizar el token', 'icono' => 'error');
+                        $msg = array('msg' => 'Error al actualizar el token', 'icono'=>'error');
                     }
                 }
                 echo json_encode($msg, JSON_UNESCAPED_UNICODE);
@@ -266,15 +266,15 @@ require 'vendor/autoload.php';
             $token = $_POST['token'];
             $hash = hash("SHA256", $contrasena);
             if (empty($contrasena) || empty($confirmar)) {
-                $msg = array('msg' => 'Todo los campos son requeridos', 'icono' => 'warning');
+                $msg = array('msg'=> 'Todo los campos son requeridos', 'icono' => 'warning');
             }else if($contrasena != $confirmar){
-                $msg = array('msg' => 'Las Contraseñas no coinciden', 'icono' => 'warning');
+                $msg = array('msg'=> 'Las Contraseñas no coinciden', 'icono' => 'warning');
             }else {
                 $data = $this->model->nuevaContrasena($hash, $token);
                 if($data == 'ok'){
-                    $msg = array('msg' => 'Contraseña modificada con éxito', 'icono' => 'success');
+                    $msg = array('msg'=>'Contraseña modificada con éxito', 'icono' => 'success');
                 }else{
-                    $msg = array('msg' => 'Error al modificar la contraseña', 'icono' => 'error');
+                    $msg = array('msg'=> 'Error al modificar la contraseña', 'icono' => 'error');
                 }
             }
             echo json_encode($msg, JSON_UNESCAPED_UNICODE);
