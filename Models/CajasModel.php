@@ -98,7 +98,7 @@
         return $data;
     }
     public function actualizarArqueo(string $monto_final, string $fecha_cierre, string $total_ventas, string $general, int $id){
-        $verificar="SELECT * FROM cierre_cajas WHERE id_usuario ='$id_usuario' AND total_ventas = 0 ";
+        $verificar="SELECT * FROM cierre_cajas WHERE id_usuario ='$id_usuario' AND total_ventas = 0 AND estado=1";
         $noexiste =$this->select($verififcar);
         if (empty($noexiste)) {
             $sql="UPDATE cierre_cajas SET monto_final = ?, fecha_cierre = ? , total_ventas = ? , monto_total = ?, estado = ? WHERE id = ?";

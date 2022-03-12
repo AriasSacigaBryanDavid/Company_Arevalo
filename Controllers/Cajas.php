@@ -124,7 +124,7 @@
                     if($data == "ok") {
                         $this->model->actualizarApertura($id_usuario);
                         $msg =array('msg' =>'Caja cerrada con éxito','icono'=>'success');
-                    }else if($data == "nosexiste") {
+                    }else if($data == "noexiste") {
                         $msg =array('msg' =>'No tiene ninguna venta, por lo menos debes hacer una venta ','icono'=>'warning');
                     }else {
                         $msg =array('msg' =>'Error al cerrar la caja','icono'=>'error');
