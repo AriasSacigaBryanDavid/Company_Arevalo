@@ -78,7 +78,7 @@
         return $res;
     }
     public function getcierreCaja(){
-        $sql="SELECT * FROM cierre_cajas ";
+        $sql="SELECT a.*, u.id As id_usuario, u.nombre AS usuario, c.id AS id_caja, c.nombre AS caja FROM cierre_cajas a INNER JOIN usuarios u ON a.id_usuario = u.id INNER JOIN cajas c ON  a.id_caja =c.id;";
         $data= $this->selectAll($sql);
         return $data;
     }
@@ -98,13 +98,19 @@
         return $data;
     }
     public function actualizarArqueo(string $monto_final, string $fecha_cierre, string $total_ventas, string $general, int $id){
-        $sql="UPDATE cierre_cajas SET monto_final = ?, fecha_cierre = ? , total_ventas = ? , monto_total = ?, estado = ? WHERE id = ?";
-        $datos= array($monto_final ,$fecha_cierre, $total_ventas, $general, 0, $id);
-        $data=$this->save($sql, $datos);
-        if ($data == 1){
-            $res = "ok";
+        $verificar="SELECT * FROM cierre_cajas WHERE id_usuario ='$id_usuario' AND total_ventas = 0 ";
+        $noexiste =$this->select($verififcar);
+        if (empty($noexiste)) {
+            $sql="UPDATE cierre_cajas SET monto_final = ?, fecha_cierre = ? , total_ventas = ? , monto_total = ?, estado = ? WHERE id = ?";
+            $datos= array($monto_final ,$fecha_cierre, $total_ventas, $general, 0, $id);
+            $data=$this->save($sql, $datos);
+            if ($data == 1){
+                $res = "ok";
+            }else{
+                $res = "error";
+            }
         }else{
-            $res = "error";
+            $res="noexiste";
         }
         return $res;
     }

@@ -467,8 +467,8 @@ document.addEventListener("DOMContentLoaded", function(){
         },
         columns: [
             {'data' : 'id'},
-            {'data' : 'id_usuario'},
-            {'data' : 'id_caja'},
+            {'data' : 'usuario'},
+            {'data' : 'caja'},
             {'data' : 'monto_inicial'},
             {'data' : 'monto_final'},
             {'data' : 'fecha_apertura'},
@@ -3262,7 +3262,10 @@ function btnReingresarCaj(id){
 /** Fin de Cajas*/
 /*******************************/
 /** inicio de Arqueos */
-
+if(document.getElementById('btn_abrir')){
+    document.getElementById('btn_abrir').classList.remove('d-none');
+    document.getElementById('btn_cerrar').classList.add('d-none');
+}
 function arqueoCaja() {
     document.getElementById('ocultar_campos').classList.add('d-none');
     document.getElementById('monto_inicial').value = '';
@@ -3286,11 +3289,14 @@ function abrirArqueo(e) {
                 alertas(res.msg , res.icono);
                 tblArqueos.ajax.reload();
                 $('#abrir_caja').modal('hide');
+                document.getElementById('btn_abrir').classList.add('d-none');
+                document.getElementById('btn_cerrar').classList.remove('d-none');
             }
         }
 
     }
 }
+
 function cerrarCaja() {
         const url= base_url + "Cajas/getVentas";
         const http= new XMLHttpRequest();
@@ -3306,10 +3312,21 @@ function cerrarCaja() {
                 document.getElementById('id').value = res.inicial.id;
                 document.getElementById('ocultar_campos').classList.remove('d-none');
                 document.getElementById('btnAccion').textContent ='Cerrar Caja';
-
+                
                 //alertas(res.msg , res.icono);
-               $('#abrir_caja').modal('show');
+                $('#abrir_caja').modal('show');
+                if(res.icono == 'success'){
+                   
+                     window.location.reload();
+                     document.getElementById('btn_abrir').classList.add('d-none');
+                    document.getElementById('btn_cerrar').classList.remove('d-none');
+                    
+                 }
+                document.getElementById('btn_abrir').classList.add('d-none');
+                document.getElementById('btn_cerrar').classList.remove('d-none');
+                
             }
+            
         }
 }
 /** Fin de Arqueos*/
