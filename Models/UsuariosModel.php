@@ -24,17 +24,18 @@
             $data = $this->selectAll($sql);
             return $data;
         }
-        public function registrarUsuario(string $usuario, string $nombre, string $contrasena, string $id_cargo, string $id_almacen){
+        public function registrarUsuario(string $usuario, string $nombre, string $contrasena, string $id_cargo, string $id_almacen, string $correo){
             $this->usuario = $usuario;
             $this->nombre = $nombre;
             $this->contrasena = $contrasena;
             $this->id_cargo = $id_cargo;
             $this->id_almacen = $id_almacen;
+            $this->correo = $correo;
             $verificar="SELECT * FROM usuarios WHERE usuario='$this->usuario '";
             $existe=$this ->select($verificar);
             if(empty($existe)){
-                $sql ="INSERT INTO usuarios(usuario, nombre, contrasena, id_cargo, id_almacen) VALUES (?,?,?,?,?)";
-                $datos = array($this->usuario, $this->nombre, $this->contrasena, $this->id_cargo,$this->id_almacen);
+                $sql ="INSERT INTO usuarios(usuario, nombre, contrasena, id_cargo, id_almacen, correo) VALUES (?,?,?,?,?,?)";
+                $datos = array($this->usuario, $this->nombre, $this->contrasena, $this->id_cargo,$this->id_almacen, $this->correo);
                 $data =$this->save($sql, $datos);
                 if($data ==1){
                     $res= "ok";
@@ -47,14 +48,15 @@
             
             return $res;
         }
-        public function modificarUsuario(string $usuario, string $nombre, string $id_cargo, string $id_almacen, int $id){
+        public function modificarUsuario(string $usuario, string $nombre, string $id_cargo, string $id_almacen,string $correo, int $id){
             $this->usuario = $usuario;
             $this->nombre = $nombre;
             $this->id = $id;
             $this->id_cargo = $id_cargo;
             $this->id_almacen=$id_almacen;
-            $sql ="UPDATE usuarios SET usuario =?, nombre = ?, id_cargo=?, id_almacen=? WHERE id=?";
-            $datos = array($this->usuario, $this->nombre, $this->id_cargo, $this->id_almacen, $this->id);
+            $this->correo = $correo;
+            $sql ="UPDATE usuarios SET usuario =?, nombre = ?, id_cargo=?, id_almacen=?, correo=? WHERE id=?";
+            $datos = array($this->usuario, $this->nombre, $this->id_cargo, $this->id_almacen,$this->correo ,$this->id);
             $data =$this->save($sql, $datos);
             if($data ==1){
                     $res= "modificado";

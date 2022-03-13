@@ -27,7 +27,7 @@
                                         <form id="frmReset" onsubmit="resetearPass(event)" autocomplete="off">
                                             <div class="form-group mb-2 ">
                                                 <label for="correo">Correo Electrónico</label>
-                                                <input id="correo" class="form-control" type="email" name="correo" placeholder="Ingrese correo electronico" >
+                                                <input id="correo" class="form-control" type="email" name="correo" placeholder="Ingrese correo electrónico" >
                                             </div>
                                             <button class="btn btn-outline-primary" type="submit">solicitar</button>
                                             <a class="btn btn-outline-danger" href="<?php echo base_url; ?>">Cancelar</a>

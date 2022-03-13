@@ -16,6 +16,7 @@
                     <th>Nombre</th>
                     <th>Cargo</th>
                     <th>Almacén</th>
+                    <th>Correo</th>
                     <th>Estado</th>
                     <th></th>
                 </tr>
@@ -58,7 +59,7 @@
                                 </div>
                            </div>
                         </div>
-                        <div class="row mb-2">
+                        <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="cargo">Cargos</label>
@@ -79,6 +80,10 @@
                                     </select>
                                 </div>
                             </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="correo">Correo Electrónico</label>
+                            <input id="correo" class="form-control" type="email" name="correo" placeholder="Ingrese correo electrónico">
                         </div>
                         <button class="btn btn-outline-primary" type="button" onclick="registrarUser(event);" id="btnAccion">Registrar</button>
                         <button class="btn btn-outline-danger" type="button" data-bs-dismiss="modal">Cancelar</button>

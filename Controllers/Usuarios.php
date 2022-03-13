@@ -79,16 +79,17 @@ require 'vendor/autoload.php';
             $confirmar =$_POST['confirmar'];
             $cargo =$_POST['cargo'];
             $almacen =$_POST['almacen'];
+            $correo =$_POST['correo'];
             $id =$_POST['id'];
             $hash = hash("SHA256",$contrasena);
-            if(empty($usuario) || empty($nombre) || empty($cargo)|| empty($almacen)){
+            if(empty($usuario) || empty($nombre) || empty($cargo)|| empty($almacen) || empty($correo)){
                 $msg =" Todo los campos son obligatorios";
             }else{
                 if ($id == ""){
                     if($contrasena != $confirmar){
                         $msg =" las contraseña no coinciden";
                     }else {
-                        $data= $this->model->registrarUsuario($usuario,$nombre,$hash,$cargo,$almacen);
+                        $data= $this->model->registrarUsuario($usuario,$nombre,$hash,$cargo,$almacen,$correo);
                         if ($data == "ok"){
                             $msg = "si";  
                         }else if($data =="existe") {
@@ -98,7 +99,7 @@ require 'vendor/autoload.php';
                         }
                     }
                 }else {
-                    $data= $this->model->modificarUsuario($usuario,$nombre,$cargo, $almacen, $id);
+                    $data= $this->model->modificarUsuario($usuario,$nombre,$cargo, $almacen,$correo, $id);
                         if ($data == "modificado"){
                             $msg = "modificado";  
                         }else {

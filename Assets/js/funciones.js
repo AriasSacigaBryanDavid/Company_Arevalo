@@ -17,6 +17,7 @@ document.addEventListener("DOMContentLoaded", function(){
             {'data' : 'nombre'},
             {'data' : 'cargo'},
             {'data' : 'almacen'},
+            {'data' : 'correo'},
             {'data' : 'estado'},
             {'data' : 'acciones'}
         ],
@@ -1107,7 +1108,8 @@ function registrarUser(e){
     const confirmar=document.getElementById("confirmar");
     const cargo=document.getElementById("cargo");
     const almacen=document.getElementById("almacen");
-    if(usuario.value == "" || nombre.value== "" || cargo.value== "" || almacen.value=="") {
+    const correo =document.getElementById("correo");
+    if(usuario.value == "" || nombre.value== "" || cargo.value== "" || almacen.value=="" || correo.value =="") {
         Swal.fire({
             position: 'top-end',
             icon: 'error',
@@ -1176,6 +1178,7 @@ function btnEditarUser(id){
                document.getElementById("nombre").value = res.nombre;
                document.getElementById("cargo").value = res.id_cargo;
                document.getElementById("almacen").value = res.id_almacen;
+               document.getElementById("correo").value = res.correo;
                document.getElementById("contrasenas").classList.add("d-none");
                $("#nuevo_usuario").modal("show");
 

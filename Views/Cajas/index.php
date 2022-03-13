@@ -1,24 +1,16 @@
 <?php include "Views/Templates/header.php";?>
     
-    <div class="card mb-2">
-            <div class="card">
-                <div class="card-header bg-primary text-white">
-                    <h4>Caja</h4>
-                </div>
-            </div>
-
-            <div class="card">
-                <div class="card-header">
-                    <button class="btn btn-primary m-2" type="button" onclick="frmCaja();"><i class="fas fa-plus"></i></button>
-                </div>
-            </div>
+    <div class="card-header mb-2 bg-warning text-white d-flex justify-content-between">
+        <h4>CAJEROS</h4>
+        <button class="btn btn-warning " type="button" onclick="frmCaja();"><i class="fas fa-plus text-white"></i></button>
     </div>
+           
     <div class="table-responsive">
         <table class="table table-dark table-hover" id="tblCajas">
             <thead class="thead-dark">
                 <tr>
                     <th>Id</th>
-                    <th>Caja</th>
+                    <th>Cajero</th>
                     <th>Estado</th>
                     <th></th>
                 </tr>
