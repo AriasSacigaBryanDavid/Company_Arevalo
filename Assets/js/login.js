@@ -45,18 +45,18 @@ function resetearPass(e){
         http.onreadystatechange=function(){
             if(this.readyState == 4 && this.status ==200){
                 //console.log(this.responseText);
-                document.getElementById("frmReset").reset();
-                setTimeout(() => {
-                  window.location = base_url;
-                },3000);
                 const res = JSON.parse(this.responseText);
-                if(res == 'El correo no éxiste' ){
+                if(res.msg == 'El correo no éxiste' ){
                     alertas(res.msg, res.icono);
-                }else if(res == 'correo enviado con exito'){
+                    document.getElementById("frmReset").reset();
+                }else if(res.msg == 'correo enviado con exito'){
                     alertas(res.msg, res.icono);
+                    document.getElementById("frmReset").reset();
+                    setTimeout(() => {
+                      window.location = base_url;
+                    },3000);
                 }else{
                     alertas(res.msg, res.icono);
-
                 }
             }
         }
@@ -81,11 +81,20 @@ function restablecerPass(e){
                 console.log(this.responseText);
                 const res = JSON.parse(this.responseText);
                 alertas(res.msg, res.icono);
-                if(res.icono == 'success'){
-                   setTimeout(() => {
-                    window.location = base_url;
-                   },2000);
+                if(res.msg == 'Contraseña modificada con éxito'){
+                    alertas(res.msg, res.icono);
+                    document.getElementById("frmrestablecer").reset();
+                    setTimeout(() => {
+                        window.location = base_url;
+                    },3000);
+                }else{
+                    alertas(res.msg, res.icono);
                 }
+               // if(res.icono == 'success'){
+                 //  setTimeout(() => {
+                  //  window.location = base_url;
+                  // },2000);
+               // }
             }
         }
     }
