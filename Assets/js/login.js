@@ -45,8 +45,19 @@ function resetearPass(e){
         http.onreadystatechange=function(){
             if(this.readyState == 4 && this.status ==200){
                 //console.log(this.responseText);
+                document.getElementById("frmReset").reset();
+                setTimeout(() => {
+                  window.location = base_url;
+                },3000);
                 const res = JSON.parse(this.responseText);
-                alertas(res.msg, res.icono);
+                if(res == 'El correo no éxiste' ){
+                    alertas(res.msg, res.icono);
+                }else if(res == 'correo enviado con exito'){
+                    alertas(res.msg, res.icono);
+                }else{
+                    alertas(res.msg, res.icono);
+
+                }
             }
         }
     }
