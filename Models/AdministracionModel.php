@@ -27,17 +27,17 @@
         return $data;
     }
     public function getVentas(){
-        $sql = "SELECT COUNT(*) AS total FROM ventas WHERE fecha >= CURDATE()";
+        $sql = "SELECT COUNT(*) AS total FROM ventas WHERE fecha >= CURDATE() AND estado=1";
         $data = $this->select($sql);
         return $data;
     }
     public function getEntradas(){
-        $sql = "SELECT COUNT(*) AS total FROM entradas WHERE fecha >= CURDATE()";
+        $sql = "SELECT COUNT(*) AS total FROM entradas WHERE fecha >= CURDATE() AND estado=1";
         $data = $this->select($sql);
         return $data;
     }
     public function getSalidas(){
-        $sql = "SELECT COUNT(*) AS total FROM salidas WHERE fecha >= CURDATE()";
+        $sql = "SELECT COUNT(*) AS total FROM salidas WHERE fecha >= CURDATE() AND estado=1";
         $data = $this->select($sql);
         return $data;
     }
