@@ -1072,9 +1072,17 @@ function frmCambiarPass(e) {
             http.onreadystatechange=function(){
                 if(this.readyState == 4 && this.status ==200){
                 const res = JSON.parse(this.responseText);
-                $("#cambiarPass").modal("hide");
-                alertas(res.msg, res.icono);
-                document.getElementById("frmCambiarPass").reset();
+                if (res.msg == 'Contraseña modificada con éxito') {
+                    alertas(res.msg, res.icono);
+                    document.getElementById("frmCambiarPass").reset();
+                    $("#cambiarPass").modal("hide");
+                }else if(res.msg == 'Las contraseña actual es incorrecta'){
+                    alertas(res.msg, res.icono);
+                }else{
+                    alertas(res.msg, res.icono);
+                }
+                
+                
                 }
             }
         }
