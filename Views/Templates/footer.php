@@ -39,13 +39,13 @@
                                 <label for="confirmar_contrasena">Confirmar Contraseña</label>
                                 <input id="confirmar_contrasena" class="form-control" type="password" name="confirmar_contrasena" placeholder="Confirmar contraseña">
                             </div>
-                            <button class="btn btn-primary" type="submit">Modificar</button>
+                            <button class="btn btn-outline-primary" type="submit">Modificar</button>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
-       
+        
         <script src="<?php echo base_url; ?>Assets/js/jquery-3.6.0.min.js" crossorigin="anonymous"></script>
         <script src="<?php echo base_url; ?>Assets/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="<?php echo base_url; ?>Assets/js/scripts.js"></script>
