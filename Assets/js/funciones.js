@@ -3320,73 +3320,7 @@ function btnReingresarCaj(id){
 /** Fin de Cajas*/
 /*******************************/
 /** inicio de Arqueos */
-if(document.getElementById('btn_abrir')){
-    document.getElementById('btn_abrir').classList.remove('d-none');
-    document.getElementById('btn_cerrar').classList.add('d-none');
-}
-function arqueoCaja() {
-    document.getElementById('ocultar_campos').classList.add('d-none');
-    document.getElementById('monto_inicial').value = '';
-    document.getElementById('btnAccion').textContent ='Abrir Caja';
-    $('#abrir_caja').modal('show');
-}
-function abrirArqueo(e) {
-    e.preventDefault();
-    const monto_inicial = document.getElementById('monto_inicial').value;
-    if(monto_inicial ==""){
-        alertas('Ingrese el monto inicial', 'warning');
-    }else{
-        const frm = document.getElementById('frmAbrirCaja');
-        const url= base_url + "Cajas/abrirArqueo";
-        const http= new XMLHttpRequest();
-        http.open("POST", url, true);
-        http.send(new FormData(frm));
-        http.onreadystatechange = function () {
-            if (this.readyState == 4 && this.status == 200) {
-                const res = JSON.parse(this.responseText);
-                alertas(res.msg , res.icono);
-                tblArqueos.ajax.reload();
-                $('#abrir_caja').modal('hide');
-                document.getElementById('btn_abrir').classList.add('d-none');
-                document.getElementById('btn_cerrar').classList.remove('d-none');
-            }
-        }
 
-    }
-}
-
-function cerrarCaja() {
-        const url= base_url + "Cajas/getVentas";
-        const http= new XMLHttpRequest();
-        http.open("GET", url, true);
-        http.send();
-        http.onreadystatechange = function () {
-            if (this.readyState == 4 && this.status == 200) {
-                const res = JSON.parse(this.responseText);
-                document.getElementById('monto_final').value = res.monto_total.total;
-                document.getElementById('total_ventas').value = res.total_ventas.total;
-                document.getElementById('monto_inicial').value = res.inicial.monto_inicial;
-                document.getElementById('monto_general').value = res.monto_general;
-                document.getElementById('id').value = res.inicial.id;
-                document.getElementById('ocultar_campos').classList.remove('d-none');
-                document.getElementById('btnAccion').textContent ='Cerrar Caja';
-                
-                //alertas(res.msg , res.icono);
-                $('#abrir_caja').modal('show');
-                if(res.icono == 'success'){
-                   
-                     window.location.reload();
-                     document.getElementById('btn_abrir').classList.add('d-none');
-                    document.getElementById('btn_cerrar').classList.remove('d-none');
-                    
-                 }
-                document.getElementById('btn_abrir').classList.add('d-none');
-                document.getElementById('btn_cerrar').classList.remove('d-none');
-                
-            }
-            
-        }
-}
 /** Fin de Arqueos*/
 /*******************************/
 /** inicio de Permisos*/
