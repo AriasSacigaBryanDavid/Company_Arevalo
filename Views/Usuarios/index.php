@@ -16,7 +16,10 @@
                     <th>Nombre</th>
                     <th>Cargo</th>
                     <th>Almacén</th>
+                    <th>DNI</th>
                     <th>Correo</th>
+                    <th>Teléfono</th>
+                    <th>Dirección</th>
                     <th>Estado</th>
                     <th></th>
                 </tr>
@@ -82,8 +85,20 @@
                             </div>
                         </div>
                         <div class="form-group">
+                            <label for="dni">Documento de Identidad</label>
+                            <input id="dni" class="form-control" type="text" name="dni" placeholder="DNI">
+                        </div>
+                        <div class="form-group">
                             <label for="correo">Correo Electrónico</label>
-                            <input id="correo" class="form-control" type="email" name="correo" placeholder="Ingrese correo electrónico">
+                            <input id="correo" class="form-control" type="email" name="correo" placeholder="Correo electrónico">
+                        </div>
+                        <div class="form-group">
+                            <label for="telefono">Teléfono</label>
+                            <input id="telefono" class="form-control" type="text" name="telefono" placeholder="Teléfono">
+                        </div>
+                        <div class="form-group ">
+                            <label for="direccion">Dirección</label>
+                            <textarea id="direccion" class="form-control" name="direccion" placeholder="Dirección" rows="3"></textarea>
                         </div>
                         <button class="btn btn-outline-primary" type="button" onclick="registrarUser(event);" id="btnAccion">Registrar</button>
                         <button class="btn btn-outline-danger" type="button" data-bs-dismiss="modal">Cancelar</button>

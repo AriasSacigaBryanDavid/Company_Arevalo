@@ -17,7 +17,10 @@ document.addEventListener("DOMContentLoaded", function(){
             {'data' : 'nombre'},
             {'data' : 'cargo'},
             {'data' : 'almacen'},
+            {'data' : 'dni'},
             {'data' : 'correo'},
+            {'data' : 'telefono'},
+            {'data' : 'direccion'},
             {'data' : 'estado'},
             {'data' : 'acciones'}
         ],
@@ -1155,8 +1158,11 @@ function registrarUser(e){
     const confirmar=document.getElementById("confirmar");
     const cargo=document.getElementById("cargo");
     const almacen=document.getElementById("almacen");
+    const dni =document.getElementById("dni")
     const correo =document.getElementById("correo");
-    if(usuario.value == "" || nombre.value== "" || cargo.value== "" || almacen.value=="" || correo.value =="") {
+    const telefono=document.getElementById("telefono");
+    const direccion=document.getElementById("direccion");
+    if(usuario.value == "" || nombre.value== "" || cargo.value== "" || almacen.value=="" || dni.value=="" || correo.value =="" || telefono.value=="" || direccion.value==""){
         Swal.fire({
             position: 'top-end',
             icon: 'error',
@@ -1225,7 +1231,10 @@ function btnEditarUser(id){
                document.getElementById("nombre").value = res.nombre;
                document.getElementById("cargo").value = res.id_cargo;
                document.getElementById("almacen").value = res.id_almacen;
+               document.getElementById("dni").value = res.dni;
                document.getElementById("correo").value = res.correo;
+               document.getElementById("telefono").value = res.telefono;
+               document.getElementById("direccion").value = res.direccion;
                document.getElementById("contrasenas").classList.add("d-none");
                $("#nuevo_usuario").modal("show");
 

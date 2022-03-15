@@ -44,7 +44,7 @@
                     if($data == "ok") {
                         $msg =array('msg' =>'Caja registrado con éxito','icono'=>'success');
                     }else if($data == "existe"){ 
-                        $msg =array('msg' =>'El caja ya éxiste','icono'=>'warning');
+                        $msg =array('msg' =>'La caja ya éxiste','icono'=>'warning');
                     } else {
                         $msg =array('msg' =>'Error al registrar la caja','icono'=>'error');
                     }
