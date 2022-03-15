@@ -6,10 +6,13 @@
         }
         
         public function index(){
-            $this->views->getView($this,"index");
+            $id_usuario = $_SESSION['id_usuario'];
+            $data= $this->model->getPerfil($id_usuario);
+            $this->views->getView($this,"index",$data);
             
         }
-        
+         
+         
     }
 
 ?>
