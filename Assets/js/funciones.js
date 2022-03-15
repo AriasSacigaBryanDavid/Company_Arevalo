@@ -3320,6 +3320,10 @@ function btnReingresarCaj(id){
 /** Fin de Cajas*/
 /*******************************/
 /** inicio de Arqueos */
+if(document.getElementById('btn_abrir')){
+    document.getElementById('btn_abrir').classList.remove('d-none');
+    document.getElementById('btn_cerrar').classList.add('d-none');
+}
 function arqueoCaja(){
     document.getElementById('ocultar_campos').classList.add('d-none');
     document.getElementById('monto_inicial').value = '';
@@ -3342,9 +3346,26 @@ function abrirArqueo(e) {
         http.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
                 const res = JSON.parse(this.responseText);
-                alertas(res.msg , res.icono);
-                tblArqueos.ajax.reload();
-                $('#abrir_caja').modal('hide');
+                if(res.msg == 'Caja abierta con éxito'){
+                    alertas(res.msg , res.icono);
+                    tblArqueos.ajax.reload();
+                    $('#abrir_caja').modal('hide');
+                    document.getElementById('btn_abrir').classList.add('d-none');
+                    document.getElementById('btn_cerrar').classList.remove('d-none');
+                }else if(res.msg == 'La caja ya esta abierta'){
+                    alertas(res.msg , res.icono);
+                    $('#abrir_caja').modal('hide');
+                    document.getElementById('btn_abrir').classList.add('d-none');
+                    document.getElementById('btn_cerrar').classList.remove('d-none');
+                }else if(res.msg =='Caja cerrada con éxito'){
+                    alertas(res.msg , res.icono);
+                    tblArqueos.ajax.reload();
+                    $('#abrir_caja').modal('hide');
+                    document.getElementById('btn_abrir').classList.remove('d-none');
+                    document.getElementById('btn_cerrar').classList.add('d-none');
+                }else{
+                    alertas(res.msg , res.icono);
+                }
                 
             }
         }

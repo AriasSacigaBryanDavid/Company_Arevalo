@@ -3,9 +3,9 @@
     <div class="card-header mb-2 bg-warning text-white d-flex justify-content-between">
         <h4>Arqueos</h4>
         <!--button de agregar Arqueo-->
-        <button class="btn btn-success" type="button" onclick="arqueoCaja();"><i class="fas fa-power-off text-white"></i> Abrir Caja</button>
+        <button class="btn btn-success" type="button" onclick="arqueoCaja();" id="btn_abrir"><i class="fas fa-power-off"></i> Abrir Caja</button>
         <!--button de cerrar Arqueo-->
-        <button class="btn btn-danger" type="button" onclick="cerrarCaja();"><i class="fas fa-power-off"></i> Cerrar Caja</button>
+        <button class="btn btn-danger" type="button" onclick="cerrarCaja();" id="btn_cerrar"><i class="fas fa-power-off"></i> Cerrar Caja</button>
     </div>
 
      <!--Tabla de Arqueos-->   
