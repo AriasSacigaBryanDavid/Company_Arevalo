@@ -3320,7 +3320,62 @@ function btnReingresarCaj(id){
 /** Fin de Cajas*/
 /*******************************/
 /** inicio de Arqueos */
+function arqueoCaja(){
+    document.getElementById('ocultar_campos').classList.add('d-none');
+    document.getElementById('monto_inicial').value = '';
+    document.getElementById('btnAccion').textContent ='Abrir Caja';
+    $('#abrir_caja').modal('show');
+}
 
+function abrirArqueo(e) {
+    e.preventDefault();
+    const caja = document.getElementById('caja').value;
+    const monto_inicial = document.getElementById('monto_inicial').value;
+    if (caja == "" || monto_inicial == "") {
+        alertas('Ingrese el monto inicial', 'warning');
+    }else{
+        const frm = document.getElementById('frmAbrirCaja');
+        const url= base_url + "Cajas/abrirArqueo";
+        const http= new XMLHttpRequest();
+        http.open("POST", url, true);
+        http.send(new FormData(frm));
+        http.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                const res = JSON.parse(this.responseText);
+                alertas(res.msg , res.icono);
+                tblArqueos.ajax.reload();
+                $('#abrir_caja').modal('hide');
+                
+            }
+        }
+    }
+}
+
+function cerrarCaja() {
+    const url= base_url + "Cajas/getVentas";
+    const http= new XMLHttpRequest();
+    http.open("GET", url, true);
+    http.send();
+    http.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            const res = JSON.parse(this.responseText);
+            document.getElementById('caja').value = res.cajero.id_caja;
+            document.getElementById('monto_inicial').value = res.inicial.monto_inicial;
+            document.getElementById('monto_final').value = res.monto_total.total;
+            document.getElementById('total_ventas').value = res.total_ventas.total;
+            document.getElementById('monto_general').value = res.monto_general;
+            document.getElementById('id').value = res.inicial.id;
+            document.getElementById('ocultar_campos').classList.remove('d-none');
+            document.getElementById('btnAccion').textContent ='Cerrar Caja';
+            
+            //alertas(res.msg , res.icono);
+            $('#abrir_caja').modal('show');
+            
+            
+        }
+        
+    }
+}
 /** Fin de Arqueos*/
 /*******************************/
 /** inicio de Permisos*/

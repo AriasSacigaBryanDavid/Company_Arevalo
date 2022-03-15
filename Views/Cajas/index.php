@@ -2,9 +2,10 @@
     
     <div class="card-header mb-2 bg-warning text-white d-flex justify-content-between">
         <h4>CAJEROS</h4>
+        <!--button de agregar caja-->
         <button class="btn btn-warning " type="button" onclick="frmCaja();"><i class="fas fa-plus text-white"></i></button>
     </div>
-           
+    <!--tabla de cajas-->       
     <div class="table-responsive">
         <table class="table table-dark table-hover" id="tblCajas">
             <thead class="thead-dark">
