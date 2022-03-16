@@ -17,7 +17,7 @@
                 </div>
                 <div class="d-grid gap-2">
                 <button class="btn btn-success" type="submit"> Asignar Permisos</button>
-                <a class="btn btn-danger" href="<?php echo base_url; ?>Usuarios">Cancelar</a>
+                <a class="btn btn-danger" href="<?php echo base_url; ?>Usuarios">Volver</a>
                 </div>
             </form>
             
