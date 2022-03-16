@@ -19,7 +19,7 @@
                             <div class="col-lg-5">
                                 <div class="card shadow-lg border-0 rounded-lg mt-5">
                                     <div class="card-header text-center">
-                                        <h3 class="font-weight-light ">Ingrese su correo Para recuperar contraseña</h3>
+                                        <h3 class="font-weight-light ">Ingrese su correo para recuperar contraseña</h3>
                                     </div>
                                     <div class="card-body">
                                     
