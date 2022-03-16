@@ -55,7 +55,7 @@
                                 <nav class="sb-sidenav-menu-nested nav">
                                     <a class="nav-link" href="<?php echo base_url;?>Usuarios">Usuarios</a>
                                     <a class="nav-link" href="<?php echo base_url;?>Cargos">Cargos</a>
-                                    <a class="nav-link" href="<?php echo base_url;?>Almacenes">Almacén</a>
+                                    <a class="nav-link" href="<?php echo base_url;?>Almacenes">Almacenes</a>
                                     <a class="nav-link" href="<?php echo base_url;?>Administracion">Configuración</a>
                                     <a class="nav-link" href="<?php echo base_url;?>Documentos">Documentos</a>      
                                     <a class="nav-link" href="<?php echo base_url;?>Identidades">Identidades</a>
