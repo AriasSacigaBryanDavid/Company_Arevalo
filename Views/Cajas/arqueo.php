@@ -52,7 +52,7 @@
                         <div class="form-group mb-2">
                             <label for="monto_inicial">Monto Inicial</label>
                             <input type="hidden" id="id" name="id">
-                            <input id="monto_inicial" class="form-control" type="text" name="monto_inicial" placeholder="Monto Inicial" >
+                            <input id="monto_inicial" class="form-control" type="number" name="monto_inicial" placeholder="Monto Inicial" >
                         </div>
                         <div id="ocultar_campos">
                             <div class="form-group mb-2">

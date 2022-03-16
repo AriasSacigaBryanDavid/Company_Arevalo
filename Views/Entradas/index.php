@@ -59,13 +59,13 @@
                 <div class="col-md-2">
                     <div class="form-group">
                         <label for="rendimiento"><i class="fas fa-chart-bar"></i> Rendimiento</label>
-                        <input id="rendimiento" class="form-control" type="text" name="rendimiento" disabled>
+                        <input id="rendimiento" class="form-control" type="number" name="rendimiento" disabled>
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="form-group">
                         <label for="peso_bruto"><i class="fas fa-weight-hanging"></i> Peso Bruto </label>
-                        <input id="peso_bruto" class="form-control" type="text" name="peso_bruto" placeholder="0.00" disabled>
+                        <input id="peso_bruto" class="form-control" type="number" name="peso_bruto" placeholder="0.00" disabled>
                     </div>
                 </div>
                 <div class="col-md-3">

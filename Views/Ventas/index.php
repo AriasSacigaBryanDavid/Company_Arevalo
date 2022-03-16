@@ -60,7 +60,7 @@
                     <div class="col-md-3">
                         <div class="form-group">
                             <label for="peso_bruto"><i class="fas fa-weight-hanging"></i> Peso Bruto </label>
-                            <input id="peso_bruto" class="form-control" type="text" name="peso_bruto" placeholder="0.00" disabled>
+                            <input id="peso_bruto" class="form-control" type="number" name="peso_bruto" placeholder="0.00" disabled>
                         </div>
                     </div>
                     <div class="col-md-2">
