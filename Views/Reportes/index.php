@@ -32,10 +32,12 @@
                             <thead class="thead-dark">
                                 <tr>
                                     <th>Id</th>
+                                    <th>Código</th>
                                     <th>Producto</th>
                                     <th>Precio Compra</th>
                                     <th>Precio Venta</th>
                                     <th>Cantidad</th>
+                                    <th>Unidad</th>
                                     <th>Peso Total</th>
                                     <th>Total Entrada</th>
                                     <th>Total Venta</th>

@@ -810,10 +810,12 @@ document.addEventListener("DOMContentLoaded", function(){
         },
         columns: [
             {'data' : 'id'},
+            {'data' : 'codigo'},
             {'data' : 'nombre'},
             {'data' : 'precio_compra'},
             {'data' : 'precio_venta'},
             {'data' : 'cantidad'},
+            {'data' : 'unidad'},
             {'data' : 'peso_total'},
             {'data' : 'total_entrada'},
             {'data' : 'total_venta'},

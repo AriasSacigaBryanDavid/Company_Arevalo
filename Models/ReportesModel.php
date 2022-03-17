@@ -4,7 +4,7 @@
             parent::__construct();
     }
     public function getR_productos(){
-        $sql="SELECT * FROM productos";
+        $sql="SELECT p.*, u.id AS id_unidad, u.nombre AS unidad FROM productos p INNER JOIN unidades u ON p.id_unidad = u.id;";
         $data= $this->selectAll($sql);
         return $data;
     }
