@@ -1850,7 +1850,7 @@ function btnReingresarCli(id){
 /*******************************/
 /** inicio de categorias */
 function frmCategoria(){
-    document.getElementById("title").innerHTML ="Agregar Categoria";
+    document.getElementById("title").innerHTML ="Agregar Categoría";
     document.getElementById("btnAccion").innerHTML ="Agregar";
     document.getElementById("frmCategoria").reset();
     $("#nuevo_categoria").modal("show");
@@ -1878,7 +1878,7 @@ function registrarCateg(e){
     }
 }
 function btnEditarCateg(id){
-    document.getElementById("title").innerHTML ="Actualizar Categoria";
+    document.getElementById("title").innerHTML ="Actualizar Categoría";
     document.getElementById("btnAccion").innerHTML ="Actualizar";
     const url = base_url +"Categorias/editar/"+id;
     const http = new XMLHttpRequest();
