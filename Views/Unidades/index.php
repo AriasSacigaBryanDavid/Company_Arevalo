@@ -35,7 +35,7 @@
                         <div class="form-group mb-2">
                             <label for="nombre">Nombre de unidad</label>
                             <input type="hidden" id="id" name="id">
-                            <input id="nombre" class="form-control" type="text" name="nombre" placeholder="Marca">
+                            <input id="nombre" class="form-control" type="text" name="nombre" placeholder="Unidad">
                         </div>
                         <button class="btn btn-outline-primary" type="button" onclick="registrarUni(event);" id="btnAccion">Agregar</button>
                         <button class="btn btn-outline-danger" type="button" data-bs-dismiss="modal">Cancelar</button>
