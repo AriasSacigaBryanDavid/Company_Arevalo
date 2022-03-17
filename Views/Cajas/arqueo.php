@@ -68,8 +68,8 @@
                                 <input id="monto_general" class="form-control" type="text" disabled>
                             </div>
                         </div>
-                        <button class="btn btn-primary" type="submit" id="btnAccion">Abrir</button>
-                        <button class="btn btn-danger" type="button" data-bs-dismiss="modal">Cancelar</button>
+                        <button class="btn btn-outline-primary" type="submit" id="btnAccion">Abrir</button>
+                        <button class="btn btn-outline-danger" type="button" data-bs-dismiss="modal">Cancelar</button>
 
                     </form>
                 </div>
