@@ -27,13 +27,13 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header bg-dark">
-                    <h5 class="modal-title text-white" id="title">Nueva marca</h5>
+                    <h5 class="modal-title text-white" id="title">Nueva unidad</h5>
                     <button type="button" class="btn-close bg-white" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <form method="post" id="frmUnidad">
                         <div class="form-group mb-2">
-                            <label for="nombre">Nombre de Marca</label>
+                            <label for="nombre">Nombre de unidad</label>
                             <input type="hidden" id="id" name="id">
                             <input id="nombre" class="form-control" type="text" name="nombre" placeholder="Marca">
                         </div>
