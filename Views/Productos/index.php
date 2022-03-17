@@ -16,7 +16,7 @@
                     <th>Nombre</th>
                     <th>Descripcion</th>
                     <th>Marca</th>
-                    <th>Categoria</th>
+                    <th>Categoría</th>
                     <th>Unidad</th>
                     <th>Precio Compra</th>
                     <th>Precio Venta</th>
@@ -61,7 +61,7 @@
                             </select>
                         </div>
                         <div class="form-group " > 
-                            <label for="categoria">Categoria</label>
+                            <label for="categoria">Categoría</label>
                             <select id="categoria" class="form-control" name="categoria">
                             <?php foreach ($data['categorias'] as $row) { ?>
                                 <option value="<?php echo $row['id']; ?>"><?php echo $row['nombre']; ?></option>
