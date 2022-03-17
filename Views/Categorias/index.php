@@ -34,7 +34,7 @@
                         <div class="form-group mb-2">
                             <label for="nombre">Nombre de Categoría</label>
                             <input type="hidden" id="id" name="id">
-                            <input id="nombre" class="form-control" type="text" name="nombre" placeholder="Categoria">
+                            <input id="nombre" class="form-control" type="text" name="nombre" placeholder="Categoría">
                         </div>
                         <button class="btn btn-outline-primary" type="button" onclick="registrarCateg(event);" id="btnAccion">Agregar</button>
                         <button class="btn btn-outline-danger" type="button" data-bs-dismiss="modal">Cancelar</button>
