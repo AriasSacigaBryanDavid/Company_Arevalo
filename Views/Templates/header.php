@@ -97,7 +97,7 @@
                                 <nav class="sb-sidenav-menu-nested nav">
                                     <a class="nav-link" href="<?php echo base_url;?>Productos">Productos</a>
                                     <a class="nav-link" href="<?php echo base_url;?>Marcas">Marcas</a>
-                                    <a class="nav-link" href="<?php echo base_url;?>Categorias">Categorias</a>
+                                    <a class="nav-link" href="<?php echo base_url;?>Categorias">Categorías</a>
                                     <a class="nav-link" href="<?php echo base_url;?>Unidades">Unidades</a>
                                 </nav>
                             </div>
