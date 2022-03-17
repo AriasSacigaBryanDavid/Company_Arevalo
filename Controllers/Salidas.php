@@ -39,9 +39,9 @@
                         $data= $this->model->registrarDetalle($id_producto, $id_usuario, $peso_bruto, $cantidad, $kilos_tara, $peso_neto, $precio, $sub_total);
                         
                         if($data == "ok"){
-                            $msg =array('msg' =>'Producto ingresado a la venta','icono'=>'success');
+                            $msg =array('msg' =>'Producto ingresado a la salida','icono'=>'success');
                         }else{
-                            $msg =array('msg' =>'Error al ingresar el producto a la venta','icono'=>'error');
+                            $msg =array('msg' =>'Error al ingresar el producto a la salida','icono'=>'error');
                         } 
                     }else{
                         $msg =array('msg' =>'Peso no disponible: '.$datos['peso_total'],'icono'=>'warning');
