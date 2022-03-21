@@ -1,9 +1,9 @@
 <?php include "Views/Templates/header.php";?>
 
-    <div class="card-header mb-2 bg-primary text-white d-flex justify-content-between">
+    <div class="card-header card-header-b mb-2 text-white d-flex justify-content-between">
         <h4>CLIENTES</h4>
         <!--button de agregar clientes-->
-        <button class="btn btn-primary" type="button" onclick="frmCliente();"><i class="fas fa-user-plus"></i></button>
+        <button class="btn btn-b" type="button" onclick="frmCliente();"><i class="fas fa-user-plus text-white"></i></button>
     </div>
    
 <!--tabla de clientes-->
@@ -31,9 +31,9 @@
 <div id="nuevo_cliente" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="my-modal-title" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <div class="modal-header bg-dark">
+            <div class="modal-header card-header-b">
                 <h5 class="modal-title text-white" id="title">Nuevo Cliente</h5>
-                <button type="button" class="btn-close bg-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <form method="post" id="frmCliente">

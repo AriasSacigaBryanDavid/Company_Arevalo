@@ -1,7 +1,7 @@
 <?php include "Views/Templates/header.php";?>
     <!-- Card -->
     <div class="row">
-        <div class="col-xl-3 col-md-6 mb-2">
+        <div class="col-xl-3 col-md-6 mb-2 mt-3">
             <div class="card bg-primary">
                 <div class="card-body d-flex text-white">
                     Usuarios
@@ -13,7 +13,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-xl-3 col-md-6 mb-2">
+        <div class="col-xl-3 col-md-6 mb-2 mt-3">
             <div class="card bg-secondary">
                 <div class="card-body d-flex text-white">
                     Clientes
@@ -25,7 +25,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-xl-3 col-md-6 mb-2">
+        <div class="col-xl-3 col-md-6 mb-2 mt-3">
             <div class="card bg-info">
                 <div class="card-body d-flex text-white">
                     Proveedores
@@ -37,7 +37,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-xl-3 col-md-6 mb-2">
+        <div class="col-xl-3 col-md-6 mb-2 mt-3">
             <div class="card bg-danger">
                 <div class="card-body d-flex text-white">
                     Productos
@@ -49,7 +49,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-xl-3 col-md-6 mb-2">
+        <div class="col-xl-3 col-md-6 mb-2 mt-3">
             <div class="card bg-warning">
                 <div class="card-body d-flex text-white">
                     Ventas por Dia
@@ -61,7 +61,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-xl-3 col-md-6 mb-2">
+        <div class="col-xl-3 col-md-6 mb-2 mt-3">
             <div class="card bg-success">
                 <div class="card-body d-flex text-white">
                     Entradas por Dia
@@ -73,7 +73,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-xl-3 col-md-6 mb-2">
+        <div class="col-xl-3 col-md-6 mb-2 mt-3">
             <div class="card bg-dark">
                 <div class="card-body d-flex text-white">
                     Salidas por Dia
@@ -87,10 +87,10 @@
         </div>
     </div>
     <!-- Graficos -->
-    <div class="row mt-2">
+    <div class="row mt-3">
         <div class="col-xl-6 mb-2">
             <div class="card">
-                <div class="card-header bg-primary text-white">
+                <div class="card-header card-header-primary text-white">
                     TOP 10 de Productos con Stock Mínimo
                 </div>
                 <div class="card-body ">
@@ -100,7 +100,7 @@
         </div>
         <div class="col-xl-6 mb-2">
             <div class="card">
-                <div class="card-header bg-primary text-white">
+                <div class="card-header card-header-primary text-white">
                     TOP 10 de Productos con Peso Mínimo
                 </div>
                 <div class="card-body ">

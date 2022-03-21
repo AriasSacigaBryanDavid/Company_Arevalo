@@ -1,10 +1,10 @@
 <?php include "Views/Templates/header.php";?>
 <div class="card">
-    <div class="card">
-        <div class="card-header bg-success text-white">
+    <!-- <div class="card"> -->
+        <div class="card-header card-header-secondary text-white">
              <h4>ENTRADA</h4>
         </div>
-    </div>
+    <!-- </div> -->
      <!--Entradas de Datos-->
     <div class="card-body">
         <h5 class="card-title text-center font-weight-bold mb-2"> Detalle de la Entrada</h5>
