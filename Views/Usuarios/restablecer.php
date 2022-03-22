@@ -8,20 +8,21 @@
         <meta name="author" content="" />
         <title>Restablecer Contraseña</title>
         <link href="<?php echo base_url; ?>Assets/css/styles.css" rel="stylesheet" /> 
+        <link href="<?php echo base_url; ?>Assets/css/tipografia.css" rel="stylesheet" />
         
     </head>
-    <body class="bg-dark">
+    <body class="fondo-a">
         <div id="layoutAuthentication">
             <div id="layoutAuthentication_content">
                 <main>
                     <div class="container">
                         <div class="row justify-content-center">
                             <div class="col-lg-5">
-                                <div class="card shadow-lg border-0 rounded-lg mt-5">
+                                <div class="card card-header-a shadow-lg border-0 rounded-lg mt-5">
                                     <div class="card-header text-center">
-                                        <h3 class="font-weight-light ">Restablecer Contraseña</h3>
+                                        <h3 class="font-weight-light text-white">Restablecer Contraseña</h3>
                                     </div>
-                                    <div class="card-body">
+                                    <div class="card-body text-white">
                                         
                                         <!-- Casilla para ingresar datos-->
                                         <form id="frmrestablecer" onsubmit="restablecerPass(event)">
@@ -35,7 +36,7 @@
                                                 <input class="form-control" id="confirmar" name="confirmar" type="password" placeholder="Confirmar contraseña" />
                                             </div>
                                             <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
-                                                <button class="btn btn-outline-primary" type="submit">Restablecer</button>
+                                                <button class="btn btn-b text-white" type="submit">Restablecer</button>
                                             </div>
                                             
                                         </form>

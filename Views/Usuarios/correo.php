@@ -8,20 +8,21 @@
         <meta name="author" content="" />
         <title>Iniciar Sesión</title>
         <link href="<?php echo base_url; ?>Assets/css/styles.css" rel="stylesheet" />
+        <link href="<?php echo base_url; ?>Assets/css/tipografia.css" rel="stylesheet" />
         <!-- <script src="<?php echo base_url; ?>Assets/js/all.min.js" crossorigin="anonymous"></script> -->
     </head>
-    <body class="bg-dark">
+    <body class="fondo-a">
         <div id="layoutAuthentication">
             <div id="layoutAuthentication_content">
                 <main>
                     <div class="container">
                         <div class="row justify-content-center">
                             <div class="col-lg-5">
-                                <div class="card shadow-lg border-0 rounded-lg mt-5">
+                                <div class="card card-header-a shadow-lg border-0 rounded-lg mt-5">
                                     <div class="card-header text-center">
-                                        <h3 class="font-weight-light ">Ingrese su correo para recuperar contraseña</h3>
+                                        <h3 class="font-weight-light text-white">Ingrese su correo para recuperar contraseña</h3>
                                     </div>
-                                    <div class="card-body">
+                                    <div class="card-body text-white">
                                     
                                         <!-- Casilla para ingresar correo-->
                                         <form id="frmReset" onsubmit="resetearPass(event)" autocomplete="off">
@@ -29,8 +30,8 @@
                                                 <label for="correo">Correo Electrónico</label>
                                                 <input id="correo" class="form-control" type="email" name="correo" placeholder="Ingrese correo electrónico" >
                                             </div>
-                                            <button class="btn btn-outline-primary" type="submit">solicitar</button>
-                                            <a class="btn btn-outline-danger" href="<?php echo base_url; ?>">Cancelar</a>
+                                            <button class="btn btn-b text-white" type="submit">solicitar</button>
+                                            <a class="btn btn-c text-white" href="<?php echo base_url; ?>">Cancelar</a>
                                         </form>
                         
                                     </div>

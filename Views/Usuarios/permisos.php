@@ -1,7 +1,7 @@
 <?php include "Views/Templates/header.php";?>
 <div class="col-md-12 mx-auto">
     <div class="card">
-        <div class="card-header text-center bg-primary text-white">
+        <div class="card-header text-center card-header-a text-white">
             <h4>Asignar Permisos</h4>
         </div>
         <div class="card-body bg-secondary text-white">
