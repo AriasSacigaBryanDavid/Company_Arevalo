@@ -35,4 +35,13 @@ a{
 }
 .btn-b{
     background: #3498DB; 
+} 
+.card-header-c{
+	background: #a04000; 
+	/* box-shadow:  6px 6px 12px #4d4c4c,
+             -6px -6px 12px #ffffff; */
+    /* color: white; */
+}
+.btn-c{
+    background: #a04000; 
 }

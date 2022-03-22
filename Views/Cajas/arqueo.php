@@ -1,6 +1,6 @@
 <?php include "Views/Templates/header.php";?>
     
-    <div class="card-header mb-2 bg-warning text-white d-flex justify-content-between">
+    <div class="card-header card-header-c mb-2 text-white d-flex justify-content-between">
         <h4>Arqueos</h4>
         <!--button de agregar Arqueo-->
         <button class="btn btn-success" type="button" onclick="arqueoCaja();" id="btn_abrir"><i class="fas fa-power-off"></i> Abrir Caja</button>
@@ -35,9 +35,9 @@
      <div id="abrir_caja" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="my-modal-title" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
-                <div class="modal-header bg-dark" >
+                <div class="modal-header card-header-c" >
                     <h5 class="modal-title text-white" id="title">Arqueo Caja</h5>
-                    <button type="button" class="btn-close bg-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                 <form method="post" id="frmAbrirCaja" onsubmit="abrirArqueo(event);">
