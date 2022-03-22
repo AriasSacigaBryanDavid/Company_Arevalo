@@ -5,7 +5,7 @@
     </div>
 
     <!--formulario de modificar datos de la empresa-->
-    <div class="card-body">
+    <div class="card-body fonfo-a text-white">
         <form id="frmEmpresa">
             <div class="row">
                 <div class="col-md-6">

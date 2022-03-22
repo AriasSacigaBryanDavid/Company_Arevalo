@@ -1,10 +1,10 @@
 <?php include "Views/Templates/header.php";?>
 <div class="card">
-    <div class="card">
-        <div class="card-header bg-danger text-white">
+    <!-- <div class="card"> -->
+        <div class="card-header card-header-a text-white">
              <h4>VENTA</h4>
         </div>
-    </div>
+    <!-- </div> -->
     <!--Ventas de Datos-->
     <div class="card-body">
     <h5 class="card-title text-center font-weight-bold mb-2"> Detalle de la Venta</h5>
@@ -40,7 +40,7 @@
         </form>
     </div>
     <!--Ventas de Productos-->
-    <div class="card mb-2">
+    <div class="card">
         <div class="card-body bg-secondary text-white">
             <form id="frmProductoVenta">
                 <div class="row">
@@ -123,7 +123,7 @@
 <!--Total de Ventas Productos-->
 <div class="row">
     <div class="col-md-4 ml-auto">
-        <div class="form-group">
+        <div class="form-group text-white">
             <label for="total" class="font-weight-bold">Total </label>
             <input id="total" class="form-control" type="text" name="total" placeholder="Total" disabled>
             <button class="btn btn-primary mt-2 btn-block" type="button" onclick="generarVenta()">Generar Venta</button>

@@ -3,7 +3,7 @@
     <div class="card-header card-header-a mb-2 text-white d-flex justify-content-between">
         <h4>PRODUCTOS</h4>
         <!--button de agregar producto-->
-        <button class="btn btn-a" type="button" onclick="frmProducto();"><i class="fas fa-plus"></i></i></button>
+        <button class="btn btn-a" type="button" onclick="frmProducto();"><i class="fas fa-plus text-white"></i></i></button>
     </div>
         
     <!--tabla de productos-->

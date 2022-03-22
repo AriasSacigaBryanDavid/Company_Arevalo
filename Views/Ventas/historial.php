@@ -1,14 +1,14 @@
 <?php include "Views/Templates/header.php";?>
 <div class="card">
     <div class="card">
-        <div class="card-header bg-danger text-white">
+        <div class="card-header card-header-a text-white">
              <h4>HISTORIAL DE VENTAS</h4>
         </div>
     </div>
 </div>
-<div class="table-responsive">
-    <table class="table table-dark table-hover" id="t_historial_v">
-        <thead class="thead-dark">
+<div class="table-responsive text-white mt-2">
+    <table class="table table-a table-hover text-white" id="t_historial_v">
+        <thead class="table-a text-white">
             <tr>
                 <th>ID</th>
                 <th>Documento</th>
