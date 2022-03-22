@@ -1,10 +1,10 @@
 <?php include "Views/Templates/header.php";?>
-<div class="card">
+<div class="card mb-2">
     <div class="card">
-        <div class="card-header bg-info text-white text-center">
+        <div class="card-header card-header-a text-white text-center">
             <h4> REPORTES DE PRODUCTOS MÁS SALIDOS</h4>
         </div>
-        <div class="card-body bg-secondary">
+        <div class="card-body fondo-a text-white">
             <div class="row mt-2">
                 <div class="col-md-6 mb-2">
                     <div class="card">
@@ -14,12 +14,12 @@
                     </div>
                 </div>
                 <div class="col-md-6 mb-2">
-                    <div class="card">
+                    <div class="card fondo-a text-white">
                         <div class="card-body ">
                             <h5 class="font-weight-bold text-center">CANTIDAD DE PRODUCTOS SALIDOS</h5>
-                            <div class="table-responsive">
-                                <table class="table table-dark table-hover" id="tblproductosalido">
-                                    <thead class="thead-dark">
+                            <div class="table-responsive text-white">
+                                <table class="table table-a table-hover text-white" id="tblproductosalido">
+                                    <thead class="table-a text-white">
                                         <tr>
                                             <th>Producto</th>
                                             <th>Cant. Salidos</th>
@@ -36,12 +36,12 @@
         </div>
     </div>
 </div>
-<div class="card">
+<div class="card mb-2">
     <div class="card">
-        <div class="card-header bg-info text-white text-center">
+        <div class="card-header card-header-a text-white text-center">
             <h4> REPORTES DE ALMACENES MÁS SALIDOS</h4>
         </div>
-        <div class="card-body bg-secondary">
+        <div class="card-body fondo-a text-white">
             <div class="row mt-2">
                 <div class="col-md-6 mb-2">
                     <div class="card">
@@ -51,12 +51,12 @@
                     </div>
                 </div>
                 <div class="col-md-6 mb-2">
-                    <div class="card">
+                    <div class="card fondo-a text-white">
                         <div class="card-body ">
                             <h5 class="font-weight-bold text-center">ALMACENES SALIDOS</h5>
-                            <div class="table-responsive">
-                                <table class="table table-dark table-hover" id="tblalmacenessalido">
-                                    <thead class="thead-dark">
+                            <div class="table-responsive text-white">
+                                <table class="table table-a table-hover text-white" id="tblalmacenessalido">
+                                    <thead class="table-a text-white">
                                         <tr>
                                             <th>Almacenes</th>
                                             <th>Cant. salida</th>
@@ -74,12 +74,12 @@
         </div>
     </div>
 </div>
-<div class="card">
+<div class="card mb-2">
     <div class="card">
-        <div class="card-header bg-info text-white text-center">
+        <div class="card-header card-header-a text-white text-center">
             <h4> REPORTES DE USUARIOS MÁS SALIDOS</h4>
         </div>
-        <div class="card-body bg-secondary">
+        <div class="card-body fondo-a text-white">
             <div class="row mt-2">
                 <div class="col-md-6 mb-2">
                     <div class="card">
@@ -89,12 +89,12 @@
                     </div>
                 </div>
                 <div class="col-md-6 mb-2">
-                    <div class="card">
+                    <div class="card fondo-a text-white">
                         <div class="card-body ">
                             <h5 class="font-weight-bold text-center">USUARIOS SALIDOS</h5>
-                            <div class="table-responsive">
-                                <table class="table table-dark table-hover" id="tblusuariossalido">
-                                    <thead class="thead-dark">
+                            <div class="table-responsive text-white">
+                                <table class="table table-a table-hover text-white" id="tblusuariossalido">
+                                    <thead class="table-a text-white">
                                         <tr>
                                             <th>Usuarios</th>
                                             <th>Cant. salido</th>

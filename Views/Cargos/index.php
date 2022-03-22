@@ -28,7 +28,7 @@
             <div class="modal-content">
                 <div class="modal-header card-header-a" >
                     <h5 class="modal-title text-white" id="title">Nuevo Cargo</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" class="btn text-white" data-bs-dismiss="modal" aria-label="Close">X</button>
                 </div>
                 <div class="modal-body">
                 <form method="post" id="frmCargo">

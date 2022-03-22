@@ -1,12 +1,11 @@
 <?php include "Views/Templates/header.php";?>
 <div class="card">
-    <div class="card-header text-center bg-info text-white">
-            <h4>Perfil</h4>
-            
+    <div class="card-header fondo-a text-center text-white">
+            <h4>Perfil</h4>  
     </div>
 
     <!--formulario de modificar datos de la empresa-->
-    <div class="card-body">
+    <div class="card-body fondo-a text-white">
         <form id="frmPerfil">
             <div class="row">
                 <div class="col-md-5">
