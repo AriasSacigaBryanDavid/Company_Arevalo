@@ -7,9 +7,9 @@
     </div>
     
     <!--tabla de usuarios-->
-    <div class="table-responsive">
-        <table class="table table-dark table-hover" id="tblUsuarios">
-            <thead class="thead-dark">
+    <div class="table-responsive text-white">
+        <table class="table table-a table-hover text-white" id="tblUsuarios">
+            <thead class="table-a text-white">
                 <tr>
                     <th>ID</th>
                     <th>Usuario</th>

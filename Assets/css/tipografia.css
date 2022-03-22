@@ -2,16 +2,16 @@
 a{
     font-family: 'Patrick Hand', cursive;
 }
-.card{
+/* .card{
     box-shadow:  6px 6px 12px #4d4c4c,
              -6px -6px 12px #ffffff;
-}
-.card-header-primary{
+} */
+/* .card-header-primary{
 	background: #21618C; 
 	box-shadow:  6px 6px 12px #4d4c4c,
              -6px -6px 12px #ffffff;
     color: white;
-}
+} */
 .card-header-secondary{
 	background: #0E6655; 
 	/* box-shadow:  6px 6px 12px #4d4c4c,
@@ -44,4 +44,16 @@ a{
 }
 .btn-c{
     background: #a04000; 
+}
+.card-header-d{
+	background: #17202A; 
+	/* box-shadow:  6px 6px 12px #4d4c4c,
+             -6px -6px 12px #ffffff; */
+    /* color: white; */
+}
+.navbar-d{
+    background: #17202A; 
+}
+.table-a{
+    background: #1F618D; 
 }

@@ -1,15 +1,15 @@
 <?php include "Views/Templates/header.php";?>
 
-    <div class="card-header mb-2 bg-success text-white d-flex justify-content-between">
+    <div class="card-header card-header-a mb-2 text-white d-flex justify-content-between">
         <h4>PRODUCTOS</h4>
         <!--button de agregar producto-->
-        <button class="btn btn-success" type="button" onclick="frmProducto();"><i class="fas fa-plus"></i></i></button>
+        <button class="btn btn-a" type="button" onclick="frmProducto();"><i class="fas fa-plus"></i></i></button>
     </div>
         
     <!--tabla de productos-->
-    <div class="table-responsive">
-        <table class="table table-dark table-hover" id="tblProductos">
-            <thead class="thead-dark">
+    <div class="table-responsive text-white">
+        <table class="table table-a table-hover text-white" id="tblProductos">
+            <thead class="table-a text-white">
                 <tr>
                     <th>ID</th>
                     <th>Código</th>
@@ -33,9 +33,9 @@
     <div id="nuevo_producto" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="my-modal-title" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
-                <div class="modal-header bg-dark">
+                <div class="modal-header card-header-a">
                     <h5 class="modal-title text-white" id="title">Nuevo Producto</h5>
-                    <button type="button"    class="btn-close bg-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button type="button"    class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <form method="post" id="frmProducto">

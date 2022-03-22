@@ -15,8 +15,8 @@
         <link href="<?php echo base_url; ?>Assets/css/tipografia.css" rel="stylesheet" />
         <script src="<?php echo base_url; ?>Assets/js/all.min.js" crossorigin="anonymous"></script>
     </head>
-    <body class="sb-nav-fixed">
-        <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+    <body class="sb-nav-fixed card-header-d">
+        <nav class="sb-topnav navbar navbar-expand navbar-dark card-header-d">
             <!-- Navbar Brand-->
             <a class="navbar-brand ps-3" href="<?php echo base_url;?>Administracion/home">Company Arevalo</a>
            
@@ -24,7 +24,7 @@
             <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
            
             <!-- Navbar-->
-            <ul class="navbar-nav ms-auto ">
+            <ul class="navbar-nav ms-auto">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
@@ -40,7 +40,7 @@
         <div id="layoutSidenav">
             <div id="layoutSidenav_nav">
                 <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
-                    <div class="sb-sidenav-menu">
+                    <div class="sb-sidenav-menu card-header-d">
                         <div class="nav">
                             <!-- menu de configuracion
                             <div class="form-floating mb-3" align="center">

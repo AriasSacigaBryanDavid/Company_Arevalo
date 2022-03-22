@@ -7,9 +7,9 @@
     </div>
       
     <!--tabla de cargos-->
-    <div class="table-responsive">
-        <table class="table table-dark table-hover" id="tblCargos">
-            <thead class="thead-dark">
+    <div class="table-responsive text-white">
+        <table class="table table-a table-hover text-white" id="tblCargos">
+            <thead class="table-a text-white">
                 <tr>
                     <th>Id</th>
                     <th>Cargo</th>

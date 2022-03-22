@@ -8,9 +8,9 @@
     </div>
     
     <!--tabla de almacenes-->
-    <div class="table-responsive">
-        <table class="table table-dark table-hover" id="tblAlmacenes">
-            <thead class="thead-dark">
+    <div class="table-responsive text-white">
+        <table class="table table-a table-hover text-white" id="tblAlmacenes">
+            <thead class="table-a text-white">
                 <tr>
                     <th>Id</th>
                     <th>Nombre</th>
