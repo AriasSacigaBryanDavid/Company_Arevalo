@@ -90,7 +90,7 @@
     <div class="row mt-3">
         <div class="col-xl-6 mb-2">
             <div class="card">
-                <div class="card-header card-header-primary text-white">
+                <div class="card-header card-header-a text-white">
                     TOP 10 de Productos con Stock Mínimo
                 </div>
                 <div class="card-body ">
@@ -100,7 +100,7 @@
         </div>
         <div class="col-xl-6 mb-2">
             <div class="card">
-                <div class="card-header card-header-primary text-white">
+                <div class="card-header card-header-a text-white">
                     TOP 10 de Productos con Peso Mínimo
                 </div>
                 <div class="card-body ">
