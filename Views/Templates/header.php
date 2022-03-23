@@ -7,8 +7,8 @@
         <meta name="description" content="" />
         <meta name="author" content="" />
         <title>Panel de Administración</title>
-        <link href="<?php echo base_url; ?>Assets/css/style.css" rel="stylesheet" />
         <link href="<?php echo base_url; ?>Assets/css/styles.css" rel="stylesheet" />
+        <link href="<?php echo base_url; ?>Assets/css/style.css" rel="stylesheet" />
         <link href="<?php echo base_url; ?>Assets/DataTables/datatables.min.css" rel="stylesheet" crossorigin="anonymous"/>
         <link href="<?php echo base_url; ?>Assets/css/select2.min.css" rel="stylesheet" />
         <link href="<?php echo base_url; ?>Assets/css/estilos.css" rel="stylesheet" />
