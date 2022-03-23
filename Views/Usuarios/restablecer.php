@@ -19,13 +19,14 @@
                         <div class="row justify-content-center">
                             <div class="col-lg-5">
                                 <div class="card card-header-a shadow-lg border-0 rounded-lg mt-5">
-                                    <div class="card-header text-center">
-                                        <h3 class="font-weight-light text-white">Restablecer Contraseña</h3>
-                                    </div>
+                                    
                                     <div class="card-body text-white">
                                         
                                         <!-- Casilla para ingresar datos-->
                                         <form id="frmrestablecer" onsubmit="restablecerPass(event)">
+                                            <div class="form-group">
+                                            <h3 class="font-weight-light text-white text-center">Restablecer Contraseña</h3>
+                                            </div>
                                             <div class="form-group">
                                                 <label class="small mb-1" for="nueva_contrasena">Nueva Contraseña</label>
                                                 <input class="form-control " id="nueva_contrasena" name="nueva_contrasena" type="password" placeholder="Ingrese tu nueva contraseña" />

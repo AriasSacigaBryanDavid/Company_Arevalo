@@ -19,13 +19,14 @@
                         <div class="row justify-content-center">
                             <div class="col-lg-5">
                                 <div class="card card-header-a shadow-lg border-0 rounded-lg mt-5">
-                                    <div class="card-header text-center">
-                                        <h3 class="font-weight-light text-white">Ingrese su correo para recuperar contraseña</h3>
-                                    </div>
+                                    
                                     <div class="card-body text-white">
                                     
                                         <!-- Casilla para ingresar correo-->
                                         <form id="frmReset" onsubmit="resetearPass(event)" autocomplete="off">
+                                            <div class="form-group">
+                                                <h3 class="font-weight-light text-white text-center">Ingrese su correo para recuperar contraseña</h3>
+                                            </div>
                                             <div class="form-group mb-2 ">
                                                 <label for="correo">Correo Electrónico</label>
                                                 <input id="correo" class="form-control" type="email" name="correo" placeholder="Ingrese correo electrónico" >
