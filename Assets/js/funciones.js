@@ -1101,7 +1101,25 @@ document.addEventListener("DOMContentLoaded", function(){
                 "<'row'<'col-sm-12'tr>>" +
                 "<'row'<'col-sm-5'i><'col-sm-7'p>>"
     });
-     /** Fin de Total de usuarios entradas*/
+    /** Fin de Total de usuarios entradas*/
+    /** Inicio de buscar rango de fechas */
+    $('#desde').change(function () {
+        t_h_e.draw();
+        t_h_s.draw();
+        t_h_v.draw();
+    })
+    $('#hasta').change(function () {
+        t_h_e.draw();
+        t_h_s.draw();
+        t_h_v.draw();
+    })
+    $('#desde_a').change(function () {
+        tblArqueos.draw();
+    })
+    $('#hasta_a').change(function () {
+        tblArqueos.draw();
+    })
+    /** Fin de buscar rango de fechas*/
 })
 /** Inicio de Actualizar contraseña */
 function frmCambiarPass(e) {
@@ -3881,5 +3899,57 @@ function usuariosEntrados(){
     }
 }
 /** Fin de Reportes*/
+/*******************************/
+/** inicio de buscar rango de fechas */
+if(document.getElementById('desde') && document.getElementById('hasta')){
+    $.fn.dataTable.ext.search.push(
+        function (settings, data, dataIndex) {
+            let desde = $('#desde').val();
+            let hasta = $('#hasta').val();
+            let fecha = data[7].trim();
+            if (desde == '' || hasta == '') {
+                return true;
+            }
+            if (fecha >= desde && fecha <= hasta) {
+                return true;
+            } else {
+                return false;
+            }
+    
+        }
+    );
+}
+function mostrarTodo(){
+    document.getElementById('desde').value = '';
+    document.getElementById('hasta').value = '';
+    t_h_e.draw();
+    t_h_s.draw();
+    t_h_v.draw();
+}
 
+if(document.getElementById('desde_a') && document.getElementById('hasta_a')){
+    $.fn.dataTable.ext.search.push(
+        function (settings, data, dataIndex) {
+            let desde = $('#desde_a').val();
+            let hasta = $('#hasta_a').val();
+            let fecha = data[5].trim();
+            if (desde == '' || hasta == '') {
+                return true;
+            }
+            if (fecha >= desde && fecha <= hasta) {
+                return true;
+            } else {
+                return false;
+            }
+    
+        }
+    );
+}
+function mostrarTodo_a(){
+    document.getElementById('desde_a').value = '';
+    document.getElementById('hasta_a').value = '';
+    tblArqueos.draw();
+    
+}
+/** Fin de buscar rango de fechas*/
 

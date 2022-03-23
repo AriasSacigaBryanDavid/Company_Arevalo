@@ -1,15 +1,41 @@
 <?php include "Views/Templates/header.php";?>
     
-    <div class="card-header card-header-a mb-2 text-white d-flex justify-content-between">
-        <h4>Arqueos</h4>
-        <!--button de agregar Arqueo-->
-        <button class="btn btn-success" type="button" onclick="arqueoCaja();" id="btn_abrir"><i class="fas fa-power-off"></i> Abrir Caja</button>
-        <!--button de cerrar Arqueo-->
-        <button class="btn btn-danger" type="button" onclick="cerrarCaja();" id="btn_cerrar"><i class="fas fa-power-off"></i> Cerrar Caja</button>
+    <div class="card">
+        <div class="card-header card-header-a text-white d-flex justify-content-between">
+            <h4>Arqueos</h4>
+            <!--button de agregar Arqueo-->
+            <button class="btn btn-success" type="button" onclick="arqueoCaja();" id="btn_abrir"><i class="fas fa-power-off"></i> Abrir Caja</button>
+            <!--button de cerrar Arqueo-->
+            <button class="btn btn-danger" type="button" onclick="cerrarCaja();" id="btn_cerrar"><i class="fas fa-power-off"></i> Cerrar Caja</button>
+        </div>
+        <div class="card-body fondo-a text-white">
+            <div class="form-group text-center font-weight-bold">
+                <h4>Buscar</h4>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="desde_a">Desde</label>
+                        <input id="desde_a" class="form-control" type="date" value="<?php echo date('Y-m-d'); ?>" name="desde_a">
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="hasta_a">Hasta</label>
+                        <input id="hasta_a" class="form-control" type="date" value="<?php echo date('Y-m-d'); ?>" name="hasta_a">
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>Registros</label>
+                        <button class="btn btn-a btn-block text-white" type="button" onclick="mostrarTodo_a()" >Mostrar Todo</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-
      <!--Tabla de Arqueos-->   
-    <div class="table-responsive text-white">
+    <div class="table-responsive text-white mt-2">
         <table class="table table-a table-hover text-white" id="tblArqueos">
             <thead class="table-a text-white">
                 <tr>
