@@ -13,6 +13,7 @@
         <link href="<?php echo base_url; ?>Assets/css/select2.min.css" rel="stylesheet" />
         <link href="<?php echo base_url; ?>Assets/css/estilos.css" rel="stylesheet" />
         <link href="<?php echo base_url; ?>Assets/css/tipografia.css" rel="stylesheet" />
+        <link href="<?php echo base_url; ?>Assets/css/animate.min.css" rel="stylesheet" />
         <script src="<?php echo base_url; ?>Assets/js/all.min.js" crossorigin="anonymous"></script>
     </head>
     <body class="sb-nav-fixed card-header-d">

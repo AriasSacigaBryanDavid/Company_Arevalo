@@ -21,7 +21,7 @@
             </tbody>
         </table>
     </div>
-    
+
     <!--formulario de agregar marcas-->
     <div id="nuevo_marca" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="my-modal-title" aria-hidden="true">
         <div class="modal-dialog" role="document">

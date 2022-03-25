@@ -9,6 +9,7 @@
         <title>Iniciar Sesión</title>
         <link href="<?php echo base_url; ?>Assets/css/styles.css" rel="stylesheet" />
         <link href="<?php echo base_url; ?>Assets/css/tipografia.css" rel="stylesheet" />
+        <link href="<?php echo base_url; ?>Assets/css/animate.min.css" rel="stylesheet" />
         <script src="<?php echo base_url; ?>Assets/js/all.min.js" crossorigin="anonymous"></script>
     </head>
     <body class="fondo-a">
@@ -18,13 +19,16 @@
                     <div class="container">
                         <div class="row justify-content-center">
                             <div class="col-lg-5">
-                                <div class="card card-header-a shadow-lg border-0 rounded-lg mt-5">
-                                    <div class="card-header text-center">
+                                <div class="card card-header-a shadow-lg border-0 rounded-lg mt-5 animate__animated animate__backInDown">
+                                    <!-- <div class="card-header text-center">
                                         <h3 class="font-weight-light text-white">Iniciar Sesión</h3>
                                         <img src="Assets/img/logo.jpg" class="img-fluid rounded" alt="logo" width="300">
-                                    </div>
+                                    </div> -->
                                     <div class="card-body">
-                                        
+                                        <div class="text-center mb-4">
+                                            <h3 class="font-weight-light text-white">Iniciar Sesión</h3>
+                                            <img src="Assets/img/logo.jpg" class="img-fluid rounded" alt="logo" width="300">
+                                        </div>
                                         <!-- Casilla para ingresar datos-->
                                         <form id="frmLogin" >
                                             <div class="form-floating mb-3">
