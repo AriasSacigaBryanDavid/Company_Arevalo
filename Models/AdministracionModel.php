@@ -41,6 +41,11 @@
         $data = $this->select($sql);
         return $data;
     }
+    public function getArqueos(){
+        $sql = "SELECT COUNT(*) AS total FROM cierre_cajas WHERE fecha_apertura >= CURDATE() AND estado=1";
+        $data = $this->select($sql);
+        return $data;
+    }
     public function getStockMinimo(){
         $sql = "SELECT * FROM productos WHERE estado = 1 AND cantidad < 10 ORDER BY cantidad DESC LIMIT 10";
         $data = $this->selectAll($sql);

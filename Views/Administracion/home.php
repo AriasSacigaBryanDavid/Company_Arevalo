@@ -85,6 +85,18 @@
                 </div>
             </div>
         </div>
+        <div class="col-xl-3 col-md-6 mb-2 mt-3">
+            <div class="card bg-light">
+                <div class="card-body d-flex text-dark">
+                    Cajas abiertas
+                    <i class="fas fa-dolly-flatbed fa-2x ml-auto"></i>
+                </div>
+                <div class="card-footer d-flex align-items-center justify-content-between">
+                    <a href="<?php echo base_url; ?>Salidas/historial" class="text-dark">Ver Detalle</a>
+                    <span class="text-dark"><?php echo $data['arqueos']['total']?></span>
+                </div>
+            </div>
+        </div>
     </div>
     <!-- Graficos -->
     <div class="row mt-3">

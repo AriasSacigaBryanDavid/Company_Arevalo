@@ -28,6 +28,7 @@
             $data['ventas']= $this->model->getVentas();
             $data['entradas']= $this->model->getEntradas();
             $data['salidas']= $this->model->getSalidas();
+            $data['arqueos']= $this->model->getArqueos();
             $this->views->getView($this,"home", $data);
         }
         public function modificar()
