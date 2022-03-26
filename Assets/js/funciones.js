@@ -3193,7 +3193,7 @@ function reporteStock(){
         }    
         var ctx = document.getElementById("stockMinimo");
         var mypieChart = new Chart(ctx, {
-            type: 'doughnut',
+            type: 'line',
             data: {
                 labels: nombre,
                 datasets: [{
@@ -3222,7 +3222,7 @@ function reportePeso(){
             }    
             var ctx = document.getElementById("pesoMinimo");
             var myPieChart = new Chart(ctx, {
-                type: 'doughnut',
+                type: 'line',
                 data: {
                     labels: nombre,
                     datasets: [{
