@@ -33,12 +33,16 @@
     <div id="nuevo_usuario" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="my-modal-title" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
-                <div class="modal-header card-header-a">
+                <!-- <div class="modal-header card-header-a">
                     <h5 class="modal-title text-white" id="title">Nuevo Usuario</h5>
                     <button type="button" class="btn text-white" data-bs-dismiss="modal" aria-label="Close">X</button>
-                </div>
-                <div class="modal-body">
+                </div> -->
+                <div class="modal-body card-header-a text-white">
                     <form method="post" id="frmUsuario">
+                        <div class="form-group d-flex justify-content-between">
+                            <h4 class="modal-title text-white" id="title">Nuevo Usuario</h4>
+                            <button class="btn card-header-a text-white" type="button" data-bs-dismiss="modal"><i class="fas fa-arrow-right"></i></button>
+                        </div>
                         <div class="form-group">
                             <label for="usuario">Usuario</label>
                             <input type="hidden" id="id" name="id">
@@ -96,12 +100,12 @@
                             <label for="telefono">Teléfono</label>
                             <input id="telefono" class="form-control" type="text" name="telefono" placeholder="Teléfono">
                         </div>
-                        <div class="form-group ">
+                        <div class="form-group mb-3">
                             <label for="direccion">Dirección</label>
                             <textarea id="direccion" class="form-control" name="direccion" placeholder="Dirección" rows="3"></textarea>
                         </div>
-                        <button class="btn btn-outline-primary" type="button" onclick="registrarUser(event);" id="btnAccion">Registrar</button>
-                        <button class="btn btn-outline-danger" type="button" data-bs-dismiss="modal">Cancelar</button>
+                        <button class="btn btn-b text-white" type="button" onclick="registrarUser(event);" id="btnAccion">Registrar</button>
+                        <button class="btn btn-c text-white" type="button" data-bs-dismiss="modal">Cancelar</button>
 
                     </form>
                 </div>

@@ -19,12 +19,16 @@
         <div id="cambiarPass" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="my-modal-title" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
-                    <div class="modal-header card-header-a text-white">
+                    <!-- <div class="modal-header card-header-a text-white">
                         <h5 class="modal-title" >Modificar Contraseña</h5>
                         <button class="btn text-white" data-dismiss="modal" aria-label="Close">X</button>
-                    </div>
-                    <div class="modal-body">
+                    </div> -->
+                    <div class="modal-body card-header-a text-white">
                         <form id="frmCambiarPass" onsubmit="frmCambiarPass(event);" >
+                            <div class="form-group d-flex justify-content-between">
+                                 <h4 class="modal-title" >Modificar Contraseña</h4>
+                                 <button class="btn text-white" data-dismiss="modal" aria-label="Close"><i class="fas fa-arrow-right"></i></button>
+                            </div>
                             <div class="form-group">
                                 <label for="contrasena_actual">Contraseña Actual</label>
                                 <input id="contrasena_actual" class="form-control" type="password" name="contrasena_actual" placeholder="Contraseña Actual">
@@ -37,7 +41,7 @@
                                 <label for="confirmar_contrasena">Confirmar Contraseña</label>
                                 <input id="confirmar_contrasena" class="form-control" type="password" name="confirmar_contrasena" placeholder="Confirmar contraseña">
                             </div>
-                            <button class="btn btn-outline-primary" type="submit">Modificar</button>
+                            <button class="btn btn-b text-white" type="submit">Modificar</button>
                         </form>
                     </div>
                 </div>

@@ -40,7 +40,7 @@
                     </div>
                 </div>
             </div>
-            <button class="btn btn-primary" type="button" onclick="modificarEmpresa()">Modificar</button>
+            <button class="btn btn-a text-white" type="button" onclick="modificarEmpresa()">Modificar</button>
         </form>
     </div>
 </div>

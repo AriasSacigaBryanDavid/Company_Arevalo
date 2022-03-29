@@ -61,41 +61,45 @@
      <div id="abrir_caja" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="my-modal-title" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
-                <div class="modal-header card-header-a" >
+                <!-- <div class="modal-header card-header-a" >
                     <h5 class="modal-title text-white" id="title">Arqueo Caja</h5>
                     <button type="button" class="btn text-white" data-bs-dismiss="modal" aria-label="Close">X</button>
-                </div>
-                <div class="modal-body">
+                </div> -->
+                <div class="modal-body card-header-a text-white">
                 <form method="post" id="frmAbrirCaja" onsubmit="abrirArqueo(event);">
-                        <div class="form-group " > 
-                            <label for="caja">Cajas</label>
-                            <select id="caja" class="form-control" name="caja">
-                            <?php foreach ($data['cajas'] as $row) { ?>
-                                <option value="<?php echo $row['id']; ?>"><?php echo $row['nombre']; ?></option>
-                                <?php } ?>
-                            </select>
-                        </div>
-                        <div class="form-group mb-2">
+                    <div class="form-group d-flex justify-content-between">
+                        <h4 class="modal-title text-white" id="title">Arqueo Caja</h4>
+                        <button class="btn card-header-a text-white" type="button" data-bs-dismiss="modal"><i class="fas fa-arrow-right"></i></button>
+                    </div>    
+                    <div class="form-group " > 
+                        <label for="caja">Cajas</label>
+                        <select id="caja" class="form-control" name="caja">
+                        <?php foreach ($data['cajas'] as $row) { ?>
+                            <option value="<?php echo $row['id']; ?>"><?php echo $row['nombre']; ?></option>
+                        <?php } ?>
+                        </select>
+                    </div>
+                        <div class="form-group">
                             <label for="monto_inicial">Monto Inicial</label>
                             <input type="hidden" id="id" name="id">
                             <input id="monto_inicial" class="form-control" type="number" name="monto_inicial" placeholder="Monto Inicial" >
                         </div>
                         <div id="ocultar_campos">
-                            <div class="form-group mb-2">
+                            <div class="form-group">
                                 <label for="monto_final">Monto Final</label>
                                 <input id="monto_final" class="form-control" type="text" disabled>
                             </div>
-                            <div class="form-group mb-2">
+                            <div class="form-group">
                                 <label for="total_ventas">Total Ventas</label>
                                 <input id="total_ventas" class="form-control" type="text" disabled>
                             </div>
-                            <div class="form-group mb-2">
+                            <div class="form-group mb-3">
                                 <label for="monto_general">Monto Total</label>
                                 <input id="monto_general" class="form-control" type="text" disabled>
                             </div>
                         </div>
-                        <button class="btn btn-outline-primary" type="submit" id="btnAccion">Abrir</button>
-                        <button class="btn btn-outline-danger" type="button" data-bs-dismiss="modal">Cancelar</button>
+                        <button class="btn btn-b text-white" type="submit" id="btnAccion">Abrir</button>
+                        <button class="btn btn-c text-white" type="button" data-bs-dismiss="modal">Cancelar</button>
 
                     </form>
                 </div>
