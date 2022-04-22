@@ -2,10 +2,10 @@ let tblUsuarios , tblCargos, tblAlmacenes, tblProveedores,tblCategorias,tblMarca
 t_h_e, t_h_v, t_h_s, tblCajas, tblArqueos, tblKardex, tblProductosVendidos, tblClientesVendidos, tblAlmacenesVendidos, tblUsuariosVendidos,tblProductosSalidos,
 tblAlmacenesSalidos,tblUsuariosSalidos,tblProductosRendimientos, tblProductosEntrados,tblProveedoresEntrados,tblAlmacenesEntrados,tblUsuariosEntrados;
 
-/** Inicio de Usuario */
 document.addEventListener("DOMContentLoaded", function(){
     $('#proveedor').select2();
     $('#cliente').select2();
+    /** Inicio de Usuario */
     tblUsuarios = $('#tblUsuarios').DataTable( {
         ajax: {
             url: base_url + "Usuarios/listar",
